@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
-class signinQ extends StatelessWidget {
-  const signinQ({
+class SignUpQ extends StatelessWidget {
+  const SignUpQ({
     super.key,
   });
 

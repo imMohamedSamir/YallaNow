@@ -7,14 +7,17 @@ class CustomTextField extends StatelessWidget {
       required this.hintText,
       this.keyboardType,
       this.maxLength,
-      this.textInputAction});
+      this.textInputAction,
+      this.validator});
   final String hintText;
   final TextInputType? keyboardType;
   final int? maxLength;
   final TextInputAction? textInputAction;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       maxLength: maxLength,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
