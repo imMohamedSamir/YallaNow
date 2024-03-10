@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/AuthOptions.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/DividerWidget.dart';
-import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignUpQ.dart';
+import 'package:yallanow/Features/AuthView/presentation/views/widgets/AuthQ.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignUpAppBar.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignUpForm.dart';
+import 'package:yallanow/Features/Onboarding/presentation/onboarding.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -12,7 +13,14 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SignUpAppBar(context),
+      appBar: CustomAppBar(
+        context,
+        title: "Create account",
+        onPressed: () {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const OnBoarding()));
+        },
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -27,7 +35,10 @@ class SignUpView extends StatelessWidget {
             const SizedBox(height: 20),
             const AuthOptions(),
             const SizedBox(height: 30),
-            const SignUpQ(),
+            const AuthQ(
+              firstText: "Already have an account?",
+              secondText: "Sign in",
+            ),
             const SizedBox(height: 50),
           ]),
         ),

@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/Onboarding/presentation/onboarding.dart';
 
-AppBar SignUpAppBar(BuildContext context) {
+AppBar CustomAppBar(BuildContext context,
+    {required String title, required void Function()? onPressed}) {
   return AppBar(
     elevation: 0,
     titleSpacing: -8,
-    title: Text("Create account", style: AppStyles.styleRegular16(context)),
+    title: Text(title, style: AppStyles.styleRegular16(context)),
     leading: IconButton(
-      icon: const Icon(Icons.arrow_back_ios),
-      onPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const OnBoarding()),
-        );
-      },
-    ),
+        icon: const Icon(Icons.arrow_back_ios), onPressed: onPressed),
   );
 }

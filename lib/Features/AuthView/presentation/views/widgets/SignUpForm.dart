@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/GenderDropMenu.dart';
+import 'package:yallanow/Features/AuthView/presentation/views/widgets/VerificationSignUp.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -29,42 +30,68 @@ class _SignupFormState extends State<SignupForm> {
               }
               return null;
             },
+            onSaved: (value) {
+              name = value!.trim();
+            },
           ),
           const SizedBox(height: 16),
           CustomTextField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your E-Mail address';
-                }
-                return null;
-              },
-              hintText: "Email",
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next),
+            hintText: "Email",
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your E-Mail address';
+              }
+              if (!value.contains("@")) {
+                return 'Please enter correct E-Mail address';
+              }
+              return null;
+            },
+            onSaved: (value) {
+              email = value!.trim();
+            },
+          ),
           const SizedBox(height: 16),
           CustomTextField(
+            hintText: "Mobile number",
+            keyboardType: TextInputType.phone,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your mobile number';
               }
+              if (value.length > 11 || value.length < 11) {
+                return 'Please enter correct mobile number ';
+              }
               return null;
             },
-            hintText: "Mobile number",
-            keyboardType: TextInputType.phone,
+            onSaved: (value) {
+              mobile = value!.trim();
+            },
           ),
           const SizedBox(height: 16),
           Genderdropmenu(
-            onSelected: (value) {
+            onChanged: (value) {
+              gender = value!;
+            },
+            validator: (value) {
               if (value == null || value.isEmpty) {
-                gender = value!;
-              } else {}
+                return '   Please choose your gender';
+              }
+              return null;
             },
           ),
           const SizedBox(height: 30),
           CustomButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  // Form is valid, perform actions here
+                  _formKey.currentState!.save();
+                  print(
+                      "name: $name , gender: $gender,mobile: $mobile ,email: $email");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const VerificationSignUp()));
                 } else {
                   // Form is invalid, display error messages or take other actions
                 }

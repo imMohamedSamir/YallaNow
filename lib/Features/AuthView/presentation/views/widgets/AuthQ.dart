@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
-class SignUpQ extends StatelessWidget {
-  const SignUpQ({
+class AuthQ extends StatelessWidget {
+  const AuthQ({
     super.key,
+    required this.firstText,
+    required this.secondText,
   });
-
+  final String firstText, secondText;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -14,10 +16,11 @@ class SignUpQ extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-                text: "Already have an account?",
+                text: firstText,
                 style: AppStyles.styleRegular14(context)
                     .copyWith(color: const Color(0xff5A5A5A))),
-            TextSpan(text: "Sign in", style: AppStyles.styleSemiBold14(context))
+            TextSpan(
+                text: secondText, style: AppStyles.styleSemiBold14(context))
           ],
         ),
       ),
