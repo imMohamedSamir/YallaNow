@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Features/Onboarding/presentation/onboarding.dart';
-import 'package:yallanow/Features/Onboarding/presentation/views/onBoardingBody.dart';
-import 'package:yallanow/Features/homeView/homeView.dart';
 
 class splashViewBody extends StatefulWidget {
   const splashViewBody({super.key});

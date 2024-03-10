@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Features/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/VerificationSignUp.dart';
 import 'package:yallanow/Features/splashView/splashView.dart';
 
@@ -14,7 +15,7 @@ class YallaNow extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VerificationSignUp(),
+      home: splashView(),
       // initialRoute: "splash",
       // routes: {
       //   "splash": (context) => const splashView(),

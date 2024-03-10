@@ -9,22 +9,28 @@ class CustomTextField extends StatelessWidget {
       this.maxLength,
       this.textInputAction,
       this.validator,
-      this.onSaved});
+      this.onSaved,
+      this.suffixIcon,
+      this.secure});
   final String hintText;
   final TextInputType? keyboardType;
   final int? maxLength;
   final TextInputAction? textInputAction;
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
+  final Widget? suffixIcon;
+  final bool? secure;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: secure ?? false,
       onSaved: onSaved,
       validator: validator,
       maxLength: maxLength,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Color(0xffB20404), width: 2)),

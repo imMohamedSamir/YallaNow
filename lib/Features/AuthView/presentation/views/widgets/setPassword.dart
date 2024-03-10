@@ -13,35 +13,43 @@ class SetPassword extends StatelessWidget {
       appBar: CustomAppBar(context, title: "Password", onPressed: () {
         Navigator.pop(context);
       }),
-      body: const SingleChildScrollView(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30),
-            AuthHeader(
-                firstHeader: "Set password", secondHeader: "Set your password"),
-            SizedBox(height: 40),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+            Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    CustomTextField(hintText: "Enter Your Password"),
-                    SizedBox(height: 20),
-                    CustomTextField(hintText: "Confirm Password"),
-                    SizedBox(height: 360),
-                    CustomButton(
-                        text: "Register",
-                        color: Colors.white,
-                        btncolor: Color(0xffB20404)),
+                    SizedBox(height: 30),
+                    AuthHeader(
+                        firstHeader: "Set password",
+                        secondHeader: "Set your password"),
+                    SizedBox(height: 40),
+                    Column(
+                      children: [
+                        CustomTextField(
+                          hintText: "Enter Your Password",
+                        ),
+                        SizedBox(height: 20),
+                        CustomTextField(hintText: "Confirm Password"),
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 36),
+            CustomButton(
+                text: "Register",
+                color: Colors.white,
+                btncolor: Color(0xffB20404)),
+            SizedBox(height: 30),
           ],
         ),
       ),
     );
   }
 }
+// Navigator.pushReplacement(context,
+//                     MaterialPageRoute(builder: (context) => const homeView()));
