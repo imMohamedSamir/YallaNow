@@ -15,7 +15,7 @@ class YallaNow extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: splashView(),
+      home: LoginView(),
       // initialRoute: "splash",
       // routes: {
       //   "splash": (context) => const splashView(),

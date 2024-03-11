@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/AuthView/presentation/views/widgets/ForgetPassword.dart';
 
 class forgetPasswordSec extends StatelessWidget {
   const forgetPasswordSec({
@@ -8,12 +9,20 @@ class forgetPasswordSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Text(
-        "Forget password?",
-        style: AppStyles.styleMedium14(context)
-            .copyWith(color: const Color(0xffB20404)),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const ForgetPasswordPage()));
+      },
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          "Forget password?",
+          style: AppStyles.styleMedium14(context)
+              .copyWith(color: const Color(0xffB20404)),
+        ),
       ),
     );
   }
