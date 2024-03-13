@@ -36,6 +36,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   expandable_page_view: ^1.0.17
   pinput: ^4.0.0
+  geolocator: ^11.0.0
 
 
 

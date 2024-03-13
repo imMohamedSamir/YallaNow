@@ -34,7 +34,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               CustomTextField(
                 hintText: "Email or phone number",
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  if (value == null || value.trim().isEmpty) {
                     return 'Please enter your Email or phone number';
                   }
                   return null;
