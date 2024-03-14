@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
-import 'package:yallanow/Features/AuthView/presentation/views/widgets/forgetPassSec.dart';
-import 'package:yallanow/Features/homeView/homeView.dart';
+import 'package:yallanow/Features/AuthView/presentation/views/widgets/forgetPassQ.dart';
+import 'package:yallanow/Features/homeView/presentation/homeView.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({

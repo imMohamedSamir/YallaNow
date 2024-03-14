@@ -9,9 +9,25 @@ class Assets {
   /// assets/images/facebook.svg
   static const String imagesFacebook = "assets/images/facebook.svg";
 
+  /// Assets for imagesFilterIcon
+  /// assets/images/filterIcon.svg
+  static const String imagesFilterIcon = "assets/images/filterIcon.svg";
+
+  /// Assets for imagesFood
+  /// assets/images/food.png
+  static const String imagesFood = "assets/images/food.png";
+
+  /// Assets for imagesFoodCateg
+  /// assets/images/FoodCateg.svg
+  static const String imagesFoodCateg = "assets/images/FoodCateg.svg";
+
   /// Assets for imagesGoogle
   /// assets/images/google.svg
   static const String imagesGoogle = "assets/images/google.svg";
+
+  /// Assets for imagesLocationIcon
+  /// assets/images/locationIcon.svg
+  static const String imagesLocationIcon = "assets/images/locationIcon.svg";
 
   /// Assets for imagesMainlogo
   /// assets/images/mainlogo.svg
@@ -29,6 +45,10 @@ class Assets {
   /// assets/images/map1.png
   static const String imagesMap1 = "assets/images/map1.png";
 
+  /// Assets for imagesMarketCateg
+  /// assets/images/MarketCateg.svg
+  static const String imagesMarketCateg = "assets/images/MarketCateg.svg";
+
   /// Assets for imagesOB1
   /// assets/images/OB1.png
   static const String imagesOB1 = "assets/images/OB1.png";
@@ -44,6 +64,14 @@ class Assets {
   /// Assets for imagesOB4
   /// assets/images/OB4.png
   static const String imagesOB4 = "assets/images/OB4.png";
+
+  /// Assets for imagesRideCateg
+  /// assets/images/rideCateg.svg
+  static const String imagesRideCateg = "assets/images/rideCateg.svg";
+
+  /// Assets for imagesSearchIcon
+  /// assets/images/searchIcon.svg
+  static const String imagesSearchIcon = "assets/images/searchIcon.svg";
 
   /// Assets for imagesTest
   /// assets/images/test.svg

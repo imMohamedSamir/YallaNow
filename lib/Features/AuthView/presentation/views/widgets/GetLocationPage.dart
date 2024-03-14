@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/getCurrentLocation.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignUpAppBar.dart';
+import 'package:yallanow/Features/homeView/presentation/homeView.dart';
 
 class GetLocationPage extends StatelessWidget {
   const GetLocationPage({super.key});
@@ -53,19 +54,34 @@ class getLocationDSC extends StatelessWidget {
           const SizedBox(height: 46),
           CustomButton(
             text: "Use current location",
-            color: Color(0xffFFFFFF),
-            btncolor: Color(0xffB20404),
-            onPressed: () {
-              CurrentLocation().checkpermission();
+            color: const Color(0xffFFFFFF),
+            btncolor: const Color(0xffB20404),
+            onPressed: () async {
+              bool locRequest = await CurrentLocation().checkpermission();
+              if (!context.mounted) return;
+              if (locRequest) {
+                NavigationUtils.navigateToPage(context, const homeView());
+              }
             },
           ),
           const SizedBox(height: 16),
-          const CustomButton(
-              text: "Skip for now",
-              color: Color(0xffB20404),
-              btncolor: const Color(0xffFFFFFF))
+          CustomButton(
+            text: "Skip for now",
+            color: const Color(0xffB20404),
+            btncolor: const Color(0xffFFFFFF),
+            onPressed: () {
+              NavigationUtils.navigateToPage(context, const homeView());
+            },
+          )
         ],
       ),
     );
+  }
+}
+
+class NavigationUtils {
+  static void navigateToPage(BuildContext context, Widget destinationPage) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => destinationPage));
   }
 }

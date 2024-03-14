@@ -14,16 +14,19 @@ class CurrentLocation {
     return serviceEnabled;
   }
 
-  Future checkpermission() async {
+  Future<bool> checkpermission() async {
     LocationPermission permission;
-
+    // await Geolocator.openLocationSettings();
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
+        return false;
+      } else {
+        return true;
       }
-      print(permission.toString());
+    } else {
+      return true;
     }
   }
 }
