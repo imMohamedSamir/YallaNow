@@ -4,7 +4,7 @@ import 'package:yallanow/Features/homeView/data/Models/CardDetailModel.dart';
 
 class categCardDetails extends StatelessWidget {
   const categCardDetails({super.key, required this.cardDetails});
-  final CardDetails cardDetails;
+  final CardCategDetails cardDetails;
   final double height = 90;
   final double size = 0.65;
   @override

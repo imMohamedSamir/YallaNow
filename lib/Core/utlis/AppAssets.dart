@@ -45,6 +45,18 @@ class Assets {
   /// assets/images/Marketbasket.png
   static const String imagesMarketbasket = "assets/images/Marketbasket.png";
 
+  /// Assets for imagesMeal1
+  /// assets/images/meal1.png
+  static const String imagesMeal1 = "assets/images/meal1.png";
+
+  /// Assets for imagesMeal2
+  /// assets/images/meal2.png
+  static const String imagesMeal2 = "assets/images/meal2.png";
+
+  /// Assets for imagesMotorbike
+  /// assets/images/motorbike.png
+  static const String imagesMotorbike = "assets/images/motorbike.png";
+
   /// Assets for imagesOB1
   /// assets/images/OB1.png
   static const String imagesOB1 = "assets/images/OB1.png";

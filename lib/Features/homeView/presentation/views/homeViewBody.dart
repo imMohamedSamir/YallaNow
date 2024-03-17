@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Features/homeView/presentation/views/LocationAppBar.dart';
-import 'package:yallanow/Features/homeView/presentation/views/OffersPageView.dart';
 import 'package:yallanow/Features/homeView/presentation/views/SearchBar.dart';
 import 'package:yallanow/Features/homeView/presentation/views/categorySec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/offersSec.dart';
+import 'package:yallanow/Features/homeView/presentation/views/popularResturants.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -17,14 +17,28 @@ class HomeViewBody extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            SizedBox(height: 12),
-            HomeSearchBar(),
-            SizedBox(height: 13),
-            CategorySec(),
-            SizedBox(height: 24),
-            OffersSec()
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.only(top: 12),
+              sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(top: 13),
+              sliver: SliverToBoxAdapter(child: CategorySec()),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(top: 24),
+              sliver: SliverToBoxAdapter(child: OffersSec()),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(top: 24),
+              sliver: SliverToBoxAdapter(child: PopularResturansSec()),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(top: 24),
+              // sliver: SliverToBoxAdapter(child: PopularResturansSec()),
+            ),
           ],
         ),
       ),

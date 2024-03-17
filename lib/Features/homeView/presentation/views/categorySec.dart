@@ -6,11 +6,12 @@ import 'package:yallanow/Features/homeView/presentation/views/categCadDetaisl.da
 
 class CategorySec extends StatelessWidget {
   const CategorySec({super.key});
-  static List<CardDetails> details = [
-    CardDetails(title: "Food", avgTime: "29 min", img: Assets.imagesFood),
-    CardDetails(
+  static List<CardCategDetails> details = [
+    CardCategDetails(title: "Food", avgTime: "29 min", img: Assets.imagesFood),
+    CardCategDetails(
         title: "Mart", avgTime: "30 min", img: Assets.imagesMarketbasket),
-    CardDetails(title: "Pharmcy", avgTime: "29 min", img: Assets.imagesFood),
+    CardCategDetails(
+        title: "Pharmcy", avgTime: "29 min", img: Assets.imagesFood),
   ];
   @override
   Widget build(BuildContext context) {

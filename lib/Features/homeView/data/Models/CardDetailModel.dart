@@ -1,5 +1,6 @@
-class CardDetails {
+class CardCategDetails {
   final String title, avgTime, img;
 
-  CardDetails({required this.title, required this.avgTime, required this.img});
+  CardCategDetails(
+      {required this.title, required this.avgTime, required this.img});
 }
