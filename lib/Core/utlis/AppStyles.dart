@@ -92,6 +92,33 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleBold12(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFB20404),
+      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleBold24(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFB20404),
+      fontSize: getResponsiveFontSize(context, fontSize: 24),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleBold18(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFB20404),
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle styleRegular16(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF240301),
