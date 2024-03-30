@@ -4,8 +4,10 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
 class OffresPageView extends StatelessWidget {
-  const OffresPageView({super.key, required this.pageController});
+  const OffresPageView(
+      {super.key, required this.pageController, required this.offers});
   final PageController pageController;
+  final List<OfferDetailsModel> offers;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,22 +42,21 @@ class OffresPageView extends StatelessWidget {
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("25%",
+                                Text(offers[index].title,
                                     style: AppStyles.styleBold32(context)),
-                                Text("Friday Offer!",
+                                Text(offers[index].subtitle,
                                     style: AppStyles.styleSemiBold16(context)
                                         .copyWith(color: Colors.white)),
                                 SizedBox(
                                   width: AppSizes.getWidth(190, context),
-                                  child: Text(
-                                      "Get discount for every food order, only for today",
+                                  child: Text(offers[index].description,
                                       style: AppStyles.styleRegular12(context)
                                           .copyWith(color: Colors.white)),
                                 )
                               ]),
                           Expanded(
                             child: Image.asset(
-                              Assets.imagesBurgerIcon,
+                              offers[index].img,
                               alignment: Alignment.bottomCenter,
                               fit: BoxFit.contain,
                             ),
@@ -68,4 +69,14 @@ class OffresPageView extends StatelessWidget {
       ),
     );
   }
+}
+
+class OfferDetailsModel {
+  final String title, subtitle, description, img;
+
+  OfferDetailsModel(
+      {required this.title,
+      required this.subtitle,
+      required this.description,
+      required this.img});
 }

@@ -3,8 +3,8 @@ import 'package:yallanow/Features/homeView/presentation/views/DotsIndicators.dar
 import 'package:yallanow/Features/homeView/presentation/views/OffersPageView.dart';
 
 class OffersSec extends StatefulWidget {
-  const OffersSec({super.key});
-
+  const OffersSec({super.key, required this.offers});
+  final List<OfferDetailsModel> offers;
   @override
   State<OffersSec> createState() => _OffersSecState();
 }
@@ -32,7 +32,10 @@ class _OffersSecState extends State<OffersSec> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OffresPageView(pageController: pageController),
+        OffresPageView(
+          pageController: pageController,
+          offers: widget.offers,
+        ),
         const SizedBox(height: 16),
         dotIndicatorgroup(currentIndex: currentPage),
       ],

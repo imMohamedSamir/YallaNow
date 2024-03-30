@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/foodView/presentation/views/FoodCategoryLV.dart';
+import 'package:yallanow/Features/foodView/presentation/views/FoodOffersSec.dart';
 import 'package:yallanow/Features/foodView/presentation/views/RecommendedforyouSec.dart';
 import 'package:yallanow/Features/foodView/presentation/views/RestOfFoodPage.dart';
 import 'package:yallanow/Features/homeView/presentation/views/SearchBar.dart';
-import 'package:yallanow/Features/homeView/presentation/views/offersSec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/popularResturants.dart';
 
 class FoodViewBody extends StatelessWidget {
@@ -14,7 +14,7 @@ class FoodViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FoodAppBar(context),
+      appBar: CategoryAppBar(context, title: 'Food'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
@@ -29,7 +29,7 @@ class FoodViewBody extends StatelessWidget {
             ),
             const SliverPadding(
               padding: EdgeInsets.only(top: 12),
-              sliver: SliverToBoxAdapter(child: OffersSec()),
+              sliver: SliverToBoxAdapter(child: FoodOffersSec()),
             ),
             const SliverPadding(
               padding: EdgeInsets.only(top: 24),

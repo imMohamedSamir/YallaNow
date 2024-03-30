@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/homeView/presentation/views/LocationAppBar.dart';
+import 'package:yallanow/main.dart';
 
 AppBar MainAppBar(
   BuildContext context, {
@@ -27,9 +28,9 @@ AppBar HomeAppBar() {
   );
 }
 
-AppBar FoodAppBar(BuildContext context) {
+AppBar CategoryAppBar(BuildContext context, {required String title}) {
   return AppBar(
-    title: Text("Food", style: AppStyles.styleRegular16(context)),
+    title: Text(title, style: AppStyles.styleRegular16(context)),
     leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new),
         onPressed: () {
@@ -37,7 +38,9 @@ AppBar FoodAppBar(BuildContext context) {
         }),
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, routesNames.basket);
+        },
         icon: const Icon(
           Icons.shopping_cart_outlined,
           color: Color(0xff240301),

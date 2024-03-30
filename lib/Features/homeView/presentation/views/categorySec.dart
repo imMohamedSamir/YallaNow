@@ -4,6 +4,7 @@ import 'package:yallanow/Features/foodView/presentation/FoodView.dart';
 import 'package:yallanow/Features/homeView/data/Models/CardDetailModel.dart';
 import 'package:yallanow/Features/homeView/presentation/views/RideCategCard.dart';
 import 'package:yallanow/Features/homeView/presentation/views/categCadDetaisl.dart';
+import 'package:yallanow/main.dart';
 
 class CategorySec extends StatelessWidget {
   const CategorySec({super.key});
@@ -33,9 +34,10 @@ class CategorySec extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const FoodView(),
-                            ),
+                                builder: (context) => const FoodView()),
                           );
+                        } else if (index == 1) {
+                          Navigator.pushNamed(context, routesNames.markets);
                         }
                       },
                       child: categCardDetails(

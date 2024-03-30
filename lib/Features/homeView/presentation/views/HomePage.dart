@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
+import 'package:yallanow/Features/foodView/presentation/views/FoodOffersSec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/EverydayRidesSec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/GrocerySec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/SearchBar.dart';
 import 'package:yallanow/Features/homeView/presentation/views/categorySec.dart';
-import 'package:yallanow/Features/homeView/presentation/views/offersSec.dart';
 import 'package:yallanow/Features/homeView/presentation/views/popularResturants.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             ),
             SliverPadding(
               padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: OffersSec()),
+              sliver: SliverToBoxAdapter(child: FoodOffersSec()),
             ),
             SliverPadding(
               padding: EdgeInsets.only(top: 24),
