@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/homeView/data/Models/CardDetailModel.dart';
 
 class categCardDetails extends StatelessWidget {
   const categCardDetails({super.key, required this.cardDetails});
   final CardCategDetails cardDetails;
-  final double height = 90;
-  final double size = 0.65;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height,
+        height: AppSizes.getHeight(90, context),
         width: MediaQuery.sizeOf(context).width / 3 - 25,
         padding: const EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
@@ -36,14 +36,8 @@ class categCardDetails extends StatelessWidget {
               left: 28,
               child: Image.asset(
                 cardDetails.img,
-                height:
-                    MediaQuery.orientationOf(context) == Orientation.landscape
-                        ? 3 * height * (size)
-                        : height * (size),
-                width:
-                    MediaQuery.orientationOf(context) == Orientation.landscape
-                        ? 3 * height * (size)
-                        : height * (.8),
+                height: AppSizes.getHeight(54, context),
+                width: AppSizes.getWidth(65, context),
                 fit: BoxFit.contain,
               ),
             ),

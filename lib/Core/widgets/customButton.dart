@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
       {super.key,
       this.onPressed,
       required this.text,
-      required this.color,
-      required this.btncolor});
+      required this.txtcolor,
+      required this.btncolor,
+      this.isBasket = false});
   final void Function()? onPressed;
   final String text;
-  final Color color;
+  final Color txtcolor;
   final Color btncolor;
+  final bool isBasket;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +25,15 @@ class CustomButton extends StatelessWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  side: const BorderSide(
-                      color: Color(0xffB20404)) // Set the border radius here
-                  ),
+                  side: BorderSide(
+                      color:
+                          isBasket ? Colors.white : const Color(0xffB20404))),
             ),
             backgroundColor: MaterialStatePropertyAll<Color>(btncolor)),
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppStyles.styleMedium16(context).copyWith(color: color),
+          style: AppStyles.styleMedium16(context).copyWith(color: txtcolor),
         ),
       ),
     );

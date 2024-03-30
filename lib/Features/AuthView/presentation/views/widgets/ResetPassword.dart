@@ -82,7 +82,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               CustomButton(
                 text: " Save ",
-                color: Colors.white,
+                txtcolor: Colors.white,
                 btncolor: const Color(0xffB20404),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {

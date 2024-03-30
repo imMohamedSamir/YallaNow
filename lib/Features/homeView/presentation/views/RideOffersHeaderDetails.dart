@@ -18,7 +18,7 @@ class RideOffersHeaderDetails extends StatelessWidget {
         Text("30% off", style: AppStyles.styleBold24(context)),
         const SizedBox(height: 4),
         SizedBox(
-          width: width * 0.48,
+          width: width * 0.45,
           child: Text(
             "Get discount for your first scooter ride.",
             style: AppStyles.styleMedium12(context)

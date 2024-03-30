@@ -46,7 +46,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               const Spacer(),
               CustomButton(
                 text: "Continue",
-                color: const Color(0xffFFFFFF),
+                txtcolor: const Color(0xffFFFFFF),
                 btncolor: const Color(0xffB20404),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

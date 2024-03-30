@@ -32,9 +32,8 @@ class _OffersSecState extends State<OffersSec> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OffresPageView(
-          pageController: pageController,
-        ),
+        OffresPageView(pageController: pageController),
+        const SizedBox(height: 16),
         dotIndicatorgroup(currentIndex: currentPage),
       ],
     );

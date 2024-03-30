@@ -42,7 +42,7 @@ class SetPassword extends StatelessWidget {
             ),
             CustomButton(
                 text: "Register",
-                color: Colors.white,
+                txtcolor: Colors.white,
                 btncolor: Color(0xffB20404)),
             SizedBox(height: 30),
           ],

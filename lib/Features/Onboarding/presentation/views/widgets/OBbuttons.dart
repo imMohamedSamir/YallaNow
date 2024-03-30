@@ -24,7 +24,7 @@ class OBbuttons extends StatelessWidget {
               OBtransitions(context, currentPageIndex, pageController);
             },
             text: currentPageIndex == 3 ? "Get started" : "Next",
-            color: Colors.white,
+            txtcolor: Colors.white,
             btncolor: const Color(0xffB20404),
           ),
           const SizedBox(height: 16),
@@ -35,7 +35,7 @@ class OBbuttons extends StatelessWidget {
                     SkipMethod(context);
                   },
                   text: "Skip",
-                  color: const Color(0xffB20404),
+                  txtcolor: const Color(0xffB20404),
                   btncolor: Colors.white),
         ],
       ),

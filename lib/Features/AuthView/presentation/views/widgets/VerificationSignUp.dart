@@ -36,7 +36,7 @@ class VerificationSignUp extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: CustomButton(
             text: "Verify ",
-            color: Colors.white,
+            txtcolor: Colors.white,
             btncolor: const Color(0xffB20404),
             onPressed: () {},
           ),

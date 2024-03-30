@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/homeView/presentation/views/RideOffersHeaderDetails.dart';
 
 class EveryDayRidesCard extends StatelessWidget {
@@ -13,7 +14,8 @@ class EveryDayRidesCard extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16),
       child: Container(
         padding: const EdgeInsets.only(left: 16, right: 5, top: 20, bottom: 5),
-        width: width,
+        width: AppSizes.getWidth(240, context),
+        height: AppSizes.getHeight(140, context),
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 241, 227, 227),
             borderRadius: BorderRadius.circular(8)),
@@ -21,10 +23,13 @@ class EveryDayRidesCard extends StatelessWidget {
           children: [
             RideOffersHeaderDetails(width: width),
             const Spacer(),
-            Image.asset(
-              Assets.imagesScooterOffer,
-              height: height * 0.57,
-              width: height * 0.57 - 2.3,
+            AspectRatio(
+              aspectRatio: 75 / 95,
+              child: Image.asset(
+                Assets.imagesScooterOffer,
+                // height: AppSizes.getHeight(95, context),
+                // width: AppSizes.getWidth(106, context),
+              ),
             )
           ],
         ),

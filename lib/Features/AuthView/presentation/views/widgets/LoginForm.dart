@@ -63,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 30),
           CustomButton(
             text: "Sign In",
-            color: const Color(0xffFFFFFF),
+            txtcolor: const Color(0xffFFFFFF),
             btncolor: const Color(0xffB20404),
             onPressed: () {
               if (_formKey.currentState!.validate()) {

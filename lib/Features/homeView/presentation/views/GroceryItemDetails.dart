@@ -5,17 +5,13 @@ import 'package:yallanow/Features/homeView/presentation/views/GroceryItemCard.da
 class GroceryItemDetails extends StatelessWidget {
   const GroceryItemDetails({
     super.key,
-    required this.width,
   });
-  final double width;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GroceryItemCard(
-          width: width,
-        ),
+        const GroceryItemCard(),
         const SizedBox(height: 14),
         Text(
           "Almarai Yogurt ",

@@ -97,7 +97,7 @@ class _SignupFormState extends State<SignupForm> {
                 }
               },
               text: "Sign Up",
-              color: Colors.white,
+              txtcolor: Colors.white,
               btncolor: const Color(0xffB20404)),
         ],
       ),

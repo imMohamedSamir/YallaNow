@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 
 class favIcon extends StatefulWidget {
-  const favIcon({super.key});
-
+  const favIcon({super.key, this.height});
+  final double? height;
   @override
   State<favIcon> createState() => _favIconState();
 }
@@ -14,8 +15,9 @@ class _favIconState extends State<favIcon> {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        width: 24, // Adjust width and height as needed
-        height: 24,
+        width: widget.height ??
+            AppSizes.getWidth(24, context), // Adjust width and height as needed
+        height: widget.height ?? AppSizes.getHeight(24, context),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.grey[200], // Background color of the icon

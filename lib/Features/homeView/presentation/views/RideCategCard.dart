@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
 class RideCateg extends StatelessWidget {
@@ -9,9 +10,9 @@ class RideCateg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: MediaQuery.sizeOf(context).width / 1.7,
-      padding: const EdgeInsets.only(left: 10),
+      height: AppSizes.getHeight(90, context),
+      width: double.infinity,
+      padding: const EdgeInsets.only(left: 10, right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: const Color(0xffF5F5F5),
@@ -48,18 +49,13 @@ class RideCateg extends StatelessWidget {
               ),
             ],
           ),
+          const Spacer(),
           Column(
             children: [
               Image.asset(
                 Assets.imagesScootercateg,
-                height:
-                    MediaQuery.orientationOf(context) == Orientation.landscape
-                        ? 3 * height * (size)
-                        : height * (size),
-                width:
-                    MediaQuery.orientationOf(context) == Orientation.landscape
-                        ? 3 * height * (1.32)
-                        : height * (1.32),
+                height: AppSizes.getHeight(80, context),
+                width: AppSizes.getWidth(112, context),
                 fit: BoxFit.contain,
               )
             ],

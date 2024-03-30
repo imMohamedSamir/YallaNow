@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Features/foodView/presentation/FoodView.dart';
 import 'package:yallanow/Features/homeView/data/Models/CardDetailModel.dart';
 import 'package:yallanow/Features/homeView/presentation/views/RideCategCard.dart';
 import 'package:yallanow/Features/homeView/presentation/views/categCadDetaisl.dart';
@@ -18,19 +19,31 @@ class CategorySec extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const RideCateg(),
+        const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
               3,
               (index) => Padding(
                     padding: EdgeInsets.only(right: index == 2 ? 0 : 16),
-                    child: categCardDetails(
-                      cardDetails: details[index],
+                    child: GestureDetector(
+                      onTap: () {
+                        if (index == 0) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FoodView(),
+                            ),
+                          );
+                        }
+                      },
+                      child: categCardDetails(
+                        cardDetails: details[index],
+                      ),
                     ),
                   )),
         ),
-        const SizedBox(height: 16),
-        const RideCateg()
       ],
     );
   }

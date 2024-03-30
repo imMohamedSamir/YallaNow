@@ -54,7 +54,7 @@ class getLocationDSC extends StatelessWidget {
           const SizedBox(height: 46),
           CustomButton(
             text: "Use current location",
-            color: const Color(0xffFFFFFF),
+            txtcolor: const Color(0xffFFFFFF),
             btncolor: const Color(0xffB20404),
             onPressed: () async {
               bool locRequest = await CurrentLocation().checkpermission();
@@ -67,7 +67,7 @@ class getLocationDSC extends StatelessWidget {
           const SizedBox(height: 16),
           CustomButton(
             text: "Skip for now",
-            color: const Color(0xffB20404),
+            txtcolor: const Color(0xffB20404),
             btncolor: const Color(0xffFFFFFF),
             onPressed: () {
               NavigationUtils.navigateToPage(context, const homeView());

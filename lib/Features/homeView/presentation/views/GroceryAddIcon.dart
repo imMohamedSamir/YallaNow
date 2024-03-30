@@ -39,9 +39,8 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                         Container(
                           width: 25,
                           height: 25,
-                          decoration: BoxDecoration(
-                              color: const Color(0xffB20404),
-                              shape: BoxShape.circle),
+                          decoration: const BoxDecoration(
+                              color: Color(0xffB20404), shape: BoxShape.circle),
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             icon: const Icon(Icons.remove, color: Colors.white),
@@ -54,16 +53,15 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                             },
                           ),
                         ),
-                        SizedBox(width: 14),
+                        const SizedBox(width: 14),
                         Text(number.toString(),
                             style: AppStyles.styleBold18(context)),
-                        SizedBox(width: 14),
+                        const SizedBox(width: 14),
                         Container(
                           width: 25,
                           height: 25,
-                          decoration: BoxDecoration(
-                              color: const Color(0xffB20404),
-                              shape: BoxShape.circle),
+                          decoration: const BoxDecoration(
+                              color: Color(0xffB20404), shape: BoxShape.circle),
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             icon: const Icon(Icons.add, color: Colors.white),
@@ -74,13 +72,12 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                             },
                           ),
                         ),
-                        SizedBox(width: 14),
+                        const SizedBox(width: 14),
                         Container(
                           width: 25,
                           height: 25,
-                          decoration: BoxDecoration(
-                              color: const Color(0xffB20404),
-                              shape: BoxShape.circle),
+                          decoration: const BoxDecoration(
+                              color: Color(0xffB20404), shape: BoxShape.circle),
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             icon: const Icon(Icons.close, color: Colors.white),

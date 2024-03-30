@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/foodView/presentation/views/BasketPage.dart';
 
 class LocationAppBar extends StatelessWidget {
   const LocationAppBar({super.key});
@@ -23,7 +24,13 @@ class LocationAppBar extends StatelessWidget {
           Icons.shopping_cart_outlined,
           color: Color(0xff240301),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BasketPage(),
+              ));
+        },
       ),
     );
   }

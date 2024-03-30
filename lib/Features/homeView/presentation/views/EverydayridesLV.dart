@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/homeView/presentation/views/EveryDayRidesDetails.dart';
 
 class EverydayridesLV extends StatelessWidget {
@@ -10,7 +11,7 @@ class EverydayridesLV extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width * 0.6045;
 
     return SizedBox(
-      height: hieght,
+      height: AppSizes.getHeight(200, context),
       child: ListView.builder(
         padding: EdgeInsets.zero,
         scrollDirection: Axis.horizontal,

@@ -20,6 +20,15 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleMedium10(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFB20404),
+      fontSize: getResponsiveFontSize(context, fontSize: 10),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+    );
+  }
+
   static TextStyle styleMedium12(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF9E9D9D),
@@ -74,6 +83,15 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleSemiBold20(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF1F2937),
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+    );
+  }
+
   static TextStyle styleSemiBold14(BuildContext context) {
     return TextStyle(
       color: const Color(0xFFB20404),
@@ -105,6 +123,15 @@ abstract class AppStyles {
     return TextStyle(
       color: const Color(0xFFB20404),
       fontSize: getResponsiveFontSize(context, fontSize: 24),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleBold32(BuildContext context) {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: getResponsiveFontSize(context, fontSize: 32),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700,
     );
