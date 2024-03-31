@@ -10,7 +10,7 @@ class MarketsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CategoryAppBar(context, title: "Mart"),
+      appBar: CategoryAppBar(context, title: "Marts"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(

@@ -41,9 +41,12 @@ AppBar CategoryAppBar(BuildContext context, {required String title}) {
         onPressed: () {
           Navigator.pushNamed(context, routesNames.basket);
         },
-        icon: const Icon(
-          Icons.shopping_cart_outlined,
-          color: Color(0xff240301),
+        icon: const Badge(
+          label: Text("0"),
+          child: Icon(
+            Icons.shopping_cart_outlined,
+            color: Color(0xff240301),
+          ),
         ),
       )
     ],

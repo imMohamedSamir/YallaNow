@@ -81,6 +81,18 @@ class Assets {
   /// assets/images/Marketbasket.png
   static const String imagesMarketbasket = "assets/images/Marketbasket.png";
 
+  /// Assets for imagesMarketcateg1
+  /// assets/images/marketcateg1.png
+  static const String imagesMarketcateg1 = "assets/images/marketcateg1.png";
+
+  /// Assets for imagesMarketcateg2
+  /// assets/images/marketcateg2.png
+  static const String imagesMarketcateg2 = "assets/images/marketcateg2.png";
+
+  /// Assets for imagesMarketcateg3
+  /// assets/images/marketcateg3.png
+  static const String imagesMarketcateg3 = "assets/images/marketcateg3.png";
+
   /// Assets for imagesMeal1
   /// assets/images/meal1.png
   static const String imagesMeal1 = "assets/images/meal1.png";

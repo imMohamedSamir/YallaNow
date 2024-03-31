@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Features/MarketsView/presentation/views/MarketItemPage.dart';
 import 'package:yallanow/Features/homeView/presentation/views/GroceryItemDetails.dart';
 
 class GroceryListView extends StatelessWidget {
@@ -7,9 +8,6 @@ class GroceryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final double hieght = MediaQuery.of(context).size.height * 0.2354;
-    // final double width = MediaQuery.of(context).size.width * 0.37;
-
     return SizedBox(
       height: AppSizes.getHeight(203, context),
       child: ListView.builder(
@@ -18,8 +16,15 @@ class GroceryListView extends StatelessWidget {
         itemCount: 20,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: GroceryItemDetails(),
+            padding: EdgeInsets.only(right: index == 9 ? 0 : 12.0),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MarketItemPage()));
+                },
+                child: const GroceryItemDetails()),
           );
         },
       ),

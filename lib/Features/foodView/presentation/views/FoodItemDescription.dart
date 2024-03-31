@@ -7,7 +7,6 @@ class FoodItemDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.only(bottom: 24, top: 16, left: 16, right: 16),
       color: Colors.white,
@@ -25,7 +24,7 @@ class FoodItemDescription extends StatelessWidget {
                       .copyWith(color: const Color(0xff5A5A5A))),
               const SizedBox(height: 6),
               Text(
-                "Price on selection",
+                "EGP 410.00",
                 style: AppStyles.styleRegular14(context)
                     .copyWith(color: const Color(0xff5A5A5A)),
               )
