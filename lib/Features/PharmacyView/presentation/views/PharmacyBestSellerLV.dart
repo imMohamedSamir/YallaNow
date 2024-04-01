@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
-import 'package:yallanow/Features/MarketsView/presentation/views/MarketItemPage.dart';
-import 'package:yallanow/Features/homeView/presentation/views/GroceryItemDetails.dart';
+import 'package:yallanow/Features/PharmacyView/presentation/views/PharmacyItemDetails.dart';
+import 'package:yallanow/Features/PharmacyView/presentation/views/PharmacyItemPage.dart';
 
-class GroceryListView extends StatelessWidget {
-  const GroceryListView({super.key});
+class PharmacyGeneralLV extends StatelessWidget {
+  const PharmacyGeneralLV({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,9 @@ class GroceryListView extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MarketItemPage()));
+                          builder: (context) => const PharmacyItemPage()));
                 },
-                child: const GroceryItemDetails()),
+                child: const PharmacyItemDetails()),
           );
         },
       ),

@@ -21,16 +21,16 @@ class categCardDetails extends StatelessWidget {
           children: [
             Positioned(
                 top: 8,
-                left: 10,
+                left: 8,
                 child: Text(cardDetails.title,
                     style: AppStyles.styleSemiBold16(context))),
-            Positioned(
-              top: 31,
-              left: 10,
-              child: Text(cardDetails.avgTime,
-                  style: AppStyles.styleRegular10(context)
-                      .copyWith(color: const Color(0xffB8B8B8))),
-            ),
+            // Positioned(
+            //   top: 31,
+            //   left: 8,
+            //   child: Text(cardDetails.avgTime,
+            //       style: AppStyles.styleRegular10(context)
+            //           .copyWith(color: const Color(0xffB8B8B8))),
+            // ),
             Positioned(
               top: 35,
               left: 28,

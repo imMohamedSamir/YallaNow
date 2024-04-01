@@ -5,13 +5,25 @@ class Assets {
   /// assets/images/apple.svg
   static const String imagesApple = "assets/images/apple.svg";
 
+  /// Assets for imagesBloodPressure
+  /// assets/images/BloodPressure.png
+  static const String imagesBloodPressure = "assets/images/BloodPressure.png";
+
   /// Assets for imagesBurgerIcon
   /// assets/images/burgerIcon.png
   static const String imagesBurgerIcon = "assets/images/burgerIcon.png";
 
+  /// Assets for imagesCare
+  /// assets/images/care.png
+  static const String imagesCare = "assets/images/care.png";
+
   /// Assets for imagesCashICon
   /// assets/images/CashICon.svg
   static const String imagesCashICon = "assets/images/CashICon.svg";
+
+  /// Assets for imagesColdandfever
+  /// assets/images/coldandfever.png
+  static const String imagesColdandfever = "assets/images/coldandfever.png";
 
   /// Assets for imagesCreditcardIcon
   /// assets/images/creditcardIcon.png
@@ -101,6 +113,10 @@ class Assets {
   /// assets/images/meal2.png
   static const String imagesMeal2 = "assets/images/meal2.png";
 
+  /// Assets for imagesMedicin
+  /// assets/images/medicin.png
+  static const String imagesMedicin = "assets/images/medicin.png";
+
   /// Assets for imagesMotorbike
   /// assets/images/motorbike.png
   static const String imagesMotorbike = "assets/images/motorbike.png";
@@ -128,6 +144,22 @@ class Assets {
   /// Assets for imagesOrdersIcon
   /// assets/images/ordersIcon.svg
   static const String imagesOrdersIcon = "assets/images/ordersIcon.svg";
+
+  /// Assets for imagesPharamcyLogo
+  /// assets/images/pharamcyLogo.png
+  static const String imagesPharamcyLogo = "assets/images/pharamcyLogo.png";
+
+  /// Assets for imagesPharmacy1
+  /// assets/images/pharmacy1.png
+  static const String imagesPharmacy1 = "assets/images/pharmacy1.png";
+
+  /// Assets for imagesPharmacy2
+  /// assets/images/pharmacy2.png
+  static const String imagesPharmacy2 = "assets/images/pharmacy2.png";
+
+  /// Assets for imagesPharmacyOffer
+  /// assets/images/pharmacyOffer.png
+  static const String imagesPharmacyOffer = "assets/images/pharmacyOffer.png";
 
   /// Assets for imagesPhoneIcon
   /// assets/images/phoneIcon.png

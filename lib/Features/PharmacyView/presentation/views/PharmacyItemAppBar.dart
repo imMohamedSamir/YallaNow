@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
+
+class PharmacyItemAppBar extends StatelessWidget {
+  const PharmacyItemAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.only(top: 55, left: 16, bottom: 8),
+        width: double.infinity,
+        height: AppSizes.getHeight(200, context),
+        child: Stack(
+          children: [
+            Container(
+                width: AppSizes.getWidth(32, context),
+                height: AppSizes.getHeight(32, context),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: InkWell(
+                    onTap: () {
+                      dialogMethode(context);
+                    },
+                    child: const Center(child: Icon(Icons.close)))),
+            Center(
+              child: Image.asset(
+                Assets.imagesMedicin,
+                height: AppSizes.getHeight(150, context),
+                width: AppSizes.getWidth(150, context),
+              ),
+            )
+          ],
+        ));
+  }
+}

@@ -3,8 +3,9 @@ import 'package:yallanow/Features/homeView/presentation/views/DotsIndicators.dar
 import 'package:yallanow/Features/homeView/presentation/views/OffersPageView.dart';
 
 class OffersSec extends StatefulWidget {
-  const OffersSec({super.key, required this.offers});
+  const OffersSec({super.key, required this.offers, this.color1, this.color2});
   final List<OfferDetailsModel> offers;
+  final Color? color1, color2;
   @override
   State<OffersSec> createState() => _OffersSecState();
 }
@@ -35,6 +36,8 @@ class _OffersSecState extends State<OffersSec> {
         OffresPageView(
           pageController: pageController,
           offers: widget.offers,
+          color1: widget.color1,
+          color2: widget.color2,
         ),
         const SizedBox(height: 16),
         dotIndicatorgroup(currentIndex: currentPage),

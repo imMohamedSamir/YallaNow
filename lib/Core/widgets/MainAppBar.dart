@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/foodView/presentation/views/ResturantHeaderIcon.dart';
 import 'package:yallanow/Features/homeView/presentation/views/LocationAppBar.dart';
 import 'package:yallanow/main.dart';
 
@@ -28,7 +31,8 @@ AppBar HomeAppBar() {
   );
 }
 
-AppBar CategoryAppBar(BuildContext context, {required String title}) {
+AppBar CategoryAppBar(BuildContext context,
+    {required String title, bool isCategory = false}) {
   return AppBar(
     title: Text(title, style: AppStyles.styleRegular16(context)),
     leading: IconButton(
@@ -37,6 +41,14 @@ AppBar CategoryAppBar(BuildContext context, {required String title}) {
           Navigator.pop(context);
         }),
     actions: [
+      isCategory
+          ? ResturantHeaderIcon(
+              child: SvgPicture.asset(Assets.imagesSearchIcon,
+                  colorFilter: const ColorFilter.mode(
+                      Color(0xff240301), BlendMode.srcIn)),
+              onPressed: () {},
+            )
+          : const SizedBox(),
       IconButton(
         onPressed: () {
           Navigator.pushNamed(context, routesNames.basket);

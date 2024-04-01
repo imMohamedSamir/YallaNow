@@ -21,7 +21,6 @@ class FoodItemAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ResturantHeaderIcon(
-              width: width,
               child: const Icon(Icons.close, size: 21),
               onPressed: () => dialogMethode(context),
             ),

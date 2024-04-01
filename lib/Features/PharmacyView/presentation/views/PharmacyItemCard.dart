@@ -3,8 +3,8 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/homeView/presentation/views/GroceryAddIcon.dart';
 
-class GroceryItemCard extends StatelessWidget {
-  const GroceryItemCard({
+class PharmacyItemCard extends StatelessWidget {
+  const PharmacyItemCard({
     super.key,
   });
   @override
@@ -23,9 +23,9 @@ class GroceryItemCard extends StatelessWidget {
               left: 14,
               right: 14,
               child: AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 1.1,
                 child: Image.asset(
-                  Assets.imagesGrocery1,
+                  Assets.imagesMedicin,
                 ),
               ),
             ),

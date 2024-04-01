@@ -5,9 +5,14 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 
 class OffresPageView extends StatelessWidget {
   const OffresPageView(
-      {super.key, required this.pageController, required this.offers});
+      {super.key,
+      required this.pageController,
+      required this.offers,
+      this.color1,
+      this.color2});
   final PageController pageController;
   final List<OfferDetailsModel> offers;
+  final Color? color1, color2;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,10 +35,17 @@ class OffresPageView extends StatelessWidget {
                           image: const DecorationImage(
                               alignment: Alignment.centerRight,
                               image: AssetImage(Assets.imagesLogoImg)),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xffF44336), Color(0xffB20404)],
+                          gradient: LinearGradient(
+                            begin: color1 != null
+                                ? Alignment.topCenter
+                                : Alignment.topLeft,
+                            end: color1 != null
+                                ? Alignment.bottomCenter
+                                : Alignment.bottomRight,
+                            colors: [
+                              color1 ?? const Color(0xffF44336),
+                              color2 ?? const Color(0xffB20404)
+                            ],
                           ),
                           borderRadius: BorderRadius.circular(8)),
                       child: Row(
@@ -43,15 +55,25 @@ class OffresPageView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(offers[index].title,
-                                    style: AppStyles.styleBold32(context)),
+                                    style: AppStyles.styleBold32(context)
+                                        .copyWith(
+                                            color: color1 != null
+                                                ? const Color(0xff240301)
+                                                : null)),
                                 Text(offers[index].subtitle,
                                     style: AppStyles.styleSemiBold16(context)
-                                        .copyWith(color: Colors.white)),
+                                        .copyWith(
+                                            color: color1 != null
+                                                ? const Color(0xff240301)
+                                                : Colors.white)),
                                 SizedBox(
                                   width: AppSizes.getWidth(190, context),
                                   child: Text(offers[index].description,
                                       style: AppStyles.styleRegular12(context)
-                                          .copyWith(color: Colors.white)),
+                                          .copyWith(
+                                              color: color1 != null
+                                                  ? const Color(0xff240301)
+                                                  : Colors.white)),
                                 )
                               ]),
                           Expanded(

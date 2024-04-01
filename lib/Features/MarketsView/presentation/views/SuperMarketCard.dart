@@ -12,16 +12,19 @@ class SuperMarketCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, routesNames.Marketpage);
+        Navigator.pushNamed(context, routesNames.marketpage);
       },
       child: SizedBox(
         height: AppSizes.getHeight(92, context),
         child: ListTile(
-          leading: Image.asset(
-            superMarketsModel.img,
-            height: AppSizes.getHeight(60, context),
-            width: AppSizes.getWidth(60, context),
-            fit: BoxFit.cover,
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              superMarketsModel.img,
+              height: AppSizes.getHeight(60, context),
+              width: AppSizes.getWidth(60, context),
+              fit: BoxFit.cover,
+            ),
           ),
           title: Text(superMarketsModel.name,
               style: AppStyles.styleSemiBold16(context)),

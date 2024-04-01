@@ -13,7 +13,7 @@ class CategorySec extends StatelessWidget {
     CardCategDetails(
         title: "Mart", avgTime: "30 min", img: Assets.imagesMarketbasket),
     CardCategDetails(
-        title: "Pharmcy", avgTime: "29 min", img: Assets.imagesFood),
+        title: "Pharmacy", avgTime: "29 min", img: Assets.imagesPharamcyLogo),
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,6 +38,9 @@ class CategorySec extends StatelessWidget {
                           );
                         } else if (index == 1) {
                           Navigator.pushNamed(context, routesNames.markets);
+                        } else if (index == 2) {
+                          Navigator.pushNamed(
+                              context, routesNames.pharmacyPage);
                         }
                       },
                       child: categCardDetails(

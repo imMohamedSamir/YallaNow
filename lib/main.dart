@@ -10,6 +10,8 @@ import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignupView
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/VerificationSignUp.dart';
 import 'package:yallanow/Features/MarketsView/presentation/MarketsView.dart';
 import 'package:yallanow/Features/MarketsView/presentation/views/MarketPage.dart';
+import 'package:yallanow/Features/PharmacyView/presentation/PharmacyView.dart';
+import 'package:yallanow/Features/PharmacyView/presentation/views/PharmacyPage.dart';
 import 'package:yallanow/Features/foodView/presentation/views/BasketPage.dart';
 import 'package:yallanow/Features/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/homeView/presentation/homeView.dart';
@@ -37,14 +39,16 @@ class YallaNow extends StatelessWidget {
     return MaterialApp(
       locale: DevicePreview.locale(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: routesNames.markets,
+      initialRoute: routesNames.home,
       routes: {
         routesNames.splash: (context) => const splashView(),
         routesNames.home: (context) => const homeView(),
         routesNames.resturant: (context) => const FoodResturantPage(),
         routesNames.basket: (context) => const BasketPage(),
         routesNames.markets: (context) => const MarketsView(),
-        routesNames.Marketpage: (context) => const MarketPage()
+        routesNames.marketpage: (context) => const MarketPage(),
+        routesNames.pharmacyPage: (context) => const PharmacyView(),
+        routesNames.pharmacy: (context) => const PharmacyPage()
       },
     );
   }
@@ -56,5 +60,7 @@ class routesNames {
   static const String splash = "splash";
   static const String basket = "basket";
   static const String markets = "markets";
-  static const String Marketpage = "Marketpage";
+  static const String marketpage = "Marketpage";
+  static const String pharmacyPage = "PharmacyPage";
+  static const String pharmacy = "pharmacypage";
 }

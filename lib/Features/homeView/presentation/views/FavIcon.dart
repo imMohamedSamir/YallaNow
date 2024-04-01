@@ -18,9 +18,9 @@ class _favIconState extends State<favIcon> {
         width: widget.height ??
             AppSizes.getWidth(24, context), // Adjust width and height as needed
         height: widget.height ?? AppSizes.getHeight(24, context),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.grey[200], // Background color of the icon
+          color: Colors.white, // Background color of the icon
         ),
         child: IconButton(
           padding: EdgeInsets.zero,
