@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Features/AddressesView/presentation/AddressesView.dart';
+import 'package:yallanow/Features/OrdersView/presentation/OredersView.dart';
 import 'package:yallanow/Features/homeView/presentation/views/HomePage.dart';
 import 'package:yallanow/Features/homeView/presentation/views/MainNavigationBar.dart';
 import 'package:yallanow/Features/homeView/presentation/views/NotificationPage.dart';
@@ -22,9 +24,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   static List<Widget> pages = [
     const HomePage(),
     const SizedBox(),
-    const SizedBox(),
+    const OrdersView(),
     const NotificationPage(),
-    const SizedBox(),
+    const AddressesView(),
   ];
 
   @override

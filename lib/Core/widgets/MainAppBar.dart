@@ -6,10 +6,45 @@ import 'package:yallanow/Features/foodView/presentation/views/ResturantHeaderIco
 import 'package:yallanow/Features/homeView/presentation/views/LocationAppBar.dart';
 import 'package:yallanow/main.dart';
 
-AppBar MainAppBar(
-  BuildContext context, {
-  required String title,
-}) {
+AppBar favoriteAppBar(BuildContext context,
+    {required String title, bool isOrder = false}) {
+  return AppBar(
+    title: Text(title, style: AppStyles.styleMedium18(context)),
+    titleSpacing: isOrder ? 16 : -8,
+    leading: isOrder
+        ? null
+        : IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+    bottom: TabBar(
+      unselectedLabelStyle: AppStyles.styleMedium16(context)
+          .copyWith(color: const Color(0xff5A5A5A)),
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: const Color(0xffB20404),
+      indicatorWeight: 4,
+      labelColor: const Color(0xffB20404),
+      labelStyle: AppStyles.styleSemiBold18(context)
+          .copyWith(color: const Color(0xff5A5A5A)),
+      dividerColor: const Color(0xff5A5A5A),
+      dividerHeight: 2,
+      tabs: const <Widget>[
+        Tab(
+          text: "Food",
+        ),
+        Tab(
+          text: "Mart",
+        ),
+        Tab(
+          text: "Pharmacy",
+        ),
+      ],
+    ),
+  );
+}
+
+AppBar MainAppBar(BuildContext context, {required String title}) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
@@ -21,6 +56,18 @@ AppBar MainAppBar(
     //       Navigator.pop(context);
     //     })
   );
+}
+
+AppBar SecondAppBar(BuildContext context, {required String title}) {
+  return AppBar(
+      elevation: 0,
+      titleSpacing: -8,
+      title: Text(title, style: AppStyles.styleMedium18(context)),
+      leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          }));
 }
 
 AppBar HomeAppBar() {

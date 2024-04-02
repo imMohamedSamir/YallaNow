@@ -41,32 +41,23 @@ class MainNavigationBar extends StatelessWidget {
     Ride"""),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                Assets.imagesOrdersIcon,
-                colorFilter: ColorFilter.mode(
-                    currentIndex == 2
-                        ? const Color(0xffB20404)
-                        : const Color(0xff9E9D9D),
-                    BlendMode.srcIn),
+                currentIndex == 2
+                    ? Assets.imagesOrdersIconActive
+                    : Assets.imagesOrdersIcon,
               ),
               label: "Orders"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                Assets.imagesNotificationsIcon,
-                colorFilter: ColorFilter.mode(
-                    currentIndex == 3
-                        ? const Color(0xffB20404)
-                        : const Color(0xff9E9D9D),
-                    BlendMode.srcIn),
+                currentIndex == 3
+                    ? Assets.imagesNotificationsIconActive
+                    : Assets.imagesNotificationsIcon,
               ),
               label: "Notifications"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                Assets.imagesProfileIcon,
-                colorFilter: ColorFilter.mode(
-                    currentIndex == 4
-                        ? const Color(0xffB20404)
-                        : const Color(0xff9E9D9D),
-                    BlendMode.srcIn),
+                currentIndex == 4
+                    ? Assets.imagesProfileIconActive
+                    : Assets.imagesProfileIcon,
               ),
               label: "profile")
         ]);

@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 
 class favIcon extends StatefulWidget {
-  const favIcon({super.key, this.height});
+  const favIcon({super.key, this.height, this.favorite});
   final double? height;
+  final bool? favorite;
   @override
   State<favIcon> createState() => _favIconState();
 }
 
 class _favIconState extends State<favIcon> {
-  bool active = false;
+  late bool active;
+
+  @override
+  void initState() {
+    super.initState();
+    active = widget.favorite ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(

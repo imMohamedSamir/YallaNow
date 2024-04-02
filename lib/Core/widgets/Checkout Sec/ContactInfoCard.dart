@@ -9,12 +9,14 @@ class ContactInfoCard extends StatelessWidget {
     this.onTap,
     required this.height,
     required this.image,
+    this.isordered = false,
   });
   final String title;
   final String? subtitle;
   final void Function()? onTap;
   final double height;
   final Widget image;
+  final bool isordered;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,18 +42,20 @@ class ContactInfoCard extends StatelessWidget {
           ////////////////////////////////////
           leading: image,
           ////////////////////////////////////
-          trailing: Column(
-            children: [
-              GestureDetector(
-                onTap: onTap,
-                child: Text(
-                  "Change",
-                  style: AppStyles.styleMedium12(context)
-                      .copyWith(color: const Color(0xffB20404)),
+          trailing: isordered
+              ? const SizedBox()
+              : Column(
+                  children: [
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Text(
+                        "Change",
+                        style: AppStyles.styleMedium12(context)
+                            .copyWith(color: const Color(0xffB20404)),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         ));
   }
 }

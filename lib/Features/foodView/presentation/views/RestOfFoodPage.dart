@@ -35,23 +35,19 @@ class ExploreRestaurantLV extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.92;
     double height = MediaQuery.of(context).size.height * 0.21;
-    return SizedBox(
-      width: width,
-      height: height,
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: popularResturans.length,
-        itemBuilder: (context, index) {
-          return RestFoodCard(
-            hieght: height,
-            resturantModel: popularResturans[index],
-            width: width,
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: popularResturans.length,
+      itemBuilder: (context, index) {
+        return RestFoodCard(
+          hieght: height,
+          resturantModel: popularResturans[index],
+          width: width,
+        );
+      },
     );
   }
 }
