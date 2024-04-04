@@ -12,7 +12,9 @@ class CustomTextField extends StatelessWidget {
       this.onSaved,
       this.suffixIcon,
       this.secure,
-      this.onChanged});
+      this.onChanged,
+      this.initialValue,
+      this.readOnly});
   final String hintText;
   final TextInputType? keyboardType;
   final int? maxLength;
@@ -22,9 +24,16 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
   final bool? secure;
+  final String? initialValue;
+  final bool? readOnly;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly ?? false,
+      // enabled: enabled,
+      style: AppStyles.styleMedium16(context)
+          .copyWith(color: const Color(0xff9E9D9D)),
+      initialValue: initialValue,
       obscureText: secure ?? false,
       onChanged: onChanged,
       onSaved: onSaved,

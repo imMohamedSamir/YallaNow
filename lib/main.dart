@@ -1,9 +1,9 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yallanow/Core/utlis/functions/ConvertToDp.dart';
-import 'package:yallanow/Core/widgets/LandScapeScreen.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/GetLocationPage.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignupView.dart';
@@ -18,7 +18,10 @@ import 'package:yallanow/Features/homeView/presentation/homeView.dart';
 import 'package:yallanow/Features/homeView/presentation/views/homeViewBody.dart';
 import 'package:yallanow/Features/splashView/splashView.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const YallaNow(),
@@ -30,13 +33,15 @@ class YallaNow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Lock the orientation to portrait mode
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
     return MaterialApp(
+      // localizationsDelegates: context.localizationDelegates,
+      // supportedLocales: context.supportedLocales,
+      // locale: context.locale,
       locale: DevicePreview.locale(context),
       debugShowCheckedModeBanner: false,
       initialRoute: routesNames.home,

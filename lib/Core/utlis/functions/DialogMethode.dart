@@ -33,3 +33,35 @@ void dialogMethode(BuildContext context) {
     },
   );
 }
+
+void logoutdialogMethode(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("Logout of your account?",
+            style: AppStyles.styleSemiBold16(context)
+                .copyWith(color: const Color(0xff240301))),
+        // content: Text(
+        //   "Logout of your account?",
+        //   style: AppStyles.styleRegular16(context)
+        //       .copyWith(color: const Color(0xff5A5A5A)),
+        // ),
+        actions: [
+          const DialogButton(
+              btnColor: Colors.white,
+              textColor: Color(0xffB20404),
+              text: "Cancel"),
+          DialogButton(
+              btnColor: const Color(0xffB20404),
+              textColor: Colors.white,
+              text: 'Log out',
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pop(context);
+              })
+        ],
+      );
+    },
+  );
+}

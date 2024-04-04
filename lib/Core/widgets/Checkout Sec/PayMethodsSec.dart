@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Core/widgets/Checkout%20Sec/PaymentMethodsTile.dart';
+import 'package:yallanow/Core/widgets/Checkout%20Sec/PaymentMethods.dart';
 
 class PayMethodsSec extends StatelessWidget {
   const PayMethodsSec({super.key});

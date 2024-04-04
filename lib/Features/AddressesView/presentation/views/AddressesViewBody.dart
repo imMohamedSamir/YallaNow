@@ -12,10 +12,9 @@ class AddressesViewBody extends StatelessWidget {
       appBar: SecondAppBar(context, title: "Addresses"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: AddressesLV(),
+        child: Expanded(child: AddressesLV()),
       ),
       floatingActionButton: const AddresseButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
     );
   }
 }

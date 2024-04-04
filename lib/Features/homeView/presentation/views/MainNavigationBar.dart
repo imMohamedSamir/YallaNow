@@ -6,17 +6,17 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 class MainNavigationBar extends StatelessWidget {
   const MainNavigationBar({
     super.key,
-    required this.currentIndex,
+    @required this.currentIndex,
     required this.onItemTapped,
   });
-  final int currentIndex;
+  final int? currentIndex;
   final void Function(int) onItemTapped;
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         elevation: 15,
         onTap: onItemTapped,
-        currentIndex: currentIndex,
+        currentIndex: currentIndex ?? 0,
         selectedItemColor: const Color(0xffB20404),
         unselectedItemColor: const Color(0xff9E9D9D),
         selectedLabelStyle: AppStyles.styleMedium14(context),
