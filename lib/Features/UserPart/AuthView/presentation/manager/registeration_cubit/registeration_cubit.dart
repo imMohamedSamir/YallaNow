@@ -8,7 +8,7 @@ part 'registeration_state.dart';
 class RegisterationCubit extends Cubit<RegisterationState> {
   RegisterationCubit(this.authRepo) : super(RegisterationInitial());
   final AuthRepo authRepo;
-  Future<void> fetchRegisteration({required RegisterModel userdata}) async {
+  Future<void> fetchRegisteration({required UserRegisterModel userdata}) async {
     emit(RegisterationLoading());
     var respons = await authRepo.fetchRegisteration(userdata: userdata);
     respons.fold(

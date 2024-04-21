@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/DriverSignUpView.dart';
 
 class ChooseRole extends StatelessWidget {
   const ChooseRole({
@@ -22,6 +23,12 @@ class ChooseRole extends StatelessWidget {
                 fit: BoxFit.fill),
             const SizedBox(width: 12),
             GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DriverSignUpView()));
+              },
               child: Text(
                 "Sign up as a rider",
                 style: AppStyles.styleMedium14(context),

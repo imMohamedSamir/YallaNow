@@ -1,24 +1,34 @@
-class UserRegisterModel {
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
+
+class DriverRegisterModel {
   String? firstName;
   String? lastName;
   String? username;
+  String? nIDcard;
   String? email;
   String? password;
   String? phoneNumber;
   String? gender;
+  String? fileName;
+  // String? contentType;
+  // int? fileSize;
+  // File? driverPapers; // New property to hold the file
+  FileDetails? driverPapers;
 
-  UserRegisterModel({
+  DriverRegisterModel({
     this.firstName,
     this.lastName,
     this.username,
+    this.nIDcard,
     this.email,
     this.password,
     this.phoneNumber,
     this.gender,
+    this.driverPapers,
   });
 
-  factory UserRegisterModel.fromJson(Map<String, dynamic> json) =>
-      UserRegisterModel(
+  factory DriverRegisterModel.fromJson(Map<String, dynamic> json) =>
+      DriverRegisterModel(
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
         username: json['username'] as String?,

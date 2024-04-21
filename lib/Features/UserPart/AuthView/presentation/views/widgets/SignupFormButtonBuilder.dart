@@ -15,7 +15,7 @@ class SignupFormButtonBuilder extends StatelessWidget {
   }) : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
-  final RegisterModel registerModel;
+  final UserRegisterModel registerModel;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
@@ -50,6 +53,17 @@ AppBar MainAppBar(BuildContext context, {required String title}) {
     elevation: 0,
     titleSpacing: 16,
     title: Text(title, style: AppStyles.styleMedium18(context)),
+    actions: [
+      IconButton(
+          onPressed: () {
+            if (Intl.getCurrentLocale() == "en") {
+              context.read<LanguageCubit>().changeLanguage(const Locale('ar'));
+            } else {
+              context.read<LanguageCubit>().changeLanguage(const Locale('en'));
+            }
+          },
+          icon: const Icon(Icons.language_outlined))
+    ],
     // leading: IconButton(
     //     icon: const Icon(Icons.arrow_back_ios),
     //     onPressed: () {

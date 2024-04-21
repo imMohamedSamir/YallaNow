@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
@@ -65,7 +66,11 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         hintStyle: AppStyles.styleMedium16(context)
             .copyWith(color: const Color(0xff9E9D9D)),
-        contentPadding: const EdgeInsets.only(left: 20, top: 18, bottom: 18),
+        contentPadding: EdgeInsets.only(
+            left: AppLang.isArabic() ? 0 : 20,
+            top: 18,
+            bottom: 18,
+            right: AppLang.isArabic() ? 20 : 0),
       ),
     );
   }

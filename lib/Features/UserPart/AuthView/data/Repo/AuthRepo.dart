@@ -5,7 +5,7 @@ import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.d
 
 abstract class AuthRepo {
   Future<Either<FailureHttp, dynamic>> fetchRegisteration(
-      {required RegisterModel userdata});
+      {required UserRegisterModel userdata});
   Future<Either<FailureHttp, LoginResponseModel>> fetchLogin(
       {required String email, required String password});
 }

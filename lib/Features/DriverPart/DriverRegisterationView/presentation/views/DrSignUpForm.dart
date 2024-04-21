@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
-import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignupFormButtonBuilder.dart';
+import 'package:yallanow/generated/l10n.dart';
 
-class SignupForm extends StatefulWidget {
-  const SignupForm({super.key});
+class DrSignUpForm extends StatefulWidget {
+  const DrSignUpForm({super.key});
 
   @override
-  State<SignupForm> createState() => _SignupFormState();
+  State<DrSignUpForm> createState() => _DrSignUpFormState();
 }
 
-class _SignupFormState extends State<SignupForm> {
+class _DrSignUpFormState extends State<DrSignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  UserRegisterModel registerModel = UserRegisterModel();
+  DriverRegisterModel driverRegisterModel = DriverRegisterModel();
 
   String password = '', confirmPassword = '';
   bool p1 = true, p2 = true;
@@ -29,7 +32,7 @@ class _SignupFormState extends State<SignupForm> {
             children: [
               Expanded(
                 child: CustomTextField(
-                  hintText: "First Name",
+                  hintText: S.of(context).FirstName,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -38,14 +41,14 @@ class _SignupFormState extends State<SignupForm> {
                     return null;
                   },
                   onSaved: (value) {
-                    registerModel.firstName = value!.trim();
+                    driverRegisterModel.firstName = value!.trim();
                   },
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: CustomTextField(
-                  hintText: "Last Name",
+                  hintText: S.of(context).LastName,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -54,7 +57,7 @@ class _SignupFormState extends State<SignupForm> {
                     return null;
                   },
                   onSaved: (value) {
-                    registerModel.lastName = value!.trim();
+                    driverRegisterModel.lastName = value!.trim();
                   },
                 ),
               ),
@@ -62,7 +65,7 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            hintText: "Email",
+            hintText: S.of(context).Email,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
@@ -75,12 +78,12 @@ class _SignupFormState extends State<SignupForm> {
               return null;
             },
             onSaved: (value) {
-              registerModel.email = value!.trim();
+              driverRegisterModel.email = value!.trim();
             },
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            hintText: "Mobile number",
+            hintText: S.of(context).PhoneNumber,
             keyboardType: TextInputType.phone,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
@@ -92,12 +95,12 @@ class _SignupFormState extends State<SignupForm> {
               return null;
             },
             onSaved: (value) {
-              registerModel.phoneNumber = value!.trim();
+              driverRegisterModel.phoneNumber = value!.trim();
             },
           ),
           const SizedBox(height: 16),
           CustomTextField(
-              hintText: "Enter Your Password",
+              hintText: S.of(context).Password,
               secure: p1,
               validator: (value) {
                 return validatePassword(value);
@@ -117,7 +120,7 @@ class _SignupFormState extends State<SignupForm> {
               )),
           const SizedBox(height: 16),
           CustomTextField(
-              hintText: "Confirm Password",
+              hintText: S.of(context).confirmedPassword,
               secure: p2,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -132,7 +135,7 @@ class _SignupFormState extends State<SignupForm> {
                 confirmPassword = value.trim();
               },
               onSaved: (value) {
-                registerModel.password = value!.trim();
+                driverRegisterModel.password = value!.trim();
               },
               suffixIcon: IconButton(
                 icon: Icon(p2
@@ -147,7 +150,8 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 16),
           Genderdropmenu(
             onChanged: (value) {
-              registerModel.gender = value!.trim();
+              print(value);
+              driverRegisterModel.gender = value!.trim();
             },
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
@@ -156,9 +160,39 @@ class _SignupFormState extends State<SignupForm> {
               return null;
             },
           ),
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: S.of(context).NId,
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'Please enter your National ID';
+              }
+              if (value.length > 16 || value.length < 16) {
+                return 'National ID should be 16 digits';
+              }
+              return null;
+            },
+            onSaved: (value) {
+              driverRegisterModel.nIDcard = value!.trim();
+            },
+          ),
+          const SizedBox(height: 16),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: CustomTextField(
+                hintText: "    ${S.of(context).feesh}",
+                readOnly: true,
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.add_link_rounded),
+                  onPressed: () async {
+                    var driverPapers = await DriverFileMangement().pickFile();
+                    driverRegisterModel.driverPapers = driverPapers;
+                  },
+                )),
+          ),
           const SizedBox(height: 30),
-          SignupFormButtonBuilder(
-              formKey: _formKey, registerModel: registerModel),
+          // SignupFormButtonBuilder(
+          //     formKey: _formKey, registerModel: driverRegisterModel),
         ],
       ),
     );

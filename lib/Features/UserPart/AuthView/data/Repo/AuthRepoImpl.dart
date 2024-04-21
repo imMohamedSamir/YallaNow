@@ -15,7 +15,7 @@ class AuthRepoImpl implements AuthRepo {
   });
   @override
   Future<Either<FailureHttp, dynamic>> fetchRegisteration(
-      {required RegisterModel userdata}) async {
+      {required UserRegisterModel userdata}) async {
     try {
       var response = await http.post(
         Uri.parse('http://yallanowtest.runasp.net/api/Auth/RegisterNewUser'),

@@ -2,7 +2,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppPrefs.dart';
 import 'package:yallanow/Core/utlis/blocObs.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
@@ -30,6 +32,7 @@ import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.da
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/homeViewBody.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 void main() async {
   setupServiceLocator();
@@ -68,20 +71,35 @@ class YallaNow extends StatelessWidget {
           create: (context) =>
               FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>()),
         ),
+        BlocProvider(
+          create: (context) => LanguageCubit(),
+        ),
       ],
-      child: MaterialApp(
-        locale: DevicePreview.locale(context),
-        debugShowCheckedModeBanner: false,
-        initialRoute: routesNames.splash,
-        routes: {
-          routesNames.splash: (context) => const SplashView(),
-          routesNames.home: (context) => const MainHomeView(),
-          routesNames.resturant: (context) => const FoodResturantPage(),
-          routesNames.basket: (context) => const BasketPage(),
-          routesNames.markets: (context) => const MarketsView(),
-          routesNames.marketpage: (context) => const MarketPage(),
-          routesNames.pharmacyPage: (context) => const PharmacyView(),
-          routesNames.pharmacy: (context) => const PharmacyPage()
+      child: BlocBuilder<LanguageCubit, Locale>(
+        builder: (context, state) {
+          return MaterialApp(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: state,
+            debugShowCheckedModeBanner: false,
+            initialRoute: routesNames.splash,
+            routes: {
+              routesNames.splash: (context) => const SplashView(),
+              routesNames.home: (context) => const MainHomeView(),
+              routesNames.resturant: (context) => const FoodResturantPage(),
+              routesNames.basket: (context) => const BasketPage(),
+              routesNames.markets: (context) => const MarketsView(),
+              routesNames.marketpage: (context) => const MarketPage(),
+              routesNames.pharmacyPage: (context) => const PharmacyView(),
+              routesNames.pharmacy: (context) => const PharmacyPage(),
+              routesNames.loginpage: (context) => const LoginView()
+            },
+          );
         },
       ),
     );
@@ -97,4 +115,5 @@ class routesNames {
   static const String marketpage = "Marketpage";
   static const String pharmacyPage = "PharmacyPage";
   static const String pharmacy = "pharmacypage";
+  static const String loginpage = "loginpage";
 }

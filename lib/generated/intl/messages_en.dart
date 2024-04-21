@@ -21,5 +21,30 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "CreateAccount":
+            MessageLookupByLibrary.simpleMessage("Create a new account"),
+        "Email": MessageLookupByLibrary.simpleMessage("Email"),
+        "Female": MessageLookupByLibrary.simpleMessage("Female"),
+        "FirstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "LastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "Male": MessageLookupByLibrary.simpleMessage("Male"),
+        "NId": MessageLookupByLibrary.simpleMessage("National Identity"),
+        "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "Password": MessageLookupByLibrary.simpleMessage("Enter Your Password"),
+        "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "SignIn": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "SignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "Terms1": MessageLookupByLibrary.simpleMessage(
+            "By registering, you agree to our"),
+        "Terms2":
+            MessageLookupByLibrary.simpleMessage("  Terms and Conditions"),
+        "already_have_account":
+            MessageLookupByLibrary.simpleMessage("Already have account ?"),
+        "confirmedPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "verify": MessageLookupByLibrary.simpleMessage("Verify")
+      };
 }

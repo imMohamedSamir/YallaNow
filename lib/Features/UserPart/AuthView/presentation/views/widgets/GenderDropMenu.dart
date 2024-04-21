@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class Genderdropmenu extends StatelessWidget {
   const Genderdropmenu(
@@ -23,9 +24,9 @@ class Genderdropmenu extends StatelessWidget {
       onSaved: onSaved,
       onChanged: onChanged,
       validator: validator,
-      items: ['Male', 'Female'].map((String e) {
+      items: [S.of(context).Male, S.of(context).Female].map((String e) {
         return DropdownMenuItem<String>(
-          value: e,
+          value: getGender(gender: e),
           child: initialvalue != null
               ? Text(e,
                   style: AppStyles.styleMedium16(context)
@@ -41,9 +42,17 @@ class Genderdropmenu extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Color(0xff9E9D9D))),
       ),
-      hint: Text("Gender",
+      hint: Text(S.of(context).gender,
           style: AppStyles.styleMedium16(context)
               .copyWith(color: const Color(0xff9E9D9D))),
     );
+  }
+}
+
+String getGender({required String gender}) {
+  if (gender == "ذكر") {
+    return "male";
+  } else {
+    return "female";
   }
 }

@@ -1,1 +1,22 @@
-{}
+{
+    "SignIn":"Sign in",
+    "SignUp":"Sign up",
+    "CreateAccount":"Create a new account",
+    "FirstName":"First Name",
+    "LastName":"Last Name",
+    "PhoneNumber":"Phone number",
+    "Email":"Email",
+    "Password":"Enter Your Password",
+    "confirmedPassword":"Confirm password",
+    "NId":"National Identity",
+    "gender":"Gender",
+    "Male":"Male",
+    "Female":"Female",
+    "feesh":"الفيش و التشبيه",
+    "Next":"Next",
+    "verify":"Verify",
+    "already_have_account":"Already have account ?",
+    "Terms1":"By registering, you agree to our",
+    "Terms2":"  Terms and Conditions"
+    
+}
