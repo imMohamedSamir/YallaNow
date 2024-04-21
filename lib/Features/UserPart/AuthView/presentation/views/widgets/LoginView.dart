@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
+import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginViewBody.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignUpAppBar.dart';
+
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LoginCubit(getIt.get<AuthRepoImpl>()),
+      child: Scaffold(
+        appBar: CustomAppBar(context, title: "Sign in", onPressed: () {
+          Navigator.pop(context);
+        }),
+        body: const LoginViewBody(),
+      ),
+    );
+  }
+}

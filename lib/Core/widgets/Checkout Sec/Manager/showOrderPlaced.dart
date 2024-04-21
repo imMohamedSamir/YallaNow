@@ -3,7 +3,7 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
-import 'package:yallanow/Features/TrackingView/presentation/TrackingView.dart';
+import 'package:yallanow/Features/UserPart/TrackingView/presentation/TrackingView.dart';
 
 void showOrderPlaced(BuildContext context) {
   showModalBottomSheet(

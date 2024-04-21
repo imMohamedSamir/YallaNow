@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
-class ContactInfoCard extends StatelessWidget {
+class ContactInfoCard extends StatefulWidget {
   const ContactInfoCard({
     super.key,
     required this.title,
     this.subtitle,
-    this.onTap,
     required this.height,
     required this.image,
     this.isordered = false,
   });
   final String title;
   final String? subtitle;
-  final void Function()? onTap;
   final double height;
   final Widget image;
   final bool isordered;
+
+  @override
+  State<ContactInfoCard> createState() => _ContactInfoCardState();
+}
+
+class _ContactInfoCardState extends State<ContactInfoCard> {
+  bool isChanged = false;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
-        height: height,
+        height: widget.height,
         child: ListTile(
           shape: OutlineInputBorder(
               borderSide: const BorderSide(color: Color(0xff5A5A5A)),
@@ -29,25 +34,28 @@ class ContactInfoCard extends StatelessWidget {
           titleAlignment: ListTileTitleAlignment.titleHeight,
           textColor: const Color(0xff5A5A5A),
           titleTextStyle: AppStyles.styleMedium16(context),
-          title: subtitle == null
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [const SizedBox(height: 7), Text(title)])
-              : Text(title),
+          title: widget.subtitle == null
+              ? isChanged
+                  ? const TextField(
+                      decoration: InputDecoration(border: InputBorder.none))
+                  : Text(widget.title)
+              : Text(widget.title),
           subtitle: Text(
-            subtitle ?? "",
+            widget.subtitle ?? "",
             style: AppStyles.styleRegular14(context)
                 .copyWith(color: const Color(0xff5A5A5A)),
           ),
           ////////////////////////////////////
-          leading: image,
+          leading: widget.image,
           ////////////////////////////////////
-          trailing: isordered
+          trailing: widget.isordered
               ? const SizedBox()
               : Column(
                   children: [
                     GestureDetector(
-                      onTap: onTap,
+                      onTap: () {
+                        isChanged = true;
+                      },
                       child: Text(
                         "Change",
                         style: AppStyles.styleMedium12(context)

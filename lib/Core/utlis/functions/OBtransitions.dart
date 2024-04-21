@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Features/AuthView/presentation/views/widgets/SignupView.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignupView.dart';
 
 void OBtransitions(BuildContext context, currentPageIndex, pageController) {
   if (currentPageIndex <= 2) {

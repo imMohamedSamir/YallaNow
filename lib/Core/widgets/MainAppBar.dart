@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/foodView/presentation/views/ResturantHeaderIcon.dart';
-import 'package:yallanow/Features/homeView/presentation/views/LocationAppBar.dart';
-import 'package:yallanow/main.dart';
+import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/LocationAppBar.dart';
 
 AppBar favoriteAppBar(BuildContext context,
     {required String title, bool isOrder = false}) {
@@ -96,18 +96,7 @@ AppBar CategoryAppBar(BuildContext context,
               onPressed: () {},
             )
           : const SizedBox(),
-      IconButton(
-        onPressed: () {
-          Navigator.pushNamed(context, routesNames.basket);
-        },
-        icon: const Badge(
-          label: Text("0"),
-          child: Icon(
-            Icons.shopping_cart_outlined,
-            color: Color(0xff240301),
-          ),
-        ),
-      )
+      const BasketIconBuilder()
     ],
   );
 }

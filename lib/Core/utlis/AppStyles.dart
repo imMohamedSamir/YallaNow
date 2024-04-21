@@ -146,6 +146,15 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleBold16(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFB20404),
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle styleBold18(BuildContext context) {
     return TextStyle(
       color: const Color(0xFFB20404),
