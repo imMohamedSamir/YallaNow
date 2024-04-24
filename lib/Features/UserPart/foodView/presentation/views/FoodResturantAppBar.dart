@@ -27,7 +27,7 @@ class FoodResturantAppBar extends StatelessWidget {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_rounded, size: 21)),
             const Spacer(),
-            favIcon(height: height * 0.18),
+            FavIcon(height: height * 0.18),
             const SizedBox(width: 10),
             ResturantHeaderIcon(
               child: SvgPicture.asset(Assets.imagesShareIcon),

@@ -18,7 +18,9 @@ class LocationService {
 
   Future<bool> checkAndRequestLocationPermission() async {
     PermissionStatus permissionStatus = await location.hasPermission();
+
     if (permissionStatus == PermissionStatus.deniedForever) {
+      // location.changeSettings();
       return false;
     }
     if (permissionStatus == PermissionStatus.denied) {

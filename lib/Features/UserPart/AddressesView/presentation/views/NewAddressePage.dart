@@ -17,7 +17,7 @@ class NewAddressePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondAppBar(context, title: "New Addresse"),
+      appBar: secondAppBar(context, title: "New Addresse"),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

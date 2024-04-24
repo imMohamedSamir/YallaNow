@@ -41,7 +41,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(context, title: "Notification"),
+      appBar: mainAppBar(context, title: "Notification"),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.symmetric(horizontal: 16),

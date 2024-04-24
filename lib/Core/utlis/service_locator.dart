@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
@@ -14,7 +15,8 @@ void setupServiceLocator() {
   getIt.registerSingleton<GoogleMapsServices>(GoogleMapsServices(Dio()));
   getIt.registerSingleton<YallaNowServices>(YallaNowServices(Dio()));
   getIt.registerSingleton<YallaNowServicesHttp>(YallaNowServicesHttp());
-
+  getIt.registerSingleton<DriverRegisterationRepoImpl>(
+      DriverRegisterationRepoImpl());
   getIt.registerSingleton<AddressesRepoImpl>(AddressesRepoImpl(
     getIt.get<GoogleMapsServices>(),
   ));

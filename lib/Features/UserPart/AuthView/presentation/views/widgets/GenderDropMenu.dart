@@ -26,7 +26,7 @@ class Genderdropmenu extends StatelessWidget {
       validator: validator,
       items: [S.of(context).Male, S.of(context).Female].map((String e) {
         return DropdownMenuItem<String>(
-          value: getGender(gender: e),
+          value: getGender(gender: e) ?? e,
           child: initialvalue != null
               ? Text(e,
                   style: AppStyles.styleMedium16(context)
@@ -49,10 +49,12 @@ class Genderdropmenu extends StatelessWidget {
   }
 }
 
-String getGender({required String gender}) {
+getGender({required String gender}) {
   if (gender == "ذكر") {
     return "male";
-  } else {
+  } else if (gender == "انثى") {
     return "female";
+  } else {
+    return null;
   }
 }

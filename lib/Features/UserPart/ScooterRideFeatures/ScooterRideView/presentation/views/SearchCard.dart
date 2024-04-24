@@ -92,7 +92,7 @@ class test extends StatelessWidget {
           ElevatedButton(
               onPressed: () async {
                 await BlocProvider.of<ScooterLocationCubit>(context)
-                    .SelectedLocation(description: "Los Gatos, CA, USA");
+                    .selectedLocation(description: "Los Gatos, CA, USA");
                 Navigator.pop(context);
               },
               child: Text("getrouts"))

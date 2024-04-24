@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "595105457821",
+    "project_id": "yallanowtest",
+    "storage_bucket": "yallanowtest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595105457821:android:609384c01ffeec66155674",
+        "android_client_info": {
+          "package_name": "com.example.yallanow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU1afFJuNwNH2g_p2vDZ9ojXhjZpMcZOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

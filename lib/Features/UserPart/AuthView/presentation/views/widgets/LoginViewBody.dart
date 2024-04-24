@@ -32,6 +32,7 @@ class LoginViewBody extends StatelessWidget {
               firstText: "Didn't have an account? ",
               secondText: "Sign up",
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(

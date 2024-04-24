@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 
-FileDetails fileDetails = FileDetails();
-
 class DriverFileMangement {
+  FileDetails fileDetails = FileDetails();
+
   Future<FileDetails?> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {

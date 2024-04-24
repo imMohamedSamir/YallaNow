@@ -9,7 +9,7 @@ class HelpCenterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
-      appBar: SecondAppBar(context, title: "Help Center"),
+      appBar: secondAppBar(context, title: "Help Center"),
       body: const HelpCenterBody(),
     );
   }

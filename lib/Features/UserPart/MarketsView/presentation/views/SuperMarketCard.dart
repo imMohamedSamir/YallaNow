@@ -12,7 +12,7 @@ class SuperMarketCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, routesNames.marketpage);
+        Navigator.pushNamed(context, RoutesNames.marketpage);
       },
       child: SizedBox(
         height: AppSizes.getHeight(92, context),

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -47,7 +48,7 @@ AppBar favoriteAppBar(BuildContext context,
   );
 }
 
-AppBar MainAppBar(BuildContext context, {required String title}) {
+AppBar mainAppBar(BuildContext context, {required String title}) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
@@ -72,7 +73,7 @@ AppBar MainAppBar(BuildContext context, {required String title}) {
   );
 }
 
-AppBar SecondAppBar(BuildContext context, {required String title}) {
+AppBar secondAppBar(BuildContext context, {required String title}) {
   return AppBar(
       elevation: 0,
       titleSpacing: -8,
@@ -84,7 +85,7 @@ AppBar SecondAppBar(BuildContext context, {required String title}) {
           }));
 }
 
-AppBar HomeAppBar() {
+AppBar homeAppBar() {
   return AppBar(
     elevation: 0,
     automaticallyImplyLeading: false,
@@ -92,7 +93,7 @@ AppBar HomeAppBar() {
   );
 }
 
-AppBar CategoryAppBar(BuildContext context,
+AppBar categoryAppBar(BuildContext context,
     {required String title, bool isCategory = false}) {
   return AppBar(
     title: Text(title, style: AppStyles.styleRegular16(context)),

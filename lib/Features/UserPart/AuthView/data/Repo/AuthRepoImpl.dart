@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:yallanow/Core/Errors/HttpFailurs.dart';
@@ -55,7 +56,7 @@ class AuthRepoImpl implements AuthRepo {
             "password": password,
           }));
       if (response.statusCode == 200) {
-        print(jsonDecode(response.body));
+        log(jsonDecode(response.body).toString());
         return right(LoginResponseModel.fromJson(jsonDecode(response.body)));
       } else {
         return left(ServerFailureHttp.fromHttpError(response));

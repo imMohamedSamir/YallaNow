@@ -9,7 +9,7 @@ class AddressesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondAppBar(context, title: "Addresses"),
+      appBar: secondAppBar(context, title: "Addresses"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: AddressesLV(),

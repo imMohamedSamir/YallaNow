@@ -72,7 +72,7 @@ class FavoriteCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const favIcon(favorite: true)
+                const FavIcon(favorite: true)
               ],
             )),
       ),

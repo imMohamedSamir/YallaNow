@@ -31,6 +31,8 @@ class SignupViewBody extends StatelessWidget {
             firstText: "Already have an account?",
             secondText: " Sign in",
             onTap: () {
+              Navigator.pop(context);
+
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LoginView()));
             },

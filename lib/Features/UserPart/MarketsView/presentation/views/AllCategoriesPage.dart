@@ -10,7 +10,7 @@ class AllCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CategoryAppBar(context, title: "Marts"),
+      appBar: categoryAppBar(context, title: "Marts"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
         child: AllCategoriesGV(),

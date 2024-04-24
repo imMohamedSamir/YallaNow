@@ -37,10 +37,10 @@ class CategorySec extends StatelessWidget {
                                 builder: (context) => const FoodView()),
                           );
                         } else if (index == 1) {
-                          Navigator.pushNamed(context, routesNames.markets);
+                          Navigator.pushNamed(context, RoutesNames.markets);
                         } else if (index == 2) {
                           Navigator.pushNamed(
-                              context, routesNames.pharmacyPage);
+                              context, RoutesNames.pharmacyPage);
                         }
                       },
                       child: categCardDetails(

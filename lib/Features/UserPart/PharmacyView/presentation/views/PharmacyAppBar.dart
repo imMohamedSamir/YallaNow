@@ -27,7 +27,7 @@ class PharmacyAppBar extends StatelessWidget {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_rounded, size: 21)),
             const Spacer(),
-            favIcon(height: AppSizes.getHeight(32, context)),
+            FavIcon(height: AppSizes.getHeight(32, context)),
             const SizedBox(width: 10),
             ResturantHeaderIcon(
               child: SvgPicture.asset(Assets.imagesShareIcon),

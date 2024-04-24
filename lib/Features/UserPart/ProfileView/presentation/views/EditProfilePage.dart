@@ -8,7 +8,7 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondAppBar(context, title: "Edit profile"),
+      appBar: secondAppBar(context, title: "Edit profile"),
       body: const EditProfileBody(),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geocoding/geocoding.dart';
@@ -19,13 +21,14 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   LatLng? currentposition;
   Set<Polyline> polyLines = {};
 
-  getMyCurrentPosition() async {
+  void getMyCurrentPosition() async {
     await locationService.checkAndRequestLocationService();
     var hasPermission =
         await locationService.checkAndRequestLocationPermission();
     if (hasPermission) {
       currentposition = await locationService.getCurrentLocationData();
       locationDetails = await defineLocationDetails(location: currentposition!);
+
       getLocationDetails();
     }
   }
@@ -44,7 +47,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     }
   }
 
-  Future<void> SelectedLocation({required String description}) async {
+  Future<void> selectedLocation({required String description}) async {
     try {
       List<Location> locations = await locationFromAddress(description);
 
@@ -100,7 +103,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   void handleCameraMove({required CameraPosition position}) async {
     LatLng newLocation = position.target;
     locationDetails = await defineLocationDetails(location: newLocation);
-    print(locationDetails);
+    log(locationDetails!.toJson().toString());
   }
 
   ///////////////////////////////////////////////////////////

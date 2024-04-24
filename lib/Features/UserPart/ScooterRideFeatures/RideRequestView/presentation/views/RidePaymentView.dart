@@ -8,7 +8,7 @@ class RidePaymentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondAppBar(context, title: "Ride Payment"),
+      appBar: secondAppBar(context, title: "Ride Payment"),
       body: const RidePaymentBody(),
     );
   }

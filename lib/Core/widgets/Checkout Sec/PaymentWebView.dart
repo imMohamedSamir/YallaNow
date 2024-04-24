@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:yallanow/Core/utlis/paymob_manager.dart';
 
 class PaymentWebView extends StatefulWidget {
   const PaymentWebView({Key? key, required this.paymentKey}) : super(key: key);

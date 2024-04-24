@@ -24,6 +24,8 @@ class ChooseRole extends StatelessWidget {
             const SizedBox(width: 12),
             GestureDetector(
               onTap: () {
+                Navigator.pop(context);
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -9,7 +9,7 @@ class MarketCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CategoryAppBar(context, title: "Marts"),
+      appBar: categoryAppBar(context, title: "Marts"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: CustomScrollView(

@@ -24,7 +24,7 @@ class ResturantImgContainer extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        child: const favIcon());
+        child: const Align(alignment: Alignment.topRight, child: FavIcon()));
   }
 }
 
@@ -54,6 +54,6 @@ class RestFoodImgContainer extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: const favIcon());
+        child: const Align(alignment: Alignment.topRight, child: FavIcon()));
   }
 }

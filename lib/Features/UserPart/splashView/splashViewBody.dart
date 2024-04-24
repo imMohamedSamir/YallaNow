@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/Onboarding/presentation/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -17,6 +19,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   String? token;
   @override
   void initState() {
+    BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
     checkFirstTimeUser();
     navigateTransition();
     super.initState();

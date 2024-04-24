@@ -25,7 +25,7 @@ class FoodBottomBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (active) {
-                Navigator.pushNamed(context, routesNames.basket);
+                Navigator.pushNamed(context, RoutesNames.basket);
               }
             },
             child: Container(

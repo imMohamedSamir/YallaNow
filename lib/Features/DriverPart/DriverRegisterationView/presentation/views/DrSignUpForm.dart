@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
+import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DrSignupButtonBuilder.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignupFormButtonBuilder.dart';
 import 'package:yallanow/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DrSignUpForm extends StatefulWidget {
   const DrSignUpForm({super.key});
@@ -18,9 +23,16 @@ class DrSignUpForm extends StatefulWidget {
 class _DrSignUpFormState extends State<DrSignUpForm> {
   final _formKey = GlobalKey<FormState>();
   DriverRegisterModel driverRegisterModel = DriverRegisterModel();
-
+  FileDetails? driverPapers;
   String password = '', confirmPassword = '';
   bool p1 = true, p2 = true;
+  TextEditingController textEditingController = TextEditingController();
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -150,7 +162,6 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
           const SizedBox(height: 16),
           Genderdropmenu(
             onChanged: (value) {
-              print(value);
               driverRegisterModel.gender = value!.trim();
             },
             validator: (value) {
@@ -180,19 +191,48 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
           Directionality(
             textDirection: TextDirection.rtl,
             child: CustomTextField(
+                controller: textEditingController,
                 hintText: "    ${S.of(context).feesh}",
                 readOnly: true,
+                validator: (p0) {
+                  if (driverPapers == null) {
+                    return 'الرجاء ارفاق الملفات المطلوبه';
+                  }
+                  return null;
+                },
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.add_link_rounded),
                   onPressed: () async {
-                    var driverPapers = await DriverFileMangement().pickFile();
-                    driverRegisterModel.driverPapers = driverPapers;
+                    driverPapers = await DriverFileMangement().pickFile();
+                    setState(() {
+                      driverRegisterModel.driverPapers = driverPapers;
+                      textEditingController.text =
+                          "  ${driverPapers!.fileName ?? ""}";
+                    });
                   },
                 )),
           ),
+          CustomButton(
+            text: "press",
+            txtcolor: Colors.white,
+            btncolor: pKcolor,
+            onPressed: () async {
+              await FirebaseAuth.instance.verifyPhoneNumber(
+                phoneNumber: '+20 1127523369',
+                verificationCompleted: (PhoneAuthCredential credential) {
+                  log(credential.smsCode.toString());
+                },
+                verificationFailed: (FirebaseAuthException e) {
+                  log(e.message.toString());
+                },
+                codeSent: (String verificationId, int? resendToken) {},
+                codeAutoRetrievalTimeout: (String verificationId) {},
+              );
+            },
+          ),
           const SizedBox(height: 30),
-          // SignupFormButtonBuilder(
-          //     formKey: _formKey, registerModel: driverRegisterModel),
+          DrSignupButtonBuilder(
+              formKey: _formKey, driverRegisterModel: driverRegisterModel),
         ],
       ),
     );

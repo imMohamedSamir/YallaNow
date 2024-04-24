@@ -8,7 +8,7 @@ class LanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondAppBar(context, title: "Language"),
+      appBar: secondAppBar(context, title: "Language"),
       body: const LangaugeSec(),
     );
   }

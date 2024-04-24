@@ -13,7 +13,7 @@ class PharmacyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, routesNames.pharmacy);
+        Navigator.pushNamed(context, RoutesNames.pharmacy);
       },
       child: SizedBox(
         height: AppSizes.getHeight(100, context),
@@ -70,7 +70,7 @@ class PharmacyCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const favIcon()
+                const FavIcon()
               ],
             )),
       ),

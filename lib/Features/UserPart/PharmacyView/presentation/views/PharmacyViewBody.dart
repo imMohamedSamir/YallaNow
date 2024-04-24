@@ -10,7 +10,7 @@ class PharmacyViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CategoryAppBar(context, title: "Pharmacy"),
+      appBar: categoryAppBar(context, title: "Pharmacy"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
