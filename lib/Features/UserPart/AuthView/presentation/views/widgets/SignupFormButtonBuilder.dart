@@ -48,8 +48,7 @@ class SignupFormButtonBuilder extends StatelessWidget {
         } else if (state is RegisterationSuccess) {
           if (state.respons == '["User"]') {
             BlocProvider.of<RegisterationCubit>(context).phoneVerificationFetch(
-                phoneNumber: "+2${registerModel.phoneNumber!}",
-                context: context);
+                phoneNumber: registerModel.phoneNumber!, context: context);
           }
           return CustomButton(
             onPressed: () async {

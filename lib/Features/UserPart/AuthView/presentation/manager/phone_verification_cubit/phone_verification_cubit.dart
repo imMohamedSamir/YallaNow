@@ -23,6 +23,7 @@ class PhoneVerificationCubit extends Cubit<PhoneVerificationState> {
       emit(PhoneVerificationLoading());
       await auth.signInWithCredential(credential);
       emit(PhoneVerificationSuccess());
+
       if (isRest!) {
         if (!context.mounted) return;
         Navigator.push(

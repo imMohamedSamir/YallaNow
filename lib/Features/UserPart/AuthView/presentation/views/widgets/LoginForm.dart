@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
+import 'package:yallanow/Features/UserPart/AuthView/data/Models/LoginPostModel.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginButtonBuilder.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/forgetPassQ.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -71,10 +70,4 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
   }
-}
-
-class LoginPostModel {
-  String? email, password;
-
-  LoginPostModel({this.email, this.password});
 }

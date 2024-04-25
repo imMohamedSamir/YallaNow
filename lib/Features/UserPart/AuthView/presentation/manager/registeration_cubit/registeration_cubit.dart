@@ -6,6 +6,7 @@ import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/PhoneVerification.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/forgetPasswordVerify.dart';
 
 part 'registeration_state.dart';
 
@@ -27,38 +28,39 @@ class RegisterationCubit extends Cubit<RegisterationState> {
       required BuildContext context,
       bool isRest = false}) async {
     await auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
+        phoneNumber: "+2$phoneNumber",
         ////////verificationComplete//////////////////
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          log(credential.smsCode.toString());
-          // await auth.signInWithCredential(credential);
-        },
+        verificationCompleted: (PhoneAuthCredential credential) async {},
         ////////verificationFailed//////////////////
         verificationFailed: (FirebaseAuthException e) {
           if (e.code == 'invalid-phone-number') {
             log('The provided phone number is not valid.');
           }
-          log(e.code);
+          log("code: ${e.message}");
         },
         ////////codeSent//////////////////
         codeSent: (String verificationId, int? resendToken) async {
-          log(verificationId);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PhoneVerification(
-                verificationId: verificationId,
-                isRest: isRest,
+          if (!isRest) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PhoneVerification(
+                  verificationId: verificationId,
+                  isRest: isRest,
+                ),
               ),
-            ),
-          );
-          // String smsCode = '123456';
-
-          // PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          //     verificationId: verificationId, smsCode: smsCode);
-          // try {} catch (e) {
-          //   log(e.toString().contains("invalid-verification-code").toString());
-          // }
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ForgetPasswordVerify(
+                  verificationId: verificationId,
+                  endOfNumber: phoneNumber.substring(phoneNumber.length - 2),
+                ),
+              ),
+            );
+          }
         },
         ///////////codeAutoRetrievalTimeout//////////////
         codeAutoRetrievalTimeout: (String verificationId) {},

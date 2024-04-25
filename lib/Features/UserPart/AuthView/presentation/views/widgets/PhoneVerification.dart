@@ -17,30 +17,26 @@ class PhoneVerification extends StatelessWidget {
       appBar: CustomAppBar(context, title: "Verify", onPressed: () {
         Navigator.pop(context);
       }),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          const SizedBox(height: 32),
-          const AuthHeader(
-              firstHeader: "Phone verification",
-              secondHeader: "Enter your OTP code"),
-          const SizedBox(height: 40),
-          OTPTextField(verificationId: verificationId!, isRest: isRest),
-          const SizedBox(height: 20),
-          const ResendVerifyOTP(),
-          const SizedBox(height: 36),
-          BlocBuilder<PhoneVerificationCubit, PhoneVerificationState>(
-            builder: (context, state) {
-              if (state is PhoneVerificationLoading) {
-                return const Center(
-                    child: CircularProgressIndicator(color: pKcolor));
-              }
-              return const SizedBox();
-            },
-          )
-        ]),
-      ),
+      body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        const SizedBox(height: 32),
+        const AuthHeader(
+            firstHeader: "Phone verification",
+            secondHeader: "Enter your OTP code"),
+        const SizedBox(height: 40),
+        OTPTextField(verificationId: verificationId!, isRest: isRest),
+        const SizedBox(height: 20),
+        const ResendVerifyOTP(),
+        const SizedBox(height: 36),
+        BlocBuilder<PhoneVerificationCubit, PhoneVerificationState>(
+          builder: (context, state) {
+            if (state is PhoneVerificationLoading) {
+              return const Center(
+                  child: CircularProgressIndicator(color: pKcolor));
+            }
+            return const SizedBox();
+          },
+        )
+      ]),
     );
   }
 }
