@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/ForgetPasswordEP.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/ForgetPasswordPage.dart';
 
-class forgetPasswordSec extends StatelessWidget {
-  const forgetPasswordSec({
+class ForgetPasswordSec extends StatelessWidget {
+  const ForgetPasswordSec({
     super.key,
   });
 

@@ -5,7 +5,6 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/registeration_cubit/registeration_cubit.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/VerificationSignUp.dart';
 
 class SignupFormButtonBuilder extends StatelessWidget {
   const SignupFormButtonBuilder({
@@ -48,14 +47,9 @@ class SignupFormButtonBuilder extends StatelessWidget {
           );
         } else if (state is RegisterationSuccess) {
           if (state.respons == '["User"]') {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const VerificationSignUp(),
-                ),
-              );
-            });
+            BlocProvider.of<RegisterationCubit>(context).phoneVerificationFetch(
+                phoneNumber: "+2${registerModel.phoneNumber!}",
+                context: context);
           }
           return CustomButton(
             onPressed: () async {

@@ -20,16 +20,7 @@ class forgetPasswordVerify extends StatelessWidget {
               firstHeader: "Forgot Password",
               secondHeader: "Code has been send to ***** ***98"),
           const SizedBox(height: 40),
-          OTP_TextField(
-            onCompleted: (value) {
-              if (value == "12345") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ResetPassword()));
-              }
-            },
-          ),
+          OTPTextField(verificationId: ""),
           const SizedBox(height: 20),
           const AuthQ(
               firstText: "Didn’t receive code? ", secondText: "Resend again"),

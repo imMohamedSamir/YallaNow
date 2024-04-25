@@ -61,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           const SizedBox(height: 10),
-          const forgetPasswordSec(),
+          const ForgetPasswordSec(),
           const SizedBox(height: 30),
           LoginButtonBuilder(
             formKey: _formKey,

@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_verification_cubit/phone_verification_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
@@ -23,12 +25,14 @@ import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart'
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
+import 'package:yallanow/firebase_options.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 void main() async {
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const YallaNow(),
@@ -63,6 +67,9 @@ class YallaNow extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LanguageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => PhoneVerificationCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
