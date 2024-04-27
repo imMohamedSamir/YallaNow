@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:yallanow/Core/utlis/HiveAdapters.dart';
 import 'package:yallanow/Core/utlis/blocObs.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
@@ -13,13 +15,16 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoIm
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_verification_cubit/phone_verification_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/BasketPage.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
@@ -30,6 +35,8 @@ import 'package:yallanow/generated/l10n.dart';
 
 void main() async {
   setupServiceLocator();
+  await Hive.initFlutter();
+  hiveAdapters();
   Bloc.observer = SimpleBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -70,6 +77,13 @@ class YallaNow extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PhoneVerificationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => BasketManagerCubit(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ResturantBranchesCubit(getIt.get<FoodRepoImpl>()),
         ),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(

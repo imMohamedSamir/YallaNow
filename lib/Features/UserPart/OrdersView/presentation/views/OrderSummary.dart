@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/OrderDetails.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/views/OrderDetailsRow.dart';
 
 class OrderSummary extends StatelessWidget {
   const OrderSummary({super.key});

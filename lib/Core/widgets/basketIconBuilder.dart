@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/BasketPage.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
 
 class BasketIconBuilder extends StatelessWidget {
   const BasketIconBuilder({
@@ -17,11 +17,8 @@ class BasketIconBuilder extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const BasketPage(),
-            ));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BasketPage()));
       },
     );
   }

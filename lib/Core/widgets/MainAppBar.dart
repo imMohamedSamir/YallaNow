@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -70,6 +69,15 @@ AppBar mainAppBar(BuildContext context, {required String title}) {
     //     onPressed: () {
     //       Navigator.pop(context);
     //     })
+  );
+}
+
+AppBar secondHomeAppBar(BuildContext context, {required String title}) {
+  return AppBar(
+    automaticallyImplyLeading: false,
+    elevation: 0,
+    titleSpacing: 16,
+    title: Text(title, style: AppStyles.styleMedium18(context)),
   );
 }
 

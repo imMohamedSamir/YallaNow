@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 
-class DiscountCard extends StatelessWidget {
-  const DiscountCard({super.key});
-  // final double width;
-  // final double height;
+class ResturantCategCard extends StatelessWidget {
+  const ResturantCategCard({super.key, required this.item});
+  final Item item;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,14 +18,14 @@ class DiscountCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Box el combo",
+                  Text(item.itemName!,
                       style: AppStyles.styleMedium16(context)
                           .copyWith(color: const Color(0xff121212))),
                   const SizedBox(height: 4),
                   SizedBox(
                       width: AppSizes.getWidth(220, context),
                       child: Text(
-                        "Lorem ipsum dolor sit amet ces tincidunt eleifend vitae",
+                        item.itemDescription!,
                         style: AppStyles.styleRegular12(context)
                             .copyWith(color: const Color(0xff898989)),
                       )),
@@ -33,17 +33,17 @@ class DiscountCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "EGP 300.00",
+                        "${item.itemPrice} EGP",
                         style: AppStyles.styleRegular10(context)
                             .copyWith(color: const Color(0xffB20404)),
                       ),
                       const SizedBox(width: 16),
-                      Text(
-                        "EGP 300.00",
-                        style: AppStyles.styleRegular10(context).copyWith(
-                            color: const Color(0xff5A5A5A),
-                            decoration: TextDecoration.lineThrough),
-                      )
+                      // Text(
+                      //   "EGP 300.00",
+                      //   style: AppStyles.styleRegular10(context).copyWith(
+                      //       color: const Color(0xff5A5A5A),
+                      //       decoration: TextDecoration.lineThrough),
+                      // )
                     ],
                   )
                 ],

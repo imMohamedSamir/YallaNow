@@ -22,11 +22,11 @@ class BasketButtonsSec extends StatelessWidget {
               //     MaterialPageRoute(
               //       builder: (context) => const FoodResturantPage(),
               //     ));
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FoodResturantPage(),
-                  ));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => const FoodResturantPage(),
+              //     ));
             },
           ),
         ),

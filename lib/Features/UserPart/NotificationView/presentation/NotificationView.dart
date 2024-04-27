@@ -41,7 +41,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: mainAppBar(context, title: "Notification"),
+      appBar: secondHomeAppBar(context, title: "Notification"),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -67,12 +67,12 @@ class NotificationPage extends StatelessWidget {
   List<NotificationGroup> _groupNotificationsByDay(
       List<NotificationDetailsModel> notifications) {
     List<NotificationGroup> groups = [];
-    notifications.forEach((notification) {
+    for (var notification in notifications) {
       if (groups.isEmpty || groups.last.day != notification.day) {
         groups.add(NotificationGroup(day: notification.day, notifications: []));
       }
       groups.last.notifications.add(notification);
-    });
+    }
     return groups;
   }
 }

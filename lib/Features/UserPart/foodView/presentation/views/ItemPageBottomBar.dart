@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 
 class ItemPageBottomBar extends StatelessWidget {
   const ItemPageBottomBar({Key? key}) : super(key: key);
@@ -9,6 +12,12 @@ class ItemPageBottomBar extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return ListTile(
+      onTap: () {
+        BlocProvider.of<BasketManagerCubit>(context).addToBasket(
+            item: SelectedItemsModel(
+                name: "2", price: "15", img: "", quantity: "2"),
+            itemID: "1");
+      },
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       title: Container(
         height: height * 0.065,

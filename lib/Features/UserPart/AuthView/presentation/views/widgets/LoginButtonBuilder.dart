@@ -79,8 +79,6 @@ class LoginButtonBuilder extends StatelessWidget {
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();
-              print(
-                  "email: ${loginPostModel.email}  ,password: ${loginPostModel.password}");
 
               await BlocProvider.of<LoginCubit>(context).fetchLogin(
                   email: loginPostModel.email!,
@@ -94,6 +92,6 @@ class LoginButtonBuilder extends StatelessWidget {
 
   Future<void> saveUserToken({required String userToken}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("token", userToken);
+    prefs.setString(token, userToken);
   }
 }

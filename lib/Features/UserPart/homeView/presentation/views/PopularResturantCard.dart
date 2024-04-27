@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/PopularResturanModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/popular_resturants.dart';
@@ -17,10 +19,15 @@ class PopularResturantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        BlocProvider.of<ResturantBranchesCubit>(context)
+            .fetchResturantBranches(restaurantId: popularResturants.id!);
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const FoodResturantPage(),
+              builder: (context) => FoodResturantPage(
+                deliveryTime: popularResturants.deliveryTime ?? "",
+                deliveryPrice: "free",
+              ),
             ));
       },
       child: Card(

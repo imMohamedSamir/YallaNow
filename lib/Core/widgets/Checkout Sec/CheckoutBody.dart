@@ -3,7 +3,7 @@ import 'package:yallanow/Core/widgets/Checkout%20Sec/CheckoutButtonBuilder.dart'
 import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/NotesSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/PayMethodsSec.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/OrderDetails.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/views/OrderDetails.dart';
 
 class CheckoutBody extends StatelessWidget {
   const CheckoutBody({

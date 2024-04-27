@@ -20,7 +20,6 @@ class HomeRepoImpl implements HomeRepo {
       for (var resturant in response) {
         resturants.add(PopularResturants.fromJson(resturant));
       }
-      print(resturants[0].id);
       return right(resturants);
     } catch (e) {
       if (e is DioException) {
@@ -37,29 +36,29 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
-  Future<Either<Failure, List<ResturantBranchModel>>> fetchResturantBranches(
-      {required String resturantID}) async {
-    String endPoint = "FoodResturant/GetBranches?restaurantId=$resturantID";
-    try {
-      var response = await yallaNowServices.get(endPoint: endPoint);
-      List<ResturantBranchModel> branches = [];
-      for (var branch in response) {
-        branches.add(ResturantBranchModel.fromJson(branch));
-      }
-      print(branches[0].id);
-      return right(branches);
-    } catch (e) {
-      if (e is DioException) {
-        return left(
-          ServerFailure.fromDioError(e.type),
-        );
-      }
+  // Future<Either<Failure, List<ResturantBranchModel>>> fetchResturantBranches(
+  //     {required String resturantID}) async {
+  //   String endPoint = "FoodResturant/GetBranches?restaurantId=$resturantID";
+  //   try {
+  //     var response = await yallaNowServices.get(endPoint: endPoint);
+  //     List<ResturantBranchModel> branches = [];
+  //     for (var branch in response) {
+  //       branches.add(ResturantBranchModel.fromJson(branch));
+  //     }
+  //     print(branches[0].id);
+  //     return right(branches);
+  //   } catch (e) {
+  //     if (e is DioException) {
+  //       return left(
+  //         ServerFailure.fromDioError(e.type),
+  //       );
+  //     }
 
-      return left(
-        ServerFailure(
-          e.toString(),
-        ),
-      );
-    }
-  }
+  //     return left(
+  //       ServerFailure(
+  //         e.toString(),
+  //       ),
+  //     );
+  //   }
+  // }
 }

@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:yallanow/Core/Errors/HttpFailurs.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/login_response_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
 import 'package:http/http.dart' as http;
+import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final YallaNowServicesHttp yallaNowServicesHttp;
@@ -55,7 +57,10 @@ class AuthRepoImpl implements AuthRepo {
             "password": password,
           }));
       if (response.statusCode == 200) {
-        log(jsonDecode(response.body).toString());
+        // log(jsonDecode(response.body).toString());
+        var resutle = await ProfileRepoImpl(
+                yallaNowServices: getIt.get<YallaNowServices>())
+            .fetchUserDetails();
         return right(LoginResponseModel.fromJson(jsonDecode(response.body)));
       } else {
         return left(ServerFailureHttp.fromHttpError(response));

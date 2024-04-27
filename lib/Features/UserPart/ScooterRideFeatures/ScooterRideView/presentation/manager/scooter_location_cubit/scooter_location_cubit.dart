@@ -95,7 +95,14 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
         );
       }
     } catch (e) {
-      throw Exception("Error fetching location details: $e");
+      return const Placemark(
+        name: '',
+        locality: '',
+        subLocality: '',
+        administrativeArea: '',
+        postalCode: '',
+        country: '',
+      );
     }
   }
 

@@ -6,8 +6,9 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodRestu
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantDescription.dart';
 
 class FoodResturantPage extends StatefulWidget {
-  const FoodResturantPage({Key? key}) : super(key: key);
-
+  const FoodResturantPage({Key? key, this.deliveryTime, this.deliveryPrice})
+      : super(key: key);
+  final String? deliveryTime, deliveryPrice;
   @override
   State<FoodResturantPage> createState() => _FoodResturantPageState();
 }

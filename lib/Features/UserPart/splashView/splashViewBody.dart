@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/Onboarding/presentation/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +17,7 @@ class SplashViewBody extends StatefulWidget {
 
 class _SplashViewBodyState extends State<SplashViewBody> {
   bool? isFirstTime;
-  String? token;
+  String? userToken;
   @override
   void initState() {
     BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
@@ -31,7 +32,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     if (isFirstTime!) {
       await prefs.setBool('isFirstTime', false);
     }
-    token = prefs.getString("token");
+    userToken = prefs.getString(token);
   }
 
   @override
@@ -48,7 +49,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           transitionDuration: const Duration(milliseconds: 600),
           pageBuilder: (_, __, ___) => isFirstTime!
               ? const OnBoarding()
-              : token != null
+              : userToken != null
                   ? const MainHomeView()
                   : const LoginView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/selectedItemsModel.dart';
+import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemQyt.dart';
 
 class SelectedItemCard extends StatelessWidget {
   const SelectedItemCard({super.key, required this.selectedItems});
-  final selectedItemsModel selectedItems;
+  final SelectedItemsModel selectedItems;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

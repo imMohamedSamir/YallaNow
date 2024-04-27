@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/selectedItemsModel.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/SelectedItemCard.dart';
+import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/views/SelectedItemCard.dart';
 
 class SelectedItemsSec extends StatelessWidget {
   const SelectedItemsSec({super.key});
-  static List<selectedItemsModel> items = [
-    selectedItemsModel(
+  static List<SelectedItemsModel> items = [
+    SelectedItemsModel(
         name: "Box el combo",
         price: "EGP 400",
         img: Assets.imagesMeal1,
         quantity: "2"),
-    selectedItemsModel(
+    SelectedItemsModel(
         name: "Box el combo",
         price: "EGP 300",
         img: Assets.imagesMeal2,
         quantity: "1"),
-    selectedItemsModel(
+    SelectedItemsModel(
         name: "Box el combo",
         price: "EGP 100",
         img: Assets.imagesMeal1,
