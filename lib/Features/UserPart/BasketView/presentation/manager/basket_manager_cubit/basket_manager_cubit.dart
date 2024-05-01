@@ -20,4 +20,13 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
   }
 
   void deleteFromBasket() {}
+  void chooseSize({required String sizePrice}) {
+    emit(BasketManagerInitial());
+    emit(BasketManagerSize(sizePrice: sizePrice));
+  }
+
+  void changeQty({required int number}) {}
+  void initialize() {
+    emit(BasketManagerInitial());
+  }
 }

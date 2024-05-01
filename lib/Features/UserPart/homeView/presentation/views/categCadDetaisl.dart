@@ -3,14 +3,14 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/CardDetailModel.dart';
 
-class categCardDetails extends StatelessWidget {
-  const categCardDetails({super.key, required this.cardDetails});
+class CategCardDetails extends StatelessWidget {
+  const CategCardDetails({super.key, required this.cardDetails});
   final CardCategDetails cardDetails;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: AppSizes.getHeight(90, context),
+        height: AppSizes.getHeight(100, context),
         width: MediaQuery.sizeOf(context).width / 3 - 25,
         padding: const EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
@@ -22,8 +22,14 @@ class categCardDetails extends StatelessWidget {
             Positioned(
                 top: 8,
                 left: 8,
-                child: Text(cardDetails.title,
-                    style: AppStyles.styleSemiBold16(context))),
+                child: cardDetails.title == "Mart & Groceries"
+                    ? RichText(
+                        text: TextSpan(children: const [
+                        TextSpan(text: "Mart & \n"),
+                        TextSpan(text: "Groceries"),
+                      ], style: AppStyles.styleSemiBold16(context)))
+                    : Text(cardDetails.title,
+                        style: AppStyles.styleSemiBold16(context))),
             // Positioned(
             //   top: 31,
             //   left: 8,
@@ -32,7 +38,7 @@ class categCardDetails extends StatelessWidget {
             //           .copyWith(color: const Color(0xffB8B8B8))),
             // ),
             Positioned(
-              top: 35,
+              top: cardDetails.title == "Mart & Groceries" ? 50 : 40,
               left: 28,
               child: Image.asset(
                 cardDetails.img,

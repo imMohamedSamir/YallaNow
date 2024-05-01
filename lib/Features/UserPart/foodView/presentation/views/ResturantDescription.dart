@@ -8,7 +8,9 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/manager/restura
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantDescLoading.dart';
 
 class ResturantDescription extends StatelessWidget {
-  const ResturantDescription({super.key});
+  const ResturantDescription(
+      {super.key, this.deliveryTime, this.deliveryPrice});
+  final String? deliveryTime, deliveryPrice;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ResturantBranchesCubit, ResturantBranchesState>(
@@ -33,7 +35,8 @@ class ResturantDescription extends StatelessWidget {
                           color: const Color(0xff5A5A5A),
                           size: AppSizes.getWidth(12, context)),
                       const SizedBox(width: 4),
-                      Text("20 min", style: AppStyles.styleRegular10(context)),
+                      Text("$deliveryTime min",
+                          style: AppStyles.styleRegular10(context)),
                       const SizedBox(width: 18),
                       Image.asset(
                         Assets.imagesMotorbike,
@@ -41,7 +44,8 @@ class ResturantDescription extends StatelessWidget {
                         height: AppSizes.getHeight(12, context),
                       ),
                       const SizedBox(width: 4),
-                      Text("Free", style: AppStyles.styleRegular10(context))
+                      Text(deliveryPrice!,
+                          style: AppStyles.styleRegular10(context))
                     ],
                   ),
                 ],

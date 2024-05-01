@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/UserPart/homeView/data/Models/PopularResturanModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/PopularResturantCard.dart';
 
 class PopularResturansLV extends StatelessWidget {
-  const PopularResturansLV({super.key, required this.popularResturans});
-  final List<popularResturant> popularResturans;
+  const PopularResturansLV({super.key});
+  // final List<popularResturant> popularResturans;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

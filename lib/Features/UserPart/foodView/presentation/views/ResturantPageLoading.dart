@@ -8,13 +8,14 @@ class ResturantPageLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        baseColor: Colors.grey[100]!,
-        highlightColor: Colors.grey[300]!,
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 16),
             Container(
-              height: AppSizes.getHeight(24, context),
+              height: AppSizes.getHeight(10, context),
               width: AppSizes.getWidth(380, context),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),

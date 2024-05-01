@@ -13,17 +13,16 @@ class FoodItemDetails extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 16),
+      padding: const EdgeInsets.only(top: 24, left: 0, right: 16, bottom: 16),
       color: Colors.white,
       child: Column(
         children: [
           Row(
             children: [
-              Text(
-                title,
-                style: AppStyles.styleSemiBold16(context)
-                    .copyWith(color: const Color(0xff240301)),
-              ),
+              const SizedBox(width: 16),
+              Text(title,
+                  style: AppStyles.styleSemiBold16(context)
+                      .copyWith(color: const Color(0xff240301))),
               const Spacer(),
               Container(
                 width: width * 0.1999,

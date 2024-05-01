@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 
 void dialogMethode(BuildContext context) {
@@ -29,6 +31,7 @@ void dialogMethode(BuildContext context) {
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
+                BlocProvider.of<BasketManagerCubit>(context).initialize();
               })
         ],
       );

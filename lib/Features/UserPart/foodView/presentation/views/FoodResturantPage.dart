@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodBottomBar.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantCategoryTabBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantSecondAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantDescription.dart';
 
 class FoodResturantPage extends StatefulWidget {
-  const FoodResturantPage({Key? key, this.deliveryTime, this.deliveryPrice})
+  const FoodResturantPage(
+      {Key? key,
+      this.deliveryTime,
+      this.deliveryPrice,
+      this.resurantName,
+      this.returantImg})
       : super(key: key);
-  final String? deliveryTime, deliveryPrice;
+  final String? deliveryTime, deliveryPrice, resurantName, returantImg;
   @override
   State<FoodResturantPage> createState() => _FoodResturantPageState();
 }
@@ -26,7 +30,7 @@ class _FoodResturantPageState extends State<FoodResturantPage>
 
   void update() {
     _scrollController!.addListener(() {
-      if (_scrollController!.offset > 160) {
+      if (_scrollController!.offset > kToolbarHeight + 5) {
         setState(() {
           isTop = false;
         });
@@ -45,17 +49,17 @@ class _FoodResturantPageState extends State<FoodResturantPage>
         shrinkWrap: true,
         controller: _scrollController,
         slivers: <Widget>[
-          isTop
-              ? const SliverToBoxAdapter(child: SizedBox())
-              : const FoodResturantSecondAppBar(),
-          const SliverPadding(
-              padding: EdgeInsets.only(bottom: 16),
+          FoodResturantSecondAppBar(
+            isTop: isTop,
+            resturantName: widget.resurantName,
+            resturantImg: widget.returantImg,
+          ),
+          SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               sliver: SliverToBoxAdapter(
-                child: FoodResturantAppBar(),
-              )),
-          const SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              sliver: SliverToBoxAdapter(child: ResturantDescription())),
+                  child: ResturantDescription(
+                      deliveryPrice: widget.deliveryPrice,
+                      deliveryTime: widget.deliveryTime))),
           const SliverToBoxAdapter(child: FoodResturantCategoryTabBar()),
         ],
       ),

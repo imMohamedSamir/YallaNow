@@ -25,8 +25,10 @@ class PopularResturantCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => FoodResturantPage(
+                resurantName: popularResturants.name,
                 deliveryTime: popularResturants.deliveryTime ?? "",
                 deliveryPrice: "free",
+                returantImg: popularResturants.imageUrl,
               ),
             ));
       },
@@ -38,9 +40,7 @@ class PopularResturantCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ResturantImgContainer(
-                img: "",
-              ),
+              ResturantImgContainer(img: popularResturants.imageUrl!),
               const SizedBox(height: 16),
               Text(popularResturants.name!,
                   style: AppStyles.styleSemiBold16(context)),

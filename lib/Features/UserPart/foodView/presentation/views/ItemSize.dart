@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class ItemSelectedDetails extends StatelessWidget {
   const ItemSelectedDetails(
@@ -17,6 +18,14 @@ class ItemSelectedDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        value == groupValue
+            ? Container(
+                height: 20,
+                width: 3,
+                decoration: BoxDecoration(
+                    color: pKcolor, borderRadius: BorderRadius.circular(32)))
+            : const SizedBox(),
+        const SizedBox(width: 16),
         Text(
           mealSize,
           style: AppStyles.styleRegular16(context)

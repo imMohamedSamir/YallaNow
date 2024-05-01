@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemQyt.dart';
 
 class FoodItemDescription extends StatelessWidget {
-  const FoodItemDescription({super.key});
-
+  const FoodItemDescription({super.key, this.item});
+  final Item? item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,15 +17,15 @@ class FoodItemDescription extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Burger Sandwich",
+              Text(item?.itemName ?? "",
                   style: AppStyles.styleSemiBold20(context)),
               const SizedBox(height: 4),
-              Text("Restaurant type description",
+              Text(item?.itemDescription ?? "",
                   style: AppStyles.styleRegular16(context)
                       .copyWith(color: const Color(0xff5A5A5A))),
               const SizedBox(height: 6),
               Text(
-                "EGP 410.00",
+                "${item!.itemPrice} EGP",
                 style: AppStyles.styleRegular14(context)
                     .copyWith(color: const Color(0xff5A5A5A)),
               )

@@ -17,6 +17,12 @@ final class BasketManagerDelete extends BasketManagerState {}
 
 final class BasketManagerShow extends BasketManagerState {}
 
+final class BasketManagerSize extends BasketManagerState {
+  final String sizePrice;
+
+  BasketManagerSize({required this.sizePrice});
+}
+
 final class BasketManagerFail extends BasketManagerState {
   final String errmsg;
 

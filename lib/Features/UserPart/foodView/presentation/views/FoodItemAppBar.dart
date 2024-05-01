@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
 
 class FoodItemAppBar extends StatelessWidget {
-  const FoodItemAppBar({super.key});
-
+  const FoodItemAppBar({super.key, required this.img});
+  final String img;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -14,9 +13,8 @@ class FoodItemAppBar extends StatelessWidget {
         padding: const EdgeInsets.only(top: 55, left: 16),
         width: width,
         height: height,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(Assets.imagesFoodItemImg), fit: BoxFit.fill)),
+        decoration: BoxDecoration(
+            image: DecorationImage(image: NetworkImage(img), fit: BoxFit.fill)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

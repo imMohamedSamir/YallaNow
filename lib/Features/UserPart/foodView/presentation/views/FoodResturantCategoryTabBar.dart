@@ -16,7 +16,7 @@ class FoodResturantCategoryTabBar extends StatefulWidget {
 
 class _FoodResturantCategoryTabBarState
     extends State<FoodResturantCategoryTabBar> with TickerProviderStateMixin {
-  late final TabController _tabController;
+  late TabController _tabController;
 
   List<String> menus = [];
 
@@ -27,7 +27,7 @@ class _FoodResturantCategoryTabBarState
 
   @override
   void dispose() {
-    // _tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -37,13 +37,14 @@ class _FoodResturantCategoryTabBarState
       height: MediaQuery.of(context).size.height - 1,
       child: BlocBuilder<ResturantBranchesCubit, ResturantBranchesState>(
         builder: (context, state) {
-          if (state is ResturantBranchesSuccess) {
-            menus.add("Trending");
-            for (var menu in state.branchDetails.menus!) {
-              menus.add(menu.menuName!);
-            }
+          bool hasProcessedMenus = false;
+          if (state is ResturantBranchesSuccess && !hasProcessedMenus) {
+            final menus = <String>['Trending'];
+            menus.addAll(state.branchDetails.menus!
+                .map((menu) => menu.menuName!)
+                .toList());
             _tabController = TabController(length: menus.length, vsync: this);
-
+            hasProcessedMenus = true;
             return DefaultTabController(
               length: menus.length,
               child: Column(
@@ -56,7 +57,7 @@ class _FoodResturantCategoryTabBarState
                         physics: const NeverScrollableScrollPhysics(),
                         controller: _tabController,
                         children: <Widget>[
-                          TrendingSec(),
+                          const TrendingSec(),
                           ...List.generate(
                               menus.length - 1,
                               (index) => ResturantCateg(
@@ -65,13 +66,6 @@ class _FoodResturantCategoryTabBarState
                                     name: state
                                         .branchDetails.menus![index].menuName!,
                                   )),
-                          // DiscountSec(),
-                          // Center(
-                          //   child: Text("sandwiches"),
-                          // ),
-                          // Center(
-                          //   child: Text("It's rainy here"),
-                          // ),
                         ],
                       ),
                     ),
@@ -80,7 +74,7 @@ class _FoodResturantCategoryTabBarState
               ),
             );
           } else if (state is ResturantBranchesLoading) {
-            const ResturantPageLoading();
+            return const ResturantPageLoading();
           }
           return const SizedBox();
         },

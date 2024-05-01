@@ -11,7 +11,9 @@ class CategorySec extends StatelessWidget {
   static List<CardCategDetails> details = [
     CardCategDetails(title: "Food", avgTime: "29 min", img: Assets.imagesFood),
     CardCategDetails(
-        title: "Mart", avgTime: "30 min", img: Assets.imagesMarketbasket),
+        title: "Mart & Groceries",
+        avgTime: "30 min",
+        img: Assets.imagesMarketbasket),
     CardCategDetails(
         title: "Pharmacy", avgTime: "29 min", img: Assets.imagesPharamcyLogo),
   ];
@@ -43,7 +45,7 @@ class CategorySec extends StatelessWidget {
                               context, RoutesNames.pharmacyPage);
                         }
                       },
-                      child: categCardDetails(
+                      child: CategCardDetails(
                         cardDetails: details[index],
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 
@@ -27,17 +28,25 @@ class ItemPageBottomBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xffB20404),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               "Add to basket",
-              style: TextStyle(color: Colors.white),
+              style: AppStyles.styleMedium16(context)
+                  .copyWith(color: Colors.white),
             ),
-            Spacer(),
-            Text(
-              "Price on selection",
-              style: TextStyle(color: Colors.white),
+            const Spacer(),
+            BlocBuilder<BasketManagerCubit, BasketManagerState>(
+              builder: (context, state) {
+                return Text(
+                  state is BasketManagerSize
+                      ? state.sizePrice
+                      : "Price on selection",
+                  style: AppStyles.styleMedium16(context)
+                      .copyWith(color: Colors.white),
+                );
+              },
             ),
           ],
         ),
