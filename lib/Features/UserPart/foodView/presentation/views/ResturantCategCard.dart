@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemPage.dart';
 
@@ -16,6 +18,8 @@ class ResturantCategCard extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => FoodItemPage(item: item),
             ));
+        BlocProvider.of<BasketManagerCubit>(context).unitPrice =
+            item.itemPrice!;
       },
       child: Card(
         child: Padding(

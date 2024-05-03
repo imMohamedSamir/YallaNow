@@ -26,7 +26,6 @@ class FoodRepoImpl implements FoodRepo {
       for (var branch in response) {
         branches.add(ResturantBranchDetails.fromJson(branch));
       }
-      log(branches[1].branchName.toString());
       return right(branches[1]);
     } catch (e) {
       log(e.toString());
@@ -55,7 +54,6 @@ class FoodRepoImpl implements FoodRepo {
       for (var category in response) {
         popularCategories.add(PopularFoodCategory.fromJson(category));
       }
-      log(popularCategories[1].name.toString());
       return right(popularCategories);
     } catch (e) {
       log(e.toString());
@@ -84,7 +82,6 @@ class FoodRepoImpl implements FoodRepo {
       for (var resturant in response) {
         resturants.add(TopCategResturant.fromJson(resturant));
       }
-      log(resturants[1].name.toString());
       return right(resturants);
     } catch (e) {
       log(e.toString());

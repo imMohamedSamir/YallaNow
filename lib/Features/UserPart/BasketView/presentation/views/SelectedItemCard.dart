@@ -15,16 +15,20 @@ class SelectedItemCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: Image.asset(
-                selectedItems.img,
-                width: AppSizes.getWidth(46, context),
-                height: AppSizes.getHeight(46, context),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  selectedItems.img,
+                  width: AppSizes.getWidth(75, context),
+                  height: AppSizes.getHeight(75, context),
+                  fit: BoxFit.cover,
+                ),
               ),
               contentPadding: EdgeInsets.zero,
               title: Text(selectedItems.name,
                   style: AppStyles.styleMedium16(context)
                       .copyWith(color: const Color(0xff121212))),
-              subtitle: Text(selectedItems.price,
+              subtitle: Text("${selectedItems.price} EGP",
                   style: AppStyles.styleRegular14(context)
                       .copyWith(color: const Color(0xff5A5A5A))),
               trailing: SizedBox(
@@ -33,7 +37,7 @@ class SelectedItemCard extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: FoodItemQyt(
-                      currentnumber: int.parse(selectedItems.quantity),
+                      currentnumber: int.parse(selectedItems.quantity!),
                     ),
                   )),
             ),

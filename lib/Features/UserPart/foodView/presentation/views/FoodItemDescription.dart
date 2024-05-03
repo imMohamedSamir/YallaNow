@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemQyt.dart';
 
@@ -24,15 +26,27 @@ class FoodItemDescription extends StatelessWidget {
                   style: AppStyles.styleRegular16(context)
                       .copyWith(color: const Color(0xff5A5A5A))),
               const SizedBox(height: 6),
-              Text(
-                "${item!.itemPrice} EGP",
-                style: AppStyles.styleRegular14(context)
-                    .copyWith(color: const Color(0xff5A5A5A)),
+              BlocBuilder<BasketManagerCubit, BasketManagerState>(
+                builder: (context, state) {
+                  if (state is BasketManagerChangeQty) {
+                    return Text(
+                      "${state.price} EGP",
+                      style: AppStyles.styleRegular14(context)
+                          .copyWith(color: const Color(0xff5A5A5A)),
+                    );
+                  } else {
+                    return Text(
+                      "${item!.itemPrice} EGP",
+                      style: AppStyles.styleRegular14(context)
+                          .copyWith(color: const Color(0xff5A5A5A)),
+                    );
+                  }
+                },
               )
             ],
           ),
           const Spacer(),
-          const FoodItemQyt()
+          FoodItemQyt(item: item)
         ],
       ),
     );

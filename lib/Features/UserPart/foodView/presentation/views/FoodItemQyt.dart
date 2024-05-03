@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/QytIconButton.dart';
 
 class FoodItemQyt extends StatefulWidget {
-  const FoodItemQyt({super.key, this.currentnumber});
+  const FoodItemQyt({super.key, this.currentnumber, this.item});
   final int? currentnumber;
+  final Item? item;
   @override
   State<FoodItemQyt> createState() => _FoodItemQytState();
 }
@@ -35,6 +39,8 @@ class _FoodItemQytState extends State<FoodItemQyt> {
           onTap: () {
             if (number > 1) {
               number--;
+              BlocProvider.of<BasketManagerCubit>(context)
+                  .changeQty(itemID: widget.item!.itemId!, number: number);
               setState(() {});
             }
           },
@@ -52,6 +58,8 @@ class _FoodItemQytState extends State<FoodItemQyt> {
           color: const Color(0xffB20404),
           onTap: () {
             number++;
+            BlocProvider.of<BasketManagerCubit>(context)
+                .changeQty(itemID: widget.item!.itemId!, number: number);
             setState(() {});
           },
         ),

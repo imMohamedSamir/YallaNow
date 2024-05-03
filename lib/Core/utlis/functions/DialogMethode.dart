@@ -31,7 +31,7 @@ void dialogMethode(BuildContext context) {
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
-                BlocProvider.of<BasketManagerCubit>(context).initialize();
+                // BlocProvider.of<BasketManagerCubit>(context).initialize();
               })
         ],
       );

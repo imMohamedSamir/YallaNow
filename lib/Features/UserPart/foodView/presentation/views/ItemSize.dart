@@ -32,8 +32,8 @@ class ItemSelectedDetails extends StatelessWidget {
               .copyWith(color: const Color(0xff5A5A5A)),
         ),
         const Spacer(),
-        Text(prices,
-            style: AppStyles.styleRegular10(context)
+        Text("+ $prices EPG",
+            style: AppStyles.styleRegular12(context)
                 .copyWith(color: const Color(0xff5A5A5A))),
         Radio(
           value: value,

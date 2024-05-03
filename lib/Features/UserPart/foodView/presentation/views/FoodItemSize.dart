@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/ExtarType.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/SizeType.dart';
 
-class FoodItemDetails extends StatelessWidget {
-  const FoodItemDetails(
-      {super.key, required this.title, required this.iseRequired});
-  final String title;
-  final bool iseRequired;
+class FoodItemSize extends StatelessWidget {
+  const FoodItemSize({super.key, required this.item});
+  final Item item;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -20,7 +21,7 @@ class FoodItemDetails extends StatelessWidget {
           Row(
             children: [
               const SizedBox(width: 16),
-              Text(title,
+              Text("your choice of size:",
                   style: AppStyles.styleSemiBold16(context)
                       .copyWith(color: const Color(0xff240301))),
               const Spacer(),
@@ -30,20 +31,41 @@ class FoodItemDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 decoration: ShapeDecoration(
-                  color: iseRequired
-                      ? const Color(0xFFFFD8CF)
-                      : const Color(0xFFF5F5F5),
+                  color: const Color(0xFFFFD8CF),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                 ),
-                child: Text(iseRequired ? 'Required' : 'Optional',
-                    style: AppStyles.styleMedium10(context).copyWith(
-                        color: iseRequired ? null : const Color(0xff5A5A5A))),
+                child:
+                    Text('Required', style: AppStyles.styleMedium10(context)),
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          BlocBuilder<BasketManagerCubit, BasketManagerState>(
+            builder: (context, state) {
+              if (state is BasketManagerIsSelected) {
+                return Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    const Icon(Icons.warning_amber_rounded,
+                        color: pKcolor, size: 18),
+                    const SizedBox(width: 8),
+                    Text(
+                      "Choose 1",
+                      style: AppStyles.styleMedium12(context)
+                          .copyWith(color: pKcolor),
+                    )
+                  ],
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
+          ),
           const SizedBox(height: 16),
-          iseRequired ? const SizeType() : const ExtarType(),
+          SizeType(
+            item: item,
+          ),
         ],
       ),
     );

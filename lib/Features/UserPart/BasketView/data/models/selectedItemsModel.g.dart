@@ -17,17 +17,20 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return SelectedItemsModel(
+      itemID: fields[4] as String?,
       name: fields[0] as String,
       price: fields[1] as String,
       img: fields[2] as String,
-      quantity: fields[3] as String,
+      quantity: fields[3] as String?,
+      size: fields[5] as String?,
+      extras: (fields[6] as List?)?.cast<ExtraTypeModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, SelectedItemsModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -35,7 +38,13 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
       ..writeByte(2)
       ..write(obj.img)
       ..writeByte(3)
-      ..write(obj.quantity);
+      ..write(obj.quantity)
+      ..writeByte(4)
+      ..write(obj.itemID)
+      ..writeByte(5)
+      ..write(obj.size)
+      ..writeByte(6)
+      ..write(obj.extras);
   }
 
   @override

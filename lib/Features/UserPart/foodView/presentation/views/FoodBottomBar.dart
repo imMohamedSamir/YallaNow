@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodBottomBarDetails.dart';
 import 'package:yallanow/main.dart';
 
@@ -9,10 +11,8 @@ class FoodBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: height * 0.13,
+      height: AppSizes.getHeight(108, context),
       child: Column(
         children: [
           const SizedBox(height: 10),
@@ -29,15 +29,13 @@ class FoodBottomBar extends StatelessWidget {
               }
             },
             child: Container(
-              height: height * 0.065,
-              width: width * 0.91,
+              height: AppSizes.getHeight(54, context),
+              width: AppSizes.getWidth(361, context),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: active
-                      ? const Color(0xffB20404)
-                      : const Color(0xffB20404).withOpacity(0.6)),
-              child: FoodBottomBarDetails(width: width, height: height),
+                  color: active ? pKcolor : pKcolor.withOpacity(0.6)),
+              child: const FoodBottomBarDetails(),
             ),
           ),
           const SizedBox(height: 10),

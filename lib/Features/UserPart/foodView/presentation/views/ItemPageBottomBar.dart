@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
 
 class ItemPageBottomBar extends StatelessWidget {
-  const ItemPageBottomBar({Key? key}) : super(key: key);
-
+  const ItemPageBottomBar({Key? key, this.item}) : super(key: key);
+  final Item? item;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -14,10 +14,8 @@ class ItemPageBottomBar extends StatelessWidget {
 
     return ListTile(
       onTap: () {
-        BlocProvider.of<BasketManagerCubit>(context).addToBasket(
-            item: SelectedItemsModel(
-                name: "2", price: "15", img: "", quantity: "2"),
-            itemID: "1");
+        BlocProvider.of<BasketManagerCubit>(context)
+            .addToBasket(itemID: item!.itemId!);
       },
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       title: Container(
@@ -39,13 +37,25 @@ class ItemPageBottomBar extends StatelessWidget {
             const Spacer(),
             BlocBuilder<BasketManagerCubit, BasketManagerState>(
               builder: (context, state) {
-                return Text(
-                  state is BasketManagerSize
-                      ? state.sizePrice
-                      : "Price on selection",
-                  style: AppStyles.styleMedium16(context)
-                      .copyWith(color: Colors.white),
-                );
+                if (state is BasketManagerChangeQty) {
+                  return Text(
+                    "${state.price} EGP",
+                    style: AppStyles.styleMedium16(context)
+                        .copyWith(color: Colors.white),
+                  );
+                } else if (state is BasketManagerSize) {
+                  return Text(
+                    "${state.price} EGP",
+                    style: AppStyles.styleMedium16(context)
+                        .copyWith(color: Colors.white),
+                  );
+                } else {
+                  return Text(
+                    "Price on selection",
+                    style: AppStyles.styleMedium16(context)
+                        .copyWith(color: Colors.white),
+                  );
+                }
               },
             ),
           ],
