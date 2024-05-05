@@ -1,49 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/data/models/AdressesCardModel.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/delete_address_cubit/delete_address_cubit.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 
 class AddresseCard extends StatelessWidget {
-  const AddresseCard({super.key, required this.adressesCardModel});
-  final AdressesCardModel adressesCardModel;
+  const AddresseCard({super.key, required this.userAddress});
+  final UserAddressesDetailsModel userAddress;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: 1.5, color: const Color(0xff5A5A5A))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(adressesCardModel.addresseName,
-                  style: AppStyles.styleSemiBold16(context)
-                      .copyWith(color: const Color(0xff240301))),
-              const Spacer(),
-              Row(
-                children: [
-                  Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
-                  const SizedBox(width: 4),
-                  Text("Edit",
-                      style: AppStyles.styleSemiBold16(context)
-                          .copyWith(color: const Color(0xff5A5A5A)))
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            adressesCardModel.government,
-            style: AppStyles.styleRegular14(context)
-                .copyWith(color: const Color(0xff240301)),
-          ),
-          const SizedBox(height: 4),
-          Text(adressesCardModel.street,
+    return Dismissible(
+      onDismissed: (direction) async {
+        await BlocProvider.of<DeleteAddressCubit>(context)
+            .deleteAddress(addressId: userAddress.id!);
+        BlocProvider.of<UserAddressesCubit>(context).getUserAddresses();
+      },
+      key: UniqueKey(),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 1.5, color: const Color(0xff5A5A5A))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(userAddress.contact?.label ?? '',
+                    style: AppStyles.styleSemiBold16(context)
+                        .copyWith(color: const Color(0xff240301))),
+                const Spacer(),
+                Row(
+                  children: [
+                    Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
+                    const SizedBox(width: 4),
+                    Text("Edit",
+                        style: AppStyles.styleSemiBold16(context)
+                            .copyWith(color: const Color(0xff5A5A5A)))
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              userAddress.city ?? "",
               style: AppStyles.styleRegular14(context)
-                  .copyWith(color: const Color(0xff240301)))
-        ],
+                  .copyWith(color: const Color(0xff240301)),
+            ),
+            const SizedBox(height: 4),
+            Text(userAddress.street ?? "",
+                style: AppStyles.styleRegular14(context)
+                    .copyWith(color: const Color(0xff240301)))
+          ],
+        ),
       ),
     );
   }

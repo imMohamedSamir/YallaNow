@@ -20,13 +20,13 @@ class YallaNowServices {
     return response.data;
   }
 
-  Future<List<dynamic>> post({required String endPoint, data}) async {
-    var response = await _dio.post(
-        'http://yallanowtest.runasp.net/api/Auth/RegisterNewUser',
+  Future<dynamic> post({required String endPoint, data, String? token}) async {
+    var response = await _dio.post('$_baseUrl$endPoint',
         data: data,
         options: Options(headers: {
           'accept': '*/*',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
         }));
     if (response.statusCode == 200) {
       dynamic responseData = response.data;
@@ -35,6 +35,16 @@ class YallaNowServices {
       // Handle HTTP error status codes
       print('Dio ${response.statusCode} Error: ${response.data}');
     }
+    return response.data;
+  }
+
+  Future<dynamic> delete({required String endPoint, String? token}) async {
+    var response = await _dio.delete('$_baseUrl$endPoint',
+        options: token == null
+            ? null
+            : Options(
+                headers: {'accept': '*/*', 'Authorization': 'Bearer $token'}));
+    log("${response.data.runtimeType}");
     return response.data;
   }
 }

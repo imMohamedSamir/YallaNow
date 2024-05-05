@@ -48,10 +48,14 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
     return totalPrice;
   }
 
+  Future<int> getLengthItems() async {
+    var box = await Hive.openBox<SelectedItemsModel>(kBasket);
+    return box.length;
+  }
+
   void addToBasket({required String itemID}) async {
     var box = await Hive.openBox<SelectedItemsModel>(kBasket);
     List<SelectedItemsModel> itemList = [];
-    box.clear();
     if (!sizeSelected) {
       emit(BasketManagerIsSelected());
     } else {
@@ -62,15 +66,39 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
         }
       }
       double price = await getTotalPrice();
-
-      emit(BasketManagerAdd(items: itemList, totalPrice: price.toString()));
+      double priceDetails = await getTotalPriceDetails();
+      log(box.length.toString());
+      emit(BasketManagerAdd(
+          items: itemList,
+          totalPrice: price.toString(),
+          totalpriceDetails: priceDetails.toString()));
     }
+  }
+
+  Future<double> getTotalPriceDetails() async {
+    double price = await getTotalPrice();
+    price += 10;
+    price += 5;
+    return price;
   }
 
   void deleteFromBasket(String itemID) async {
     var box = await Hive.openBox<SelectedItemsModel>(kBasket);
     await box.delete(itemID);
-    emit(BasketManagerDelete());
+    List<SelectedItemsModel> itemList = [];
+    for (var key in box.keys) {
+      var item = box.get(key);
+      if (item != null) {
+        itemList.add(item);
+      }
+    }
+    double price = await getTotalPrice();
+    double priceDetails = await getTotalPriceDetails();
+
+    emit(BasketManagerDelete(
+        items: itemList,
+        totalPrice: price.toString(),
+        totalpriceDetails: priceDetails.toString()));
   }
 
   void changeQty({required String itemID, required int number}) async {

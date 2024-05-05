@@ -27,6 +27,7 @@ class FoodItemPage extends StatelessWidget {
           child: Column(
             children: [
               FoodItemAppBar(
+                itemId: item!.itemId!,
                 img: item!.itemImageUrl!,
               ),
               FoodItemDescription(item: item),

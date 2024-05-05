@@ -17,7 +17,8 @@ class AddressMapView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              CurrentLocationCubit(LocationService(), RoutesUtils()),
+              CurrentLocationCubit(LocationService(), RoutesUtils())
+                ..updateMyLocation(),
         ),
         BlocProvider(
             create: (context) =>

@@ -21,8 +21,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<DriverRegisterationRepoImpl>(
       DriverRegisterationRepoImpl());
   getIt.registerSingleton<AddressesRepoImpl>(AddressesRepoImpl(
-    getIt.get<GoogleMapsServices>(),
-  ));
+      getIt.get<GoogleMapsServices>(), getIt.get<YallaNowServices>()));
   getIt.registerSingleton<FoodRepoImpl>(
       FoodRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<AuthRepoImpl>(

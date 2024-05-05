@@ -14,8 +14,9 @@ final class CurrentLocationCubitSucsess extends CurrentLocationCubitState {
 
 final class CurrentLocationCubitgetDetails extends CurrentLocationCubitState {
   final Placemark locationData;
-
-  CurrentLocationCubitgetDetails({required this.locationData});
+  final LatLng currentPosition;
+  CurrentLocationCubitgetDetails(
+      {required this.locationData, required this.currentPosition});
 }
 
 final class CurrentLocationCubitGetRoute extends CurrentLocationCubitState {

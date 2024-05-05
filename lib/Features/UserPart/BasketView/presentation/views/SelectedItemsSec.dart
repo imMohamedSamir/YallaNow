@@ -33,8 +33,31 @@ class SelectedItemsSec extends StatelessWidget {
                     child:
                         SelectedItemCard(selectedItems: state.items[index]))),
           );
+        } else if (state is BasketManagerDelete) {
+          return Column(
+            children: List.generate(
+                state.items.length,
+                (index) => Dismissible(
+                    background: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: const Icon(Icons.delete, color: Colors.white),
+                    ),
+                    direction: DismissDirection.endToStart,
+                    key: UniqueKey(),
+                    onDismissed: (direction) {
+                      BlocProvider.of<BasketManagerCubit>(context)
+                          .deleteFromBasket(state.items[index].itemID!);
+                    },
+                    child:
+                        SelectedItemCard(selectedItems: state.items[index]))),
+          );
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

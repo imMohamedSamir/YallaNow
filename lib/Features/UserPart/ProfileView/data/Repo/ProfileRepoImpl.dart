@@ -19,7 +19,7 @@ class ProfileRepoImpl implements ProfileRepo {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     usertoken = prefs.getString(token);
     log(usertoken.toString());
-    String endPoint = "UserProfile/UserProfile";
+    String endPoint = "UserProfile/User";
     try {
       var response =
           await yallaNowServices.get(endPoint: endPoint, token: usertoken);

@@ -13,6 +13,7 @@ import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_verification_cubit/phone_verification_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
@@ -29,6 +30,7 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodRestu
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
 import 'package:yallanow/firebase_options.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -70,6 +72,11 @@ class YallaNow extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
+              UserAddressesCubit(getIt.get<AddressesRepoImpl>())
+                ..getUserAddresses(),
+        ),
+        BlocProvider(
+          create: (context) =>
               FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>()),
         ),
         BlocProvider(
@@ -84,6 +91,9 @@ class YallaNow extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               ResturantBranchesCubit(getIt.get<FoodRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => HomeAddressCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(

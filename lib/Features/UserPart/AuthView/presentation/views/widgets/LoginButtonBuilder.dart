@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
@@ -22,32 +21,30 @@ class LoginButtonBuilder extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         if (state is LoginSuccess) {
-          if (state.logindetails.isAuthenticated!) {
-            saveUserToken(userToken: state.logindetails.token!);
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MainHomeView()),
-                  (route) => false);
-            });
-          }
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainHomeView()),
+                (route) => false);
+          });
         } else if (state is LoginLoading) {
-          return CustomButton2(
-            txtcolor: const Color(0xffFFFFFF),
-            btncolor: const Color(0xffB20404),
-            onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                await BlocProvider.of<LoginCubit>(context).fetchLogin(
-                    email: loginPostModel.email!,
-                    password: loginPostModel.password!);
-              }
-            },
-            child: const SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(color: Colors.white)),
-          );
+          return const CircularProgressIndicator(color: pKcolor);
+          // CustomButton2(
+          //   txtcolor: const Color(0xffFFFFFF),
+          //   btncolor: const Color(0xffB20404),
+          //   onPressed: () async {
+          //     if (_formKey.currentState!.validate()) {
+          //       _formKey.currentState!.save();
+          //       await BlocProvider.of<LoginCubit>(context).fetchLogin(
+          //           email: loginPostModel.email!,
+          //           password: loginPostModel.password!);
+          //     }
+          //   },
+          //   child: const SizedBox(
+          //       height: 20,
+          //       width: 20,
+          //       child: CircularProgressIndicator(color: Colors.white)),
+          // );
         } else if (state is LoginFailure) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,10 +85,5 @@ class LoginButtonBuilder extends StatelessWidget {
         );
       },
     );
-  }
-
-  Future<void> saveUserToken({required String userToken}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(token, userToken);
   }
 }

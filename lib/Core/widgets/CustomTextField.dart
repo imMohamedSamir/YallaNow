@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.suffixIconConstraints,
     this.controller,
+    this.autovalidateMode,
   });
   final String hintText;
   final TextInputType? keyboardType;
@@ -37,9 +38,12 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final void Function()? onTap;
   final TextEditingController? controller;
+  final AutovalidateMode? autovalidateMode;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines ?? null,
+      autovalidateMode: autovalidateMode,
       controller: controller,
       onTap: onTap,
       readOnly: readOnly ?? false,

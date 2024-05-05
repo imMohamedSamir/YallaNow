@@ -3,8 +3,9 @@ import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
 
 class FoodItemAppBar extends StatelessWidget {
-  const FoodItemAppBar({super.key, required this.img});
+  const FoodItemAppBar({super.key, required this.img, required this.itemId});
   final String img;
+  final String itemId;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -20,7 +21,7 @@ class FoodItemAppBar extends StatelessWidget {
           children: [
             ResturantHeaderIcon(
               child: const Icon(Icons.close, size: 21),
-              onPressed: () => dialogMethode(context),
+              onPressed: () => dialogMethode(context, itemId: itemId),
             ),
           ],
         ));

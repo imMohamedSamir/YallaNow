@@ -13,14 +13,30 @@ final class BasketManagerLoading extends BasketManagerState {}
 
 final class BasketManagerAdd extends BasketManagerState {
   final List<SelectedItemsModel> items;
-  final String totalPrice;
+  final String totalPrice, totalpriceDetails;
   const BasketManagerAdd({
     required this.items,
     required this.totalPrice,
+    required this.totalpriceDetails,
   });
 }
 
-final class BasketManagerDelete extends BasketManagerState {}
+final class BasketManagerDelete extends BasketManagerState {
+  final List<SelectedItemsModel> items;
+  final String totalPrice, totalpriceDetails;
+
+  const BasketManagerDelete({
+    required this.items,
+    required this.totalPrice,
+    required this.totalpriceDetails,
+  });
+}
+
+final class BasketManagerTotalDetails extends BasketManagerState {
+  final String totalPrice;
+
+  const BasketManagerTotalDetails({required this.totalPrice});
+}
 
 final class BasketManagerShow extends BasketManagerState {}
 

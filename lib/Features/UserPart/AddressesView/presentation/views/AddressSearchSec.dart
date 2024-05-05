@@ -36,7 +36,7 @@ class _AddressSearchSecState extends State<AddressSearchSec> {
               onFieldSubmitted: (value) {
                 context
                     .read<CurrentLocationCubit>()
-                    .SelectedLocation(description: value);
+                    .selectedLocation(description: value);
               },
               onChanged: (value) {
                 if (value.isNotEmpty) {
@@ -67,7 +67,7 @@ class _AddressSearchSecState extends State<AddressSearchSec> {
                               onTap: () async {
                                 await context
                                     .read<CurrentLocationCubit>()
-                                    .SelectedLocation(
+                                    .selectedLocation(
                                         description:
                                             places[index].description!);
                                 textEditingController.text =

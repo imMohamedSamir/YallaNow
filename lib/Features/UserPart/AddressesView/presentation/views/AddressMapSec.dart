@@ -12,8 +12,6 @@ class AddressMapSec extends StatelessWidget {
   Widget build(BuildContext context) {
     CameraPosition? position1;
 
-    // Trigger an update to fetch the current location
-    context.read<CurrentLocationCubit>().updateMyLocation();
     return BlocBuilder<CurrentLocationCubit, CurrentLocationCubitState>(
       builder: (context, state) {
         // Define default location and initial camera position
@@ -37,7 +35,7 @@ class AddressMapSec extends StatelessWidget {
           },
           zoomControlsEnabled: false,
           initialCameraPosition: initialCameraPosition,
-          markers: state is CurrentLocationCubitSucsess ? state.markers : {},
+          markers: context.read<CurrentLocationCubit>().markers,
         );
       },
     );

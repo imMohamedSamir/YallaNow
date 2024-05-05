@@ -16,21 +16,29 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   bool secure = true;
   final _formKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateModePass = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeEmail = AutovalidateMode.disabled;
+
   LoginPostModel loginPostModel = LoginPostModel();
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      autovalidateMode: AutovalidateMode.always,
       child: Column(
         children: [
           CustomTextField(
             hintText: "Email or Phone Number",
+            autovalidateMode: autovalidateModeEmail,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your Email or Phone Number';
               }
               return null;
+            },
+            onChanged: (p0) {
+              setState(() {
+                autovalidateModeEmail = AutovalidateMode.onUserInteraction;
+              });
             },
             onSaved: (value) {
               loginPostModel.email = value!.trim();
@@ -39,6 +47,8 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 30),
           CustomTextField(
             hintText: "Enter Your Password",
+            autovalidateMode: autovalidateModePass,
+            maxLines: 1,
             secure: secure,
             suffixIcon: IconButton(
               icon: Icon(secure == true
@@ -54,6 +64,11 @@ class _LoginFormState extends State<LoginForm> {
                 return 'Please enter your password';
               }
               return null;
+            },
+            onChanged: (p0) {
+              setState(() {
+                autovalidateModePass = AutovalidateMode.onUserInteraction;
+              });
             },
             onSaved: (value) {
               loginPostModel.password = value!.trim();

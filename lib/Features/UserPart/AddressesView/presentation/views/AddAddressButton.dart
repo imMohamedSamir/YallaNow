@@ -12,6 +12,7 @@ class AddAddressButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var locationdetails, newposition;
     return Positioned(
       bottom: 16,
       left: 16,
@@ -19,13 +20,8 @@ class AddAddressButton extends StatelessWidget {
       child: BlocListener<CurrentLocationCubit, CurrentLocationCubitState>(
         listener: (context, state) {
           if (state is CurrentLocationCubitgetDetails) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NewAddressePage(
-                      title: state.locationData.administrativeArea!,
-                      dsc: state.locationData.subAdministrativeArea!),
-                ));
+            locationdetails = state.locationData;
+            newposition = state.currentPosition;
           }
         },
         child: CustomButton(
@@ -33,7 +29,16 @@ class AddAddressButton extends StatelessWidget {
           txtcolor: Colors.white,
           btncolor: pKcolor,
           onPressed: () {
-            context.read<CurrentLocationCubit>().getLocationDetails();
+            if (locationdetails != null) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewAddressePage(
+                      locationDetails: locationdetails,
+                      position: newposition,
+                    ),
+                  ));
+            }
           },
         ),
       ),

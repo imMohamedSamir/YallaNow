@@ -20,7 +20,7 @@ class AuthRepoImpl implements AuthRepo {
       {required UserRegisterModel userdata}) async {
     try {
       var response = await http.post(
-        Uri.parse('http://yallanowtest.runasp.net/api/Auth/RegisterNewUser'),
+        Uri.parse('http://yallanow.runasp.net/api/Auth/RegisterNewUser'),
         headers: {
           'accept': '*/*',
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<FailureHttp, LoginResponseModel>> fetchLogin(
       {required String email, required String password}) async {
     // String endPoint = "Auth/token";
-    String url = "http://yallanowtest.runasp.net/api/Auth/token";
+    String url = "http://yallanow.runasp.net/api/Auth/token";
     try {
       var response = await http.post(Uri.parse(url),
           headers: {
@@ -58,9 +58,9 @@ class AuthRepoImpl implements AuthRepo {
           }));
       if (response.statusCode == 200) {
         // log(jsonDecode(response.body).toString());
-        var resutle = await ProfileRepoImpl(
-                yallaNowServices: getIt.get<YallaNowServices>())
-            .fetchUserDetails();
+        // var resutle = await ProfileRepoImpl(
+        //         yallaNowServices: getIt.get<YallaNowServices>())
+        //     .fetchUserDetails();
         return right(LoginResponseModel.fromJson(jsonDecode(response.body)));
       } else {
         return left(ServerFailureHttp.fromHttpError(response));

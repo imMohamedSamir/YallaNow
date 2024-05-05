@@ -26,7 +26,7 @@ class FoodRepoImpl implements FoodRepo {
       for (var branch in response) {
         branches.add(ResturantBranchDetails.fromJson(branch));
       }
-      return right(branches[1]);
+      return right(branches[0]);
     } catch (e) {
       log(e.toString());
       if (e is DioException) {

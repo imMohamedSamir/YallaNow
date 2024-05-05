@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/L
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 
-void dialogMethode(BuildContext context) {
+void dialogMethode(BuildContext context, {@required String? itemId}) {
   showDialog(
     context: context,
     builder: (context) {
@@ -31,7 +31,8 @@ void dialogMethode(BuildContext context) {
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
-                // BlocProvider.of<BasketManagerCubit>(context).initialize();
+                BlocProvider.of<BasketManagerCubit>(context)
+                    .deleteFromBasket(itemId!);
               })
         ],
       );

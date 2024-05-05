@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,7 +17,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
   Set<Marker> markers = {};
   Placemark? locationDetails;
   Set<Polyline> polyLine = {};
-  LatLng? currentposition;
+  LatLng? currentposition, newposition;
 
   void updateMyLocation() async {
     await locationService.checkAndRequestLocationService();
@@ -31,7 +33,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
     }
   }
 
-  Future<void> SelectedLocation({required String description}) async {
+  Future<void> selectedLocation({required String description}) async {
     try {
       List<Location> locations = await locationFromAddress(description);
 
@@ -41,22 +43,15 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
         locationDetails = await defineLocationDetails(location: desintation);
         setSearchedLocation(desintation);
         setMyCameraPosition(desintation);
-        // List<LatLng> points = await RoutesUtils()
-        //     .getRouteData(desintation: desintation, src: currentposition!);
-        // print(points.length);
-        // RoutesUtils().displayRoute(points,
-        //     polyLines: polyLine, googleMapController: googleMapController!);
-        // emit(CurrentLocationCubitGetRoute(
-        //     polyLines: polyLine, markers: markers));
-        // setMyCameraPosition(currentposition);
       }
     } catch (e) {
-      throw Exception("Error fetching location: $e");
+      log("Error fetching location: $e");
     }
   }
 
   void getLocationDetails() {
-    emit(CurrentLocationCubitgetDetails(locationData: locationDetails!));
+    emit(CurrentLocationCubitgetDetails(
+        locationData: locationDetails!, currentPosition: newposition!));
   }
 
   Future<Placemark> defineLocationDetails({required LatLng location}) async {
@@ -78,14 +73,23 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
         );
       }
     } catch (e) {
-      throw Exception("Error fetching location details: $e");
+      return const Placemark(
+        name: '',
+        locality: '',
+        subLocality: '',
+        administrativeArea: '',
+        postalCode: '',
+        country: '',
+      );
     }
   }
 
   void handleCameraMove({required CameraPosition position}) async {
     LatLng newLocation = position.target;
+    newposition = newLocation;
     locationDetails = await defineLocationDetails(location: newLocation);
-    // getLocationDetails(); // Emit state to update location details
+    log("${locationDetails?.street} \n done!");
+    getLocationDetails(); // Emit state to update location details
   }
 
   void setMyLocation(LatLng locationData) {
