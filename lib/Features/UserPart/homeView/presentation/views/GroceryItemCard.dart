@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryAddIcon.dart';
 
 class GroceryItemCard extends StatelessWidget {
   const GroceryItemCard({
     super.key,
+    required this.imgUrl,
   });
+  final String imgUrl;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -22,10 +23,9 @@ class GroceryItemCard extends StatelessWidget {
               top: 0,
               left: 14,
               right: 14,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Image.asset(Assets.imagesGrocery1),
-              ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(imgUrl)),
             ),
             const Positioned(right: 7, bottom: 7, child: GroceryAddIcon())
           ],

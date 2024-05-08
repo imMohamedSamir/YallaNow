@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemQyt.dart';
 
 class FoodItemDescription extends StatelessWidget {
@@ -36,7 +36,7 @@ class FoodItemDescription extends StatelessWidget {
                     );
                   } else {
                     return Text(
-                      "${item!.itemPrice} EGP",
+                      "${item?.itemPrice} EGP",
                       style: AppStyles.styleRegular14(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                     );

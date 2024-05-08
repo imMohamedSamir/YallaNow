@@ -4,19 +4,22 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 class YallaNowServices {
-  final _baseUrl = 'http://yallanow.runasp.net/api/';
+  String _baseUrl = 'http://yallanow.runasp.net/api/';
 
   final Dio _dio;
 
   YallaNowServices(this._dio);
 
-  Future<dynamic> get({required String endPoint, String? token}) async {
+  Future<dynamic> get(
+      {required String endPoint, String? token, bool isMart = false}) async {
+    if (isMart) {
+      _baseUrl = "http://yallanow.runasp.net/";
+    }
     var response = await _dio.get('$_baseUrl$endPoint',
-        options: token == null
-            ? null
-            : Options(
-                headers: {'accept': '*/*', 'Authorization': 'Bearer $token'}));
-    log("${response.data.runtimeType}");
+        options: Options(headers: {
+          'accept': '*/*',
+          'Authorization': token == null ? null : 'Bearer $token'
+        }));
     return response.data;
   }
 

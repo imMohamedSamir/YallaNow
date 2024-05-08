@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/L
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 
-void dialogMethode(BuildContext context, {@required String? itemId}) {
+void dialogMethode(BuildContext context, {String? itemId}) {
   showDialog(
     context: context,
     builder: (context) {
@@ -29,10 +29,15 @@ void dialogMethode(BuildContext context, {@required String? itemId}) {
               textColor: Colors.white,
               text: 'Yes, close',
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-                BlocProvider.of<BasketManagerCubit>(context)
-                    .deleteFromBasket(itemId!);
+                if (itemId != null) {
+                  BlocProvider.of<BasketManagerCubit>(context)
+                      .deleteFromBasket(itemId);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                } else {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }
               })
         ],
       );

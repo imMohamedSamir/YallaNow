@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 
 class MarketItemAppBar extends StatelessWidget {
-  const MarketItemAppBar({super.key});
-
+  const MarketItemAppBar({super.key, required this.img});
+  final String img;
   @override
   Widget build(BuildContext context) {
+    String url = img.replaceAll('\\', '/');
     return Container(
         padding: const EdgeInsets.only(top: 55, left: 16, bottom: 8),
         width: double.infinity,
@@ -27,8 +27,8 @@ class MarketItemAppBar extends StatelessWidget {
                     },
                     child: const Center(child: Icon(Icons.close)))),
             Center(
-              child: Image.asset(
-                Assets.imagesGrocery1,
+              child: Image.network(
+                url,
                 height: AppSizes.getHeight(150, context),
                 width: AppSizes.getWidth(150, context),
               ),

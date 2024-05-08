@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddressLoadingPage.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddresseCard.dart';
 
 class AddressesLV extends StatelessWidget {
@@ -27,7 +28,7 @@ class AddressesLV extends StatelessWidget {
             },
           );
         } else if (state is UserAddressesLoading) {
-          return const CircularProgressIndicator();
+          return const AddressLoadingPage();
         } else if (state is UserAddressesFailure) {
           return Center(
               child: Text(

@@ -18,6 +18,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
   Placemark? locationDetails;
   Set<Polyline> polyLine = {};
   LatLng? currentposition, newposition;
+  bool isMoved = false;
 
   void updateMyLocation() async {
     await locationService.checkAndRequestLocationService();
@@ -30,6 +31,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
       setMyLocation(currentposition!);
 
       setMyCameraPosition(currentposition!);
+      isMoved = true;
     }
   }
 
@@ -85,11 +87,12 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
   }
 
   void handleCameraMove({required CameraPosition position}) async {
-    LatLng newLocation = position.target;
-    newposition = newLocation;
-    locationDetails = await defineLocationDetails(location: newLocation);
-    log("${locationDetails?.street} \n done!");
-    getLocationDetails(); // Emit state to update location details
+    if (state is CurrentLocationCubitSucsess) {
+      LatLng newLocation = position.target;
+      newposition = newLocation;
+      locationDetails = await defineLocationDetails(location: newLocation);
+      getLocationDetails();
+    }
   }
 
   void setMyLocation(LatLng locationData) {

@@ -13,8 +13,11 @@ class NewAddressePage extends StatelessWidget {
       {super.key, required this.locationDetails, required this.position});
   final Placemark locationDetails;
   final LatLng position;
+
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return BlocProvider(
       create: (context) => AddUserAddressCubit(getIt.get<AddressesRepoImpl>()),
       child: Scaffold(
@@ -25,6 +28,7 @@ class NewAddressePage extends StatelessWidget {
             child: NewAddressForm(
               locationDetails: locationDetails,
               position: position,
+              scaffoldKey: scaffoldKey,
             ),
           ),
         ),

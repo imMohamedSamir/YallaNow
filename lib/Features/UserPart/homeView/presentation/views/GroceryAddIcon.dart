@@ -21,6 +21,7 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
   }
 
   void _startTimer() {
+    _timer.cancel();
     _timer = Timer(const Duration(seconds: 2), () {
       setState(() {
         active = false;
@@ -46,11 +47,12 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          width: active ? 110 : 35,
+          width: active ? 135 : 35,
           height: 35,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
@@ -61,6 +63,7 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(width: 14),
                         Container(
                           width: 25,
                           height: 25,
@@ -110,7 +113,7 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
             opacity: active ? 0.0 : 1.0,
             child: Center(
                 child: number > 0
-                    ? GestureDetector(
+                    ? InkWell(
                         onTap: () {
                           setState(() {
                             active = !active;

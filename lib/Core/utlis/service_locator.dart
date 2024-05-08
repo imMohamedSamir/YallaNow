@@ -7,6 +7,7 @@ import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
@@ -30,4 +31,6 @@ void setupServiceLocator() {
       HomeRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<ProfileRepoImpl>(
       ProfileRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
+  getIt.registerSingleton<MartsRepoImpl>(
+      MartsRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
 }

@@ -1,58 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketCategoriesSec.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketsOffersSec.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsBrandsSec.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsDiscountSec.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsForYouSec.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsTrendingSec.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/SearchBar.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_items_cubit/mart_items_cubit.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartPageBody.dart';
 
 class MarketPage extends StatelessWidget {
-  const MarketPage({super.key});
-
+  const MarketPage({super.key, this.martName});
+  final String? martName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: categoryAppBar(context, title: "Marts"),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: EdgeInsets.only(top: 12),
-              sliver: SliverToBoxAdapter(child: HomeSearchBar()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 12),
-              sliver: SliverToBoxAdapter(child: MarketCategoriesSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: MartsTrendingSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: MarketsOffersSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: MartsBrandsSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: MartsForYouSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-              sliver: SliverToBoxAdapter(child: MartsDiscountSec()),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(top: 24),
-            ),
-          ],
-        ),
-      ),
+      appBar: categoryAppBar(context, title: martName ?? ''),
+      body: const MartPageBody(),
     );
   }
 }

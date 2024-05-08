@@ -8,7 +8,6 @@ import 'package:yallanow/Features/UserPart/homeView/presentation/views/PopularRe
 
 class PopularResturansLV extends StatelessWidget {
   const PopularResturansLV({super.key});
-  // final List<popularResturant> popularResturans;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

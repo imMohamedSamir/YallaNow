@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/popular_food_category.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/resturant_branch_details.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/restrunt_details.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/top_categ_resturant.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepo.dart';
 
@@ -15,18 +15,18 @@ class FoodRepoImpl implements FoodRepo {
   FoodRepoImpl({required this.yallaNowServices});
 
   @override
-  Future<Either<Failure, ResturantBranchDetails>> fetchResturantBranches(
+  Future<Either<Failure, RestruntDetails>> fetchResturantBranches(
       {required String restaurantId}) async {
     String endPoint = "FoodResturant/GetRestaurantDetails";
 
     try {
       var response = await yallaNowServices.get(
           endPoint: "$endPoint?restaurantId=$restaurantId");
-      List<ResturantBranchDetails> branches = [];
+      List<RestruntDetails> branches = [];
       for (var branch in response) {
-        branches.add(ResturantBranchDetails.fromJson(branch));
+        branches.add(RestruntDetails.fromJson(branch));
       }
-      return right(branches[0]);
+      return right(branches[1]);
     } catch (e) {
       log(e.toString());
       if (e is DioException) {

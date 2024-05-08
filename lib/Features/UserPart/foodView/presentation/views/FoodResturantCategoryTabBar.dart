@@ -7,17 +7,21 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/Resturant
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/TrendingSec.dart';
 
 class FoodResturantCategoryTabBar extends StatefulWidget {
-  const FoodResturantCategoryTabBar({super.key});
-
+  const FoodResturantCategoryTabBar(
+      {super.key,
+      required this.scrollToIndex,
+      required this.scrollController,
+      required this.categKeys});
+  final void Function(int index) scrollToIndex;
+  final ScrollController scrollController;
+  final List<GlobalKey> categKeys;
   @override
   State<FoodResturantCategoryTabBar> createState() =>
       _FoodResturantCategoryTabBarState();
 }
 
 class _FoodResturantCategoryTabBarState
-    extends State<FoodResturantCategoryTabBar> with TickerProviderStateMixin {
-  late TabController _tabController;
-
+    extends State<FoodResturantCategoryTabBar> {
   List<String> menus = [];
 
   @override
@@ -27,7 +31,6 @@ class _FoodResturantCategoryTabBarState
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
 
@@ -43,19 +46,20 @@ class _FoodResturantCategoryTabBarState
             menus.addAll(state.branchDetails.menus!
                 .map((menu) => menu.menuName!)
                 .toList());
-            _tabController = TabController(length: menus.length, vsync: this);
+
             hasProcessedMenus = true;
             return DefaultTabController(
               length: menus.length,
               child: Column(
                 children: [
-                  ResturantTabBar(tabController: _tabController, menus: menus),
+                  ResturantTabBar(
+                    menus: menus,
+                    scrollToIndex: (int index) => widget.scrollToIndex(index),
+                  ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: TabBarView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        controller: _tabController,
+                      child: Column(
                         children: <Widget>[
                           const TrendingSec(),
                           ...List.generate(
@@ -65,6 +69,7 @@ class _FoodResturantCategoryTabBarState
                                         .branchDetails.menus![index].items!,
                                     name: state
                                         .branchDetails.menus![index].menuName!,
+                                    categKey: widget.categKeys[index],
                                   )),
                         ],
                       ),

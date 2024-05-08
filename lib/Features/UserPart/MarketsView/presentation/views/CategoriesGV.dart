@@ -1,48 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/data/models/MarketCategoriesModel.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/CategoryPage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/mart_details_model.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketCategoriesCard.dart';
 
 class CategoriesGV extends StatelessWidget {
   const CategoriesGV({super.key});
-  static List<MarketCategoriesModel> data = [
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(
-        name: "Meat, poultry & seafood", img: Assets.imagesMarketcateg3),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(
-        name: "Meat, poultry & seafood", img: Assets.imagesMarketcateg3),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-  ];
+
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 16, crossAxisSpacing: 16, crossAxisCount: 3),
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        if (index < 9) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MarketCategoryPage(),
-                  ));
+    return BlocBuilder<MartDetailsCubit, MartDetailsState>(
+      builder: (context, state) {
+        if (state is MartDetailsSuccess) {
+          List<MartDetailsModel> martsdetails = state.martsDetails;
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 16, crossAxisSpacing: 16, crossAxisCount: 3),
+            itemCount: martsdetails.length,
+            itemBuilder: (context, index) {
+              if (index < 9) {
+                return MarketCategoriesCard(
+                  marketCategoriesModel: martsdetails[index],
+                );
+              } else {
+                return null;
+              }
             },
-            child: MarketCategoriesCard(
-              marketCategoriesModel: data[index],
+          );
+        } else if (state is MartDetailsLoading) {
+          return SizedBox(
+            height: 100,
+            child: ListView.builder(
+              padding: const EdgeInsets.only(right: 12),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: pKcolor.withOpacity(0.1),
+                  child: Container(
+                    height: AppSizes.getHeight(100, context),
+                    width: AppSizes.getWidth(100, context),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                  ),
+                );
+              },
             ),
           );
         } else {
-          return null;
+          return const SizedBox();
         }
       },
     );

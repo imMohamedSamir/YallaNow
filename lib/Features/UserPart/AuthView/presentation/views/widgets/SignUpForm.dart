@@ -99,6 +99,7 @@ class _SignupFormState extends State<SignupForm> {
           CustomTextField(
               hintText: "Enter Your Password",
               secure: p1,
+              maxLines: 1,
               validator: (value) {
                 return validatePassword(value);
               },
@@ -119,6 +120,7 @@ class _SignupFormState extends State<SignupForm> {
           CustomTextField(
               hintText: "Confirm Password",
               secure: p2,
+              maxLines: 1,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'Please Confirm your password';

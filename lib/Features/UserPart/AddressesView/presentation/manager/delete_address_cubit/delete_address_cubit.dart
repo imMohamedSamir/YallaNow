@@ -7,9 +7,11 @@ part 'delete_address_state.dart';
 class DeleteAddressCubit extends Cubit<DeleteAddressState> {
   DeleteAddressCubit(this.addressesRepo) : super(DeleteAddressInitial());
   final AddressesRepo addressesRepo;
-  Future deleteAddress({required String addressId}) async {
+  Future deleteAddress(
+      {required String addressId, required String useraddressId}) async {
     emit(DeleteAddressLoading());
-    var result = await addressesRepo.deleteUserAddresses(addressId: addressId);
+    var result = await addressesRepo.deleteUserAddresses(
+        addressId: addressId, useraddressId: useraddressId);
     result.fold(
         (failuer) => emit(DeleteAddressFailure(errmsg: failuer.errMessage)),
         (response) => emit(DeleteAddressSuccess()));

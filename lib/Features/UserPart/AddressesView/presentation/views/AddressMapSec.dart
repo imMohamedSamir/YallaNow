@@ -24,8 +24,12 @@ class AddressMapSec extends StatelessWidget {
         // Return the GoogleMap wrapped with a BlocListener
         return GoogleMap(
           onCameraIdle: () {
-            BlocProvider.of<CurrentLocationCubit>(context)
-                .handleCameraMove(position: position1!);
+            bool ismoved =
+                BlocProvider.of<CurrentLocationCubit>(context).isMoved;
+            if (ismoved) {
+              BlocProvider.of<CurrentLocationCubit>(context)
+                  .handleCameraMove(position: position1!);
+            }
           },
           onCameraMove: (position) {
             position1 = position;

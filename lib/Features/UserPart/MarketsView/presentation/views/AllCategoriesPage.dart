@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/MarketCategoriesModel.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/mart_details_model.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketCategoriesCard.dart';
 
 class AllCategoriesPage extends StatelessWidget {
@@ -21,38 +24,27 @@ class AllCategoriesPage extends StatelessWidget {
 
 class AllCategoriesGV extends StatelessWidget {
   const AllCategoriesGV({super.key});
-  static List<MarketCategoriesModel> data = [
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(
-        name: "Meat, poultry & seafood", img: Assets.imagesMarketcateg3),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(
-        name: "Meat, poultry & seafood", img: Assets.imagesMarketcateg3),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(
-        name: "Meat, poultry & seafood", img: Assets.imagesMarketcateg3),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-    MarketCategoriesModel(name: "Fruits & Veg", img: Assets.imagesMarketcateg1),
-    MarketCategoriesModel(name: "Bakery", img: Assets.imagesMarketcateg2),
-  ];
+
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: false,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 16, crossAxisSpacing: 16, crossAxisCount: 3),
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return MarketCategoriesCard(
-          marketCategoriesModel: data[index],
-        );
+    return BlocBuilder<MartDetailsCubit, MartDetailsState>(
+      builder: (context, state) {
+        if (state is MartDetailsSuccess) {
+          List<MartDetailsModel> martsdetails = state.martsDetails;
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 16, crossAxisSpacing: 16, crossAxisCount: 3),
+            itemCount: martsdetails.length,
+            itemBuilder: (context, index) {
+              return MarketCategoriesCard(
+                marketCategoriesModel: martsdetails[index],
+              );
+            },
+          );
+        } else {
+          return SizedBox();
+        }
       },
     );
   }

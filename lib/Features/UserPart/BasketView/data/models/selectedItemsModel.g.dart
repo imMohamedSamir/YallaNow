@@ -22,8 +22,8 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
       price: fields[1] as String,
       img: fields[2] as String,
       quantity: fields[3] as String?,
-      size: fields[5] as String?,
-      extras: (fields[6] as List?)?.cast<ExtraTypeModel>(),
+      size: fields[5] as ItemSize?,
+      extras: (fields[6] as List?)?.cast<Extra>(),
     );
   }
 

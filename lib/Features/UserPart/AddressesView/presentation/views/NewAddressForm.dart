@@ -14,9 +14,11 @@ class NewAddressForm extends StatefulWidget {
     super.key,
     required this.locationDetails,
     required this.position,
+    required this.scaffoldKey,
   });
   final Placemark locationDetails;
   final LatLng position;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   State<NewAddressForm> createState() => _NewAddressFormState();
@@ -179,6 +181,7 @@ class _NewAddressFormState extends State<NewAddressForm> {
         SaveAddressButtonBuilder(
           userAddress: userAddress,
           formKey: _formKey,
+          scaffoldKey: widget.scaffoldKey,
         ),
         const SizedBox(height: 16),
       ]),

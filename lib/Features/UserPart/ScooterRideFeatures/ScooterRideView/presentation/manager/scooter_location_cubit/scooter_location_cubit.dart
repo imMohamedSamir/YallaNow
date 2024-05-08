@@ -21,7 +21,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   LatLng? currentposition;
   Set<Polyline> polyLines = {};
 
-  void getMyCurrentPosition() async {
+  Future getMyCurrentPosition() async {
     await locationService.checkAndRequestLocationService();
     var hasPermission =
         await locationService.checkAndRequestLocationPermission();

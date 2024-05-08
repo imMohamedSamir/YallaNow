@@ -6,13 +6,12 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 class ResturantTabBar extends StatelessWidget {
   const ResturantTabBar({
     super.key,
-    required TabController tabController,
     required this.menus,
-  }) : _tabController = tabController;
+    required this.scrollToIndex,
+  });
 
-  final TabController _tabController;
   final List<String> menus;
-
+  final void Function(int index) scrollToIndex;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,9 +32,8 @@ class ResturantTabBar extends StatelessWidget {
                       labelColor: const Color(0xffB20404),
                       labelStyle: AppStyles.styleSemiBold16(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
-                      controller: _tabController,
                       tabAlignment: TabAlignment.start,
-                      onTap: (value) {},
+                      onTap: (index) => scrollToIndex(index),
                       isScrollable: true,
                       tabs: menus.map((menu) {
                         return Tab(
@@ -68,4 +66,14 @@ class ResturantTabBar extends StatelessWidget {
       ],
     );
   }
+
+  // void scrollToIndex(int index) async {
+  //   scrollController.removeListener(animateToTab);
+  //   final categories = jewelleryCategories[index].currentContext!;
+  //   await Scrollable.ensureVisible(
+  //     categories,
+  //     duration: const Duration(milliseconds: 600),
+  //   );
+  //   scrollController.addListener(animateToTab);
+  // }
 }

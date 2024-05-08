@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/ExtraTypeModel.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/size.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ItemSize.dart';
 
 // enum ItemSizes { Medium, Large }
@@ -15,11 +15,13 @@ class SizeType extends StatefulWidget {
 }
 
 class _SizeTypeState extends State<SizeType> {
-  SizeModel? selectedSizeType;
-  static List<SizeModel> sizes = [
-    SizeModel(size: "Medium meal", price: "120.00"),
-    SizeModel(size: "Large meal", price: "200.00"),
-  ];
+  ItemSize? selectedSizeType;
+  List<ItemSize> sizes = [];
+  @override
+  void initState() {
+    sizes = widget.item.sizes ?? [];
+    super.initState();
+  }
 
   // ItemSizes? sizes;
   @override
@@ -27,15 +29,15 @@ class _SizeTypeState extends State<SizeType> {
     return Column(
       children: sizes.map((sizeType) {
         return ItemSelectedDetails(
-          mealSize: sizeType.size,
-          prices: sizeType.price,
+          mealSize: sizeType.name ?? '',
+          prices: sizeType.price.toString(),
           groupValue: selectedSizeType,
           value: sizeType,
           onChanged: (value) {
             setState(() {
               selectedSizeType = value;
               BlocProvider.of<BasketManagerCubit>(context).chooseSize(
-                  sizePrice: selectedSizeType!.price,
+                  sizePrice: selectedSizeType!.price.toString(),
                   itemID: widget.item.itemId!);
             });
           },

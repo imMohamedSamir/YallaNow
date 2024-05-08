@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/CurrentLocationCubit/current_location_cubit_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddAddressButton.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddressMapSec.dart';
@@ -20,7 +21,12 @@ class AddressMapBody extends StatelessWidget {
             right: 16,
             child: AddressSearchSec(),
           ),
-          // const Center(child: Icon(Icons.location_on, size: 32)),
+          const Center(
+              child: Icon(
+            Icons.location_on,
+            size: 32,
+            color: pKcolor,
+          )),
           const AddAddressButton(),
           Positioned(
             bottom: 102,
@@ -36,8 +42,4 @@ class AddressMapBody extends StatelessWidget {
       ),
     );
   }
-}
-
-class AddressDetailsModel {
-  late final String title, dsc;
 }

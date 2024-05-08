@@ -12,7 +12,7 @@ final class ResturantBranchesInitial extends ResturantBranchesState {}
 final class ResturantBranchesLoading extends ResturantBranchesState {}
 
 final class ResturantBranchesSuccess extends ResturantBranchesState {
-  final ResturantBranchDetails branchDetails;
+  final RestruntDetails branchDetails;
 
   ResturantBranchesSuccess({required this.branchDetails});
 }

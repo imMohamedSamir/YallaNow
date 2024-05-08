@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -111,8 +110,9 @@ class AddressesRepoImpl implements AddressesRepo {
 
   @override
   Future<Either<Failure, dynamic>> deleteUserAddresses(
-      {required String addressId}) async {
-    String endPoint = "UserAddress/delete?addressId=$addressId";
+      {required String useraddressId, required String addressId}) async {
+    String endPoint =
+        "UserAddress/delete/$addressId?useraddressId=$useraddressId";
     SharedPreferences prefs = await SharedPreferences.getInstance();
     usertoken = prefs.getString(token);
 

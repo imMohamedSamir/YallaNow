@@ -12,12 +12,23 @@ class AddresseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      background: Container(
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20.0),
+        child: const Icon(Icons.delete, color: Colors.white),
+      ),
+      direction: DismissDirection.endToStart,
+      key: UniqueKey(),
       onDismissed: (direction) async {
-        await BlocProvider.of<DeleteAddressCubit>(context)
-            .deleteAddress(addressId: userAddress.id!);
+        await BlocProvider.of<DeleteAddressCubit>(context).deleteAddress(
+            addressId: userAddress.id!,
+            useraddressId: userAddress.contact!.id!);
         BlocProvider.of<UserAddressesCubit>(context).getUserAddresses();
       },
-      key: UniqueKey(),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -32,14 +43,18 @@ class AddresseCard extends StatelessWidget {
                     style: AppStyles.styleSemiBold16(context)
                         .copyWith(color: const Color(0xff240301))),
                 const Spacer(),
-                Row(
-                  children: [
-                    Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
-                    const SizedBox(width: 4),
-                    Text("Edit",
-                        style: AppStyles.styleSemiBold16(context)
-                            .copyWith(color: const Color(0xff5A5A5A)))
-                  ],
+                InkWell(
+                  borderRadius: BorderRadius.circular(6),
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
+                      const SizedBox(width: 4),
+                      Text("Edit",
+                          style: AppStyles.styleSemiBold16(context)
+                              .copyWith(color: const Color(0xff5A5A5A)))
+                    ],
+                  ),
                 ),
               ],
             ),

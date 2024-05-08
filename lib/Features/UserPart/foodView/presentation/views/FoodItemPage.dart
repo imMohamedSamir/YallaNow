@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemDescription.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemExtras.dart';

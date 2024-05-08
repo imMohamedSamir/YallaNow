@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ExtarType.dart';
 
 class FoodItemExtras extends StatelessWidget {

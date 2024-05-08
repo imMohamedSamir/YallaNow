@@ -9,7 +9,7 @@ class TopCategLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: 9,
+        itemCount: 5,
         scrollDirection: Axis.vertical,
         // physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,

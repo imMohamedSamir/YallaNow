@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/presentation/AddressesView.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomeAddressCard.dart';
 
@@ -31,22 +28,11 @@ class HomeUserAddresses extends StatelessWidget {
             children: [
               Text("There is no addresses , Add one",
                   style: AppStyles.styleSemiBold14(context)),
-              const Spacer(),
-              CustomButton(
-                text: "Add address",
-                txtcolor: Colors.white,
-                btncolor: pKcolor,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AddressesView()));
-                },
-              )
+              const SizedBox(height: 12)
             ],
           );
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

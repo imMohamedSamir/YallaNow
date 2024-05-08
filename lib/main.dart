@@ -18,7 +18,10 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_v
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_items_cubit/mart_items_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
@@ -95,6 +98,12 @@ class YallaNow extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeAddressCubit(),
         ),
+        BlocProvider(
+            create: (context) => MartDetailsCubit(getIt.get<MartsRepoImpl>())),
+        BlocProvider(
+          create: (context) =>
+              MartItemsCubit(getIt.get<MartsRepoImpl>())..getItems(),
+        )
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {

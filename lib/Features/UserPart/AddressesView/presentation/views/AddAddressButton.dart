@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
@@ -29,6 +31,7 @@ class AddAddressButton extends StatelessWidget {
           txtcolor: Colors.white,
           btncolor: pKcolor,
           onPressed: () {
+            log(locationdetails.toString());
             if (locationdetails != null) {
               Navigator.push(
                   context,

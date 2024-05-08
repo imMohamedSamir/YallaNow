@@ -4,7 +4,8 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/ExtraTypeModel.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/resturant_branch_details/item.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/extra.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 
 class ExtarType extends StatefulWidget {
   const ExtarType({Key? key, required this.item}) : super(key: key);
@@ -14,12 +15,14 @@ class ExtarType extends StatefulWidget {
 }
 
 class _ExtarTypeState extends State<ExtarType> {
-  List<ExtraTypeModel> selectedExtraTypes = [];
-  static List<ExtraTypeModel> extraTypes = [
-    ExtraTypeModel(type: "Cheese", price: "15.00"),
-    ExtraTypeModel(type: "Mustard", price: "20.00"),
-    ExtraTypeModel(type: "BBQ sauce", price: "10.00"),
-  ];
+  List<Extra> selectedExtraTypes = [];
+  List<Extra> extraTypes = [];
+  @override
+  void initState() {
+    extraTypes = widget.item.extras ?? [];
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class _ExtarTypeState extends State<ExtarType> {
             title: Row(
               children: [
                 Text(
-                  extraType.type,
+                  extraType.name ?? '',
                   style: AppStyles.styleRegular16(context)
                       .copyWith(color: scColor),
                 ),
@@ -51,13 +54,13 @@ class _ExtarTypeState extends State<ExtarType> {
                 if (value != null && value) {
                   BlocProvider.of<BasketManagerCubit>(context).chooseExtra(
                       itemID: widget.item.itemId!,
-                      extraPrice: extraType.price,
+                      extraPrice: extraType.price.toString(),
                       extras: selectedExtraTypes);
                   selectedExtraTypes.add(extraType);
                 } else {
                   BlocProvider.of<BasketManagerCubit>(context).removeExtra(
                       itemID: widget.item.itemId!,
-                      extraPrice: extraType.price,
+                      extraPrice: extraType.price.toString(),
                       extras: selectedExtraTypes);
                   selectedExtraTypes.remove(extraType);
                 }

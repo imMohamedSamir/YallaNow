@@ -7,25 +7,22 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/models/UserInputAd
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/add_user_address_cubit/add_user_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 
-//  Navigator.pushReplacement(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (context) => const AddressMapView(),
-//               ));
 class SaveAddressButtonBuilder extends StatelessWidget {
   const SaveAddressButtonBuilder({
     super.key,
     required this.userAddress,
     required this.formKey,
+    required this.scaffoldKey,
   });
   final UserInputAddressModel userAddress;
   final GlobalKey<FormState> formKey;
-
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddUserAddressCubit, AddUserAddressState>(
       listener: (context, state) {
         if (state is AddUserAddressSuccess) {
+          showSnackBar(context);
           BlocProvider.of<UserAddressesCubit>(context).getUserAddresses();
         }
       },
@@ -76,4 +73,13 @@ class SaveAddressButtonBuilder extends StatelessWidget {
       },
     );
   }
+}
+
+void showSnackBar(BuildContext context) {
+  SnackBar snackBar = SnackBar(
+    content: Text("Address Added!",
+        style:
+            AppStyles.styleSemiBold14(context).copyWith(color: Colors.white)),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

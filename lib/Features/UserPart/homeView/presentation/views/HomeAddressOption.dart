@@ -40,7 +40,7 @@ class HomeAddressOption extends StatelessWidget {
     );
   }
 
-  void chooseCurrentLocation(BuildContext context) {
+  void chooseCurrentLocation(BuildContext context) async {
     var locatioState = BlocProvider.of<ScooterLocationCubit>(context).state;
     if (locatioState is ScooterLocationGetLocation) {
       var location =
@@ -54,7 +54,25 @@ class HomeAddressOption extends StatelessWidget {
           .chooseAddress(address: address);
       Navigator.pop(context);
     } else {
-      BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
+      await BlocProvider.of<ScooterLocationCubit>(context)
+          .getMyCurrentPosition();
+
+      // After getting the current position, get the location details
+      var locationState = BlocProvider.of<ScooterLocationCubit>(context).state;
+      if (locationState is ScooterLocationGetLocation) {
+        var location =
+            BlocProvider.of<ScooterLocationCubit>(context).locationDetails;
+
+        UserAddressesDetailsModel address = UserAddressesDetailsModel(
+          city: location?.subAdministrativeArea,
+          street: "${location?.thoroughfare} - ${location?.subThoroughfare}",
+        );
+        BlocProvider.of<HomeAddressCubit>(context)
+            .chooseAddress(address: address);
+        Navigator.pop(context);
+      } else {
+        // Handle if location details are not available
+      }
     }
   }
 }

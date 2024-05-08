@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:yallanow/Features/UserPart/foodView/data/Models/ExtraTypeModel.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/extra.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/size.dart';
 part 'selectedItemsModel.g.dart';
 
 @HiveType(typeId: 1)
@@ -18,9 +19,10 @@ class SelectedItemsModel extends HiveObject {
   @HiveField(4)
   final String? itemID;
   @HiveField(5)
-  final String? size;
+  final ItemSize? size;
   @HiveField(6)
-  final List<ExtraTypeModel>? extras;
+  final List<Extra>? extras;
+
   SelectedItemsModel({
     this.itemID,
     required this.name,

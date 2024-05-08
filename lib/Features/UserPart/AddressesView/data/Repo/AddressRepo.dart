@@ -11,5 +11,5 @@ abstract class AddressesRepo {
   Future<Either<Failure, dynamic>> addNewUserAddresses(
       {required UserInputAddressModel userAddressDetailsModel});
   Future<Either<Failure, dynamic>> deleteUserAddresses(
-      {required String addressId});
+      {required String useraddressId, required String addressId});
 }

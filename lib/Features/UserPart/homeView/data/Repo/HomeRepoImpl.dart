@@ -13,9 +13,10 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<PopularResturants>>>
       fetchPopularResturant() async {
+    String endpoint1 = "FoodHome/ExploreRestaurants?page=1&pageSize=5";
     String endPoint = "FoodHome/PopularResturants";
     try {
-      var response = await yallaNowServices.get(endPoint: endPoint);
+      var response = await yallaNowServices.get(endPoint: endpoint1);
       List<PopularResturants> resturants = [];
       for (var resturant in response) {
         resturants.add(PopularResturants.fromJson(resturant));
