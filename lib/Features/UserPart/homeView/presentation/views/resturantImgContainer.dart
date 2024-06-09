@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
@@ -19,7 +20,9 @@ class ResturantImgContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Colors.grey,
           image: DecorationImage(
-            image: NetworkImage(img),
+            image: img.contains('wwwroot')
+                ? const AssetImage(Assets.imagesSupermarket1) as ImageProvider
+                : NetworkImage(img),
             fit: BoxFit.fill,
           ),
         ),

@@ -1,17 +1,13 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
-import 'package:yallanow/Core/widgets/customButton.dart';
-import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DrSignupButtonBuilder.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/RiderRoleRadio.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
 import 'package:yallanow/generated/l10n.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class DrSignUpForm extends StatefulWidget {
   const DrSignUpForm({super.key});
@@ -22,11 +18,24 @@ class DrSignUpForm extends StatefulWidget {
 
 class _DrSignUpFormState extends State<DrSignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  DriverRegisterModel driverRegisterModel = DriverRegisterModel();
   FileDetails? driverPapers;
   String password = '', confirmPassword = '';
   bool p1 = true, p2 = true;
   TextEditingController textEditingController = TextEditingController();
+  AutovalidateMode autovalidateModePass = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeEmail = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeFname = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeLname = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeUserName = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModephone = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateModeGender = AutovalidateMode.disabled;
+  DriverRegisterationCubit? cubit;
+  @override
+  void initState() {
+    cubit = BlocProvider.of<DriverRegisterationCubit>(context);
+    super.initState();
+  }
+
   @override
   void dispose() {
     textEditingController.dispose();
@@ -36,7 +45,6 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: _formKey,
       child: Column(
         children: [
@@ -44,6 +52,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
             children: [
               Expanded(
                 child: CustomTextField(
+                  autovalidateMode: autovalidateModeFname,
                   hintText: S.of(context).FirstName,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
@@ -53,7 +62,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
                     return null;
                   },
                   onSaved: (value) {
-                    driverRegisterModel.firstName = value!.trim();
+                    cubit!.driverRegisterModel.firstName = value!.trim();
                   },
                 ),
               ),
@@ -69,7 +78,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
                     return null;
                   },
                   onSaved: (value) {
-                    driverRegisterModel.lastName = value!.trim();
+                    cubit!.driverRegisterModel.lastName = value!.trim();
                   },
                 ),
               ),
@@ -77,9 +86,28 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
+            hintText: 'Username',
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'Please enter your User name';
+              }
+
+              return null;
+            },
+            onSaved: (value) {
+              cubit!.driverRegisterModel.username = value!.trim();
+            },
+          ),
+          const SizedBox(height: 16),
+          CustomTextField(
             hintText: S.of(context).Email,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
+            // onChanged: (p0) {
+            //   autovalidateModeEmail = AutovalidateMode.onUserInteraction;
+            // },
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
                 return 'Please enter your E-Mail address';
@@ -90,7 +118,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               return null;
             },
             onSaved: (value) {
-              driverRegisterModel.email = value!.trim();
+              cubit!.driverRegisterModel.email = value!.trim();
             },
           ),
           const SizedBox(height: 16),
@@ -107,12 +135,13 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               return null;
             },
             onSaved: (value) {
-              driverRegisterModel.phoneNumber = value!.trim();
+              cubit!.driverRegisterModel.phoneNumber = value!.trim();
             },
           ),
           const SizedBox(height: 16),
           CustomTextField(
               hintText: S.of(context).Password,
+              maxLines: 1,
               secure: p1,
               validator: (value) {
                 return validatePassword(value);
@@ -134,6 +163,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
           CustomTextField(
               hintText: S.of(context).confirmedPassword,
               secure: p2,
+              maxLines: 1,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'Please Confirm your password';
@@ -147,7 +177,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
                 confirmPassword = value.trim();
               },
               onSaved: (value) {
-                driverRegisterModel.password = value!.trim();
+                cubit!.driverRegisterModel.password = value!.trim();
               },
               suffixIcon: IconButton(
                 icon: Icon(p2
@@ -162,7 +192,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
           const SizedBox(height: 16),
           Genderdropmenu(
             onChanged: (value) {
-              driverRegisterModel.gender = value!.trim();
+              cubit!.driverRegisterModel.gender = value!.trim();
             },
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
@@ -184,7 +214,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               return null;
             },
             onSaved: (value) {
-              driverRegisterModel.nIDcard = value!.trim();
+              cubit!.driverRegisterModel.nIDcard = value!.trim();
             },
           ),
           const SizedBox(height: 16),
@@ -205,34 +235,16 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
                   onPressed: () async {
                     driverPapers = await DriverFileMangement().pickFile();
                     setState(() {
-                      driverRegisterModel.driverPapers = driverPapers;
+                      cubit!.driverRegisterModel.driverPapers = driverPapers;
                       textEditingController.text =
                           "  ${driverPapers!.fileName ?? ""}";
                     });
                   },
                 )),
           ),
-          CustomButton(
-            text: "press",
-            txtcolor: Colors.white,
-            btncolor: pKcolor,
-            onPressed: () async {
-              await FirebaseAuth.instance.verifyPhoneNumber(
-                phoneNumber: '+20 1127523369',
-                verificationCompleted: (PhoneAuthCredential credential) {
-                  log(credential.smsCode.toString());
-                },
-                verificationFailed: (FirebaseAuthException e) {
-                  log(e.message.toString());
-                },
-                codeSent: (String verificationId, int? resendToken) {},
-                codeAutoRetrievalTimeout: (String verificationId) {},
-              );
-            },
-          ),
+          const RiderRoleSec(),
           const SizedBox(height: 30),
-          DrSignupButtonBuilder(
-              formKey: _formKey, driverRegisterModel: driverRegisterModel),
+          DrSignupButtonBuilder(formKey: _formKey),
         ],
       ),
     );

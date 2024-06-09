@@ -60,7 +60,8 @@ void findingRiderBS(BuildContext context) {
     isScrollControlled: true,
     context: context,
     builder: (context) {
-      return Container(
+      return FindingRideView();
+      Container(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(

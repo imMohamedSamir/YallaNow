@@ -8,5 +8,5 @@ void hiveAdapters() async {
   Hive.registerAdapter(SelectedItemsModelAdapter());
   Hive.registerAdapter(ExtraTypeModelAdapter());
   Hive.registerAdapter(ExtraAdapter());
-  Hive.registerAdapter(SizeAdapter());
+  Hive.registerAdapter(ItemSizeAdapter());
 }

@@ -6,8 +6,13 @@ part 'home_address_state.dart';
 
 class HomeAddressCubit extends Cubit<HomeAddressState> {
   HomeAddressCubit() : super(HomeAddressInitial());
-  void chooseAddress({required UserAddressesDetailsModel address}) {
+  void selecteAddress({required UserAddressesDetailsModel address}) {
     emit(HomeAddressInitial());
     emit(HomeAddressChange(address: address));
+  }
+
+  void choosetAddress() {
+    emit(HomeAddressInitial());
+    emit(HomeAddressEmpty());
   }
 }

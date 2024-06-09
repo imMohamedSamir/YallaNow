@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gif/gif.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/Onboarding/presentation/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,56 +18,75 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with TickerProviderStateMixin {
   bool? isFirstTime;
   String? userToken;
+  late final GifController controller1;
+
   @override
   void initState() {
-    BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
+    controller1 = GifController(vsync: this);
     checkFirstTimeUser();
-    navigateTransition();
     super.initState();
   }
 
   void checkFirstTimeUser() async {
+    BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isFirstTime = prefs.getBool('isFirstTime') ?? true;
     if (isFirstTime!) {
       await prefs.setBool('isFirstTime', false);
     }
-    userToken = prefs.getString(token);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+    userToken = prefs.getString(savedToken);
+    navigateTransition();
   }
 
   void navigateTransition() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 600),
-          pageBuilder: (_, __, ___) => isFirstTime!
-              ? const OnBoarding()
-              : userToken != null
-                  ? const MainHomeView()
-                  : const LoginView(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-        ),
-      );
+    controller1.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        final Widget page = isFirstTime!
+            ? const OnBoarding()
+            : userToken != null
+                ? const MainHomeView()
+                : const LoginView();
+
+        if (mounted) {
+          NavigateToPage.slideFromRightandRemove(context: context, page: page);
+        }
+      }
     });
   }
 
   @override
+  void dispose() {
+    controller1.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Center(child: Image.asset(Assets.imagesSplashLogo));
+    return Gif(
+      controller: controller1,
+      fps: 30,
+      image: const AssetImage(Assets.imagesLogoGif),
+      placeholder: (context) {
+        return Center(
+            child: Image.asset(
+          Assets.imagesYallaNowLogoWhite,
+          height: AppSizes.getHeight(350, context),
+          width: AppSizes.getWidth(350, context),
+          filterQuality: FilterQuality.high,
+          fit: BoxFit.contain,
+        ));
+      },
+      onFetchCompleted: () {
+        controller1.reset();
+        controller1.forward();
+      },
+      height: double.infinity,
+      fit: BoxFit.fill,
+      autostart: Autostart.no,
+    );
   }
 }

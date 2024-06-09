@@ -20,8 +20,6 @@ class HomeAddressList extends StatelessWidget {
                 .copyWith(color: const Color(0xff240301))),
         const SizedBox(height: 16),
         const HomeUserAddresses(),
-        const HomeAddressOption(
-            title: 'Current location', isAddDifferentAddress: false),
         const SizedBox(height: 12),
         const HomeAddressOption(
             title: 'Different location', isAddDifferentAddress: true)

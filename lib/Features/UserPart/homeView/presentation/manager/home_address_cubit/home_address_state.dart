@@ -9,6 +9,8 @@ sealed class HomeAddressState extends Equatable {
 
 final class HomeAddressInitial extends HomeAddressState {}
 
+final class HomeAddressEmpty extends HomeAddressState {}
+
 final class HomeAddressChange extends HomeAddressState {
   final UserAddressesDetailsModel address;
 

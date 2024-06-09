@@ -14,7 +14,7 @@ class PhoneVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context, title: "Verify", onPressed: () {
+      appBar: customAppBar(context, title: "Verify", onPressed: () {
         Navigator.pop(context);
       }),
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [

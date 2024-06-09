@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/HiveAdapters.dart';
+import 'package:yallanow/Core/utlis/NotificationHelper.dart';
 import 'package:yallanow/Core/utlis/blocObs.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/DriverSignUpView.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
@@ -20,18 +25,21 @@ import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.da
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_items_cubit/mart_items_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
-import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPageBody.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_marts_cubit/fetch_popular_marts_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
@@ -41,12 +49,13 @@ import 'package:yallanow/generated/l10n.dart';
 void main() async {
   setupServiceLocator();
   await Hive.initFlutter();
+  await initializeNotification();
   hiveAdapters();
   Bloc.observer = SimpleBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context) => const YallaNow(),
   ));
 }
@@ -83,13 +92,17 @@ class YallaNow extends StatelessWidget {
               FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>()),
         ),
         BlocProvider(
+          create: (context) =>
+              FetchPopularMartsCubit(getIt.get<HomeRepoImpl>())..get(),
+        ),
+        BlocProvider(
           create: (context) => LanguageCubit(),
         ),
         BlocProvider(
           create: (context) => PhoneVerificationCubit(),
         ),
         BlocProvider(
-          create: (context) => BasketManagerCubit(),
+          create: (context) => BasketManagerCubit()..getBasketItems(),
         ),
         BlocProvider(
           create: (context) =>
@@ -99,11 +112,15 @@ class YallaNow extends StatelessWidget {
           create: (context) => HomeAddressCubit(),
         ),
         BlocProvider(
-            create: (context) => MartDetailsCubit(getIt.get<MartsRepoImpl>())),
-        BlocProvider(
           create: (context) =>
               MartItemsCubit(getIt.get<MartsRepoImpl>())..getItems(),
-        )
+        ),
+        BlocProvider(
+            create: (context) =>
+                PharmacyDetailsCubit(getIt.get<PharmacyRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                RidePriceCubit(getIt.get<ScooterRideRepoImpl>()))
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {
@@ -121,12 +138,11 @@ class YallaNow extends StatelessWidget {
             routes: {
               RoutesNames.splash: (context) => const SplashView(),
               RoutesNames.home: (context) => const MainHomeView(),
-              RoutesNames.resturant: (context) => const FoodResturantPage(),
+              RoutesNames.resturant: (context) => const FoodResturantPageBody(),
               RoutesNames.basket: (context) => const BasketPage(),
               RoutesNames.markets: (context) => const MarketsView(),
               RoutesNames.marketpage: (context) => const MarketPage(),
               RoutesNames.pharmacyPage: (context) => const PharmacyView(),
-              RoutesNames.pharmacy: (context) => const PharmacyPage(),
               RoutesNames.loginpage: (context) => const LoginView()
             },
           );
@@ -142,7 +158,7 @@ class RoutesNames {
   static const String splash = "splash";
   static const String basket = "basket";
   static const String markets = "markets";
-  static const String marketpage = "Marketpage";
+  static const String marketpage = "Marketpagloمe";
   static const String pharmacyPage = "PharmacyPage";
   static const String pharmacy = "pharmacypage";
   static const String loginpage = "loginpage";

@@ -19,7 +19,8 @@ class AvailableRideCard extends StatelessWidget {
   final void Function(dynamic)? onChanged;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
           border: Border.all(
@@ -30,10 +31,13 @@ class AvailableRideCard extends StatelessWidget {
         activeColor: pKcolor,
         title: Row(
           children: [
-            Image.asset(
-              availableRideModel.img,
-              width: AppSizes.getWidth(90, context),
-              height: AppSizes.getHeight(90, context),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              width: AppSizes.getWidth(isSelected ? 95 : 90, context),
+              height: AppSizes.getHeight(isSelected ? 95 : 90, context),
+              child: Image.asset(
+                availableRideModel.img,
+              ),
             ),
             const SizedBox(width: 16),
             Column(
@@ -43,15 +47,15 @@ class AvailableRideCard extends StatelessWidget {
                     style: AppStyles.styleRegular16(context)),
                 Text("${availableRideModel.price} EGP",
                     style: AppStyles.styleBold16(context)),
-                Row(
-                  children: [
-                    Text(availableRideModel.arriveTime,
-                        style: AppStyles.styleRegular16(context)),
-                    const SizedBox(width: 16),
-                    Text("${availableRideModel.distance} min away",
-                        style: AppStyles.styleRegular16(context))
-                  ],
-                )
+                // Row(
+                //   children: [
+                //     Text(availableRideModel.arriveTime,
+                //         style: AppStyles.styleRegular16(context)),
+                //     const SizedBox(width: 16),
+                //     Text("${availableRideModel.distance} min away",
+                //         style: AppStyles.styleRegular16(context))
+                //   ],
+                // )
               ],
             )
           ],

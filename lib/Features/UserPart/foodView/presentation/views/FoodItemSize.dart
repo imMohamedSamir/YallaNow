@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/SizeType.dart';
 
 class FoodItemSize extends StatelessWidget {
   const FoodItemSize({super.key, required this.item});
-  final Item item;
+  final FoodItem item;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -41,22 +41,26 @@ class FoodItemSize extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          BlocBuilder<BasketManagerCubit, BasketManagerState>(
+          BlocBuilder<ItemPageCubit, ItemPageState>(
             builder: (context, state) {
-              if (state is BasketManagerIsSelected) {
-                return Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    const Icon(Icons.warning_amber_rounded,
-                        color: pKcolor, size: 18),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Choose 1",
-                      style: AppStyles.styleMedium12(context)
-                          .copyWith(color: pKcolor),
-                    )
-                  ],
-                );
+              if (state is ItemPageChange) {
+                if (!state.selectedSize) {
+                  return Row(
+                    children: [
+                      const SizedBox(width: 16),
+                      const Icon(Icons.warning_amber_rounded,
+                          color: pKcolor, size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        "Choose 1",
+                        style: AppStyles.styleMedium12(context)
+                            .copyWith(color: pKcolor),
+                      )
+                    ],
+                  );
+                } else {
+                  return const SizedBox();
+                }
               } else {
                 return const SizedBox();
               }

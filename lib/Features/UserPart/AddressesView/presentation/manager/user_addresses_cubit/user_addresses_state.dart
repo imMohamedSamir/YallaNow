@@ -24,9 +24,3 @@ final class UserAddressesSuccess extends UserAddressesState {
 
   const UserAddressesSuccess({required this.addresses});
 }
-
-final class UserAddressesAdded extends UserAddressesState {
-  final List<UserAddressesDetailsModel> addresses;
-
-  const UserAddressesAdded({required this.addresses});
-}

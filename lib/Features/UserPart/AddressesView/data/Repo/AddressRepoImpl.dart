@@ -51,7 +51,7 @@ class AddressesRepoImpl implements AddressesRepo {
       fetchUserAddresses() async {
     String endPoint = "UserAddress/get";
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(token);
+    usertoken = prefs.getString(savedToken);
 
     try {
       var response =
@@ -82,12 +82,12 @@ class AddressesRepoImpl implements AddressesRepo {
       {required UserInputAddressModel userAddressDetailsModel}) async {
     String endPoint = "UserAddress/add";
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(token);
+    usertoken = prefs.getString(savedToken);
     try {
       var response = await yallaNowServices.post(
         endPoint: endPoint,
         token: usertoken,
-        data: userAddressDetailsModel.toJson(),
+        body: userAddressDetailsModel.toJson(),
       );
       log(response.toString());
 
@@ -114,7 +114,7 @@ class AddressesRepoImpl implements AddressesRepo {
     String endPoint =
         "UserAddress/delete/$addressId?useraddressId=$useraddressId";
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(token);
+    usertoken = prefs.getString(savedToken);
 
     try {
       var response =

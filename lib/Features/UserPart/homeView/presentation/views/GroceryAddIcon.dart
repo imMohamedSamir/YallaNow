@@ -1,10 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
 
 class GroceryAddIcon extends StatefulWidget {
-  const GroceryAddIcon({super.key});
+  const GroceryAddIcon({super.key, this.item});
+  final MartItem? item;
 
   @override
   State<GroceryAddIcon> createState() => _GroceryAddIconState();
@@ -13,10 +19,13 @@ class GroceryAddIcon extends StatefulWidget {
 class _GroceryAddIconState extends State<GroceryAddIcon> {
   bool active = false;
   int number = 0;
+  late MartItem martitem;
   late Timer _timer;
   @override
   void initState() {
     _timer = Timer(const Duration(seconds: 1), () {});
+    martitem = widget.item!;
+
     super.initState();
   }
 
@@ -30,13 +39,31 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
     });
   }
 
+  void addtoBasket() {
+    SelectedItemsModel item = SelectedItemsModel(
+        itemID: martitem.id,
+        name: martitem.name ?? '',
+        quantity: '1',
+        price: martitem.price.toString(),
+        img: martitem.imageUrl!);
+    BlocProvider.of<ItemPageCubit>(context).createItem(itemsModel: item);
+    BlocProvider.of<ItemPageCubit>(context).addToBasket(itemID: martitem.id!);
+    BlocProvider.of<BasketManagerCubit>(context).getBasketItems();
+  }
+
+  void changeqty({bool add = false}) {
+    BlocProvider.of<ItemPageCubit>(context)
+        .changeQty(itemID: martitem.id!, number: number, add: add);
+    BlocProvider.of<BasketManagerCubit>(context).getBasketItems(isMart: true);
+  }
+
   void _onTap() {
     setState(() {
       active = !active;
       _startTimer();
-
       if (active) {
         number += 1;
+        addtoBasket();
       }
     });
   }
@@ -76,6 +103,7 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                               setState(() {
                                 if (number > 0) {
                                   number -= 1;
+                                  changeqty(add: false);
                                   _startTimer();
                                 }
                               });
@@ -97,6 +125,7 @@ class _GroceryAddIconState extends State<GroceryAddIcon> {
                             onPressed: () {
                               setState(() {
                                 number += 1;
+                                changeqty(add: true);
                                 _startTimer();
                               });
                             },

@@ -8,9 +8,7 @@ import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsT
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/SearchBar.dart';
 
 class MartPageBody extends StatelessWidget {
-  const MartPageBody({
-    super.key,
-  });
+  const MartPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

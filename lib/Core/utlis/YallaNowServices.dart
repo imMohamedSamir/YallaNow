@@ -2,18 +2,88 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class YallaNowServices {
-  String _baseUrl = 'http://yallanow.runasp.net/api/';
+  String _baseUrl = 'https://yallanow.runasp.net/api/';
 
   final Dio _dio;
+  YallaNowServices(this._dio) {
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final token = await _getToken();
 
-  YallaNowServices(this._dio);
+        if (token != null) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        return handler.next(options); // Continue
+      },
+      onError: (DioException e, handler) async {
+        if (e.response?.statusCode == 401) {
+          final newToken = await _refreshToken();
+          log("New token: $newToken");
+
+          if (newToken != null) {
+            // Update token in headers and retry the request
+            e.requestOptions.headers['Authorization'] = 'Bearer $newToken';
+            final opts = Options(
+              method: e.requestOptions.method,
+              headers: e.requestOptions.headers,
+            );
+            final cloneReq = await _dio.request(
+              e.requestOptions.path,
+              options: opts,
+              data: e.requestOptions.data,
+              queryParameters: e.requestOptions.queryParameters,
+            );
+            return handler.resolve(cloneReq); // Return the new response
+          }
+        }
+        return handler
+            .next(e); // Continue with the error if token refresh fails
+      },
+    ));
+  }
+  Future<String?> _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // log(prefs.getString(savedToken) ?? "token not found");
+    return prefs.getString(savedToken);
+  }
+
+  Future<void> _saveToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(savedToken, token);
+  }
+
+  Future<String?> _refreshToken() async {
+    try {
+      final curretToken = await _getToken();
+      final response = await _dio.get(
+          'https://yallanow.runasp.net/api/Auth/refreshToken',
+          options: Options(headers: {
+            'accept': '*/*',
+            'Authorization': 'Bearer $curretToken'
+          }));
+      if (response.statusCode == 200) {
+        final newToken = response.data['token'];
+        await _saveToken(newToken);
+        return newToken;
+      }
+    } catch (e) {
+      log("$e there is no token");
+      // Handle error (e.g., log out the user)
+    }
+    log(" there is no token");
+    return null;
+  }
 
   Future<dynamic> get(
       {required String endPoint, String? token, bool isMart = false}) async {
     if (isMart) {
-      _baseUrl = "http://yallanow.runasp.net/";
+      _baseUrl = "https://yallanow.runasp.net/";
+    } else {
+      _baseUrl = 'https://yallanow.runasp.net/api/';
     }
     var response = await _dio.get('$_baseUrl$endPoint',
         options: Options(headers: {
@@ -23,9 +93,9 @@ class YallaNowServices {
     return response.data;
   }
 
-  Future<dynamic> post({required String endPoint, data, String? token}) async {
+  Future<dynamic> post({required String endPoint, body, String? token}) async {
     var response = await _dio.post('$_baseUrl$endPoint',
-        data: data,
+        data: body,
         options: Options(headers: {
           'accept': '*/*',
           'Content-Type': 'application/json',
@@ -36,7 +106,6 @@ class YallaNowServices {
       return responseData;
     } else {
       // Handle HTTP error status codes
-      print('Dio ${response.statusCode} Error: ${response.data}');
     }
     return response.data;
   }
@@ -57,7 +126,7 @@ class YallaNowServicesHttp {
 
   Future<dynamic> post({required String endPoint, dynamic data}) async {
     var response = await http.post(
-      Uri.parse('http://yallanowtest.runasp.net/api/'),
+      Uri.parse('https://yallanowtest.runasp.net/api/'),
       headers: {
         'accept': '*/*',
         'Content-Type': 'application/json',
@@ -75,7 +144,7 @@ class YallaNowServicesHttp {
 
   Future<http.Response> get({required String endPoint, String? token}) async {
     var response = await http.get(
-      Uri.parse('http://yallanowtest.runasp.net/api/'),
+      Uri.parse('https://yallanowtest.runasp.net/api/'),
       headers: {'accept': '*/*', 'Authorization': "Bearer $token"},
     );
 

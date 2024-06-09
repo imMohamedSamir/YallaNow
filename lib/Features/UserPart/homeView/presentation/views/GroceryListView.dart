@@ -5,7 +5,6 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_items_cubit/mart_items_cubit.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketItemPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryItemDetails.dart';
 
 class GroceryListView extends StatelessWidget {
@@ -27,9 +26,7 @@ class GroceryListView extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.only(
                       right: items.length == index - 1 ? 0 : 12.0),
-                  child: GroceryItemDetails(
-                    item: items[index],
-                  ),
+                  child: GroceryItemDetails(item: items[index]),
                 );
               },
             );
@@ -61,4 +58,3 @@ class GroceryListView extends StatelessWidget {
     );
   }
 }
-// GroceryItemDetails()

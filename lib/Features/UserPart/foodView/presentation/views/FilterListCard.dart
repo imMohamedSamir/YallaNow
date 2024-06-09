@@ -28,7 +28,8 @@ class _FilterListCardState extends State<FilterListCard> {
           isSelected = !isSelected;
         });
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 450),
         padding:
             const EdgeInsets.only(top: 4.0, right: 12, left: 16, bottom: 6),
         decoration: BoxDecoration(
@@ -43,11 +44,7 @@ class _FilterListCardState extends State<FilterListCard> {
                     .copyWith(color: isSelected ? null : scColor)),
             const SizedBox(width: 10),
             isSelected
-                ? const Icon(
-                    Icons.close,
-                    size: 16,
-                    color: Colors.white,
-                  )
+                ? const Icon(Icons.close, size: 16, color: Colors.white)
                 : const SizedBox()
           ],
         ),

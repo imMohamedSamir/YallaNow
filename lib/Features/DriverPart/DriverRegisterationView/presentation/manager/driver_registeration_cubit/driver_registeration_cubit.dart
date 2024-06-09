@@ -9,10 +9,13 @@ class DriverRegisterationCubit extends Cubit<DriverRegisterationState> {
   DriverRegisterationCubit(this.driverRegisterationRepo)
       : super(DriverRegisterationInitial());
   final DriverRegisterationRepo driverRegisterationRepo;
-  fetchDriverRegisteration({required DriverRegisterModel driverDetails}) async {
+  DriverRegisterModel driverRegisterModel = DriverRegisterModel();
+
+  fetchDriverRegisteration() async {
     emit(DriverRegisterationLoading());
+
     var result = await driverRegisterationRepo.fetchRegisteration(
-        driverDetails: driverDetails);
+        driverDetails: driverRegisterModel);
     result.fold(
         (fail) => emit(DriverRegisterationFailure(errmsg: fail.errorMessage)),
         (success) => emit(DriverRegisterationSuccess()));

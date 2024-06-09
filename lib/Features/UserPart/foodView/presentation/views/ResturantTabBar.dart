@@ -7,11 +7,10 @@ class ResturantTabBar extends StatelessWidget {
   const ResturantTabBar({
     super.key,
     required this.menus,
-    required this.scrollToIndex,
+    required this.tabController,
   });
-
+  final TabController tabController;
   final List<String> menus;
-  final void Function(int index) scrollToIndex;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,6 +24,7 @@ class ResturantTabBar extends StatelessWidget {
                 child: Row(
                   children: [
                     TabBar(
+                      controller: tabController,
                       unselectedLabelStyle: AppStyles.styleMedium16(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                       indicatorSize: TabBarIndicatorSize.tab,
@@ -33,7 +33,6 @@ class ResturantTabBar extends StatelessWidget {
                       labelStyle: AppStyles.styleSemiBold16(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                       tabAlignment: TabAlignment.start,
-                      onTap: (index) => scrollToIndex(index),
                       isScrollable: true,
                       tabs: menus.map((menu) {
                         return Tab(
@@ -66,14 +65,4 @@ class ResturantTabBar extends StatelessWidget {
       ],
     );
   }
-
-  // void scrollToIndex(int index) async {
-  //   scrollController.removeListener(animateToTab);
-  //   final categories = jewelleryCategories[index].currentContext!;
-  //   await Scrollable.ensureVisible(
-  //     categories,
-  //     duration: const Duration(milliseconds: 600),
-  //   );
-  //   scrollController.addListener(animateToTab);
-  // }
 }

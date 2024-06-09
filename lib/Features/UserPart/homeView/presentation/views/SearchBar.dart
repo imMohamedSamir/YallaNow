@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodSearchPage.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomeSearchPage.dart';
 
 class HomeSearchBar extends StatelessWidget {
   const HomeSearchBar({
@@ -10,51 +15,79 @@ class HomeSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchBar(
-      overlayColor: MaterialStateProperty.all<Color?>(const Color(0xffF5F5F5)),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(
-          const EdgeInsets.only(left: 16, right: 13)),
-      leading: searchIcons(
-        icon: Assets.imagesSearchIcon,
-        onTap: () {},
-      ),
-      backgroundColor:
-          MaterialStateProperty.all<Color?>(const Color(0xffF5F5F5)),
-      elevation: MaterialStateProperty.all<double?>(0),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(8) // Set your desired border radius here
-            ),
-      ),
-      hintText: "Search",
-      hintStyle: MaterialStateProperty.all<TextStyle?>(
-          AppStyles.styleRegular16(context)
-              .copyWith(color: const Color(0xff9E9D9D))),
-      trailing: [
-        searchIcons(
-          icon: Assets.imagesFilterIcon,
-          onTap: () {},
+    return SizedBox(
+      height: AppSizes.getHeight(61, context),
+      width: AppSizes.getWidth(361, context),
+      child: Card(
+        child: ListTile(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          onTap: () {
+            NavigateToPage.slideFromBottomAndFade(
+                context: context, page: const HomeSearchPage());
+          },
+          leading: SvgPicture.asset(Assets.imagesSearchIcon),
+          title: Text(
+            "Search",
+            style: AppStyles.styleMedium16(context).copyWith(color: scColor),
+          ),
         ),
-      ],
+      ),
     );
   }
 }
 
-class searchIcons extends StatelessWidget {
-  const searchIcons({
+class FoodSearchBar extends StatelessWidget {
+  const FoodSearchBar({
     super.key,
-    required this.icon,
-    this.onTap,
   });
-  final String icon;
-  final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: SvgPicture.asset(icon),
+    return SizedBox(
+      height: AppSizes.getHeight(61, context),
+      width: AppSizes.getWidth(361, context),
+      child: Card(
+        child: ListTile(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          onTap: () {
+            NavigateToPage.slideFromBottomAndFade(
+                context: context, page: const FoodSearchPage());
+          },
+          leading: SvgPicture.asset(Assets.imagesSearchIcon),
+          title: Text(
+            "Search",
+            style: AppStyles.styleMedium16(context).copyWith(color: scColor),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PharmacySearchBar extends StatelessWidget {
+  const PharmacySearchBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppSizes.getHeight(61, context),
+      width: AppSizes.getWidth(361, context),
+      child: Card(
+        child: ListTile(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          onTap: () {
+            NavigateToPage.slideFromBottomAndFade(
+                context: context, page: const FoodSearchPage());
+          },
+          leading: SvgPicture.asset(Assets.imagesSearchIcon),
+          title: Text(
+            "Search",
+            style: AppStyles.styleMedium16(context).copyWith(color: scColor),
+          ),
+        ),
+      ),
     );
   }
 }

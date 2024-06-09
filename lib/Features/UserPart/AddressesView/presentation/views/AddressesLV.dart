@@ -15,6 +15,7 @@ class AddressesLV extends StatelessWidget {
       builder: (context, state) {
         if (state is UserAddressesSuccess) {
           List<UserAddressesDetailsModel> userAddresses = state.addresses;
+
           return ListView.builder(
             itemCount: userAddresses.length,
             itemBuilder: (context, index) {

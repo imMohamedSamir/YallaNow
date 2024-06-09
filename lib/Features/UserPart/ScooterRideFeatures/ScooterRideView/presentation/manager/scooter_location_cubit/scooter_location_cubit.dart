@@ -2,10 +2,14 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 
 part 'scooter_location_state.dart';
 
@@ -21,15 +25,38 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   LatLng? currentposition;
   Set<Polyline> polyLines = {};
 
-  Future getMyCurrentPosition() async {
+  CameraTargetBounds appCamerabounds = CameraTargetBounds(LatLngBounds(
+    southwest: const LatLng(29.994944894366228, 31.28310130035875),
+    northeast: const LatLng(30.01648441913699, 31.345784740707476),
+  ));
+
+  void getMyCurrentPosition() async {
     await locationService.checkAndRequestLocationService();
     var hasPermission =
         await locationService.checkAndRequestLocationPermission();
     if (hasPermission) {
       currentposition = await locationService.getCurrentLocationData();
       locationDetails = await defineLocationDetails(location: currentposition!);
+      checkPositionBounds(postition: currentposition!);
+      // getLocationDetails();
+    }
+  }
 
-      getLocationDetails();
+  bool checkPositionBounds({required LatLng postition, bool isDst = false}) {
+    String msg;
+    if (!appCamerabounds.bounds!.contains(postition)) {
+      // emit(ScooterLocationInitial());
+      if (isDst) {
+        msg =
+            "Your destination is outside the allowed area. We are comming soon.";
+      } else {
+        msg =
+            "Your current location is outside the allowed area. We are comming soon.";
+      }
+      // emit(ScooterLocationFailuer(errmsg: msg));
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -40,33 +67,73 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     if (hasPermission) {
       currentposition = await locationService.getCurrentLocationData();
       locationDetails = await defineLocationDetails(location: currentposition!);
-
-      setMyLocationMark(currentposition!);
+      // setMyLocationMark(currentposition!);
 
       setMyCameraPosition(currentposition!);
+      checkPositionBounds(postition: currentposition!);
     }
   }
 
-  Future<void> selectedLocation({required String description}) async {
+  void selectedCurrentLocation({required String description}) async {
     try {
+      // Fetch the location from the address
       List<Location> locations = await locationFromAddress(description);
-
       if (locations.isNotEmpty) {
         Location location = locations.first;
-        LatLng desintation = LatLng(location.latitude, location.longitude);
-        locationDetails = await defineLocationDetails(location: desintation);
-
-        setSearchedLocationMark(desintation);
-        // setMyCameraPosition(desintation);
-
-        List<LatLng> points = await routesUtils.getRouteData(
-            desintation: desintation, src: currentposition!);
-        routesUtils.displayRoute(points,
-            polyLines: polyLines, googleMapController: googleMapController!);
-        emit(ScooterLocationGetRoutes(polyLines: polyLines));
+        currentposition = LatLng(location.latitude, location.longitude);
+        checkPositionBounds(postition: currentposition!);
+      } else {
+        emit(const ScooterLocationFailuer(errmsg: "No location found"));
       }
     } catch (e) {
-      throw Exception("Error fetching location: $e");
+      log("Error fetching location: $e");
+      emit(const ScooterLocationFailuer(errmsg: "Failed to fetch location"));
+    }
+  }
+
+  Future<void> selectedLocation(BuildContext context,
+      {required String description}) async {
+    try {
+      emit(ScooterLocationLoading()); // Emitting a loading state
+
+      // Fetch the location from the address
+      List<Location> locations = await locationFromAddress(description);
+      if (locations.isNotEmpty) {
+        Location location = locations.first;
+        LatLng destination = LatLng(location.latitude, location.longitude);
+        bool isInBound =
+            checkPositionBounds(postition: destination, isDst: true);
+        // if (isInBound) {
+        //   setSearchedLocationMark(destination);
+
+        //   // Fetch the route data
+        //   List<LatLng> points = await routesUtils.getRouteData(
+        //       desintation: destination, src: currentposition!);
+
+        //   // Display the route on the map
+        //   polyLines = routesUtils.displayRoute(points,
+        //       polyLines: polyLines, googleMapController: googleMapController!);
+
+        //   emit(ScooterLocationChange(polyLines: polyLines, markers: markers));
+        // }
+        setSearchedLocationMark(destination);
+
+        // Fetch the route data
+        RouteInfo routeInfo = await routesUtils.getRouteData(
+            desintation: destination, src: currentposition!);
+
+        polyLines = routesUtils.displayRoute(routeInfo.points,
+            polyLines: polyLines, googleMapController: googleMapController!);
+        if (!context.mounted) return;
+        BlocProvider.of<RidePriceCubit>(context)
+            .getPrices(distance: routeInfo.distance);
+        emit(ScooterLocationChange(polyLines: polyLines, markers: markers));
+      } else {
+        emit(const ScooterLocationFailuer(errmsg: "No location found"));
+      }
+    } catch (e) {
+      log("Error fetching location: $e");
+      emit(const ScooterLocationFailuer(errmsg: "Failed to fetch location"));
     }
   }
 
@@ -108,9 +175,12 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
 
 ////////////////////////////////////////////////////////////////////
   void handleCameraMove({required CameraPosition position}) async {
+    // emit(ScooterLocationInitial());
     LatLng newLocation = position.target;
+    currentposition = newLocation;
     locationDetails = await defineLocationDetails(location: newLocation);
     log(locationDetails!.toJson().toString());
+    // setMyLocationMark(newLocation);
   }
 
   ///////////////////////////////////////////////////////////
@@ -118,21 +188,25 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     var camerPosition = CameraPosition(target: locationData, zoom: 15);
     googleMapController
         ?.animateCamera(CameraUpdate.newCameraPosition(camerPosition));
-    emit(ScooterLocationSuccess(locationData: locationData, markers: markers));
+    if (!isClosed) {
+      emit(
+          ScooterLocationSuccess(locationData: locationData, markers: markers));
+    }
   }
 
-  void setMyLocationMark(LatLng locationData) {
-    markers.removeWhere((marker) =>
-        marker.markerId.value == 'searched_location_marker' ||
-        marker.markerId.value == 'my_location_marker');
-    markers.add(
-      Marker(
-        markerId: const MarkerId('my_location_marker'),
-        position: locationData,
-      ),
-    );
-    emit(ScooterLocationSuccess(locationData: locationData, markers: markers));
-  }
+  // void setMyLocationMark(LatLng locationData) {
+  //   markers.removeWhere((marker) =>
+  //       marker.markerId.value == 'searched_location_marker' ||
+  //       marker.markerId.value == 'my_location_marker');
+  //   markers.add(
+  //     Marker(
+  //       markerId: const MarkerId('my_location_marker'),
+  //       position: locationData,
+  //     ),
+  //   );
+  //   emit(ScooterLocationChange(markers: markers));
+  //   // emit(ScooterLocationSuccess(locationData: locationData, markers: markers));
+  // }
 
 //////////////////////////////////////////////////////////////////
   void setSearchedLocationMark(LatLng locationData) {
@@ -149,10 +223,10 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     );
 
     // Emit a new state with updated location data and markers
-    emit(ScooterLocationSuccess(
-      locationData: locationData,
-      markers: markers,
-    ));
+    // emit(ScooterLocationChange(
+    //   // locationData: locationData,
+    //   markers: markers,
+    // ));
   }
 
   ////////////////////////////////////////////////////////////////
@@ -161,5 +235,18 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     googleMapController = controller;
   }
 
-  // TextEditingController setTextEditingController() {}
+  void setInitialState() {
+    emit(ScooterLocationInitial());
+    updateMyLocation();
+  }
+
+  DraggableScrollableController dragcontroller =
+      DraggableScrollableController();
+  void openRiderType() {
+    dragcontroller.animateTo(
+      100, // This will collapse the sheet
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeIn,
+    );
+  }
 }

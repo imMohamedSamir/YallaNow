@@ -54,15 +54,15 @@ AppBar mainAppBar(BuildContext context, {required String title}) {
     titleSpacing: 16,
     title: Text(title, style: AppStyles.styleMedium18(context)),
     actions: [
-      IconButton(
-          onPressed: () {
-            if (Intl.getCurrentLocale() == "en") {
-              context.read<LanguageCubit>().changeLanguage(const Locale('ar'));
-            } else {
-              context.read<LanguageCubit>().changeLanguage(const Locale('en'));
-            }
-          },
-          icon: const Icon(Icons.language_outlined))
+      // IconButton(
+      //     onPressed: () {
+      //       if (Intl.getCurrentLocale() == "en") {
+      //         context.read<LanguageCubit>().changeLanguage(const Locale('ar'));
+      //       } else {
+      //         context.read<LanguageCubit>().changeLanguage(const Locale('en'));
+      //       }
+      //     },
+      //     icon: const Icon(Icons.language_outlined))
     ],
     // leading: IconButton(
     //     icon: const Icon(Icons.arrow_back_ios),

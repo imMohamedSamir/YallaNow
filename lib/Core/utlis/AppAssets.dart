@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/AvailScooter.png
   static const String imagesAvailScooter = "assets/images/AvailScooter.png";
 
+  /// Assets for imagesBackground
+  /// assets/images/background.png
+  static const String imagesBackground = "assets/images/background.png";
+
   /// Assets for imagesBloodPressure
   /// assets/images/BloodPressure.png
   static const String imagesBloodPressure = "assets/images/BloodPressure.png";
@@ -29,9 +33,17 @@ class Assets {
   /// assets/images/CashICon.svg
   static const String imagesCashICon = "assets/images/CashICon.svg";
 
+  /// Assets for imagesCity
+  /// assets/images/city.svg
+  static const String imagesCity = "assets/images/city.svg";
+
   /// Assets for imagesColdandfever
   /// assets/images/coldandfever.png
   static const String imagesColdandfever = "assets/images/coldandfever.png";
+
+  /// Assets for imagesComingSoon
+  /// assets/images/ComingSoon.png
+  static const String imagesComingSoon = "assets/images/ComingSoon.png";
 
   /// Assets for imagesCreditcardIcon
   /// assets/images/creditcardIcon.png
@@ -126,6 +138,10 @@ class Assets {
   /// Assets for imagesLocationMark
   /// assets/images/locationMark.svg
   static const String imagesLocationMark = "assets/images/locationMark.svg";
+
+  /// Assets for imagesLogoGif
+  /// assets/images/LogoGif.gif
+  static const String imagesLogoGif = "assets/images/LogoGif.gif";
 
   /// Assets for imagesLogoImg
   /// assets/images/LogoImg.png
@@ -292,6 +308,16 @@ class Assets {
   static const String imagesScooterRideICon =
       "assets/images/scooterRideICon.svg";
 
+  /// Assets for imagesScooterVehicle1
+  /// assets/images/ScooterVehicle1.png
+  static const String imagesScooterVehicle1 =
+      "assets/images/ScooterVehicle1.png";
+
+  /// Assets for imagesScooterVehicle2
+  /// assets/images/ScooterVehicle2.png
+  static const String imagesScooterVehicle2 =
+      "assets/images/ScooterVehicle2.png";
+
   /// Assets for imagesScootercateg
   /// assets/images/Scootercateg.png
   static const String imagesScootercateg = "assets/images/Scootercateg.png";
@@ -319,4 +345,13 @@ class Assets {
   /// Assets for imagesTrendingIcon
   /// assets/images/trendingIcon.png
   static const String imagesTrendingIcon = "assets/images/trendingIcon.png";
+
+  /// Assets for imagesYallaNowLogo
+  /// assets/images/YallaNowLogo.png
+  static const String imagesYallaNowLogo = "assets/images/YallaNowLogo.png";
+
+  /// Assets for imagesYallaNowLogoWhite
+  /// assets/images/YallaNowLogoWhite.png
+  static const String imagesYallaNowLogoWhite =
+      "assets/images/YallaNowLogoWhite.png";
 }

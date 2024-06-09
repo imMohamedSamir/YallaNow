@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
+import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/PayMethodCard.dart';
 
 class PaymentMethodsTile extends StatefulWidget {
@@ -32,6 +33,8 @@ class _PaymentMethodsTileState extends State<PaymentMethodsTile> {
     });
   }
 
+  // BlocProvider.of<PlaceOrderCubit>(context)
+  //                     .checkoutdetails
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +44,23 @@ class _PaymentMethodsTileState extends State<PaymentMethodsTile> {
           value: PaymentMethod.cash,
           groupValue: selectedValue,
           onChanged: (value) => _handlePaymentMethodSelected(value),
+          img: SvgPicture.asset(
+            Assets.imagesCashICon,
+            height: 20,
+            width: 20,
+          ),
+        ),
+        const SizedBox(height: 16),
+        PayMethodCard(
+          method: "Wallet",
+          value: PaymentMethod.wallet,
+          groupValue: selectedValue,
+          onChanged: (value) {
+            _handlePaymentMethodSelected(value);
+            BlocProvider.of<PlaceOrderCubit>(context)
+                .checkoutdetails
+                .paymentMethod = 0;
+          },
           img: SvgPicture.asset(
             Assets.imagesCashICon,
             height: 20,

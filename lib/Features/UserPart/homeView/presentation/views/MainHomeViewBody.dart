@@ -39,6 +39,7 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
         currentIndex: currentPage,
         onItemTapped: setCurrentPage,
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

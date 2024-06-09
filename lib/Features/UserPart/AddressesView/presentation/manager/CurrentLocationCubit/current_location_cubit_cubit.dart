@@ -28,7 +28,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
       currentposition = await locationService.getCurrentLocationData();
       locationDetails = await defineLocationDetails(location: currentposition!);
 
-      setMyLocation(currentposition!);
+      // setMyLocation(currentposition!);
 
       setMyCameraPosition(currentposition!);
       isMoved = true;

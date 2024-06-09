@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/functions/randomColor.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/popular_food_category_cubit/popular_food_category_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodCategory.dart';
 
@@ -48,7 +47,7 @@ class FoodCategoryLV extends StatelessWidget {
                   padding: EdgeInsets.only(
                       right: index == categories.length - 1 ? 0 : 24.0),
                   child: FoodCategory(
-                    color: _getRandomColor(),
+                    color: getRandomColor(),
                     popularFoodCategory: categories[index],
                   ),
                 );
@@ -59,18 +58,5 @@ class FoodCategoryLV extends StatelessWidget {
         return const SizedBox();
       },
     );
-  }
-
-  Color _getRandomColor() {
-    final random = Random();
-    final hslColor = HSLColor.fromColor(
-      Color.fromARGB(
-        random.nextInt(256),
-        random.nextInt(256),
-        random.nextInt(256),
-        255, // Full opacity
-      ).withOpacity(0.17),
-    );
-    return hslColor.toColor();
   }
 }

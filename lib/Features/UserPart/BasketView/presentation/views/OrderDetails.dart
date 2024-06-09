@@ -11,58 +11,37 @@ class OrderDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BasketManagerCubit, BasketManagerState>(
       builder: (context, state) {
-        if (state is BasketManagerAdd) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Payment summary",
-                  style: AppStyles.styleSemiBold16(context)
-                      .copyWith(color: const Color(0xff240301))),
-              const SizedBox(height: 16),
-              OrderDetailsRow(
-                  type: "Subtotal",
-                  price: "${state.totalPrice} EGP",
-                  total: false),
-              const SizedBox(height: 16),
-              const OrderDetailsRow(
-                  type: "Delivery fee", price: "EGP 10.00", total: false),
-              const SizedBox(height: 16),
-              const OrderDetailsRow(
-                  type: "Service fee", price: "EGP 5.00", total: false),
-              const SizedBox(height: 16),
-              OrderDetailsRow(
-                  type: "Total amount",
-                  price: "${state.totalpriceDetails} EGP",
-                  total: true)
-            ],
-          );
-        } else if (state is BasketManagerDelete) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Payment summary",
-                  style: AppStyles.styleSemiBold16(context)
-                      .copyWith(color: const Color(0xff240301))),
-              const SizedBox(height: 16),
-              OrderDetailsRow(
-                  type: "Subtotal",
-                  price: "${state.totalPrice} EGP",
-                  total: false),
-              const SizedBox(height: 16),
-              const OrderDetailsRow(
-                  type: "Delivery fee", price: "EGP 10.00", total: false),
-              const SizedBox(height: 16),
-              const OrderDetailsRow(
-                  type: "Service fee", price: "EGP 5.00", total: false),
-              const SizedBox(height: 16),
-              OrderDetailsRow(
-                  type: "Total amount",
-                  price: "${state.totalpriceDetails} EGP",
-                  total: true)
-            ],
-          );
+        if (state is BasketManagerChange) {
+          if (state.items.isEmpty) {
+            return const SizedBox();
+          } else {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Payment summary",
+                    style: AppStyles.styleSemiBold16(context)
+                        .copyWith(color: const Color(0xff240301))),
+                const SizedBox(height: 16),
+                OrderDetailsRow(
+                    type: "Subtotal",
+                    price: "${state.totalPrice} EGP",
+                    total: false),
+                const SizedBox(height: 16),
+                const OrderDetailsRow(
+                    type: "Delivery fee", price: "EGP 10.00", total: false),
+                const SizedBox(height: 16),
+                const OrderDetailsRow(
+                    type: "Service fee", price: "EGP 5.00", total: false),
+                const SizedBox(height: 16),
+                OrderDetailsRow(
+                    type: "Total amount",
+                    price: "${state.priceDetails} EGP",
+                    total: true)
+              ],
+            );
+          }
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

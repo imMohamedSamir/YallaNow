@@ -1,7 +1,10 @@
+import 'dart:developer' as dev;
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/lat_lng.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/location.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/location_info.dart';
@@ -9,9 +12,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/d
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesService.dart';
 
 class RoutesUtils {
-  get routesService => null;
-
-  Future<List<LatLng>> getRouteData(
+  Future<RouteInfo> getRouteData(
       {required LatLng desintation, required LatLng src}) async {
     LocationInfoModel origin = LocationInfoModel(
       location: LocationModel(
@@ -31,7 +32,22 @@ class RoutesUtils {
         .fetchRoutes(origin: origin, destination: destination);
     PolylinePoints polylinePoints = PolylinePoints();
     List<LatLng> points = getDecodedRoute(polylinePoints, routes);
-    return points;
+    double distanceMeters = routes.routes!.first.distanceMeters!.toDouble();
+    // double distancePrice = calculateTheDistancePrice(distance: distanceMeters);
+    var duration = routes.routes!.first.duration!;
+    String routeDurations = calculateDistanceDuration(duration: duration);
+
+    return RouteInfo(
+        points: points, distance: distanceMeters, duration: routeDurations);
+  }
+
+  String calculateDistanceDuration({required String duration}) {
+    double currentDuration = double.parse(duration.replaceAll('s', '')) / 60;
+    if (currentDuration > 60) {
+      currentDuration = currentDuration / 60;
+    }
+    dev.log(currentDuration.toString());
+    return currentDuration.toString();
   }
 
   List<LatLng> getDecodedRoute(
@@ -45,7 +61,7 @@ class RoutesUtils {
     return points;
   }
 
-  void displayRoute(List<LatLng> points,
+  Set<Polyline> displayRoute(List<LatLng> points,
       {required Set<Polyline> polyLines,
       required GoogleMapController googleMapController}) {
     polyLines.removeWhere((polyLine) => polyLine.polylineId.value == 'route');
@@ -59,7 +75,9 @@ class RoutesUtils {
     polyLines.add(route);
 
     LatLngBounds bounds = getLatLngBounds(points);
-    googleMapController.animateCamera(CameraUpdate.newLatLngBounds(bounds, 32));
+    googleMapController
+        .animateCamera(CameraUpdate.newLatLngBounds(bounds, 130));
+    return polyLines;
   }
 
   LatLngBounds getLatLngBounds(List<LatLng> points) {

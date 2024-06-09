@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
+import 'package:yallanow/Core/utlis/functions/ChooseAddress.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/AddressesView.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 
 class HomeAddressOption extends StatelessWidget {
   const HomeAddressOption({
@@ -24,7 +21,7 @@ class HomeAddressOption extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AddressesView()));
         } else {
-          chooseCurrentLocation(context);
+          checkUserAddresses(context);
         }
       },
       shape: OutlineInputBorder(
@@ -38,41 +35,5 @@ class HomeAddressOption extends StatelessWidget {
         style: AppStyles.styleMedium16(context).copyWith(color: scColor),
       ),
     );
-  }
-
-  void chooseCurrentLocation(BuildContext context) async {
-    var locatioState = BlocProvider.of<ScooterLocationCubit>(context).state;
-    if (locatioState is ScooterLocationGetLocation) {
-      var location =
-          BlocProvider.of<ScooterLocationCubit>(context).locationDetails;
-
-      UserAddressesDetailsModel address = UserAddressesDetailsModel(
-        city: location?.subAdministrativeArea,
-        street: "${location?.thoroughfare} - ${location?.subThoroughfare}",
-      );
-      BlocProvider.of<HomeAddressCubit>(context)
-          .chooseAddress(address: address);
-      Navigator.pop(context);
-    } else {
-      await BlocProvider.of<ScooterLocationCubit>(context)
-          .getMyCurrentPosition();
-
-      // After getting the current position, get the location details
-      var locationState = BlocProvider.of<ScooterLocationCubit>(context).state;
-      if (locationState is ScooterLocationGetLocation) {
-        var location =
-            BlocProvider.of<ScooterLocationCubit>(context).locationDetails;
-
-        UserAddressesDetailsModel address = UserAddressesDetailsModel(
-          city: location?.subAdministrativeArea,
-          street: "${location?.thoroughfare} - ${location?.subThoroughfare}",
-        );
-        BlocProvider.of<HomeAddressCubit>(context)
-            .chooseAddress(address: address);
-        Navigator.pop(context);
-      } else {
-        // Handle if location details are not available
-      }
-    }
   }
 }

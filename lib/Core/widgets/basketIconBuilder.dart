@@ -13,29 +13,25 @@ class BasketIconBuilder extends StatelessWidget {
     return IconButton(
       icon: BlocBuilder<BasketManagerCubit, BasketManagerState>(
         builder: (context, state) {
-          if (state is BasketManagerAdd) {
-            return Badge(
-              label: Text(state.items.length.toString()),
-              child: const Icon(
+          if (state is BasketManagerChange) {
+            if (state.items.isEmpty) {
+              return const Icon(
                 Icons.shopping_cart_outlined,
                 color: Color(0xff240301),
-              ),
-            );
-          } else if (state is BasketManagerDelete) {
-            return Badge(
-              label: Text(state.items.length.toString()),
-              child: const Icon(
-                Icons.shopping_cart_outlined,
-                color: Color(0xff240301),
-              ),
-            );
+              );
+            } else {
+              return Badge(
+                label: Text(state.items.length.toString()),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Color(0xff240301),
+                ),
+              );
+            }
           } else {
-            return const Badge(
-              label: Text("0"),
-              child: Icon(
-                Icons.shopping_cart_outlined,
-                color: Color(0xff240301),
-              ),
+            return const Icon(
+              Icons.shopping_cart_outlined,
+              color: Color(0xff240301),
             );
           }
         },

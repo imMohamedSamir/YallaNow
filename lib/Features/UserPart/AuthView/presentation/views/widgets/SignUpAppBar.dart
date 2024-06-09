@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
-AppBar CustomAppBar(BuildContext context,
+AppBar customAppBar(BuildContext context,
     {required String title, required void Function()? onPressed}) {
   return AppBar(
     // shadowColor: Colors.green,

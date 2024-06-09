@@ -21,23 +21,31 @@ class ScooterRideMap extends StatelessWidget {
                 : const CameraPosition(target: defaultLocation, zoom: 10);
         // Return the GoogleMap wrapped with a BlocListener
         return GoogleMap(
-          onCameraIdle: () {
-            if (position1 != null) {
-              BlocProvider.of<ScooterLocationCubit>(context)
-                  .handleCameraMove(position: position1!);
-            }
-          },
-          onCameraMove: (position) {
-            position1 = position;
-          },
+          // onCameraIdle: () {
+          //   if (position1 != null) {
+          //     BlocProvider.of<ScooterLocationCubit>(context)
+          //         .handleCameraMove(position: position1!);
+          //   }
+          // },
+          // onCameraMove: (position) {
+          //   position1 = position;
+          // },
           onMapCreated: (controller) {
-            context.read<ScooterLocationCubit>().setMapController(controller);
+            BlocProvider.of<ScooterLocationCubit>(context)
+                .setMapController(controller);
             BlocProvider.of<ScooterLocationCubit>(context).updateMyLocation();
           },
           zoomControlsEnabled: false,
           initialCameraPosition: initialCameraPosition,
-          polylines: state is ScooterLocationGetRoutes ? state.polyLines : {},
-          markers: state is ScooterLocationSuccess ? state.markers : {},
+          // cameraTargetBounds:
+          //     BlocProvider.of<ScooterLocationCubit>(context).appCamerabounds,
+          polylines:
+              state is ScooterLocationChange ? state.polyLines ?? {} : {},
+          markers: state is ScooterLocationChange ? state.markers ?? {} : {},
+          myLocationEnabled: true,
+          compassEnabled: false,
+          myLocationButtonEnabled: false,
+          mapType: MapType.normal,
         );
       },
     );

@@ -35,7 +35,7 @@ class MarketCategoriesCard extends StatelessWidget {
                   child: SizedBox(
                     width: AppSizes.getWidth(85, context),
                     child: Text(marketCategoriesModel.name!,
-                        style: AppStyles.styleMedium12(context)
+                        style: AppStyles.styleMedium14(context)
                             .copyWith(color: const Color(0xff5A5A5A))),
                   )),
               const SizedBox(height: 6),

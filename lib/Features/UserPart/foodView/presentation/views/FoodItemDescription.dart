@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemQyt.dart';
 
 class FoodItemDescription extends StatelessWidget {
   const FoodItemDescription({super.key, this.item});
-  final Item? item;
+  final FoodItem? item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,11 +26,11 @@ class FoodItemDescription extends StatelessWidget {
                   style: AppStyles.styleRegular16(context)
                       .copyWith(color: const Color(0xff5A5A5A))),
               const SizedBox(height: 6),
-              BlocBuilder<BasketManagerCubit, BasketManagerState>(
+              BlocBuilder<ItemPageCubit, ItemPageState>(
                 builder: (context, state) {
-                  if (state is BasketManagerChangeQty) {
+                  if (state is ItemPageChange) {
                     return Text(
-                      "${state.price} EGP",
+                      "${state.updatedPrice} EGP",
                       style: AppStyles.styleRegular14(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                     );

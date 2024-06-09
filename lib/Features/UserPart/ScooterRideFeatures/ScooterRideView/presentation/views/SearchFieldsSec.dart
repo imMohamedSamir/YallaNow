@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/data/models/place_autocomplete_model/place_autocomplete_model.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 
 class SearchFieldsSec extends StatelessWidget {
@@ -11,13 +10,17 @@ class SearchFieldsSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AutoCompletePlacesCubit>(context)
+        .setSourceTextController(context);
     return Column(
       children: [
         CustomTextField(
           controller: BlocProvider.of<AutoCompletePlacesCubit>(context)
-              .textEditingController,
-          hintText: "enter current place",
-          prefixIcon: Icon(Icons.my_location_rounded),
+              .sourceTextController,
+          focusNode:
+              BlocProvider.of<AutoCompletePlacesCubit>(context).sourceFocusNode,
+          hintText: "Enter current place",
+          prefixIcon: const Icon(Icons.my_location_rounded),
           onChanged: (value) {
             if (value.isNotEmpty) {
               BlocProvider.of<AutoCompletePlacesCubit>(context)
@@ -28,14 +31,22 @@ class SearchFieldsSec extends StatelessWidget {
           },
         ),
         const SizedBox(height: 16),
-        // CustomTextField(
-        //   hintText: "Where to?",
-        //   prefixIcon: Icon(Icons.location_on_outlined),
-        //   controller: textEditingController, // Reuse the same controller
-        //   onChanged: (value) {
-        //     // Handle text field changes if needed
-        //   },
-        // ),
+        CustomTextField(
+          controller: BlocProvider.of<AutoCompletePlacesCubit>(context)
+              .distanceTextController,
+          focusNode: BlocProvider.of<AutoCompletePlacesCubit>(context)
+              .destinationFocusNode,
+          hintText: "Where to?",
+          prefixIcon: const Icon(Icons.location_on_outlined),
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              BlocProvider.of<AutoCompletePlacesCubit>(context)
+                  .getPlaces(input: value);
+            } else {
+              BlocProvider.of<AutoCompletePlacesCubit>(context).clearPlaces();
+            }
+          },
+        ),
       ],
     );
   }

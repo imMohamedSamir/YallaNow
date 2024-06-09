@@ -7,10 +7,8 @@ class ResultsPlacesSec extends StatelessWidget {
   const ResultsPlacesSec({
     super.key,
     required this.places,
-    required this.textEditingController,
   });
   final List<PlaceModel> places;
-  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,6 @@ class ResultsPlacesSec extends StatelessWidget {
         const SizedBox(height: 16),
         ResultplacesView(
           places: places,
-          textEditingController: textEditingController,
         )
       ],
     );

@@ -19,6 +19,7 @@ class ExtraAdapter extends TypeAdapter<Extra> {
     return Extra(
       name: fields[0] as String?,
       price: fields[1] as num?,
+      quantity: fields[3] as int?,
       description: fields[2] as String?,
     );
   }
@@ -26,13 +27,15 @@ class ExtraAdapter extends TypeAdapter<Extra> {
   @override
   void write(BinaryWriter writer, Extra obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.price)
       ..writeByte(2)
-      ..write(obj.description);
+      ..write(obj.description)
+      ..writeByte(3)
+      ..write(obj.quantity);
   }
 
   @override

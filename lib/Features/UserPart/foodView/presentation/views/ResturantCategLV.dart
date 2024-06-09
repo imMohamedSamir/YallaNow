@@ -4,7 +4,7 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/Resturant
 
 class ResturantCategLV extends StatelessWidget {
   const ResturantCategLV({super.key, required this.items});
-  final List<Item> items;
+  final List<FoodItem> items;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

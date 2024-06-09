@@ -18,7 +18,7 @@ class FoodViewBody extends StatelessWidget {
         slivers: [
           const SliverPadding(
             padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+            sliver: SliverToBoxAdapter(child: FoodSearchBar()),
           ),
           const SliverPadding(
             padding: EdgeInsets.only(top: 12),

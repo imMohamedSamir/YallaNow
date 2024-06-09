@@ -4,7 +4,7 @@ class Menu {
   String? menuId;
   String? menuName;
   String? menuImageUrl;
-  List<Item>? items;
+  List<FoodItem>? items;
 
   Menu({this.menuId, this.menuName, this.menuImageUrl, this.items});
 
@@ -13,7 +13,7 @@ class Menu {
         menuName: json['menuName'] as String?,
         menuImageUrl: json['menuImageUrl'] as String?,
         items: (json['items'] as List<dynamic>?)
-            ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => FoodItem.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 

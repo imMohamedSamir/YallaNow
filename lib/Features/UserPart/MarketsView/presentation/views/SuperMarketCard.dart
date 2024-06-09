@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/marts_model.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
-import 'package:yallanow/main.dart';
 
 class SuperMarketCard extends StatelessWidget {
   const SuperMarketCard({super.key, required this.martsModel});
@@ -17,13 +15,13 @@ class SuperMarketCard extends StatelessWidget {
       height: AppSizes.getHeight(92, context),
       child: ListTile(
         onTap: () {
-          BlocProvider.of<MartDetailsCubit>(context)
-              .getMartsDetails(martID: martsModel.id!);
+          savePartnerId(id: martsModel.id!, type: 1);
           Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => MarketPage(
                   martName: martsModel.name!,
+                  martID: martsModel.id,
                 ),
               ));
         },

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
 
 class PharmacyDescription extends StatelessWidget {
-  const PharmacyDescription({super.key});
+  const PharmacyDescription({super.key, required this.pharmacy});
+  final PharmacyModel pharmacy;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,9 @@ class PharmacyDescription extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Elezaby", style: AppStyles.styleSemiBold20(context)),
+            Text(pharmacy.name!, style: AppStyles.styleSemiBold20(context)),
             const SizedBox(height: 4),
-            Text("Pahrmacy type description",
+            Text(pharmacy.describtion!,
                 style: AppStyles.styleRegular16(context)
                     .copyWith(color: const Color(0xff5A5A5A))),
             const SizedBox(height: 6),
@@ -26,7 +28,8 @@ class PharmacyDescription extends StatelessWidget {
                     color: const Color(0xff5A5A5A),
                     size: AppSizes.getHeight(14, context)),
                 const SizedBox(width: 4),
-                Text("20 min", style: AppStyles.styleRegular10(context)),
+                Text("${pharmacy.deliveryTime} min",
+                    style: AppStyles.styleRegular10(context)),
                 const SizedBox(width: 18),
                 Image.asset(
                   Assets.imagesMotorbike,
@@ -34,7 +37,8 @@ class PharmacyDescription extends StatelessWidget {
                   height: AppSizes.getHeight(14, context),
                 ),
                 const SizedBox(width: 4),
-                Text("Free", style: AppStyles.styleRegular10(context))
+                Text("${pharmacy.deliveryFees} EGP",
+                    style: AppStyles.styleRegular10(context))
               ],
             ),
           ],
@@ -46,7 +50,8 @@ class PharmacyDescription extends StatelessWidget {
           size: AppSizes.getWidth(14, context),
         ),
         const SizedBox(width: 4),
-        Text("4.5 (700) Ratings ", style: AppStyles.styleRegular10(context)),
+        Text("${pharmacy.rate} (700) Ratings ",
+            style: AppStyles.styleRegular10(context)),
       ],
     );
   }

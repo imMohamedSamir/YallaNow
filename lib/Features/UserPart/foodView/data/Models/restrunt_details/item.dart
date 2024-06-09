@@ -1,7 +1,7 @@
 import 'extra.dart';
 import 'size.dart';
 
-class Item {
+class FoodItem {
   String? itemId;
   String? itemName;
   String? itemDescription;
@@ -10,7 +10,7 @@ class Item {
   List<Extra>? extras;
   List<ItemSize>? sizes;
 
-  Item({
+  FoodItem({
     this.itemId,
     this.itemName,
     this.itemDescription,
@@ -20,7 +20,7 @@ class Item {
     this.sizes,
   });
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory FoodItem.fromJson(Map<String, dynamic> json) => FoodItem(
         itemId: json['itemId'] as String?,
         itemName: json['itemName'] as String?,
         itemDescription: json['itemDescription'] as String?,

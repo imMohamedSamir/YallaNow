@@ -11,21 +11,36 @@ final class ScooterLocationInitial extends ScooterLocationState {}
 
 final class ScooterLocationLoading extends ScooterLocationState {}
 
+final class ScooterLocationFailuer extends ScooterLocationState {
+  final String errmsg;
+
+  const ScooterLocationFailuer({required this.errmsg});
+}
+
 final class ScooterLocationSuccess extends ScooterLocationState {
   final LatLng locationData;
   final Set<Marker> markers;
 
-  ScooterLocationSuccess({required this.locationData, required this.markers});
+  const ScooterLocationSuccess(
+      {required this.locationData, required this.markers});
+}
+
+final class ScooterLocationChange extends ScooterLocationState {
+  final Set<Polyline>? polyLines;
+  final Set<Marker>? markers;
+  final bool? isUpdateed;
+  const ScooterLocationChange(
+      {this.markers, this.polyLines, this.isUpdateed = false});
 }
 
 final class ScooterLocationGetLocation extends ScooterLocationState {
   final Placemark locationData;
 
-  ScooterLocationGetLocation({required this.locationData});
+  const ScooterLocationGetLocation({required this.locationData});
 }
 
 final class ScooterLocationGetRoutes extends ScooterLocationState {
   final Set<Polyline> polyLines;
 
-  ScooterLocationGetRoutes({required this.polyLines});
+  const ScooterLocationGetRoutes({required this.polyLines});
 }

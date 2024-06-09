@@ -15,10 +15,8 @@ class LoginView extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(getIt.get<AuthRepoImpl>()),
       child: Scaffold(
-        appBar:
-            CustomAppBar(context, title: S.of(context).SignIn, onPressed: () {
-          Navigator.pop(context);
-        }),
+        appBar: customAppBar(context,
+            title: S.of(context).SignIn, onPressed: () {}),
         body: const LoginViewBody(),
       ),
     );

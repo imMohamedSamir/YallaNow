@@ -46,3 +46,33 @@ void goToOptionPage({required int index, required BuildContext context}) {
       break;
   }
 }
+
+void deliveryGoToOptionPage(
+    {required int index, required BuildContext context}) {
+  switch (index) {
+    case 0:
+      // Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) => const EditProfilePage()));
+      break;
+    case 1:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const LanguagePage()));
+      break;
+    case 2:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const HelpCenterPage()));
+      break;
+    case 3:
+      // Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) => const AddressesView()));
+      break;
+
+    case 7:
+      shareApp();
+      break;
+    // Add cases for other indexes as needed
+    default:
+      // Handle the default case if needed
+      break;
+  }
+}

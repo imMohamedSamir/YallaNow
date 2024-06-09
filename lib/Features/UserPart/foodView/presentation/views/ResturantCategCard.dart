@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemPage.dart';
 
 class ResturantCategCard extends StatelessWidget {
   const ResturantCategCard({super.key, required this.item});
-  final Item item;
+  final FoodItem item;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodItemPage(item: item),
-            ));
+        NavigateToPage.slideFromBottom(
+            context: context, page: FoodItemPage(item: item));
         BlocProvider.of<BasketManagerCubit>(context).unitPrice =
             item.itemPrice!;
       },

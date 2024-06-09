@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/data/models/OrdersCardModel.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardBody.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardHeader.dart';
@@ -31,20 +32,9 @@ class OrderCard extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: const Duration(milliseconds: 200),
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: OrderDetailsPage(
-                            ordersCardModel: ordersCardModel,
-                          ),
-                        );
-                      },
-                    ),
-                  );
+                  NavigateToPage.fading(
+                      context: context,
+                      page: OrderDetailsPage(ordersCardModel: ordersCardModel));
                 },
                 child: Text("View details",
                     style: AppStyles.styleMedium16(context)

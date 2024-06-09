@@ -9,12 +9,15 @@ class Extra extends HiveObject {
   num? price;
   @HiveField(2)
   String? description;
+  @HiveField(3)
+  int? quantity;
 
-  Extra({this.name, this.price, this.description});
+  Extra({this.name, this.price, this.quantity, this.description});
 
   factory Extra.fromJson(Map<String, dynamic> json) => Extra(
         name: json['name'] as String?,
         price: json['price'] as num?,
+        quantity: json['quantity'] as int?,
         description: json['description'] as String?,
       );
 
@@ -22,5 +25,6 @@ class Extra extends HiveObject {
         'name': name,
         'price': price,
         'description': description,
+        'quantity': quantity
       };
 }

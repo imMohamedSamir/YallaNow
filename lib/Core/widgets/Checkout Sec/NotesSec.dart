@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 
 class NotesSec extends StatelessWidget {
@@ -32,7 +34,14 @@ class NotesSec extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        const CustomTextField(hintText: "Add notes")
+        CustomTextField(
+          hintText: "Add notes",
+          onSaved: (value) {
+            BlocProvider.of<PlaceOrderCubit>(context)
+                .checkoutdetails
+                .orderNotes = value ?? "thank you";
+          },
+        )
       ],
     );
   }

@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/ExtarType
 
 class FoodItemExtras extends StatelessWidget {
   const FoodItemExtras({super.key, required this.item});
-  final Item item;
+  final FoodItem item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +37,10 @@ class FoodItemExtras extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          ExtarType(item: item),
+          ExtraBody(
+            extras: item.extras ?? [],
+            itemID: item.itemId!,
+          ),
         ],
       ),
     );

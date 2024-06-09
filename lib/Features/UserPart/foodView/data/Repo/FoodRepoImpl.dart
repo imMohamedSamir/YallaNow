@@ -8,6 +8,7 @@ import 'package:yallanow/Features/UserPart/foodView/data/Models/popular_food_cat
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/restrunt_details.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/top_categ_resturant.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepo.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/search_result_model.dart';
 
 class FoodRepoImpl implements FoodRepo {
   final YallaNowServices yallaNowServices;
@@ -85,6 +86,32 @@ class FoodRepoImpl implements FoodRepo {
       return right(resturants);
     } catch (e) {
       log(e.toString());
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<SearchResultModel>>> fetchSearch(
+      {required String input}) async {
+    String endPoint = "FoodHome/search?query=$input";
+    try {
+      var response = await yallaNowServices.get(endPoint: endPoint);
+      List<SearchResultModel> results = [];
+      for (var result in response) {
+        results.add(SearchResultModel.fromJson(result));
+      }
+      return right(results);
+    } catch (e) {
       if (e is DioException) {
         return left(
           ServerFailure.fromDioError(e.type),

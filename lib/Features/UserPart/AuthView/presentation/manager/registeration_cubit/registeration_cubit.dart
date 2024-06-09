@@ -23,47 +23,47 @@ class RegisterationCubit extends Cubit<RegisterationState> {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  void phoneVerificationFetch(
-      {required String phoneNumber,
-      required BuildContext context,
-      bool isRest = false}) async {
-    await auth.verifyPhoneNumber(
-        phoneNumber: "+2$phoneNumber",
-        ////////verificationComplete//////////////////
-        verificationCompleted: (PhoneAuthCredential credential) async {},
-        ////////verificationFailed//////////////////
-        verificationFailed: (FirebaseAuthException e) {
-          if (e.code == 'invalid-phone-number') {
-            log('The provided phone number is not valid.');
-          }
-          log("code: ${e.message}");
-        },
-        ////////codeSent//////////////////
-        codeSent: (String verificationId, int? resendToken) async {
-          if (!isRest) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PhoneVerification(
-                  verificationId: verificationId,
-                  isRest: isRest,
-                ),
-              ),
-            );
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ForgetPasswordVerify(
-                  verificationId: verificationId,
-                  endOfNumber: phoneNumber.substring(phoneNumber.length - 2),
-                ),
-              ),
-            );
-          }
-        },
-        ///////////codeAutoRetrievalTimeout//////////////
-        codeAutoRetrievalTimeout: (String verificationId) {},
-        timeout: const Duration(seconds: 50));
-  }
+  // void phoneVerificationFetch(
+  //     {required String phoneNumber,
+  //     required BuildContext context,
+  //     bool isRest = false}) async {
+  //   await auth.verifyPhoneNumber(
+  //       phoneNumber: "+2$phoneNumber",
+  //       ////////verificationComplete//////////////////
+  //       verificationCompleted: (PhoneAuthCredential credential) async {},
+  //       ////////verificationFailed//////////////////
+  //       verificationFailed: (FirebaseAuthException e) {
+  //         if (e.code == 'invalid-phone-number') {
+  //           log('The provided phone number is not valid.');
+  //         }
+  //         log("code: ${e.message}");
+  //       },
+  //       ////////codeSent//////////////////
+  //       codeSent: (String verificationId, int? resendToken) async {
+  //         if (!isRest) {
+  //           // Navigator.push(
+  //           //   context,
+  //           //   MaterialPageRoute(
+  //           //     builder: (context) => PhoneVerification(
+  //           //       verificationId: verificationId,
+  //           //       isRest: isRest,
+  //           //     ),
+  //           //   ),
+  //           // );
+  //         } else {
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => ForgetPasswordVerify(
+  //                 verificationId: verificationId,
+  //                 endOfNumber: phoneNumber.substring(phoneNumber.length - 2),
+  //               ),
+  //             ),
+  //           );
+  //         }
+  //       },
+  //       ///////////codeAutoRetrievalTimeout//////////////
+  //       codeAutoRetrievalTimeout: (String verificationId) {},
+  //       timeout: const Duration(seconds: 50));
+  // }
 }

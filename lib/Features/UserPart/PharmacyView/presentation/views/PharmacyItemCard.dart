@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryAddIcon.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_details_model/PharmacyItem.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyAddIcon.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantSecondAppBar.dart';
 
 class PharmacyItemCard extends StatelessWidget {
   const PharmacyItemCard({
     super.key,
+    required this.item,
   });
+  final PharmacyItem item;
   @override
   Widget build(BuildContext context) {
+    String url = item.imageUrl!.replaceAll('\\', '/');
+
     return Expanded(
       child: Container(
         width: AppSizes.getWidth(148, context),
@@ -24,12 +31,15 @@ class PharmacyItemCard extends StatelessWidget {
               right: 14,
               child: AspectRatio(
                 aspectRatio: 1.1,
-                child: Image.asset(
-                  Assets.imagesMedicin,
+                child: CachedNetworkImage(
+                  imageUrl: url,
+                  placeholder: (context, url) => const LoadingImg(),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error, color: pKcolor),
                 ),
               ),
             ),
-            const Positioned(right: 7, bottom: 7, child: GroceryAddIcon())
+            Positioned(right: 7, bottom: 7, child: PharmacyAddIcon(item: item))
           ],
         ),
       ),

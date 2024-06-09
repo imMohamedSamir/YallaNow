@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/QytIconButton.dart';
 
 class FoodItemQyt extends StatefulWidget {
   const FoodItemQyt({super.key, this.currentnumber, this.item, this.item2});
   final int? currentnumber;
-  final Item? item;
+  final FoodItem? item;
   final SelectedItemsModel? item2;
   @override
   State<FoodItemQyt> createState() => _FoodItemQytState();
@@ -29,13 +30,13 @@ class _FoodItemQytState extends State<FoodItemQyt> {
     super.initState();
   }
 
-  void changeqtyMethod({required int qty}) {
+  void changeqtyMethod({required int qty, bool add = true}) {
     if (widget.item != null) {
-      BlocProvider.of<BasketManagerCubit>(context)
-          .changeQty(itemID: widget.item!.itemId!, number: qty);
+      BlocProvider.of<ItemPageCubit>(context)
+          .changeQty(itemID: widget.item!.itemId!, number: qty, add: add);
     } else {
       BlocProvider.of<BasketManagerCubit>(context)
-          .changeQty(itemID: widget.item2!.itemID!, number: qty);
+          .changeQty(itemId: widget.item2!.itemID!, number: qty);
     }
   }
 
@@ -51,7 +52,7 @@ class _FoodItemQytState extends State<FoodItemQyt> {
           onTap: () {
             if (number > 1) {
               number--;
-              changeqtyMethod(qty: number);
+              changeqtyMethod(qty: number, add: false);
 
               setState(() {});
             }
@@ -70,7 +71,7 @@ class _FoodItemQytState extends State<FoodItemQyt> {
           color: const Color(0xffB20404),
           onTap: () {
             number++;
-            changeqtyMethod(qty: number);
+            changeqtyMethod(qty: number, add: true);
 
             setState(() {});
           },

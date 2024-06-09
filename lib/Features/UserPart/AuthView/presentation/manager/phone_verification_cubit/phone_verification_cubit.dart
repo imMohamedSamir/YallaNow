@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/ResetPassword.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 
@@ -37,7 +38,7 @@ class PhoneVerificationCubit extends Cubit<PhoneVerificationState> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const MainHomeView(),
+            builder: (context) => const LoginView(),
           ),
         );
       }

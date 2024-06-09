@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
-import 'package:yallanow/Core/widgets/Checkout%20Sec/PaymentMethods.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverPaymentMethodsTile.dart';
 
 class RidePaymentBody extends StatelessWidget {
   const RidePaymentBody({super.key});
@@ -20,7 +18,7 @@ class RidePaymentBody extends StatelessWidget {
               style: AppStyles.styleSemiBold16(context)
                   .copyWith(color: const Color(0xff240301))),
           const SizedBox(height: 16),
-          const PaymentMethodsTile(),
+          const DriverPaymentMethodsTile(),
           const Spacer(),
           CustomButton(
               text: "Choose",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryListView.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/PopularMartsLV.dart';
 
 class GrocerySec extends StatelessWidget {
   const GrocerySec({super.key});
@@ -10,9 +10,9 @@ class GrocerySec extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Grocery', style: AppStyles.styleMedium16(context)),
+        Text('Popular Marts', style: AppStyles.styleMedium16(context)),
         const SizedBox(height: 16),
-        const GroceryListView()
+        const PopularMartsLV()
       ],
     );
   }

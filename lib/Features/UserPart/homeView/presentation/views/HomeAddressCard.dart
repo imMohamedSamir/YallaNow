@@ -18,7 +18,7 @@ class HomeAddressCard extends StatelessWidget {
         child: ListTile(
           onTap: () {
             BlocProvider.of<HomeAddressCubit>(context)
-                .chooseAddress(address: address);
+                .selecteAddress(address: address);
             Navigator.pop(context);
           },
           shape: OutlineInputBorder(

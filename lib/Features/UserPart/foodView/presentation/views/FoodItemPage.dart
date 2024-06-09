@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodItemDescription.dart';
@@ -11,33 +12,52 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/ItemPageB
 
 class FoodItemPage extends StatelessWidget {
   const FoodItemPage({super.key, this.item});
-  final Item? item;
+  final FoodItem? item;
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<BasketManagerCubit>(context).sizeSelected = false;
-    BlocProvider.of<BasketManagerCubit>(context).createItem(
+
+    return BlocProvider(
+      create: (context) => ItemPageCubit(),
+      child: Scaffold(
+          backgroundColor: const Color(0xffF5F5F5),
+          body: FoodItemPageBody(item: item),
+          bottomNavigationBar: ItemPageBottomBar(itemId: item?.itemId)),
+    );
+  }
+}
+
+class FoodItemPageBody extends StatelessWidget {
+  const FoodItemPageBody({
+    super.key,
+    required this.item,
+  });
+
+  final FoodItem? item;
+
+  @override
+  Widget build(BuildContext context) {
+    BlocProvider.of<ItemPageCubit>(context).createItem(
         itemsModel: SelectedItemsModel(
             itemID: item!.itemId,
+            partnerType: 2,
             name: item!.itemName!,
             price: item!.itemPrice.toString(),
             img: item!.itemImageUrl!));
-    return Scaffold(
-        backgroundColor: const Color(0xffF5F5F5),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              FoodItemAppBar(
-                itemId: item!.itemId!,
-                img: item!.itemImageUrl!,
-              ),
-              FoodItemDescription(item: item),
-              const SizedBox(height: 10),
-              FoodItemSize(item: item!),
-              const SizedBox(height: 10),
-              FoodItemExtras(item: item!)
-            ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          FoodItemAppBar(
+            itemId: item!.itemId!,
+            img: item!.itemImageUrl!,
           ),
-        ),
-        bottomNavigationBar: ItemPageBottomBar(item: item!));
+          FoodItemDescription(item: item),
+          const SizedBox(height: 10),
+          FoodItemSize(item: item!),
+          const SizedBox(height: 10),
+          FoodItemExtras(item: item!)
+        ],
+      ),
+    );
   }
 }

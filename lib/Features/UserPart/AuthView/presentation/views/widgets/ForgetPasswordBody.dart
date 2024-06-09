@@ -53,11 +53,11 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                   var isPhone = phoneOrMailCheck(emailOrPassword);
                   log(isPhone.toString());
                   if (isPhone ?? false) {
-                    BlocProvider.of<RegisterationCubit>(context)
-                        .phoneVerificationFetch(
-                            phoneNumber: emailOrPassword!,
-                            context: context,
-                            isRest: true);
+                    // BlocProvider.of<RegisterationCubit>(context)
+                    //     .phoneVerificationFetch(
+                    //         phoneNumber: emailOrPassword!,
+                    //         context: context,
+                    //         isRest: true);
                   }
                 }
               },

@@ -16,7 +16,7 @@ class Onboardingscreen1 extends StatefulWidget {
 class _Onboardingscreen1State extends State<Onboardingscreen1> {
   late PageController pageController;
   int currentPageIndex = 0;
-
+  @override
   void initState() {
     pageController = PageController();
     pageController.addListener(() {

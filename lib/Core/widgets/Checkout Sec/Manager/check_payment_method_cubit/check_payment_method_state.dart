@@ -11,6 +11,20 @@ final class CheckPaymentMethodInitial extends CheckPaymentMethodState {}
 
 final class CheckPaymentMethodSuccess extends CheckPaymentMethodState {}
 
-final class CheckPaymentMethodLoading extends CheckPaymentMethodState {}
+final class CheckPaymentMethodFailuer extends CheckPaymentMethodState {
+  final String errMsg;
 
-final class CheckPaymentMethodCreditMethod extends CheckPaymentMethodState {}
+  const CheckPaymentMethodFailuer({required this.errMsg});
+}
+
+final class CheckPaymentMethodChange extends CheckPaymentMethodState {
+  final String methode;
+
+  const CheckPaymentMethodChange({required this.methode});
+}
+
+final class CheckPaymentMethodLoading extends CheckPaymentMethodState {
+  final String? methode;
+
+  const CheckPaymentMethodLoading({this.methode});
+}

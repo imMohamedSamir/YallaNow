@@ -18,6 +18,8 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
     };
     return SelectedItemsModel(
       itemID: fields[4] as String?,
+      partnerID: fields[7] as String?,
+      partnerType: fields[8] as int?,
       name: fields[0] as String,
       price: fields[1] as String,
       img: fields[2] as String,
@@ -30,7 +32,7 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
   @override
   void write(BinaryWriter writer, SelectedItemsModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -44,7 +46,11 @@ class SelectedItemsModelAdapter extends TypeAdapter<SelectedItemsModel> {
       ..writeByte(5)
       ..write(obj.size)
       ..writeByte(6)
-      ..write(obj.extras);
+      ..write(obj.extras)
+      ..writeByte(7)
+      ..write(obj.partnerID)
+      ..writeByte(8)
+      ..write(obj.partnerType);
   }
 
   @override

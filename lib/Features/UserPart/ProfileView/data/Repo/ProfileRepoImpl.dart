@@ -17,12 +17,13 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<Failure, UserProfileDetails>> fetchUserDetails() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(token);
+    usertoken = prefs.getString(savedToken);
     log(usertoken.toString());
     String endPoint = "UserProfile/User";
     try {
-      var response =
-          await yallaNowServices.get(endPoint: endPoint, token: usertoken);
+      var response = await yallaNowServices.get(
+        endPoint: endPoint,
+      );
 
       return right(UserProfileDetails.fromJson(response));
     } catch (e) {

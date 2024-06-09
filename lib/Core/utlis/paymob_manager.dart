@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class PaymobManager {
-  Future<String> getPaymentKey(
+  Future<Either<Failure, String>> getPaymentKey(
       {required int amount, String currency = "EGP"}) async {
     try {
       String authanticationToken = await _getAuthanticationToken();
@@ -19,11 +21,23 @@ class PaymobManager {
         currency: currency,
         orderId: orderId.toString(),
       );
-      return paymentKey;
+      return right(paymentKey);
     } catch (e) {
-      print("Exc==========================================");
-      print(e.toString());
-      throw Exception();
+      if (e is DioException) {
+        // log(e.toString());
+        final statusCode = e.response?.statusCode;
+        final response = e.response?.data;
+
+        return left(
+          ServerFailure.fromResponse(statusCode, response),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
     }
   }
 

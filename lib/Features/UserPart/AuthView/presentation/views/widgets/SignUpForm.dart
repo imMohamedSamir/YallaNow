@@ -21,7 +21,6 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: _formKey,
       child: Column(
         children: [
@@ -59,6 +58,22 @@ class _SignupFormState extends State<SignupForm> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 16),
+          CustomTextField(
+            hintText: "User Name",
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'Please enter your user name';
+              }
+
+              return null;
+            },
+            onSaved: (value) {
+              registerModel.username = value!.trim();
+            },
           ),
           const SizedBox(height: 16),
           CustomTextField(

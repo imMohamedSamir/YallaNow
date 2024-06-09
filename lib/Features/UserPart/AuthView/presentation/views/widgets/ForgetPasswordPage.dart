@@ -13,7 +13,7 @@ class ForgetPasswordPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => RegisterationCubit(getIt.get<AuthRepoImpl>()),
       child: Scaffold(
-        appBar: CustomAppBar(context, title: "Forget password ", onPressed: () {
+        appBar: customAppBar(context, title: "Forget password ", onPressed: () {
           Navigator.pop(context);
         }),
         body: const ForgetPasswordBody(),

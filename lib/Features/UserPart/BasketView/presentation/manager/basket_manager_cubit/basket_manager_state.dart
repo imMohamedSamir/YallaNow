@@ -11,51 +11,14 @@ final class BasketManagerInitial extends BasketManagerState {}
 
 final class BasketManagerLoading extends BasketManagerState {}
 
-final class BasketManagerAdd extends BasketManagerState {
+final class BasketManagerChange extends BasketManagerState {
   final List<SelectedItemsModel> items;
-  final String totalPrice, totalpriceDetails;
-  const BasketManagerAdd({
+  final String? totalPrice, priceDetails;
+  final bool isConfirmed;
+  const BasketManagerChange({
     required this.items,
-    required this.totalPrice,
-    required this.totalpriceDetails,
+    this.totalPrice,
+    this.priceDetails,
+    this.isConfirmed = true,
   });
-}
-
-final class BasketManagerDelete extends BasketManagerState {
-  final List<SelectedItemsModel> items;
-  final String totalPrice, totalpriceDetails;
-
-  const BasketManagerDelete({
-    required this.items,
-    required this.totalPrice,
-    required this.totalpriceDetails,
-  });
-}
-
-final class BasketManagerTotalDetails extends BasketManagerState {
-  final String totalPrice;
-
-  const BasketManagerTotalDetails({required this.totalPrice});
-}
-
-final class BasketManagerShow extends BasketManagerState {}
-
-final class BasketManagerIsSelected extends BasketManagerState {}
-
-final class BasketManagerChangeQty extends BasketManagerState {
-  final String price;
-
-  const BasketManagerChangeQty({required this.price});
-}
-
-final class BasketManagerSize extends BasketManagerState {
-  final String price;
-
-  const BasketManagerSize({required this.price});
-}
-
-final class BasketManagerFail extends BasketManagerState {
-  final String errmsg;
-
-  const BasketManagerFail({required this.errmsg});
 }

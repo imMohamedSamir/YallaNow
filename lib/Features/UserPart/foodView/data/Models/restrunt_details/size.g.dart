@@ -6,7 +6,7 @@ part of 'size.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SizeAdapter extends TypeAdapter<ItemSize> {
+class ItemSizeAdapter extends TypeAdapter<ItemSize> {
   @override
   final int typeId = 4;
 
@@ -41,7 +41,7 @@ class SizeAdapter extends TypeAdapter<ItemSize> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SizeAdapter &&
+      other is ItemSizeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

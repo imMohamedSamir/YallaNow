@@ -22,9 +22,15 @@ class SelectedItemsModel extends HiveObject {
   final ItemSize? size;
   @HiveField(6)
   final List<Extra>? extras;
+  @HiveField(7)
+  final String? partnerID;
+  @HiveField(8)
+  final int? partnerType;
 
   SelectedItemsModel({
     this.itemID,
+    this.partnerID,
+    this.partnerType,
     required this.name,
     required this.price,
     required this.img,

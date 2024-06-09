@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/RidePaymentView.dart';
 
@@ -14,11 +15,8 @@ class AvailableRidePayMethod extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const RidePaymentView(),
-            ));
+        NavigateToPage.slideFromRight(
+            context: context, page: const RidePaymentView());
       },
       child: Row(
         children: [
@@ -30,8 +28,12 @@ class AvailableRidePayMethod extends StatelessWidget {
           const SizedBox(width: 20),
           BlocBuilder<CheckPaymentMethodCubit, CheckPaymentMethodState>(
             builder: (context, state) {
-              if (state is CheckPaymentMethodCreditMethod) {
-                return Text("credit",
+              if (state is CheckPaymentMethodChange) {
+                return Text(state.methode,
+                    style: AppStyles.styleSemiBold16(context));
+              }
+              if (state is CheckPaymentMethodLoading) {
+                return Text(state.methode ?? "Cash",
                     style: AppStyles.styleSemiBold16(context));
               } else {
                 return Text("Cash", style: AppStyles.styleSemiBold16(context));

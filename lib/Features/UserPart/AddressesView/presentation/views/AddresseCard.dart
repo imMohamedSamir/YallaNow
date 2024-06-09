@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/delete_address_cubit/delete_address_cubit.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 
 class AddresseCard extends StatelessWidget {
   const AddresseCard({super.key, required this.userAddress});
@@ -25,9 +23,9 @@ class AddresseCard extends StatelessWidget {
       key: UniqueKey(),
       onDismissed: (direction) async {
         await BlocProvider.of<DeleteAddressCubit>(context).deleteAddress(
+            context,
             addressId: userAddress.id!,
             useraddressId: userAddress.contact!.id!);
-        BlocProvider.of<UserAddressesCubit>(context).getUserAddresses();
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -43,19 +41,19 @@ class AddresseCard extends StatelessWidget {
                     style: AppStyles.styleSemiBold16(context)
                         .copyWith(color: const Color(0xff240301))),
                 const Spacer(),
-                InkWell(
-                  borderRadius: BorderRadius.circular(6),
-                  onTap: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
-                      const SizedBox(width: 4),
-                      Text("Edit",
-                          style: AppStyles.styleSemiBold16(context)
-                              .copyWith(color: const Color(0xff5A5A5A)))
-                    ],
-                  ),
-                ),
+                // InkWell(
+                //   borderRadius: BorderRadius.circular(6),
+                //   onTap: () {},
+                //   child: Row(
+                //     children: [
+                //       Icon(Icons.edit, size: AppSizes.getHeight(22, context)),
+                //       const SizedBox(width: 4),
+                //       Text("Edit",
+                //           style: AppStyles.styleSemiBold16(context)
+                //               .copyWith(color: const Color(0xff5A5A5A)))
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(height: 8),

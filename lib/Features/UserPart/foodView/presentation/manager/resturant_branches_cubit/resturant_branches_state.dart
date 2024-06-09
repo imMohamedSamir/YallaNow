@@ -14,11 +14,11 @@ final class ResturantBranchesLoading extends ResturantBranchesState {}
 final class ResturantBranchesSuccess extends ResturantBranchesState {
   final RestruntDetails branchDetails;
 
-  ResturantBranchesSuccess({required this.branchDetails});
+  const ResturantBranchesSuccess({required this.branchDetails});
 }
 
 final class ResturantBranchesFailure extends ResturantBranchesState {
   final String errmsg;
 
-  ResturantBranchesFailure({required this.errmsg});
+  const ResturantBranchesFailure({required this.errmsg});
 }

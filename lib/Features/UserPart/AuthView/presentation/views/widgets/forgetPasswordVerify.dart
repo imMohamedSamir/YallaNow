@@ -13,7 +13,7 @@ class ForgetPasswordVerify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context, title: "Forget password ", onPressed: () {
+      appBar: customAppBar(context, title: "Forget password ", onPressed: () {
         Navigator.pop(context);
       }),
       body: Column(

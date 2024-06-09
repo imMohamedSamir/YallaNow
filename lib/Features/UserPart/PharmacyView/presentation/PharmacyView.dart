@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
+import 'package:yallanow/Core/widgets/MainAppBar.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacies_home_cubit/pharmacies_home_cubit.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyViewBody.dart';
 
 class PharmacyView extends StatelessWidget {
@@ -6,6 +11,11 @@ class PharmacyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const PharmacyViewBody();
+    return BlocProvider(
+      create: (context) => PharmaciesHomeCubit(getIt.get<PharmacyRepoImpl>()),
+      child: Scaffold(
+          appBar: categoryAppBar(context, title: "Pharmacy"),
+          body: const PharmacyViewBody()),
+    );
   }
 }

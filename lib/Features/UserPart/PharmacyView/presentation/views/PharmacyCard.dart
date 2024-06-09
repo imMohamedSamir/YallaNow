@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/PharmacyView/data/models/PharmacyModel.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
-import 'package:yallanow/main.dart';
 
 class PharmacyCard extends StatelessWidget {
   const PharmacyCard({super.key, required this.pharmacyModel});
   final PharmacyModel pharmacyModel;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, RoutesNames.pharmacy);
+        if (pharmacyModel.id != null) {
+          BlocProvider.of<PharmacyDetailsCubit>(context)
+              .getPharmacyDetails(context, pharmacyModel: pharmacyModel);
+        }
       },
       child: SizedBox(
         height: AppSizes.getHeight(100, context),
@@ -24,7 +28,7 @@ class PharmacyCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(pharmacyModel.img,
+                  child: Image.asset(Assets.imagesPharmacy1,
                       height: AppSizes.getHeight(100, context),
                       width: AppSizes.getWidth(100, context),
                       fit: BoxFit.fill),
@@ -34,18 +38,18 @@ class PharmacyCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(pharmacyModel.name,
+                      Text(pharmacyModel.name!,
                           style: AppStyles.styleSemiBold16(context)),
                       const SizedBox(height: 4),
-                      Text(pharmacyModel.description,
-                          style: AppStyles.styleRegular10(context)),
+                      Text(pharmacyModel.describtion!,
+                          style: AppStyles.styleRegular12(context)),
                       const SizedBox(height: 4),
                       Row(children: [
                         Icon(Icons.star_rate_rounded,
                             color: const Color(0xffFEC400),
                             size: AppSizes.getWidth(12, context)),
                         const SizedBox(width: 4),
-                        Text(pharmacyModel.rating,
+                        Text(pharmacyModel.rate.toString(),
                             style: AppStyles.styleRegular10(context))
                       ]),
                       const SizedBox(height: 4),
@@ -62,7 +66,7 @@ class PharmacyCard extends StatelessWidget {
                               width: AppSizes.getWidth(12, context),
                               height: AppSizes.getHeight(12, context)),
                           const SizedBox(width: 4),
-                          Text(pharmacyModel.deliveryPrice,
+                          Text("${pharmacyModel.deliveryFees} EGP",
                               style: AppStyles.styleRegular10(context)),
                           const Spacer(),
                         ],

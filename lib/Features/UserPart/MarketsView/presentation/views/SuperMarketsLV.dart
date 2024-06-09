@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/marts_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_home_cubit/mart_home_cubit.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsLoading.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/SuperMarketCard.dart';
 
 class SuperMarketsLV extends StatelessWidget {
@@ -31,8 +32,10 @@ class SuperMarketsLV extends StatelessWidget {
               );
             },
           );
+        } else if (state is MartHomeLoading) {
+          return const MartsLoading();
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

@@ -6,8 +6,8 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/Resturant
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
 class PharmacyAppBar extends StatelessWidget {
-  const PharmacyAppBar({super.key});
-
+  const PharmacyAppBar({super.key, required this.imgUrl});
+  final String imgUrl;
   @override
   Widget build(BuildContext context) {
     return Container(

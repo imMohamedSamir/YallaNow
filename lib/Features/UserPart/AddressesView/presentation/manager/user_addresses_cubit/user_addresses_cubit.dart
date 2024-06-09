@@ -17,7 +17,6 @@ class UserAddressesCubit extends Cubit<UserAddressesState> {
       if (addresses.isEmpty) {
         emit(UserAddressesEmpty());
       } else {
-        emit(UserAddressesLoading());
         emit(UserAddressesSuccess(addresses: addresses));
       }
     });

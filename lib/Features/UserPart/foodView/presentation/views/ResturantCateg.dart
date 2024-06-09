@@ -4,18 +4,16 @@ import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantCategLV.dart';
 
 class ResturantCateg extends StatelessWidget {
-  const ResturantCateg(
-      {super.key,
-      required this.items,
-      required this.name,
-      required this.categKey});
-  final List<Item> items;
+  const ResturantCateg({
+    super.key,
+    required this.items,
+    required this.name,
+  });
+  final List<FoodItem> items;
   final String name;
-  final GlobalKey categKey;
   @override
   Widget build(BuildContext context) {
     return Column(
-      key: categKey,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(name,
