@@ -4,21 +4,23 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/p
 class CaptinSrcDstSec extends StatelessWidget {
   const CaptinSrcDstSec({
     super.key,
+    this.src,
+    this.dst,
   });
-
+  final String? src, dst;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RiderSrcDstCard(
           isSrc: true,
-          dsc: 'Lorem ipsum dolor sit amet cesincidunt ',
+          dsc: src ?? "",
         ),
-        RiderSrcDstDivider(),
+        const RiderSrcDstDivider(),
         RiderSrcDstCard(
           isSrc: false,
-          dsc: 'Lorem ipsum dolor sit amet cesincidunt ',
+          dsc: dst ?? "",
         ),
       ],
     );

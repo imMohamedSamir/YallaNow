@@ -5,6 +5,8 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/Onboarding/presentation/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +23,7 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody>
     with TickerProviderStateMixin {
   bool? isFirstTime;
-  String? userToken;
+  String? userToken, userRole;
   late final GifController controller1;
 
   @override
@@ -35,27 +37,42 @@ class _SplashViewBodyState extends State<SplashViewBody>
     BlocProvider.of<ScooterLocationCubit>(context).getMyCurrentPosition();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
     if (isFirstTime!) {
       await prefs.setBool('isFirstTime', false);
     }
     userToken = prefs.getString(savedToken);
+    userRole = prefs.getString(savedRole);
     navigateTransition();
   }
 
   void navigateTransition() {
     controller1.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        final Widget page = isFirstTime!
-            ? const OnBoarding()
-            : userToken != null
-                ? const MainHomeView()
-                : const LoginView();
-
+        final Widget page = getPage();
         if (mounted) {
           NavigateToPage.slideFromRightandRemove(context: context, page: page);
         }
       }
     });
+  }
+
+  Widget getPage() {
+    if (isFirstTime!) {
+      return const OnBoarding();
+    } else {
+      if (userToken != null) {
+        if (userRole == "Driver") {
+          return const CaptinHomeView();
+        } else if (userRole == "User") {
+          return const MainHomeView();
+        } else {
+          return const DeliverHomeView();
+        }
+      } else {
+        return const LoginView();
+      }
+    }
   }
 
   @override

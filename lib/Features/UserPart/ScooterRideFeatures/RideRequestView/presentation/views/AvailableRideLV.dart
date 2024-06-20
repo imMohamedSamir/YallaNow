@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRideCard.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 
@@ -13,50 +14,23 @@ class AvailableRideLV extends StatefulWidget {
 
 class _AvailableRideLVState extends State<AvailableRideLV> {
   AvailableRideModel? selectedRide;
-  bool isactive = false;
   double ridePricex = 0.0, rideprice = 0.0;
-  List<AvailableRideModel> Rides = [];
+  List<AvailableRideModel> rides = [];
+
   @override
   void initState() {
-    Rides = [
+    super.initState();
+    rides = [
       AvailableRideModel(
           name: "Scooter Vehicle 1",
           price: ridePricex.toStringAsFixed(2),
-          arriveTime: "10:30",
-          distance: "20",
           img: Assets.imagesScooterVehicle1),
       AvailableRideModel(
           name: "Scooter Vehicle 2",
           price: rideprice.toStringAsFixed(2),
-          arriveTime: "10:30",
-          distance: "20",
           img: Assets.imagesScooterVehicle2),
     ];
-    super.initState();
-  }
-
-  void updateRides() {
-    setState(() {
-      Rides = [
-        AvailableRideModel(
-            name: "Scooter Vehicle 1",
-            price: ridePricex.toStringAsFixed(2),
-            arriveTime: "10:30",
-            distance: "20",
-            img: Assets.imagesScooterVehicle1),
-        AvailableRideModel(
-            name: "Scooter Vehicle 2",
-            price: rideprice.toStringAsFixed(2),
-            arriveTime: "10:30",
-            distance: "20",
-            img: Assets.imagesScooterVehicle2),
-      ];
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    selectedRide = rides.isNotEmpty ? rides[0] : null;
   }
 
   @override
@@ -64,14 +38,28 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
     return BlocListener<RidePriceCubit, RidePriceState>(
       listener: (context, state) {
         if (state is RidePriceSuccess) {
-          rideprice = state.pricesModel.ridePrice ?? 0;
-          ridePricex = state.pricesModel.rideXPrice ?? 0;
-          updateRides();
+          setState(() {
+            rideprice = state.pricesModel.ridePrice ?? 0;
+            ridePricex = state.pricesModel.rideXPrice ?? 0;
+            rides = [
+              AvailableRideModel(
+                  name: "Scooter Vehicle 1",
+                  price: ridePricex.toStringAsFixed(2),
+                  img: Assets.imagesScooterVehicle1),
+              AvailableRideModel(
+                  name: "Scooter Vehicle 2",
+                  price: rideprice.toStringAsFixed(2),
+                  img: Assets.imagesScooterVehicle2),
+            ];
+            selectedRide = rides.isNotEmpty ? rides[0] : null;
+            BlocProvider.of<ScooterRequestCubit>(context).userRequest.price =
+                double.parse(selectedRide?.price ?? '0');
+          });
         }
       },
       child: SingleChildScrollView(
         child: Column(
-          children: Rides.map((ride) {
+          children: rides.map((ride) {
             return AvailableRideCard(
               availableRideModel: ride,
               value: ride,
@@ -79,6 +67,9 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
               onChanged: (value) {
                 setState(() {
                   selectedRide = value;
+                  BlocProvider.of<ScooterRequestCubit>(context)
+                      .userRequest
+                      .price = double.parse(selectedRide?.price ?? '0');
                 });
               },
               isSelected: selectedRide == ride,

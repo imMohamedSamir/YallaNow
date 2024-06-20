@@ -75,7 +75,7 @@ class FoodResturantSecondAppBar extends StatelessWidget {
                   ? null
                   : Text(resturantName ?? "Burger lover",
                       style: AppStyles.styleMedium18(context)
-                          .copyWith(color: thirdcolor)),
+                          .copyWith(color: blackdcolor)),
               actions: [
                 FavIcon(height: AppSizes.getHeight(32, context)),
                 const SizedBox(width: 10),

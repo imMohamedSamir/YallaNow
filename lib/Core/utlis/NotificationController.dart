@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 class NotificationController {
@@ -7,7 +5,7 @@ class NotificationController {
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {
-    log(receivedNotification.title ?? "nooo");
+    // log(receivedNotification.title ?? "nooo");
   }
 
   /// Use this method to detect every time that a new notification is displayed
@@ -28,8 +26,6 @@ class NotificationController {
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
-    // Your code goes here
-
     // Navigate into pages, avoiding to open the notification details page over another details page already opened
     // YallaNow.navigatorKey.currentState?.pushNamedAndRemoveUntil('/notification-page',
     //         (route) => (route.settings.name != '/notification-page') || route.isFirst,

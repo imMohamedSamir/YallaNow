@@ -4,8 +4,9 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 class RideTotalAmount extends StatelessWidget {
   const RideTotalAmount({
     super.key,
+    this.price,
   });
-
+  final String? price;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,7 +17,7 @@ class RideTotalAmount extends StatelessWidget {
         ),
         const Spacer(),
         Text(
-          "EGP 415.00",
+          "$price EPG",
           style: AppStyles.styleMedium14(context),
         ),
       ],

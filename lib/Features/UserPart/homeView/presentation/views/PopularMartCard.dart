@@ -35,7 +35,7 @@ class PopularMartCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ResturantImgContainer(img: mart.imageUrl!),
+              MartImgContainer(img: mart.imageUrl!, id: mart.id!),
               const SizedBox(height: 16),
               Text(mart.name!, style: AppStyles.styleSemiBold16(context)),
               const SizedBox(height: 5),

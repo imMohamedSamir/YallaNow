@@ -3,6 +3,7 @@ import 'package:yallanow/Features/UserPart/NotificationView/presentation/Notific
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/OredersView.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/ProfileView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/ScooterRideView.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomePage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/MainNavigationBar.dart';
 
@@ -16,6 +17,15 @@ class MainHomeViewBody extends StatefulWidget {
 
 class _MainHomeViewBodyState extends State<MainHomeViewBody> {
   int currentPage = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   void setCurrentPage(int index) {
     setState(() {
@@ -24,10 +34,10 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
   }
 
   static List<Widget> pages = [
-    const HomePage(),
+    const TripsView(),
     const ScooterRideView(),
-    const OrdersView(),
-    const NotificationPage(),
+    // const OrdersView(),
+    // const NotificationPage(),
     const ProfileView(),
   ];
 
@@ -36,9 +46,7 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: MainNavigationBar(
-        currentIndex: currentPage,
-        onItemTapped: setCurrentPage,
-      ),
+          currentIndex: currentPage, onItemTapped: setCurrentPage),
       resizeToAvoidBottomInset: false,
     );
   }

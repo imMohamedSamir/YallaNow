@@ -25,13 +25,14 @@ class UserProfileDetailsAdapter extends TypeAdapter<UserProfileDetails> {
       userName: fields[5] as String?,
       restaurantsOrders: fields[6] as dynamic,
       addresses: fields[7] as dynamic,
+      wallet: fields[8] as double?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserProfileDetails obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.email)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class UserProfileDetailsAdapter extends TypeAdapter<UserProfileDetails> {
       ..writeByte(6)
       ..write(obj.restaurantsOrders)
       ..writeByte(7)
-      ..write(obj.addresses);
+      ..write(obj.addresses)
+      ..writeByte(8)
+      ..write(obj.wallet);
   }
 
   @override

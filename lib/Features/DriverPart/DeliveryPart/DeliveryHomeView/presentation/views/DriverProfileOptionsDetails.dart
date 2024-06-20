@@ -40,7 +40,7 @@ class DriverProfileOptionsDetails extends StatelessWidget {
               )),
       ListTile(
         onTap: () {
-          // logoutdialogMethode(context);
+          logoutdialogMethode(context);
         },
         leading: SvgPicture.asset(Assets.imagesLogoutIcon),
         title: Text("Logout",

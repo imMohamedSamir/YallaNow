@@ -53,17 +53,7 @@ AppBar mainAppBar(BuildContext context, {required String title}) {
     elevation: 0,
     titleSpacing: 16,
     title: Text(title, style: AppStyles.styleMedium18(context)),
-    actions: [
-      // IconButton(
-      //     onPressed: () {
-      //       if (Intl.getCurrentLocale() == "en") {
-      //         context.read<LanguageCubit>().changeLanguage(const Locale('ar'));
-      //       } else {
-      //         context.read<LanguageCubit>().changeLanguage(const Locale('en'));
-      //       }
-      //     },
-      //     icon: const Icon(Icons.language_outlined))
-    ],
+
     // leading: IconButton(
     //     icon: const Icon(Icons.arrow_back_ios),
     //     onPressed: () {
@@ -73,6 +63,15 @@ AppBar mainAppBar(BuildContext context, {required String title}) {
 }
 
 AppBar secondHomeAppBar(BuildContext context, {required String title}) {
+  return AppBar(
+    automaticallyImplyLeading: false,
+    elevation: 0,
+    titleSpacing: 16,
+    title: Text(title, style: AppStyles.styleMedium18(context)),
+  );
+}
+
+AppBar authAppBar(BuildContext context, {required String title}) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,

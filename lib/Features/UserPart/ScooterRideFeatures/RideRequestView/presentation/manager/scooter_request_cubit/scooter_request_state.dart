@@ -9,6 +9,30 @@ sealed class ScooterRequestState extends Equatable {
 
 final class ScooterRequestInitial extends ScooterRequestState {}
 
+final class ScooterRequestLoading extends ScooterRequestState {}
+
 final class ScooterRequestSuccess extends ScooterRequestState {}
 
+final class ScooterRequestAccepted extends ScooterRequestState {
+  final RequestDetails requestData;
+
+  const ScooterRequestAccepted({required this.requestData});
+}
+
+final class ScooterRequestShowRequest extends ScooterRequestState {
+  final RequestDetails requestData;
+
+  const ScooterRequestShowRequest({required this.requestData});
+}
+
+final class ScooterRequestSent extends ScooterRequestState {
+  final RequestModel requestData;
+
+  const ScooterRequestSent({required this.requestData});
+}
+
+final class ScooterRequestDriverAccepted extends ScooterRequestState {}
+
 final class ScooterRequestFailure extends ScooterRequestState {}
+
+final class ScooterRequestDisabled extends ScooterRequestState {}

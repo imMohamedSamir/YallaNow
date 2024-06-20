@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
-import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 
 void dialogMethode(BuildContext context, {String? itemId}) {
@@ -61,14 +63,12 @@ void logoutdialogMethode(BuildContext context) {
               textColor: Colors.white,
               text: 'Log out',
               onPressed: () {
-                removeToken();
+                TokenManager.removeToken();
                 BlocProvider.of<BasketManagerCubit>(context).clearBasket();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginView(),
-                    ),
-                    (route) => false);
+                Navigator.pop(context);
+                NavigateToPage.slideFromTopAndRemove(
+                    context: context, page: const LoginView());
+
                 // Navigator.pop(context);
                 // Navigator.pop(context);
               })
@@ -76,11 +76,6 @@ void logoutdialogMethode(BuildContext context) {
       );
     },
   );
-}
-
-removeToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.remove("token");
 }
 
 void cancelRidedialogMethode(BuildContext context) {
@@ -97,15 +92,23 @@ void cancelRidedialogMethode(BuildContext context) {
               .copyWith(color: const Color(0xff5A5A5A)),
         ),
         actions: [
-          const DialogButton(
-              btnColor: Colors.white, textColor: pKcolor, text: "I will wait"),
+          DialogButton(
+            btnColor: Colors.white,
+            textColor: pKcolor,
+            text: "I will wait",
+            // onPressed: () {},
+          ),
           DialogButton(
               btnColor: pKcolor,
               textColor: Colors.white,
               text: 'Cancel',
               onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                BlocProvider.of<ScooterRequestCubit>(context)
+                    .leaveGroup(userGroup);
+                BlocProvider.of<ScooterLocationCubit>(context)
+                    .setInitialState();
               })
         ],
       );

@@ -19,17 +19,19 @@ class UserProfileDetails extends HiveObject {
   dynamic restaurantsOrders;
   @HiveField(7)
   dynamic addresses;
+  @HiveField(8)
+  double? wallet;
 
-  UserProfileDetails({
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.phoneNumber,
-    this.id,
-    this.userName,
-    this.restaurantsOrders,
-    this.addresses,
-  });
+  UserProfileDetails(
+      {this.email,
+      this.firstName,
+      this.lastName,
+      this.phoneNumber,
+      this.id,
+      this.userName,
+      this.restaurantsOrders,
+      this.addresses,
+      this.wallet});
 
   factory UserProfileDetails.fromJson(Map<String, dynamic> json) {
     return UserProfileDetails(
@@ -41,6 +43,7 @@ class UserProfileDetails extends HiveObject {
       userName: json['userName'] as String?,
       restaurantsOrders: json['restaurantsOrders'] as dynamic,
       addresses: json['addresses'] as dynamic,
+      wallet: json['wallet'] as double?,
     );
   }
 
@@ -53,5 +56,6 @@ class UserProfileDetails extends HiveObject {
         'userName': userName,
         'restaurantsOrders': restaurantsOrders,
         'addresses': addresses,
+        'wallet': wallet
       };
 }

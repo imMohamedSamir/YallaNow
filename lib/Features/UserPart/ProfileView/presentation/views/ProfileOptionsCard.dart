@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
 class ProfileOptionsCard extends StatelessWidget {
@@ -18,10 +20,31 @@ class ProfileOptionsCard extends StatelessWidget {
         profileOptionsCardModel.icon,
         colorFilter: const ColorFilter.mode(Color(0xff240301), BlendMode.srcIn),
       ),
-      title: Text(
-        profileOptionsCardModel.title,
-        style: AppStyles.styleSemiBold16(context)
-            .copyWith(color: const Color(0xff240301)),
+      title: BlocBuilder<LanguageCubit, Locale>(
+        builder: (context, state) {
+          String lan = state.languageCode == 'en' ? 'English' : 'العربية';
+          return profileOptionsCardModel.title == "Language"
+              ? Row(
+                  children: [
+                    Text(
+                      profileOptionsCardModel.title,
+                      style: AppStyles.styleSemiBold16(context)
+                          .copyWith(color: const Color(0xff240301)),
+                    ),
+                    const Spacer(),
+                    Text(
+                      lan,
+                      style: AppStyles.styleSemiBold16(context)
+                          .copyWith(color: const Color(0xff240301)),
+                    ),
+                  ],
+                )
+              : Text(
+                  profileOptionsCardModel.title,
+                  style: AppStyles.styleSemiBold16(context)
+                      .copyWith(color: const Color(0xff240301)),
+                );
+        },
       ),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
     );

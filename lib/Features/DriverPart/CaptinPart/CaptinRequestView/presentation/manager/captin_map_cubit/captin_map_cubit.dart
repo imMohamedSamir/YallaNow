@@ -8,11 +8,11 @@ import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 
-part 'delivery_map_state.dart';
+part 'captin_map_state.dart';
 
-class DeliveryMapCubit extends Cubit<DeliveryMapState> {
-  DeliveryMapCubit(this.locationService, this.routesUtils)
-      : super(DeliveryMapInitial());
+class CaptinMapCubit extends Cubit<CaptinMapState> {
+  CaptinMapCubit(this.locationService, this.routesUtils)
+      : super(CaptinMapInitial());
   final LocationService locationService;
   final RoutesUtils routesUtils;
   GoogleMapController? googleMapController;
@@ -32,21 +32,20 @@ class DeliveryMapCubit extends Cubit<DeliveryMapState> {
 
       // setMyLocation(currentposition!);
       setMyCameraPosition(currentposition!);
-      emit(
-          DeliveryMapSuccess(locationData: currentposition!, markers: markers));
+      emit(CaptinMapSuccess(locationData: currentposition!, markers: markers));
       isMoved = true;
     }
   }
 
   Future<void> getRoutes({required LatLng dist}) async {
-    emit(DeliveryMapInitial());
+    emit(CaptinMapInitial());
     try {
       RouteInfo routeInfo = await routesUtils.getRouteData(
           desintation: dist, src: currentposition!);
       polyLines = routesUtils.displayRoute(routeInfo.points,
           polyLines: polyLines, googleMapController: googleMapController!);
       setDistenatioLocation(dist);
-      emit(DeliveryMapChange(polyLine: polyLines, markers: markers));
+      emit(CaptinMapChange(polyLine: polyLines, markers: markers));
       updateMyTrackingLocation();
     } catch (e) {
       log("Error fetching location: $e");

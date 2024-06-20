@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/LoginPostModel.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/login_cubit/login_cubit.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 
 class LoginButtonBuilder extends StatelessWidget {
   const LoginButtonBuilder({
@@ -23,8 +21,8 @@ class LoginButtonBuilder extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          NavigateToPage.slideFromRightandRemove(
-              context: context, page: const MainHomeView());
+          // NavigateToPage.slideFromRightandRemove(
+          //     context: context, page: const MainHomeView());
         }
       },
       builder: (context, state) {
@@ -52,6 +50,7 @@ class LoginButtonBuilder extends StatelessWidget {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
                   await BlocProvider.of<LoginCubit>(context).fetchLogin(
+                    context,
                     email: loginPostModel.email!,
                     password: loginPostModel.password!,
                   );

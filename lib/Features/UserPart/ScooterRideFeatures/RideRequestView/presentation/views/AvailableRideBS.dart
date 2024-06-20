@@ -6,6 +6,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/p
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRidePayMethod.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/ScooterButtonBuilder.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class AvailableRideBS extends StatelessWidget {
   const AvailableRideBS({
@@ -17,7 +18,7 @@ class AvailableRideBS extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Choose a ride',
+        Text(S.of(context).Choosearide,
             style: AppStyles.styleSemiBold20(context)
                 .copyWith(color: const Color(0xff2A2A2A))),
         const SizedBox(height: 16.0),
@@ -102,15 +103,3 @@ class ChooseRideType extends StatelessWidget {
     );
   }
 }
-
-// void availableRideBSmethod(BuildContext context) {
-//   showModalBottomSheet(
-//     // isScrollControlled: true,
-//     showDragHandle: true,
-//     enableDrag: true,
-//     context: context,
-//     builder: (BuildContext context) {
-//       return const AvailableRideBS();
-//     },
-//   );
-// }

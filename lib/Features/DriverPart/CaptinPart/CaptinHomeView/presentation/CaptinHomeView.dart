@@ -1,15 +1,14 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/NotificationController.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/CheckHomeAppBar.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDrawer.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinOrdersViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRatingView/presentation/views/CaptinRatingView.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DriverBottomNavBar.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/manager/CheckHomeAppBar.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryOrdersView/presentation/views/DeliveyOrdersViewBody.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryRatingView/presentation/views/DeliveryRatingView.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 
 class CaptinHomeView extends StatefulWidget {
   const CaptinHomeView({super.key});
@@ -25,7 +24,10 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
   @override
   void initState() {
     AwesomeNotifications().setListeners(
-        onActionReceivedMethod: NotificationController.onActionReceivedMethod,
+        onActionReceivedMethod: (receivedAction) async {
+          await BlocProvider.of<ScooterRequestCubit>(context)
+              .handleRecivedRequest(context, action: receivedAction);
+        },
         onNotificationCreatedMethod:
             NotificationController.onNotificationCreatedMethod,
         onNotificationDisplayedMethod:
@@ -34,12 +36,13 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
             NotificationController.onDismissActionReceivedMethod);
     super.initState();
     _pageController = PageController(initialPage: currentPage);
+    BlocProvider.of<ScooterRequestCubit>(context).checkLocationPermission();
   }
 
   void setCurrentPage(int index) {
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
   }
@@ -59,7 +62,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
-      appBar: checkAppBar(context, currnetpage: currentPage),
+      appBar: checkCaptinAppBar(context, currnetpage: currentPage),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {

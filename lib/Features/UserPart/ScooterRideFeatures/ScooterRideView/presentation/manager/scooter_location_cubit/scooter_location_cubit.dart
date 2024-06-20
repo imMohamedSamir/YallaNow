@@ -1,12 +1,13 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
@@ -99,8 +100,9 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
       // Fetch the location from the address
       List<Location> locations = await locationFromAddress(description);
       if (locations.isNotEmpty) {
-        Location location = locations.first;
-        LatLng destination = LatLng(location.latitude, location.longitude);
+        Location dstLocation = locations.first;
+        LatLng destination =
+            LatLng(dstLocation.latitude, dstLocation.longitude);
         bool isInBound =
             checkPositionBounds(postition: destination, isDst: true);
         // if (isInBound) {
@@ -127,6 +129,11 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
         if (!context.mounted) return;
         BlocProvider.of<RidePriceCubit>(context)
             .getPrices(distance: routeInfo.distance);
+        var userRequestModel =
+            BlocProvider.of<ScooterRequestCubit>(context).userRequest;
+        userRequestModel.location =
+            "${locationDetails!.administrativeArea} ${locationDetails!.name} ${locationDetails!.thoroughfare}";
+        userRequestModel.destination = description;
         emit(ScooterLocationChange(polyLines: polyLines, markers: markers));
       } else {
         emit(const ScooterLocationFailuer(errmsg: "No location found"));
@@ -140,6 +147,18 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
 /////////////////////////////////////////////////////////////////////////
   void getLocationDetails() {
     emit(ScooterLocationGetLocation(locationData: locationDetails!));
+  }
+
+  void onRequestSend(BuildContext context) {
+    emit(ScooterLocationInitial());
+    emit(ScooterLocationChange(
+        polyLines: polyLines, markers: markers, isSent: true));
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return FindingRideView();
+      },
+    );
   }
 
 ////////////////////////////////////////////////////////////////////////////

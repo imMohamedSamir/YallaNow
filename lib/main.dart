@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/DriverSignUpView.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
@@ -23,6 +23,8 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_v
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/data/Repo/FavoriteRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/presentation/manager/add_fav_cubit/add_fav_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_items_cubit/mart_items_cubit.dart';
@@ -30,10 +32,13 @@ import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/Market
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripsPlaceView.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPageBody.dart';
@@ -47,12 +52,13 @@ import 'package:yallanow/firebase_options.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   setupServiceLocator();
   await Hive.initFlutter();
   await initializeNotification();
   hiveAdapters();
   Bloc.observer = SimpleBlocObserver();
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(DevicePreview(
     enabled: false,
@@ -75,9 +81,7 @@ class YallaNow extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 ScooterLocationCubit(LocationService(), RoutesUtils())),
-        BlocProvider(
-          create: (context) => CheckPaymentMethodCubit(),
-        ),
+        BlocProvider(create: (context) => CheckPaymentMethodCubit()),
         BlocProvider(
           create: (context) =>
               AutoCompletePlacesCubit(getIt.get<AddressesRepoImpl>()),
@@ -88,13 +92,11 @@ class YallaNow extends StatelessWidget {
                 ..getUserAddresses(),
         ),
         BlocProvider(
-          create: (context) =>
-              FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>()),
-        ),
+            create: (context) =>
+                FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>())),
         BlocProvider(
-          create: (context) =>
-              FetchPopularMartsCubit(getIt.get<HomeRepoImpl>())..get(),
-        ),
+            create: (context) =>
+                FetchPopularMartsCubit(getIt.get<HomeRepoImpl>())..get()),
         BlocProvider(
           create: (context) => LanguageCubit(),
         ),
@@ -120,7 +122,11 @@ class YallaNow extends StatelessWidget {
                 PharmacyDetailsCubit(getIt.get<PharmacyRepoImpl>())),
         BlocProvider(
             create: (context) =>
-                RidePriceCubit(getIt.get<ScooterRideRepoImpl>()))
+                RidePriceCubit(getIt.get<ScooterRideRepoImpl>())),
+        BlocProvider(create: (context) => ScooterRequestCubit()),
+        BlocProvider(
+            create: (context) =>
+                Add_Remove_FavCubit(getIt.get<FavoriteRepoImpl>())),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {

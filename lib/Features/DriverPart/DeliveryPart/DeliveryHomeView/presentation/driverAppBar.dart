@@ -30,17 +30,6 @@ class YallButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(32),
       onTap: isActive
           ? () {
-              AwesomeNotifications().createNotification(
-                  content: NotificationContent(
-                id: 10,
-                channelKey: notifChannelKey,
-                actionType: ActionType.Default,
-                title: 'Hello World!',
-                body: 'This is my first notification!',
-                notificationLayout: NotificationLayout.Inbox,
-                backgroundColor: pKcolor,
-                badge: 5,
-              ));
               // showModalBottomSheet(
               //   context: context,
               //   // isScrollControlled: true,

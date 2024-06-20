@@ -31,7 +31,7 @@ class ProfileImgSec extends StatelessWidget {
               ),
             ),
           ),
-          const ProfileEditIcon()
+          // const ProfileEditIcon()
         ],
       ),
     );

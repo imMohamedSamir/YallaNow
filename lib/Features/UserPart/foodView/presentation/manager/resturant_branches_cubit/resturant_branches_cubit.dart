@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/restrunt_details.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepo.dart';
 
@@ -13,9 +15,11 @@ class ResturantBranchesCubit extends Cubit<ResturantBranchesState> {
     var results =
         await foodRepo.fetchResturantBranches(restaurantId: restaurantId);
 
-    results.fold(
-        (fail) => emit(ResturantBranchesFailure(errmsg: fail.errMessage)),
-        (branchDetails) =>
-            emit(ResturantBranchesSuccess(branchDetails: branchDetails)));
+    results
+        .fold((fail) => emit(ResturantBranchesFailure(errmsg: fail.errMessage)),
+            (branchDetails) {
+      savePartnerId(id: restaurantId, type: resturantType);
+      emit(ResturantBranchesSuccess(branchDetails: branchDetails));
+    });
   }
 }

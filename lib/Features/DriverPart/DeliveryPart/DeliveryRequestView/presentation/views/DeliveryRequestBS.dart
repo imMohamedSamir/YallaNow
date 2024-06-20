@@ -22,7 +22,7 @@ class DeliveryRequestBS extends StatelessWidget {
                 Text(
                   "30.50 EGP",
                   style: AppStyles.styleBold24(context)
-                      .copyWith(color: thirdcolor),
+                      .copyWith(color: blackdcolor),
                 ),
                 const Spacer(),
                 IconButton(

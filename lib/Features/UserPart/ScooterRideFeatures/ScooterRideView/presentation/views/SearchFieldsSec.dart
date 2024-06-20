@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class SearchFieldsSec extends StatelessWidget {
   const SearchFieldsSec({
@@ -36,7 +37,7 @@ class SearchFieldsSec extends StatelessWidget {
               .distanceTextController,
           focusNode: BlocProvider.of<AutoCompletePlacesCubit>(context)
               .destinationFocusNode,
-          hintText: "Where to?",
+          hintText: S.of(context).whereTo,
           prefixIcon: const Icon(Icons.location_on_outlined),
           onChanged: (value) {
             if (value.isNotEmpty) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryRequestView/presentation/manager/delivery_map_cubit/delivery_map_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 
 class CaptinMapBody extends StatelessWidget {
   const CaptinMapBody({
@@ -14,12 +14,12 @@ class CaptinMapBody extends StatelessWidget {
         const LatLng(27.215327138359253, 33.795513481012954);
     CameraPosition initialCameraPosition =
         CameraPosition(target: defaultLocation, zoom: 10);
-    return BlocConsumer<DeliveryMapCubit, DeliveryMapState>(
+    return BlocConsumer<CaptinMapCubit, CaptinMapState>(
       listener: (context, state) {
-        if (state is DeliveryMapSuccess) {
+        if (state is CaptinMapSuccess) {
           initialCameraPosition =
               CameraPosition(target: state.locationData, zoom: 15);
-          BlocProvider.of<DeliveryMapCubit>(context).getRoutes(
+          BlocProvider.of<CaptinMapCubit>(context).getRoutes(
               dist: const LatLng(37.282815371855804, -122.01923673720438));
         } else {
           initialCameraPosition =
@@ -28,26 +28,15 @@ class CaptinMapBody extends StatelessWidget {
       },
       builder: (context, state) {
         return GoogleMap(
-          // onCameraIdle: () {
-          //   bool ismoved =
-          //       BlocProvider.of<CurrentLocationCubit>(context).isMoved;
-          //   if (ismoved) {
-          //     BlocProvider.of<CurrentLocationCubit>(context)
-          //         .handleCameraMove(position: position1!);
-          //   }
-          // },
-          // onCameraMove: (position) {
-          //   position1 = position;
-          // },
           onMapCreated: (controller) {
-            context.read<DeliveryMapCubit>().setMapController(controller);
+            context.read<CaptinMapCubit>().setMapController(controller);
           },
           zoomControlsEnabled: false,
           initialCameraPosition: initialCameraPosition,
-          markers: state is DeliveryMapChange ? state.markers! : {},
+          markers: state is CaptinMapChange ? state.markers! : {},
           myLocationEnabled: true,
           indoorViewEnabled: true,
-          polylines: state is DeliveryMapChange ? state.polyLine! : {},
+          polylines: state is CaptinMapChange ? state.polyLine! : {},
         );
       },
     );

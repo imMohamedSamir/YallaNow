@@ -9,6 +9,7 @@ class YallaNowServices {
   String _baseUrl = 'https://yallanow.runasp.net/api/';
 
   final Dio _dio;
+
   YallaNowServices(this._dio) {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
@@ -20,6 +21,7 @@ class YallaNowServices {
         return handler.next(options); // Continue
       },
       onError: (DioException e, handler) async {
+        // NavigateToPage.slideFromTopAndRemove(context: context, page: page)
         if (e.response?.statusCode == 401) {
           final newToken = await _refreshToken();
           log("New token: $newToken");

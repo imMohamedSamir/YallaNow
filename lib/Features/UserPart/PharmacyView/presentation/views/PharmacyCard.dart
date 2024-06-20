@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/data/models/add_fav_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
@@ -13,6 +15,7 @@ class PharmacyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(32),
       onTap: () {
         if (pharmacyModel.id != null) {
           BlocProvider.of<PharmacyDetailsCubit>(context)
@@ -74,10 +77,14 @@ class PharmacyCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const FavIcon()
+                FavIcon(addFavModel: createAddFavModel(pharmacyModel.id!))
               ],
             )),
       ),
     );
+  }
+
+  AddFavModel createAddFavModel(String id) {
+    return AddFavModel(partnerId: id, partnerType: pharmacyType);
   }
 }

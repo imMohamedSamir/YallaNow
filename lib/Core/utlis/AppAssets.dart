@@ -270,6 +270,10 @@ class Assets {
   /// assets/images/phoneIcon.png
   static const String imagesPhoneIcon = "assets/images/phoneIcon.png";
 
+  /// Assets for imagesPlace1
+  /// assets/images/Place1.png
+  static const String imagesPlace1 = "assets/images/Place1.png";
+
   /// Assets for imagesPreparingOrder
   /// assets/images/preparingOrder.png
   static const String imagesPreparingOrder = "assets/images/preparingOrder.png";
@@ -334,6 +338,10 @@ class Assets {
   /// assets/images/splashLogo.png
   static const String imagesSplashLogo = "assets/images/splashLogo.png";
 
+  /// Assets for imagesSuccesIcon
+  /// assets/images/SuccesIcon.png
+  static const String imagesSuccesIcon = "assets/images/SuccesIcon.png";
+
   /// Assets for imagesSupermarket1
   /// assets/images/supermarket1.png
   static const String imagesSupermarket1 = "assets/images/supermarket1.png";
@@ -345,6 +353,10 @@ class Assets {
   /// Assets for imagesTrendingIcon
   /// assets/images/trendingIcon.png
   static const String imagesTrendingIcon = "assets/images/trendingIcon.png";
+
+  /// Assets for imagesTrip1
+  /// assets/images/Trip1.png
+  static const String imagesTrip1 = "assets/images/Trip1.png";
 
   /// Assets for imagesYallaNowLogo
   /// assets/images/YallaNowLogo.png

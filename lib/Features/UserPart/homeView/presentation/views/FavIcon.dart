@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/data/models/add_fav_model.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/presentation/manager/add_fav_cubit/add_fav_cubit.dart';
 
 class FavIcon extends StatefulWidget {
-  const FavIcon({super.key, this.height, this.favorite});
+  const FavIcon({super.key, this.height, this.favorite, this.addFavModel});
+  final AddFavModel? addFavModel;
   final double? height;
   final bool? favorite;
   @override
@@ -32,14 +37,24 @@ class _FavIconState extends State<FavIcon> {
         padding: EdgeInsets.zero,
         icon: Icon(
           active == true ? Icons.favorite : Icons.favorite_border_outlined,
-          color: active == true
-              ? const Color(0xffB20404)
-              : const Color(0xff5A5A5A),
+          color: active == true ? pKcolor : const Color(0xff5A5A5A),
           size: 20,
         ),
         onPressed: () {
-          active = !active;
-          setState(() {});
+          var cubit = BlocProvider.of<Add_Remove_FavCubit>(context);
+          // active = !active;
+          if (!active) {
+            widget.addFavModel!.isFavorite = true;
+            cubit.add(favModel: widget.addFavModel!);
+            setState(() {
+              active = true;
+            });
+          } else {
+            cubit.remove(favId: widget.addFavModel!.partnerId!);
+            setState(() {
+              active = false;
+            });
+          }
         },
       ),
     );

@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacySearchPage.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodSearchPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomeSearchPage.dart';
 
@@ -79,7 +80,7 @@ class PharmacySearchBar extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           onTap: () {
             NavigateToPage.slideFromBottomAndFade(
-                context: context, page: const FoodSearchPage());
+                context: context, page: const PharmacySearchPage());
           },
           leading: SvgPicture.asset(Assets.imagesSearchIcon),
           title: Text(

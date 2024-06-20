@@ -13,7 +13,7 @@ class ChooseRideTypeBuilder extends StatelessWidget {
         Offset offset;
         double opacity;
 
-        if (state is ScooterLocationChange ||
+        if (state is ScooterLocationChange && !state.isSent! ||
             state is ScooterLocationFailuer ||
             state is ScooterLocationLoading) {
           offset = const Offset(0, 0);

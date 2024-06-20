@@ -2,9 +2,8 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepo.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/data/models/user_profile_details.dart';
@@ -16,8 +15,7 @@ class ProfileRepoImpl implements ProfileRepo {
   String? usertoken;
   @override
   Future<Either<Failure, UserProfileDetails>> fetchUserDetails() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(savedToken);
+    usertoken = await TokenManager.getUserToken();
     log(usertoken.toString());
     String endPoint = "UserProfile/User";
     try {

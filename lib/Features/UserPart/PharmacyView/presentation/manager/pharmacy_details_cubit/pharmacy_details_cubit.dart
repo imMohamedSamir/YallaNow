@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepo.dart';
@@ -21,7 +22,7 @@ class PharmacyDetailsCubit extends Cubit<PharmacyDetailsState> {
     resutls
         .fold((fail) => emit(PharmacyDetailsFailure(errMsg: fail.errMessage)),
             (pharmacyDetails) {
-      savePartnerId(id: pharmacyModel.id!, type: 0);
+      savePartnerId(id: pharmacyModel.id!, type: pharmacyType);
 
       emit(PharmacyDetailsSuccess(pharmacyDetails: pharmacyDetails));
       NavigateToPage.slideFromRight(

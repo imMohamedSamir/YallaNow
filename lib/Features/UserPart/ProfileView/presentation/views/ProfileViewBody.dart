@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileDetailsSec.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileOptionsDetails.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -22,7 +23,7 @@ class ProfileViewBody extends StatelessWidget {
               logoutdialogMethode(context);
             },
             leading: SvgPicture.asset(Assets.imagesLogoutIcon),
-            title: Text("Logout",
+            title: Text(S.of(context).logout,
                 style: AppStyles.styleSemiBold16(context)
                     .copyWith(color: const Color(0xffB20404))),
           )

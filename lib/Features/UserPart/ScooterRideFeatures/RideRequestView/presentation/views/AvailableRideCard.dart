@@ -72,12 +72,8 @@ class AvailableRideCard extends StatelessWidget {
 }
 
 class AvailableRideModel {
-  final String name, price, arriveTime, distance, img;
+  final String name, price, img;
 
   AvailableRideModel(
-      {required this.name,
-      required this.price,
-      required this.arriveTime,
-      required this.distance,
-      required this.img});
+      {required this.name, required this.price, required this.img});
 }

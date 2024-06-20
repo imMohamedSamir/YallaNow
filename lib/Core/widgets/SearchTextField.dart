@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_search_cubit/pharmacy_search_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/food_search_cubit/food_search_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_search_cubit/home_search_cubit.dart';
 
@@ -87,7 +88,7 @@ class PharmacySearchTextField extends StatelessWidget {
         child: SvgPicture.asset(Assets.imagesSearchIcon, fit: BoxFit.contain),
       ),
       onChanged: (value) {
-        BlocProvider.of<HomeSearchCubit>(context).getResult(input: value);
+        BlocProvider.of<PharmacySearchCubit>(context).getResult(input: value);
       },
     );
   }

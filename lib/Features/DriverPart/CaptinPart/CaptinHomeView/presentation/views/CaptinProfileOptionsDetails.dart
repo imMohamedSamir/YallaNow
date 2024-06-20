@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/GotoOptionPage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileOptionsCard.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 
 class CaptinProfileOptionsDetails extends StatelessWidget {
   const CaptinProfileOptionsDetails({super.key});
@@ -39,7 +42,8 @@ class CaptinProfileOptionsDetails extends StatelessWidget {
               )),
       ListTile(
         onTap: () {
-          // logoutdialogMethode(context);
+          logoutdialogMethode(context);
+          BlocProvider.of<ScooterRequestCubit>(context).leaveGroup("Drivers");
         },
         leading: SvgPicture.asset(Assets.imagesLogoutIcon),
         title: Text("Logout",

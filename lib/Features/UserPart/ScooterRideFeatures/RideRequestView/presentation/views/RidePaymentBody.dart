@@ -3,6 +3,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverPaymentMethodsTile.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class RidePaymentBody extends StatelessWidget {
   const RidePaymentBody({super.key});
@@ -14,14 +15,14 @@ class RidePaymentBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Pay with",
+          Text(S.of(context).Paywith,
               style: AppStyles.styleSemiBold16(context)
                   .copyWith(color: const Color(0xff240301))),
           const SizedBox(height: 16),
           const DriverPaymentMethodsTile(),
           const Spacer(),
           CustomButton(
-              text: "Choose",
+              text: S.of(context).Choose,
               txtcolor: Colors.white,
               btncolor: pKcolor,
               onPressed: () {

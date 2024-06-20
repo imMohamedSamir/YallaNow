@@ -17,7 +17,7 @@ class PharmacyViewBody extends StatelessWidget {
         slivers: [
           SliverPadding(
             padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+            sliver: SliverToBoxAdapter(child: PharmacySearchBar()),
           ),
           SliverPadding(
             padding: EdgeInsets.only(top: 24),

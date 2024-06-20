@@ -239,6 +239,526 @@ class S {
       args: [],
     );
   }
+
+  /// `Trips`
+  String get Trips {
+    return Intl.message(
+      'Trips',
+      name: 'Trips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `/ Person`
+  String get PerPerson {
+    return Intl.message(
+      '/ Person',
+      name: 'PerPerson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore trips`
+  String get Exploretrips {
+    return Intl.message(
+      'Explore trips',
+      name: 'Exploretrips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scooter Ride`
+  String get scooterRide {
+    return Intl.message(
+      'Scooter Ride',
+      name: 'scooterRide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get Home {
+    return Intl.message(
+      'Home',
+      name: 'Home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get Language {
+    return Intl.message(
+      'Language',
+      name: 'Language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help Center`
+  String get HelpCenter {
+    return Intl.message(
+      'Help Center',
+      name: 'HelpCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite Friends`
+  String get InviteFriends {
+    return Intl.message(
+      'Invite Friends',
+      name: 'InviteFriends',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get PrivacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'PrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get editprofile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editprofile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where to ?`
+  String get whereTo {
+    return Intl.message(
+      'Where to ?',
+      name: 'whereTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent places`
+  String get Recentplaces {
+    return Intl.message(
+      'Recent places',
+      name: 'Recentplaces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Result places`
+  String get Resultplaces {
+    return Intl.message(
+      'Result places',
+      name: 'Resultplaces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a ride`
+  String get Choosearide {
+    return Intl.message(
+      'Choose a ride',
+      name: 'Choosearide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finding your Driver`
+  String get Findingyourider {
+    return Intl.message(
+      'Finding your Driver',
+      name: 'Findingyourider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay with`
+  String get Paywith {
+    return Intl.message(
+      'Pay with',
+      name: 'Paywith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get Cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'Cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose`
+  String get Choose {
+    return Intl.message(
+      'Choose',
+      name: 'Choose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ride Payment`
+  String get RidePayment {
+    return Intl.message(
+      'Ride Payment',
+      name: 'RidePayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yalla`
+  String get Yalla {
+    return Intl.message(
+      'Yalla',
+      name: 'Yalla',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Places`
+  String get places {
+    return Intl.message(
+      'Places',
+      name: 'places',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View All`
+  String get viewAll {
+    return Intl.message(
+      'View All',
+      name: 'viewAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Trips`
+  String get PopularTrips {
+    return Intl.message(
+      'Popular Trips',
+      name: 'PopularTrips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trips Types`
+  String get TripsType {
+    return Intl.message(
+      'Trips Types',
+      name: 'TripsType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration`
+  String get Duration {
+    return Intl.message(
+      'Duration',
+      name: 'Duration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overview`
+  String get Overview {
+    return Intl.message(
+      'Overview',
+      name: 'Overview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Program`
+  String get Program {
+    return Intl.message(
+      'Program',
+      name: 'Program',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take with you`
+  String get Takewithyou {
+    return Intl.message(
+      'Take with you',
+      name: 'Takewithyou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Include`
+  String get Include {
+    return Intl.message(
+      'Include',
+      name: 'Include',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not include`
+  String get Notinclude {
+    return Intl.message(
+      'Not include',
+      name: 'Notinclude',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book`
+  String get Book {
+    return Intl.message(
+      'Book',
+      name: 'Book',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Form`
+  String get RegistrationForm {
+    return Intl.message(
+      'Registration Form',
+      name: 'RegistrationForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please full the form and we will contact you`
+  String get RegistrationDsc {
+    return Intl.message(
+      'Please full the form and we will contact you',
+      name: 'RegistrationDsc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get TravellerName {
+    return Intl.message(
+      'Name',
+      name: 'TravellerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your Name`
+  String get NameValidation {
+    return Intl.message(
+      'Please enter your Name',
+      name: 'NameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your Phone Number`
+  String get PhoneValidation {
+    return Intl.message(
+      'Please enter your Phone Number',
+      name: 'PhoneValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter correct mobile number`
+  String get correctPhoneNumber {
+    return Intl.message(
+      'Please enter correct mobile number',
+      name: 'correctPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your Email`
+  String get MailValidation {
+    return Intl.message(
+      'Please enter your Email',
+      name: 'MailValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter correct E-Mail address`
+  String get correctEmail {
+    return Intl.message(
+      'Please enter correct E-Mail address',
+      name: 'correctEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your Nationality`
+  String get NationalityValidation {
+    return Intl.message(
+      'Please enter your Nationality',
+      name: 'NationalityValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your Location`
+  String get LocationValidation {
+    return Intl.message(
+      'Please enter your Location',
+      name: 'LocationValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter number of adults`
+  String get adultValidation {
+    return Intl.message(
+      'Please enter number of adults',
+      name: 'adultValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality`
+  String get Nationality {
+    return Intl.message(
+      'Nationality',
+      name: 'Nationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get Location {
+    return Intl.message(
+      'Location',
+      name: 'Location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hotel`
+  String get Hotel {
+    return Intl.message(
+      'Hotel',
+      name: 'Hotel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Room`
+  String get Room {
+    return Intl.message(
+      'Room',
+      name: 'Room',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of adult`
+  String get Numberofadult {
+    return Intl.message(
+      'Number of adult',
+      name: 'Numberofadult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of Kids`
+  String get NumberofKids {
+    return Intl.message(
+      'Number of Kids',
+      name: 'NumberofKids',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of Juniors`
+  String get NumberofJuniors {
+    return Intl.message(
+      'Number of Juniors',
+      name: 'NumberofJuniors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your data has been registered successfully. We will contact you.`
+  String get SuccessBook {
+    return Intl.message(
+      'Your data has been registered successfully. We will contact you.',
+      name: 'SuccessBook',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

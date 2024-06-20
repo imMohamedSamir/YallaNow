@@ -6,6 +6,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/views/ScooterSearchPage.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class SearchCard extends StatelessWidget {
   const SearchCard({super.key});
@@ -31,7 +32,7 @@ class SearchCard extends StatelessWidget {
           },
           leading: SvgPicture.asset(Assets.imagesSearchIcon),
           title: Text(
-            "Where to?",
+            S.of(context).whereTo,
             style: AppStyles.styleBold18(context).copyWith(color: scColor),
           ),
         ),

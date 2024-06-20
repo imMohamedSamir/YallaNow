@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/user_details_cubit/user_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileImgSec.dart';
 
@@ -31,6 +33,13 @@ class ProfileDetailsSec extends StatelessWidget {
                     style: AppStyles.styleMedium14(context)
                         .copyWith(color: const Color(0xff212121))),
               ),
+              const Gap(12),
+              Center(
+                  child: Text(
+                "Wallet : ${state.userProfileDetails.wallet} EGP",
+                style:
+                    AppStyles.styleSemiBold16(context).copyWith(color: pKcolor),
+              ))
               // Text(data)
             ],
           );

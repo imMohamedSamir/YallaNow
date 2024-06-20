@@ -1,52 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/models/FavoriteCardModel.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/data/models/fav_details_model/FavMarket.dart';
+import 'package:yallanow/Features/UserPart/FavoriteView/presentation/manager/fav_details_cubit/fav_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/presentation/views/FavoriteCard.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsLoading.dart';
 
 class FavoriteMartsLV extends StatelessWidget {
   const FavoriteMartsLV({super.key});
-  static List<FavoriteCardModel> favorits = [
-    FavoriteCardModel(
-        name: " Lorem Name",
-        description: "Restaurant type description",
-        img: Assets.imagesSupermarket1,
-        deliveryTime: "20",
-        deliveryPrice: "free",
-        rating: "3.5"),
-    FavoriteCardModel(
-        name: "Lorem Name ",
-        description: "Restaurant type description",
-        img: Assets.imagesSupermarket1,
-        deliveryTime: "10",
-        deliveryPrice: "10 EGP",
-        rating: "4"),
-    FavoriteCardModel(
-        name: " Lorem Name",
-        description: "Restaurant type description",
-        img: Assets.imagesSupermarket1,
-        deliveryTime: "30",
-        deliveryPrice: "free",
-        rating: "2"),
-    FavoriteCardModel(
-        name: "Lorem Name",
-        description: "Restaurant type description",
-        img: Assets.imagesSupermarket1,
-        deliveryTime: "20",
-        deliveryPrice: "free",
-        rating: "4")
-  ];
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: favorits.length,
-      itemBuilder: (context, index) {
-        final isLastIndex = index == favorits.length - 1;
-        return Padding(
-          padding: EdgeInsets.only(bottom: isLastIndex ? 0 : 16),
-          child: FavoriteCard(
-            favoriteCardModel: favorits[index],
-          ),
-        );
+    return BlocBuilder<FavDetailsCubit, FavDetailsState>(
+      builder: (context, state) {
+        if (state is FavDetailsLoading) {
+          return const MartsLoading();
+        } else if (state is FavDetailsSuccess) {
+          List<FavMarket> marts = state.favDetailsModel.market ?? [];
+          return ListView.builder(
+            itemCount: marts.length,
+            itemBuilder: (context, index) {
+              final isLastIndex = index == marts.length - 1;
+              return Padding(
+                padding: EdgeInsets.only(bottom: isLastIndex ? 0 : 16),
+                child: FavoriteCard(
+                    favoriteCardModel:
+                        FavoriteCardModel.fromMarket(marts[index]),
+                    partnerType: marttType),
+              );
+            },
+          );
+        } else {
+          return const SizedBox();
+        }
       },
     );
   }
