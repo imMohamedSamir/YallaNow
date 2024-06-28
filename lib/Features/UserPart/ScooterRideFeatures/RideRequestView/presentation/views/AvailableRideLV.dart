@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/RequestDetails.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRideCard.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
@@ -16,9 +17,12 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
   AvailableRideModel? selectedRide;
   double ridePricex = 0.0, rideprice = 0.0;
   List<AvailableRideModel> rides = [];
+  RequestDetails? userRequestModel;
 
   @override
   void initState() {
+    userRequestModel =
+        BlocProvider.of<ScooterRequestCubit>(context).userRequest;
     super.initState();
     rides = [
       AvailableRideModel(
@@ -31,6 +35,7 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
           img: Assets.imagesScooterVehicle2),
     ];
     selectedRide = rides.isNotEmpty ? rides[0] : null;
+    userRequestModel!.vehicleType = selectedRide!.name;
   }
 
   @override
@@ -53,7 +58,7 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
             ];
             selectedRide = rides.isNotEmpty ? rides[0] : null;
             BlocProvider.of<ScooterRequestCubit>(context).userRequest.price =
-                double.parse(selectedRide?.price ?? '0');
+                selectedRide?.price;
           });
         }
       },
@@ -69,7 +74,8 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
                   selectedRide = value;
                   BlocProvider.of<ScooterRequestCubit>(context)
                       .userRequest
-                      .price = double.parse(selectedRide?.price ?? '0');
+                      .price = selectedRide?.price;
+                  userRequestModel!.vehicleType = selectedRide!.name;
                 });
               },
               isSelected: selectedRide == ride,

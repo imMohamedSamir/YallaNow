@@ -28,18 +28,17 @@ class ScooterButtonBuilder extends StatelessWidget {
               onPressed: () async {
                 if (state.methode == "cash") {
                   // findingRiderBS(context);
-                  BlocProvider.of<ScooterRequestCubit>(context).connect();
-                  BlocProvider.of<ScooterRequestCubit>(context)
-                      .joinGroup("user");
-                  BlocProvider.of<ScooterLocationCubit>(context)
-                      .onRequestSend(context);
+                  // BlocProvider.of<ScooterRequestCubit>(context).connect();
+
+                  // BlocProvider.of<ScooterLocationCubit>(context)
+                  //     .onRequestSend(context);
                 } else if (state.methode == "Credit Card") {
                   log(state.methode);
 
                   BlocProvider.of<CheckPaymentMethodCubit>(context)
                       .goToPaymentPage(context, amount: 100);
                 } else if (state.methode == "wallet") {
-                  findingRiderBS(context);
+                  // findingRiderBS(context);
                 }
               });
         } else {
@@ -48,17 +47,8 @@ class ScooterButtonBuilder extends StatelessWidget {
             txtcolor: Colors.white,
             btncolor: pKcolor,
             onPressed: () async {
-              // findingRiderBS(context);
-              // showOrderPlaced(context);
               final cubit = BlocProvider.of<ScooterRequestCubit>(context);
-              await cubit.connect().then((value) async {
-                await cubit.toggleGroupMembership(userGroup);
-                await cubit.sendRideRequest();
-                // cubit.requestResponseMethod();
-              });
-              if (!context.mounted) return;
-              BlocProvider.of<ScooterLocationCubit>(context)
-                  .onRequestSend(context);
+              await cubit.sendRideRequest();
             },
           );
         }

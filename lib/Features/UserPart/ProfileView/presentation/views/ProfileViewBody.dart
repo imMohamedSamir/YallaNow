@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileDetailsSec.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileOptionsDetails.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileWalletSec.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -17,6 +20,8 @@ class ProfileViewBody extends StatelessWidget {
         children: [
           const ProfileDetailsSec(),
           const SizedBox(height: 24),
+          const ProfileWalletSec(),
+          const Gap(8),
           const ProfileOptionsDetails(),
           ListTile(
             onTap: () {
@@ -25,7 +30,7 @@ class ProfileViewBody extends StatelessWidget {
             leading: SvgPicture.asset(Assets.imagesLogoutIcon),
             title: Text(S.of(context).logout,
                 style: AppStyles.styleSemiBold16(context)
-                    .copyWith(color: const Color(0xffB20404))),
+                    .copyWith(color: pKcolor)),
           )
         ],
       ),

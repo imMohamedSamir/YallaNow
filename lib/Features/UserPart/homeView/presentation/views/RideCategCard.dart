@@ -24,29 +24,6 @@ class RideCateg extends StatelessWidget {
             children: [
               const SizedBox(height: 8),
               Text("Scooter ride", style: AppStyles.styleSemiBold16(context)),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "The best solution to",
-                            style: AppStyles.styleRegular10(context)
-                                .copyWith(color: const Color(0xffB8B8B8)),
-                          ),
-                          Text(
-                            "save your time",
-                            style: AppStyles.styleRegular10(context)
-                                .copyWith(color: const Color(0xffB8B8B8)),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
           const Spacer(),

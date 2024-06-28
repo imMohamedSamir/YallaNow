@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("البحث عن سائقك"),
         "FirstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+        "GenderValidation":
+            MessageLookupByLibrary.simpleMessage("يرجى اختيار جنسك"),
         "HelpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
         "Home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "Hotel": MessageLookupByLibrary.simpleMessage("الفندق"),
@@ -45,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Location": MessageLookupByLibrary.simpleMessage("الموقع"),
         "LocationValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال موقعك"),
+        "Logoutofyouraccount": MessageLookupByLibrary.simpleMessage(
+            "هل تريد تسجيل الخروج من حسابك؟"),
         "MailValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال بريدك الإلكتروني"),
         "Male": MessageLookupByLibrary.simpleMessage("ذكر"),
@@ -59,7 +63,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "NumberofJuniors": MessageLookupByLibrary.simpleMessage("عدد الصغار"),
         "NumberofKids": MessageLookupByLibrary.simpleMessage("عدد الأطفال"),
         "Numberofadult": MessageLookupByLibrary.simpleMessage("عدد البالغين"),
+        "Ok": MessageLookupByLibrary.simpleMessage("حسنا"),
         "Overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
+        "PassValidation":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال كلمة المرور"),
         "Password": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
         "Paywith": MessageLookupByLibrary.simpleMessage("ادفع بـ"),
         "PerPerson": MessageLookupByLibrary.simpleMessage("/ الفرد"),
@@ -77,8 +84,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Resultplaces": MessageLookupByLibrary.simpleMessage("أماكن النتائج"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("دفع الرحلة"),
         "Room": MessageLookupByLibrary.simpleMessage("الغرفة"),
+        "SessionExpired": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
+        "SessionExpiredMsg": MessageLookupByLibrary.simpleMessage(
+            "انتهت جلستك. يرجى تسجيل الدخول مرة أخرى."),
         "SignIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "SignUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "SignUprider": MessageLookupByLibrary.simpleMessage("اشترك كسائق"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل بياناتك بنجاح. سنتواصل معك."),
         "Takewithyou": MessageLookupByLibrary.simpleMessage("خذ معك"),
@@ -88,13 +99,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "TravellerName": MessageLookupByLibrary.simpleMessage("الاسم"),
         "Trips": MessageLookupByLibrary.simpleMessage("رحلات"),
         "TripsType": MessageLookupByLibrary.simpleMessage("أنواع الرحلات"),
+        "Wallet": MessageLookupByLibrary.simpleMessage("محفظة"),
         "Yalla": MessageLookupByLibrary.simpleMessage("يلا"),
         "adultValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال عدد البالغين"),
         "already_have_account":
-            MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+            MessageLookupByLibrary.simpleMessage(" هل لديك حساب بالفعل ؟"),
+        "change": MessageLookupByLibrary.simpleMessage("تغيير"),
+        "confirmPassCorrectation":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال نفس كلمة المرور"),
+        "confirmPassvalidation":
+            MessageLookupByLibrary.simpleMessage("يرجى تأكيد كلمة المرور"),
         "confirmedPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "continuewith": MessageLookupByLibrary.simpleMessage("أو تابع مع"),
         "correctEmail": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال عنوان بريد إلكتروني صحيح"),
         "correctPhoneNumber":
@@ -102,11 +120,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "editprofile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
+        "firstnameValidation":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال اسمك الأول"),
         "gender": MessageLookupByLibrary.simpleMessage("النوع"),
+        "havntaccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "lasnameValidation":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال اسمك الأخير"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "passForget": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "places": MessageLookupByLibrary.simpleMessage("الأماكن"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "scooterRide": MessageLookupByLibrary.simpleMessage("ركوب سكوتر"),
+        "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "usernameValidation":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال اسم المستخدم"),
         "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "whereTo": MessageLookupByLibrary.simpleMessage("إلى أين؟")

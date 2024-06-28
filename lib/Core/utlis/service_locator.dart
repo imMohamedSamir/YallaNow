@@ -15,6 +15,7 @@ import 'package:yallanow/Features/UserPart/FavoriteView/data/Repo/FavoriteRepoIm
 import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/SignalR_Service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
@@ -27,6 +28,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<YallaNowServices>(YallaNowServices(Dio()));
   getIt.registerSingleton<YallaNowServicesHttp>(YallaNowServicesHttp());
   getIt.registerSingleton<LocationService>(LocationService());
+  getIt.registerSingleton<SignalRService>(SignalRService());
 
   getIt.registerSingleton<DriverRegisterationRepoImpl>(
       DriverRegisterationRepoImpl());
@@ -35,7 +37,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<FoodRepoImpl>(
       FoodRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<AuthRepoImpl>(
-      AuthRepoImpl(yallaNowServicesHttp: getIt.get<YallaNowServicesHttp>()));
+      AuthRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<HomeRepoImpl>(
       HomeRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<ProfileRepoImpl>(

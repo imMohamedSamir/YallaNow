@@ -7,6 +7,7 @@ import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Func
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/EditProfilePage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/HelpCenterPage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/LanguagePage.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/PrivacyPolicyPage.dart';
 
 void goToOptionPage({required int index, required BuildContext context}) {
   switch (index) {
@@ -39,6 +40,10 @@ void goToOptionPage({required int index, required BuildContext context}) {
     case 3:
       shareApp();
       break;
+    case 4:
+      NavigateToPage.slideFromRight(
+          context: context, page: const PrivacyPolicyPage());
+      break;
     // Add cases for other indexes as needed
     default:
       // Handle the default case if needed
@@ -54,16 +59,16 @@ void deliveryGoToOptionPage(
       //     MaterialPageRoute(builder: (context) => const EditProfilePage()));
       break;
     case 1:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const LanguagePage()));
+      NavigateToPage.slideFromRight(
+          context: context, page: const LanguagePage());
       break;
     case 2:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HelpCenterPage()));
+      NavigateToPage.slideFromRight(
+          context: context, page: const HelpCenterPage());
       break;
     case 3:
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (context) => const AddressesView()));
+      NavigateToPage.slideFromRight(
+          context: context, page: const PrivacyPolicyPage());
       break;
 
     case 7:

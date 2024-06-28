@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinRequestBS.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 
@@ -8,18 +9,18 @@ class CaptinRequestBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScooterRequestCubit, ScooterRequestState>(
+    return BlocBuilder<CaptinRequestCubit, CaptinRequestState>(
       builder: (context, state) {
         Offset offset;
         double opacity;
         Duration duration = const Duration(milliseconds: 650);
-        var data = state is ScooterRequestAccepted ? state.requestData : null;
-        if (state is ScooterRequestAccepted) {
+        var data = state is CaptinRequestAccepted ? state.requestDetails : null;
+        if (state is CaptinRequestAccepted) {
           offset = const Offset(0, 0);
           opacity = 1.0;
         } else {
           offset = const Offset(0, 1);
-          opacity = 1.0;
+          opacity = 0;
         }
         return AnimatedSlide(
           offset: offset,
@@ -32,14 +33,14 @@ class CaptinRequestBuilder extends StatelessWidget {
               minChildSize: 0.11,
               maxChildSize: .42,
               builder: (context, scrollController) {
-                if (state is ScooterRequestAccepted) {
+                if (state is CaptinRequestAccepted) {
                   return CaptinRequestBS(
                     scrollController: scrollController,
                     requestDetails: data!,
                     isAccepted: true,
                   );
                 } else {
-                  return SizedBox();
+                  return const SizedBox();
                 }
               },
             ),

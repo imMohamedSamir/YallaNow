@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRideLV.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRidePayMethod.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/ScooterButtonBuilder.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -55,11 +57,11 @@ class ChooseRideType extends StatelessWidget {
                           topRight: Radius.circular(16))),
                   child: Column(
                     children: [
-                      Image.asset(
-                        Assets.imagesComingSoon,
-                        height: 100,
-                        width: 100,
-                      ),
+                      // Image.asset(
+                      //   Assets.imagesComingSoon,
+                      //   height: 100,
+                      //   width: 100,
+                      // ),
                       const SizedBox(height: 12),
                       Text(
                         state.errmsg,
@@ -92,7 +94,15 @@ class ChooseRideType extends StatelessWidget {
                         height: 40,
                         alignment: Alignment.center,
                         child: const Icon(Icons.drag_handle)),
-                    const AvailableRideBS()
+                    BlocBuilder<ScooterRequestCubit, ScooterRequestState>(
+                      builder: (context, state) {
+                        if (state is ScooterRequestSent) {
+                          return const FindingRideView();
+                        } else {
+                          return const AvailableRideBS();
+                        }
+                      },
+                    )
                   ],
                 ),
               ),

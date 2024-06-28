@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
@@ -19,8 +20,9 @@ class TripsTypeView extends StatelessWidget {
               TripsByTypeCubit(getIt.get<TripsRepoImpl>())..get(type: name),
         ),
         BlocProvider(
-            create: (context) =>
-                TripsPopularCubit(getIt.get<TripsRepoImpl>())..get()),
+            create: (context) => TripsPopularCubit(
+                getIt.get<TripsRepoImpl>(), getIt.get<GoogleMapsServices>())
+              ..get()),
       ],
       child: Scaffold(
         appBar: secondAppBar(context, title: name),

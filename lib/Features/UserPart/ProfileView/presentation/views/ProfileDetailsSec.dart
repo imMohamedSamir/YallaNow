@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/user_details_cubit/user_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileImgSec.dart';
 
@@ -33,13 +31,7 @@ class ProfileDetailsSec extends StatelessWidget {
                     style: AppStyles.styleMedium14(context)
                         .copyWith(color: const Color(0xff212121))),
               ),
-              const Gap(12),
-              Center(
-                  child: Text(
-                "Wallet : ${state.userProfileDetails.wallet} EGP",
-                style:
-                    AppStyles.styleSemiBold16(context).copyWith(color: pKcolor),
-              ))
+
               // Text(data)
             ],
           );
@@ -78,36 +70,7 @@ class ProfileDetailsSec extends StatelessWidget {
           return Text(state.errMsg);
         }
 
-        return Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Column(
-            children: [
-              Container(
-                width: AppSizes.getWidth(120, context),
-                height: AppSizes.getHeight(120, context),
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.white),
-              ),
-              const SizedBox(height: 12),
-              Container(
-                width: AppSizes.getWidth(90, context),
-                height: AppSizes.getHeight(6, context),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.white),
-              ),
-              const SizedBox(height: 2),
-              Container(
-                width: AppSizes.getWidth(120, context),
-                height: AppSizes.getHeight(6, context),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.white),
-              ),
-            ],
-          ),
-        );
+        return const SizedBox();
       },
     );
   }

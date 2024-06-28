@@ -34,7 +34,7 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
   }
 
   static List<Widget> pages = [
-    const TripsView(),
+    const HomePage(),
     const ScooterRideView(),
     // const OrdersView(),
     // const NotificationPage(),

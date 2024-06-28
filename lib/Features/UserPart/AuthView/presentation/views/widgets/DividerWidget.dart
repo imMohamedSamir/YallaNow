@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/generated/l10n.dart';
 
-class dividersWidget extends StatelessWidget {
-  const dividersWidget({super.key});
+class DividersWidget extends StatelessWidget {
+  const DividersWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class dividersWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            'or continue with',
+            S.of(context).continuewith,
             style:
                 AppStyles.styleMedium16(context).copyWith(color: Colors.grey),
           ),

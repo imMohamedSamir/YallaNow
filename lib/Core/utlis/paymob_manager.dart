@@ -44,7 +44,7 @@ class PaymobManager {
   Future<String> _getAuthanticationToken() async {
     final Response response =
         await Dio().post("https://accept.paymob.com/api/auth/tokens", data: {
-      "api_key": KpaymobApiKey,
+      "api_key": kPaymobApiKey,
     });
     return response.data["token"];
   }

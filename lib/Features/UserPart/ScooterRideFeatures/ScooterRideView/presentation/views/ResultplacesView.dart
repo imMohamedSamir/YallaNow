@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/place_autocomplete_model/place_autocomplete_model.dart';
@@ -19,18 +17,15 @@ class ResultplacesView extends StatelessWidget {
           Navigator.of(context).pop();
         } else if (state is ScooterLocationFailuer) {
           Navigator.of(context).pop();
-          // ScaffoldMessenger.of(context).showSnackBar(
-          //   SnackBar(content: Text(state.errmsg)),
-          // );
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errmsg)),
+          );
         }
       },
       builder: (context, state) {
         if (state is ScooterLocationLoading) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          BlocProvider.of<AutoCompletePlacesCubit>(context)
-              .destinationFocusNode
-              .requestFocus();
           return Column(
             children: List.generate(
                 places.length,
@@ -68,6 +63,13 @@ class ResultplacesView extends StatelessWidget {
                                           .distanceTextController
                                           .text);
                         }
+                        await BlocProvider.of<ScooterLocationCubit>(context)
+                            .selectedLocation(context,
+                                description:
+                                    BlocProvider.of<AutoCompletePlacesCubit>(
+                                            context)
+                                        .distanceTextController
+                                        .text);
                       },
                       address: places[index].description!,
                     ))),

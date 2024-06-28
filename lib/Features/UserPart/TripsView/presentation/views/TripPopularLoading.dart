@@ -20,8 +20,7 @@ class TripPopularLoading extends StatelessWidget {
               height: AppSizes.getHeight(143, context),
               width: AppSizes.getWidth(225, context),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
+                  borderRadius: BorderRadius.circular(8), color: Colors.white),
             ),
           ),
         );

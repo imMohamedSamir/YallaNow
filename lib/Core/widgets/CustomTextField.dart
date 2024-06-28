@@ -44,6 +44,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textDirection: AppLang.isArabic() ? TextDirection.rtl : TextDirection.ltr,
       maxLines: maxLines ?? null,
       focusNode: focusNode,
       autovalidateMode: autovalidateMode,
@@ -55,6 +56,7 @@ class CustomTextField extends StatelessWidget {
           .copyWith(color: const Color(0xff240301)),
       initialValue: initialValue,
       obscureText: secure ?? false,
+
       onChanged: onChanged,
       onSaved: onSaved,
       validator: validator,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
@@ -18,20 +19,22 @@ class TripsView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ExploreTripsCubit(getIt.get<TripsRepoImpl>()),
+          create: (context) => ExploreTripsCubit(
+              getIt.get<TripsRepoImpl>(), getIt.get<GoogleMapsServices>()),
         ),
         BlocProvider(
           create: (context) => PlacesInfoCubit(getIt.get<TripsRepoImpl>()),
         ),
         BlocProvider(
-          create: (context) => TripsPopularCubit(getIt.get<TripsRepoImpl>()),
+          create: (context) => TripsPopularCubit(
+              getIt.get<TripsRepoImpl>(), getIt.get<GoogleMapsServices>()),
         ),
         BlocProvider(
           create: (context) => TripTypesCubit(getIt.get<TripsRepoImpl>()),
         ),
       ],
       child: Scaffold(
-        appBar: mainAppBar(context, title: S.of(context).Trips),
+        appBar: secondAppBar(context, title: S.of(context).Trips),
         body: const TripsViewBody(),
       ),
     );

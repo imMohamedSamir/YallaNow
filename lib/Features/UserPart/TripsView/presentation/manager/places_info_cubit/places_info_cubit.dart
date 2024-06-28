@@ -12,6 +12,17 @@ class PlacesInfoCubit extends Cubit<PlacesInfoState> {
     emit(PlacesInfoLoading());
     var result = await tripsRepo.getPlaces();
     result.fold((fail) => emit(PlacesInfoFailure(errMsg: fail.errMessage)),
-        (places) => emit(PlacesInfoSuccess(places: places)));
+        (places) async {
+      emit(PlacesInfoSuccess(places: places));
+    });
   }
+
+  // Future<String> _translateText({required String text}) async {
+  //   var result = await googleMapsServices.translate(text: text);
+  //   return result.fold((fail) {
+  //     return text;
+  //   }, (translatedText) {
+  //     return translatedText.data!.translations!.first.translatedText ?? text;
+  //   });
+  // }
 }

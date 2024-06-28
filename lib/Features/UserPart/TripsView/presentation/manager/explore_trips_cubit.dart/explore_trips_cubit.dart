@@ -1,15 +1,17 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
+import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepo.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_card_model.dart';
 
 part 'explore_trips_state.dart';
 
 class ExploreTripsCubit extends Cubit<ExploreTripsState> {
-  ExploreTripsCubit(this.tripsRepo) : super(ExploreTripsInitial());
+  ExploreTripsCubit(this.tripsRepo, this.googleMapsServices)
+      : super(ExploreTripsInitial());
   final TripsRepo tripsRepo;
+  final GoogleMapsServices googleMapsServices;
   int currentPage = 1;
   bool hasMore = true;
 
@@ -19,9 +21,11 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
         await tripsRepo.getExplorTrips(pageNumber: currentPage, pageSize: 5);
 
     result.fold((fail) => emit(ExploreTripsFailure(errMsg: fail.errMessage)),
-        (trips) {
-      hasMore = trips.length ==
-          5; // Assuming the API returns a maximum of 5 items per page
+        (trips) async {
+      hasMore = trips.length == 5;
+      if (AppLang.isArabic()) {
+        trips = await _translateTrips(trips: trips);
+      }
       emit(ExploreTripsSuccess(
           trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
     });
@@ -35,13 +39,15 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
         await tripsRepo.getExplorTrips(pageNumber: currentPage, pageSize: 5);
 
     result.fold((fail) => emit(ExploreTripsFailure(errMsg: fail.errMessage)),
-        (trips) {
+        (trips) async {
       hasMore = trips.length == 5;
       if (trips.isEmpty) {
-        log("trips is empty");
         currentPage--;
         get();
       } else {
+        if (AppLang.isArabic()) {
+          trips = await _translateTrips(trips: trips);
+        }
         emit(ExploreTripsSuccess(
             trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
       }
@@ -56,10 +62,34 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
         await tripsRepo.getExplorTrips(pageNumber: currentPage, pageSize: 5);
 
     result.fold((fail) => emit(ExploreTripsFailure(errMsg: fail.errMessage)),
-        (trips) {
+        (trips) async {
       hasMore = trips.length == 5;
+      if (AppLang.isArabic()) {
+        trips = await _translateTrips(trips: trips);
+      }
       emit(ExploreTripsSuccess(
           trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
+    });
+  }
+
+  Future<List<TripCardModel>> _translateTrips(
+      {required List<TripCardModel> trips}) async {
+    List<TripCardModel> translatedTrips = [];
+    for (var trip in trips) {
+      trip.name = await _translateText(text: trip.name ?? "");
+      trip.description = await _translateText(text: trip.description ?? "");
+      trip.destniation = await _translateText(text: trip.destniation ?? "");
+      translatedTrips.add(trip);
+    }
+    return translatedTrips;
+  }
+
+  Future<String> _translateText({required String text}) async {
+    var result = await googleMapsServices.translate(text: text);
+    return result.fold((fail) {
+      return text;
+    }, (translatedText) {
+      return translatedText.data!.translations!.first.translatedText ?? text;
     });
   }
 }

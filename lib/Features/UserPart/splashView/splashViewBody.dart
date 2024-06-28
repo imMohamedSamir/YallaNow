@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif/gif.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
@@ -41,8 +45,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
     if (isFirstTime!) {
       await prefs.setBool('isFirstTime', false);
     }
-    userToken = prefs.getString(savedToken);
-    userRole = prefs.getString(savedRole);
+    userToken = await TokenManager.getUserToken();
+    userRole = await TokenManager.getUserRole();
     navigateTransition();
   }
 
@@ -61,7 +65,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     if (isFirstTime!) {
       return const OnBoarding();
     } else {
-      if (userToken != null) {
+      if (userToken != null && !TokenManager.tokenIsExp(userToken)) {
         if (userRole == "Driver") {
           return const CaptinHomeView();
         } else if (userRole == "User") {

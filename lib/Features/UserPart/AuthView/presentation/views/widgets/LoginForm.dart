@@ -3,6 +3,7 @@ import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/LoginPostModel.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginButtonBuilder.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/forgetPassQ.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -27,11 +28,11 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           CustomTextField(
-            hintText: "Email or Phone Number",
+            hintText: S.of(context).Email,
             autovalidateMode: autovalidateModeEmail,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your Email or Phone Number';
+                return S.of(context).MailValidation;
               }
               return null;
             },
@@ -46,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           const SizedBox(height: 30),
           CustomTextField(
-            hintText: "Enter Your Password",
+            hintText: S.of(context).Password,
             autovalidateMode: autovalidateModePass,
             maxLines: 1,
             secure: secure,
@@ -61,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your password';
+                return S.of(context).PassValidation;
               }
               return null;
             },
@@ -77,10 +78,7 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 10),
           const ForgetPasswordSec(),
           const SizedBox(height: 30),
-          LoginButtonBuilder(
-            formKey: _formKey,
-            loginPostModel: loginPostModel,
-          ),
+          LoginButtonBuilder(formKey: _formKey, loginPostModel: loginPostModel),
         ],
       ),
     );

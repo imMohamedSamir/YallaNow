@@ -4,6 +4,7 @@ import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.d
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignupFormButtonBuilder.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -28,11 +29,11 @@ class _SignupFormState extends State<SignupForm> {
             children: [
               Expanded(
                 child: CustomTextField(
-                  hintText: "First Name",
+                  hintText: S.of(context).FirstName,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your name';
+                      return S.of(context).firstnameValidation;
                     }
                     return null;
                   },
@@ -44,11 +45,11 @@ class _SignupFormState extends State<SignupForm> {
               const SizedBox(width: 16),
               Expanded(
                 child: CustomTextField(
-                  hintText: "Last Name",
+                  hintText: S.of(context).LastName,
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your name';
+                      return S.of(context).lasnameValidation;
                     }
                     return null;
                   },
@@ -61,12 +62,12 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            hintText: "User Name",
+            hintText: S.of(context).userName,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please enter your user name';
+                return S.of(context).usernameValidation;
               }
 
               return null;
@@ -77,15 +78,15 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            hintText: "Email",
+            hintText: S.of(context).Email,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please enter your E-Mail address';
+                return S.of(context).MailValidation;
               }
               if (!value.contains("@")) {
-                return 'Please enter correct E-Mail address';
+                return S.of(context).correctEmail;
               }
               return null;
             },
@@ -95,14 +96,14 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            hintText: "Mobile number",
+            hintText: S.of(context).PhoneNumber,
             keyboardType: TextInputType.phone,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please enter your mobile number';
+                return S.of(context).PhoneValidation;
               }
               if (value.length > 11 || value.length < 11) {
-                return 'Please enter correct mobile number ';
+                return S.of(context).correctPhoneNumber;
               }
               return null;
             },
@@ -112,7 +113,7 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
-              hintText: "Enter Your Password",
+              hintText: S.of(context).Password,
               secure: p1,
               maxLines: 1,
               validator: (value) {
@@ -133,15 +134,15 @@ class _SignupFormState extends State<SignupForm> {
               )),
           const SizedBox(height: 16),
           CustomTextField(
-              hintText: "Confirm Password",
+              hintText: S.of(context).confirmedPassword,
               secure: p2,
               maxLines: 1,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please Confirm your password';
+                  return S.of(context).confirmPassvalidation;
                 }
                 if (password != confirmPassword) {
-                  return 'Please enter same password';
+                  return S.of(context).confirmPassCorrectation;
                 }
                 return null;
               },
@@ -168,7 +169,7 @@ class _SignupFormState extends State<SignupForm> {
             },
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return '   Please choose your gender';
+                return S.of(context).GenderValidation;
               }
               return null;
             },

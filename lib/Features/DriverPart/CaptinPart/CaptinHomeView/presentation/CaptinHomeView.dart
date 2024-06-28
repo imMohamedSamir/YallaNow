@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/NotificationController.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/CheckHomeAppBar.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDrawer.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinOrdersViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRatingView/presentation/views/CaptinRatingView.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DriverBottomNavBar.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 
 class CaptinHomeView extends StatefulWidget {
   const CaptinHomeView({super.key});
@@ -25,8 +25,8 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
   void initState() {
     AwesomeNotifications().setListeners(
         onActionReceivedMethod: (receivedAction) async {
-          await BlocProvider.of<ScooterRequestCubit>(context)
-              .handleRecivedRequest(context, action: receivedAction);
+          await BlocProvider.of<CaptinRequestCubit>(context)
+              .handleReceivedRequest(context, action: receivedAction);
         },
         onNotificationCreatedMethod:
             NotificationController.onNotificationCreatedMethod,
@@ -36,7 +36,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
             NotificationController.onDismissActionReceivedMethod);
     super.initState();
     _pageController = PageController(initialPage: currentPage);
-    BlocProvider.of<ScooterRequestCubit>(context).checkLocationPermission();
+    BlocProvider.of<CaptinRequestCubit>(context).checkLocationPermission();
   }
 
   void setCurrentPage(int index) {

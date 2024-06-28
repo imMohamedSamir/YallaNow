@@ -20,13 +20,13 @@ class Genderdropmenu extends StatelessWidget {
     return DropdownButtonFormField<String>(
       style: AppStyles.styleMedium16(context)
           .copyWith(color: const Color(0xff9E9D9D)),
-      value: initialvalue,
+      value: initialvalue?.toLowerCase(),
       onSaved: onSaved,
       onChanged: onChanged,
       validator: validator,
       items: [S.of(context).Male, S.of(context).Female].map((String e) {
         return DropdownMenuItem<String>(
-          value: getGender(gender: e) ?? e,
+          value: getGender(gender: e) ?? e.toLowerCase(),
           child: initialvalue != null
               ? Text(e,
                   style: AppStyles.styleMedium16(context)

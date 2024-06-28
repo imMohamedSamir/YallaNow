@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
@@ -19,7 +20,7 @@ class RiderSrcDstCard extends StatelessWidget {
         const SizedBox(width: 14),
         Text(
           dsc,
-          style: AppStyles.styleRegular12(context),
+          style: AppStyles.styleRegular14(context).copyWith(color: scColor),
         )
       ],
     );
@@ -34,7 +35,11 @@ class RiderSrcDstDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 8, top: 2, bottom: 2),
+      margin: EdgeInsets.only(
+          left: AppLang.isArabic() ? 0 : 8,
+          top: 2,
+          bottom: 2,
+          right: AppLang.isArabic() ? 8 : 0),
       height: 16,
       width: 2,
       decoration: const BoxDecoration(color: scColor),

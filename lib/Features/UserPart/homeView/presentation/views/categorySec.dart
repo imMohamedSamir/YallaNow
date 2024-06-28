@@ -1,57 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/FoodView.dart';
+import 'package:yallanow/Core/utlis/functions/getPadding.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/CardDetailModel.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/RideCategCard.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/categCadDetaisl.dart';
-import 'package:yallanow/main.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class CategorySec extends StatelessWidget {
   const CategorySec({super.key});
-  static List<CardCategDetails> details = [
-    CardCategDetails(title: "Food", avgTime: "29 min", img: Assets.imagesFood),
-    CardCategDetails(
-        title: "Mart & Groceries",
-        avgTime: "30 min",
-        img: Assets.imagesMarketbasket),
-    CardCategDetails(
-        title: "Pharmacy", avgTime: "29 min", img: Assets.imagesPharamcyLogo),
-  ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const RideCateg(),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-              3,
-              (index) => Padding(
-                    padding: EdgeInsets.only(right: index == 2 ? 0 : 16),
-                    child: GestureDetector(
-                      onTap: () {
-                        if (index == 0) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const FoodView()),
-                          );
-                        } else if (index == 1) {
-                          Navigator.pushNamed(context, RoutesNames.markets);
-                        } else if (index == 2) {
-                          Navigator.pushNamed(
-                              context, RoutesNames.pharmacyPage);
-                        }
-                      },
-                      child: CategCardDetails(
-                        cardDetails: details[index],
-                      ),
-                    ),
-                  )),
-        ),
-      ],
+    List<CardCategDetails> details = [
+      CardCategDetails(
+          title: S.of(context).scooterRide, img: Assets.imagesScootercateg),
+      CardCategDetails(
+          title: S.of(context).Trips, img: Assets.imagesTripsCateg),
+      CardCategDetails(
+          title: "Food", img: Assets.imagesFood, isComingSoon: true),
+      CardCategDetails(
+          title: "Pharmacy",
+          img: Assets.imagesPharamcyLogo,
+          isComingSoon: true),
+      CardCategDetails(
+          title: "Mart & Groceries",
+          img: Assets.imagesMarketbasket,
+          isComingSoon: true),
+      CardCategDetails(
+          title: "Bazar", img: Assets.imagesMarketbasket, isComingSoon: true),
+    ];
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, mainAxisSpacing: 8),
+      itemCount: details.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: getPadding(index: index, lastIndex: 2, paddingValue: 16),
+          child: Card(
+              elevation: .9,
+              child: CategCardDetails(
+                cardDetails: details[index],
+                index: index,
+              )),
+        );
+      },
     );
   }
 }

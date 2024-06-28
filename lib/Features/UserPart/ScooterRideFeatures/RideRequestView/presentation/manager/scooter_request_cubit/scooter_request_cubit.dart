@@ -6,262 +6,114 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:signalr_netcore/signalr_client.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/request_model.dart';
+import 'package:signalr_netcore/hub_connection.dart';
 import 'package:uuid/uuid.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/request_model.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinRequestBS.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/SignalR_Service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/RequestDetails.dart';
 
 part 'scooter_request_state.dart';
 
 class ScooterRequestCubit extends Cubit<ScooterRequestState> {
-  ScooterRequestCubit() : super(ScooterRequestInitial());
-
-  final HubConnection _connection = HubConnectionBuilder()
-      .withUrl("https://yallanow.runasp.net/rideRequestHub")
-      .build();
-  RequestModel userRequest = RequestModel();
+  final SignalRService signalRService;
+  RequestDetails userRequest = RequestDetails();
   var uuid = const Uuid();
-  bool _isJoined = false;
-
-  void checkLocationPermission() async {
-    // Check initial status
-    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!isLocationServiceEnabled) {
-      emit(ScooterRequestDisabled());
-    }
-
-    // Set up the listener
-    Geolocator.getServiceStatusStream().listen((ServiceStatus status) {
-      if (status == ServiceStatus.disabled) {
-        if (_connection.state == HubConnectionState.Connected) {
-          leaveGroup(driverGroup);
-        }
-        emit(ScooterRequestDisabled());
-      } else {
-        emit(ScooterRequestInitial());
-      }
-    });
+  // bool _isJoined = false;
+  bool _isConnected = false;
+  ScooterRequestCubit(this.signalRService) : super(ScooterRequestInitial()) {
+    _setupSignalRListeners();
   }
 
   Future<void> connect() async {
-    emit(ScooterRequestLoading());
+    if (!_isConnected) {
+      emit(ScooterRequestLoading());
+      var result = await signalRService.startConnection();
+      result.fold((faile) => emit(ScooterRequestFailure()), (r) {
+        emit(ScooterRequestConnected());
+        _isConnected = true;
+      });
+    } else {}
+  }
 
-    try {
-      if (_connection.state == HubConnectionState.Connected) {
-        log(_connection.state.toString());
+  Future<void> joinGroup({required String groupName}) async {
+    var result = await signalRService.joinGroup(groupName);
+    result.fold((faile) => emit(ScooterRequestFailure()),
+        (r) => emit(ScooterRequestConnected()));
+  }
+
+  void leaveGroup({required String groupName}) async {
+    var result = await signalRService.leaveGroup(groupName);
+    result.fold((faile) => emit(ScooterRequestFailure()),
+        (r) => emit(ScooterRequestInitial()));
+  }
+
+  void _setupSignalRListeners() {
+    signalRService.connection.on('ReceiveMessage', (arg) {
+      if (arg == null) {
+        log("No message received");
       } else {
-        emit(ScooterRequestLoading());
-        await _connection.start()!.timeout(const Duration(seconds: 50));
-        log("second : ${_connection.state.toString()}");
+        log("Received message: ${arg.toString()}");
       }
+    });
 
-      // closeConnection();
-    } catch (e) {
-      log("error connecting to: ${e.toString()}");
+    signalRService.connection.on("RequestAccepted", (arguments) {
+      emit(ScooterRequestDriverAccepted());
+      log("Accepted status: ${arguments?.first.toString()}");
+    });
+
+    signalRService.connection.on("RequestRejected", (arguments) {
+      emit(ScooterRequestDriverRejected());
+      log("Rejected status: ${arguments?.first.toString()}");
+    });
+  }
+
+  Future<void> sendRideRequest() async {
+    userRequest.requestId = uuid.v4();
+    userRequest.connectionId = signalRService.connection.connectionId;
+    // log(userRequest.toJson().toString());
+    emit(ScooterRequestLoading());
+    userRequest.userName = await TokenManager.getUserName();
+    var resutl = await signalRService.sendRideRequest(userRequest);
+    resutl.fold((l) => emit(ScooterRequestFailure()), (r) => null);
+  }
+
+  Future<void> acceptRequest(String requestId,
+      {RequestDetails? requestDetails}) async {
+    String driverConnectionId = signalRService.connection.connectionId!;
+    try {
+      await signalRService.connection.invoke('AcceptRequest',
+          args: <Object>[requestId, driverConnectionId]);
+      if (requestDetails != null) {
+        emit(ScooterRequestAccepted(requestData: requestDetails));
+      }
+    } on Exception catch (e) {
+      log("Error accepting request: ${e.toString()}");
       emit(ScooterRequestFailure());
     }
   }
 
-  void recieveRequest() {
-    _connection.on('ReceiveMessage', (arg) {
-      if (arg == null) {
-        log("no message received");
-      } else {
-        log(arg.toString());
-      }
-    });
-    _connection.on("RequestAccepted", (arguments) {
-      leaveGroup(driverGroup);
-      _isJoined = false;
-
-      log("accepted stats:${arguments?.first.toString()}");
-    });
-    _connection.on("RequestRejected", (arguments) {
-      log("rejected stats:${arguments?.first.toString()}");
-    });
-    _connection.on("ReceiveRideRequest", (request) {
-      if (request == null || request.isEmpty) {
-        log("Received an empty request.");
-        return;
-      }
-
-      try {
-        var firstElement = request.first;
-        RequestModel requestModel;
-
-        if (firstElement is Map<String, dynamic>) {
-          // The first element is already a Map<String, dynamic>
-          requestModel = RequestModel.fromJson(firstElement);
-        } else if (firstElement is String) {
-          // The first element is a JSON string, parse it
-          Map<String, dynamic> msg = jsonDecode(firstElement);
-          requestModel = RequestModel.fromJson(msg);
-        } else {
-          log("Unexpected request format: ${firstElement.runtimeType}");
-          return;
-        }
-
-        _createNotification(requestModel);
-      } catch (e) {
-        log("Error parsing request: $e");
-      }
-    });
-  }
-
-  void requestResponseMethod() {
-    _connection.on("RequestAccepted", (arguments) {
-      emit(ScooterRequestDriverAccepted());
-
-      log("accepted stats:${arguments?.first.toString()}");
-    });
-    _connection.on("RequestRejected", (arguments) {
-      log("rejected stats:${arguments?.first.toString()}");
-    });
+  Future<void> rejectRequest(String requestId) async {
+    String driverConnectionId = signalRService.connection.connectionId!;
+    try {
+      await signalRService.connection.invoke('RejectRequest',
+          args: <Object>[requestId, driverConnectionId]);
+      emit(ScooterRequestRejected());
+    } on Exception catch (e) {
+      log("Error rejecting request: ${e.toString()}");
+      emit(ScooterRequestFailure());
+    }
   }
 
   void cancelRequest() {
     emit(ScooterRequestInitial());
   }
 
-  void _createNotification(RequestModel requestModel) {
-    log(requestModel.toJson().toString());
-    RequestDetails requestDetails = RequestDetails(
-        requestId: requestModel.requestId!,
-        location: requestModel.location!,
-        destination: requestModel.destination!,
-        price: requestModel.price.toString(),
-        userName: "Mohamed Samir",
-        paymentMethod: "cash");
-
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: math.Random().nextInt(300),
-            channelKey: notifChannelKey,
-            actionType: ActionType.Default,
-            payload: requestDetails.toJson(),
-            title: 'Ride Request For You!',
-            body:
-                "from ${requestModel.location} to ${requestModel.destination}\n${requestModel.price} EGP",
-            notificationLayout: NotificationLayout.Default,
-            backgroundColor: pKcolor,
-            wakeUpScreen: true
-            // badge: 5,
-            ),
-        actionButtons: [
-          NotificationActionButton(
-            key: 'ACCEPT',
-            label: 'Accept',
-            actionType: ActionType.Default,
-          ),
-          NotificationActionButton(
-            key: 'REJECT',
-            label: 'Reject',
-            actionType: ActionType.Default,
-          ),
-        ]);
-  }
-
   Future<void> closeConnection() async {
-    await _connection.stop();
-    log(" closeConnection :${_connection.state}");
-  }
-
-  Future<void> joinGroup(String groupName) async {
-    try {
-      await _connection.invoke('JoinGroup', args: <Object>[groupName]);
-      emit(ScooterRequestSuccess());
-    } on Exception catch (e) {
-      log(e.toString());
-    }
-  }
-
-  Future<void> toggleGroupMembership(String groupName) async {
-    if (_isJoined) {
-      await leaveGroup(groupName);
-      emit(ScooterRequestInitial());
-
-      _isJoined = false;
-    } else {
-      await joinGroup(groupName);
-      recieveRequest();
-      _isJoined = true;
-    }
-  }
-
-  Future<void> leaveGroup(String groupName) async {
-    try {
-      await _connection.invoke('LeaveGroup', args: <Object>[groupName]);
-    } on Exception catch (e) {
-      log(e.toString());
-    }
-  }
-
-  Future<void> sendRideRequest() async {
-    userRequest.requestId = uuid.v4();
-    userRequest.connectionId = _connection.connectionId;
-    log(userRequest.toJson().toString());
-
-    try {
-      await _connection
-          .invoke('SendRideRequest', args: <Object>[userRequest.toJson()]);
-      emit(ScooterRequestSent(requestData: userRequest));
-      // await acceptRequest(userRequest.requestId!);
-      _connection.on("RequestAccepted", (arguments) {
-        emit(ScooterRequestDriverAccepted());
-
-        log("accepted stats:${arguments?.first.toString()}");
-      });
-      log("done sending");
-    } on Exception catch (e) {
-      log("error sending :${e.toString()}");
-    }
-  }
-
-  Future<void> handleRecivedRequest(BuildContext context,
-      {required ReceivedAction action}) async {
-    if (action.buttonKeyPressed == "ACCEPT") {
-      await acceptRequest(action.payload!["requestId"]!);
-      emit(ScooterRequestAccepted(
-          requestData: RequestDetails.fromJson(action.payload!)));
-    } else if (action.buttonKeyPressed == "REJECT") {
-      _rejectRequest(action.payload!["requestId"]!);
-    } else {
-      showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        builder: (context) {
-          return CaptinRequestBS(
-              requestDetails: RequestDetails.fromJson(action.payload!));
-        },
-      );
-    }
-  }
-
-  Future<void> acceptRequest(String requestId,
-      {RequestDetails? requestDetails}) async {
-    String driverConnectionId = _connection.connectionId!;
-    try {
-      await _connection.invoke('AcceptRequest',
-          args: <Object>[requestId, driverConnectionId]);
-      if (requestDetails != null) {
-        emit(ScooterRequestAccepted(requestData: requestDetails));
-      }
-    } on Exception catch (e) {
-      log(e.toString());
-    }
-  }
-
-  Future<void> _rejectRequest(String requestId) async {
-    String driverConnectionId = _connection.connectionId!;
-
-    try {
-      await _connection.invoke('RejectRequest',
-          args: <Object>[requestId, driverConnectionId]);
-    } on Exception catch (e) {
-      log(e.toString());
-    }
+    await signalRService.stopConnection();
+    log("Connection closed: ${signalRService.connection.state}");
+    emit(ScooterRequestDisconnected());
   }
 }

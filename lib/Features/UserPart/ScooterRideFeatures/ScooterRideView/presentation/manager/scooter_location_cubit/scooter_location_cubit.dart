@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
@@ -25,6 +26,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   Placemark? locationDetails;
   LatLng? currentposition;
   Set<Polyline> polyLines = {};
+  bool isMoved = false;
 
   CameraTargetBounds appCamerabounds = CameraTargetBounds(LatLngBounds(
     southwest: const LatLng(29.994944894366228, 31.28310130035875),
@@ -129,11 +131,19 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
         if (!context.mounted) return;
         BlocProvider.of<RidePriceCubit>(context)
             .getPrices(distance: routeInfo.distance);
+
         var userRequestModel =
             BlocProvider.of<ScooterRequestCubit>(context).userRequest;
         userRequestModel.location =
             "${locationDetails!.administrativeArea} ${locationDetails!.name} ${locationDetails!.thoroughfare}";
         userRequestModel.destination = description;
+        userRequestModel.dstLat = destination.latitude.toString();
+        userRequestModel.dstLng = destination.longitude.toString();
+        userRequestModel.srcLat = currentposition!.latitude.toString();
+        userRequestModel.srcLng = currentposition!.longitude.toString();
+        var requesCubit = BlocProvider.of<ScooterRequestCubit>(context);
+        await requesCubit.connect();
+        await requesCubit.joinGroup(groupName: userGroup);
         emit(ScooterLocationChange(polyLines: polyLines, markers: markers));
       } else {
         emit(const ScooterLocationFailuer(errmsg: "No location found"));

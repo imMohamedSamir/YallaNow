@@ -21,7 +21,7 @@ class LoginCubit extends Cubit<LoginState> {
       {required String email, required String password}) async {
     emit(LoginLoading());
     var response = await authRepo.fetchLogin(email: email, password: password);
-    response.fold((fail) => emit(LoginFailure(errorMessage: fail.errorMessage)),
+    response.fold((fail) => emit(LoginFailure(errorMessage: fail.errMessage)),
         (logindetails) async {
       if (logindetails.isAuthenticated!) {
         SavedUserDetails userDetails = SavedUserDetails(

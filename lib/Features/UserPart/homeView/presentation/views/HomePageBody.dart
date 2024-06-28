@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Core/utlis/functions/ChooseAddress.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/views/PopulareTripsSec.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodOffersSec.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/EverydayRidesSec.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/GrocerySec.dart';
@@ -18,26 +18,29 @@ class HomePageBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: HomeSearchBar()),
-          ),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 12),
+          //   sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+          // ),
           SliverPadding(
             padding: EdgeInsets.only(top: 13),
             sliver: SliverToBoxAdapter(child: CategorySec()),
           ),
           SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: FoodOffersSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: PopularResturansSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: GrocerySec()),
-          ),
+              padding: EdgeInsets.symmetric(vertical: 16),
+              sliver: SliverToBoxAdapter(child: PopulareTripsSec())),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 24),
+          //   sliver: SliverToBoxAdapter(child: FoodOffersSec()),
+          // ),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 24),
+          //   sliver: SliverToBoxAdapter(child: PopularResturansSec()),
+          // ),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 24),
+          //   sliver: SliverToBoxAdapter(child: GrocerySec()),
+          // ),
           // SliverToBoxAdapter(child: Expanded(child: SizedBox())),
           SliverPadding(
             padding: EdgeInsets.only(top: 24, bottom: 20),

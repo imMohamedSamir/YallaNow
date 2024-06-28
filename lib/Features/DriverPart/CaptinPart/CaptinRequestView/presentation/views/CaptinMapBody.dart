@@ -14,31 +14,38 @@ class CaptinMapBody extends StatelessWidget {
         const LatLng(27.215327138359253, 33.795513481012954);
     CameraPosition initialCameraPosition =
         CameraPosition(target: defaultLocation, zoom: 10);
-    return BlocConsumer<CaptinMapCubit, CaptinMapState>(
-      listener: (context, state) {
-        if (state is CaptinMapSuccess) {
-          initialCameraPosition =
-              CameraPosition(target: state.locationData, zoom: 15);
-          BlocProvider.of<CaptinMapCubit>(context).getRoutes(
-              dist: const LatLng(37.282815371855804, -122.01923673720438));
-        } else {
-          initialCameraPosition =
-              CameraPosition(target: defaultLocation, zoom: 10);
-        }
-      },
-      builder: (context, state) {
-        return GoogleMap(
-          onMapCreated: (controller) {
-            context.read<CaptinMapCubit>().setMapController(controller);
+
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CaptinMapCubit, CaptinMapState>(
+          listener: (context, state) {
+            if (state is CaptinMapSuccess) {
+              initialCameraPosition =
+                  CameraPosition(target: state.locationData, zoom: 15);
+              BlocProvider.of<CaptinMapCubit>(context).getRoutes(context);
+            } else {
+              initialCameraPosition =
+                  CameraPosition(target: defaultLocation, zoom: 10);
+            }
           },
-          zoomControlsEnabled: false,
-          initialCameraPosition: initialCameraPosition,
-          markers: state is CaptinMapChange ? state.markers! : {},
-          myLocationEnabled: true,
-          indoorViewEnabled: true,
-          polylines: state is CaptinMapChange ? state.polyLine! : {},
-        );
-      },
+        )
+      ],
+      child: BlocBuilder<CaptinMapCubit, CaptinMapState>(
+        builder: (context, state) {
+          return GoogleMap(
+            onMapCreated: (controller) {
+              context.read<CaptinMapCubit>().setMapController(controller);
+            },
+            zoomControlsEnabled: false,
+            initialCameraPosition: initialCameraPosition,
+            markers: state is CaptinMapChange ? state.markers! : {},
+            myLocationEnabled: true,
+            indoorViewEnabled: true,
+            myLocationButtonEnabled: false,
+            polylines: state is CaptinMapChange ? state.polyLine! : {},
+          );
+        },
+      ),
     );
   }
 }

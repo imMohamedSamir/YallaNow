@@ -10,8 +10,8 @@ class DeliveryMapSec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          CaptinMapCubit(LocationService(), RoutesUtils())..updateMyLocation(),
+      create: (context) => CaptinMapCubit(LocationService(), RoutesUtils())
+        ..updateMyLocation(context),
       child: const Scaffold(
         body: DeliveryMapBody(),
       ),

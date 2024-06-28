@@ -1,6 +1,9 @@
 class CardCategDetails {
-  final String title, avgTime, img;
-
-  CardCategDetails(
-      {required this.title, required this.avgTime, required this.img});
+  final String title, img;
+  final bool? isComingSoon;
+  CardCategDetails({
+    required this.title,
+    required this.img,
+    this.isComingSoon = false,
+  });
 }

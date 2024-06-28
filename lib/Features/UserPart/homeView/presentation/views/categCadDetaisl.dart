@@ -1,46 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/ScooterRideView.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/CardDetailModel.dart';
 
 class CategCardDetails extends StatelessWidget {
-  const CategCardDetails({super.key, required this.cardDetails});
-  final CardCategDetails cardDetails;
+  const CategCardDetails({
+    super.key,
+    required this.cardDetails,
+    required this.index,
+  });
 
+  final CardCategDetails cardDetails;
+  final int index;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: AppSizes.getHeight(100, context),
-        width: MediaQuery.sizeOf(context).width / 3 - 25,
-        padding: const EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color(0xffF5F5F5),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-                top: 8,
-                left: 8,
-                child: cardDetails.title == "Mart & Groceries"
-                    ? RichText(
-                        text: TextSpan(children: const [
-                        TextSpan(text: "Mart & \n"),
-                        TextSpan(text: "Groceries"),
-                      ], style: AppStyles.styleSemiBold16(context)))
-                    : Text(cardDetails.title,
-                        style: AppStyles.styleSemiBold16(context))),
-            Positioned(
-              top: cardDetails.title == "Mart & Groceries" ? 50 : 40,
-              left: 28,
-              child: Image.asset(
-                cardDetails.img,
-                height: AppSizes.getHeight(54, context),
-                width: AppSizes.getWidth(65, context),
-                fit: BoxFit.contain,
+    bool checkTitle(String title) {
+      return title.split(" ").length >= 2;
+    }
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: () {
+        if (!cardDetails.isComingSoon!) {
+          if (index == 0) {
+            NavigateToPage.slideFromRight(
+                context: context, page: const ScooterRideView());
+          } else if (index == 1) {
+            NavigateToPage.slideFromRight(
+                context: context, page: const TripsView());
+          }
+        }
+      },
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: grayColor,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                !checkTitle(cardDetails.title)
+                    ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          cardDetails.title,
+                          style: AppStyles.styleSemiBold16(context),
+                          textAlign: AppLang.isArabic() ? TextAlign.left : null,
+                        ),
+                      )
+                    : Text(
+                        cardDetails.title,
+                        style: AppStyles.styleSemiBold16(context),
+                        textAlign: AppLang.isArabic() ? TextAlign.left : null,
+                      ),
+                const Spacer(),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    cardDetails.img,
+                    alignment: Alignment.bottomRight,
+                    height: AppSizes.getHeight(63, context),
+                    width: AppSizes.getWidth(65, context),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (cardDetails.isComingSoon!)
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(12)),
+                child: Center(
+                  child: Transform.rotate(
+                    angle:
+                        -45 * 3.1415926535897932 / 180, // 45 degrees in radians
+
+                    child: Text(
+                      'Coming Soon',
+                      style: AppStyles.styleSemiBold14(context).copyWith(
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ],
-        ));
+        ],
+      ),
+    );
   }
 }

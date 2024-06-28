@@ -13,6 +13,12 @@ final class ScooterRequestLoading extends ScooterRequestState {}
 
 final class ScooterRequestSuccess extends ScooterRequestState {}
 
+final class ScooterRequestConnected extends ScooterRequestState {}
+
+final class ScooterRequestRejected extends ScooterRequestState {}
+
+final class ScooterRequestDisconnected extends ScooterRequestState {}
+
 final class ScooterRequestAccepted extends ScooterRequestState {
   final RequestDetails requestData;
 
@@ -26,12 +32,14 @@ final class ScooterRequestShowRequest extends ScooterRequestState {
 }
 
 final class ScooterRequestSent extends ScooterRequestState {
-  final RequestModel requestData;
+  final RequestDetails requestData;
 
   const ScooterRequestSent({required this.requestData});
 }
 
 final class ScooterRequestDriverAccepted extends ScooterRequestState {}
+
+final class ScooterRequestDriverRejected extends ScooterRequestState {}
 
 final class ScooterRequestFailure extends ScooterRequestState {}
 

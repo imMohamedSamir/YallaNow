@@ -759,6 +759,286 @@ class S {
       args: [],
     );
   }
+
+  /// `Session Expired`
+  String get SessionExpired {
+    return Intl.message(
+      'Session Expired',
+      name: 'SessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your session has expired. Please log in again.`
+  String get SessionExpiredMsg {
+    return Intl.message(
+      'Your session has expired. Please log in again.',
+      name: 'SessionExpiredMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get Ok {
+    return Intl.message(
+      'Ok',
+      name: 'Ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't have an account ? `
+  String get havntaccount {
+    return Intl.message(
+      'Didn\'t have an account ? ',
+      name: 'havntaccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or continue with`
+  String get continuewith {
+    return Intl.message(
+      'or continue with',
+      name: 'continuewith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get PassValidation {
+    return Intl.message(
+      'Please enter your password',
+      name: 'PassValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget password?`
+  String get passForget {
+    return Intl.message(
+      'Forget password?',
+      name: 'passForget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your first name`
+  String get firstnameValidation {
+    return Intl.message(
+      'Please enter your first name',
+      name: 'firstnameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your last name`
+  String get lasnameValidation {
+    return Intl.message(
+      'Please enter your last name',
+      name: 'lasnameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Name`
+  String get userName {
+    return Intl.message(
+      'User Name',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your username`
+  String get usernameValidation {
+    return Intl.message(
+      'Please enter your username',
+      name: 'usernameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Confirm your password`
+  String get confirmPassvalidation {
+    return Intl.message(
+      'Please Confirm your password',
+      name: 'confirmPassvalidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter same password`
+  String get confirmPassCorrectation {
+    return Intl.message(
+      'Please enter same password',
+      name: 'confirmPassCorrectation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up as a rider`
+  String get SignUprider {
+    return Intl.message(
+      'Sign up as a rider',
+      name: 'SignUprider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `   Please choose your gender`
+  String get GenderValidation {
+    return Intl.message(
+      '   Please choose your gender',
+      name: 'GenderValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet`
+  String get Wallet {
+    return Intl.message(
+      'Wallet',
+      name: 'Wallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout of your account ?`
+  String get Logoutofyouraccount {
+    return Intl.message(
+      'Logout of your account ?',
+      name: 'Logoutofyouraccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `change`
+  String get change {
+    return Intl.message(
+      'change',
+      name: 'change',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I will wait`
+  String get Iwait {
+    return Intl.message(
+      'I will wait',
+      name: 'Iwait',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total amount`
+  String get Totalamount {
+    return Intl.message(
+      'Total amount',
+      name: 'Totalamount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disable`
+  String get Disable {
+    return Intl.message(
+      'Disable',
+      name: 'Disable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter current place`
+  String get Entercurrentplace {
+    return Intl.message(
+      'Enter current place',
+      name: 'Entercurrentplace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Method`
+  String get PaymentMethod {
+    return Intl.message(
+      'Payment Method',
+      name: 'PaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get Accept {
+    return Intl.message(
+      'Accept',
+      name: 'Accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Searching for requests`
+  String get Searchingforrequests {
+    return Intl.message(
+      'Searching for requests',
+      name: 'Searchingforrequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you ready to search for requests`
+  String get readytosearchforrequests {
+    return Intl.message(
+      'Are you ready to search for requests',
+      name: 'readytosearchforrequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable your location`
+  String get Enableyourlocation {
+    return Intl.message(
+      'Enable your location',
+      name: 'Enableyourlocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enable your location to get requests in your current area`
+  String get EnableLocationMsg {
+    return Intl.message(
+      'enable your location to get requests in your current area',
+      name: 'EnableLocationMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

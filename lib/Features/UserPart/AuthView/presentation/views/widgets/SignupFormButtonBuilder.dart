@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
@@ -9,6 +7,7 @@ import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/registeration_cubit/registeration_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class SignupFormButtonBuilder extends StatelessWidget {
   const SignupFormButtonBuilder({
@@ -52,7 +51,7 @@ class SignupFormButtonBuilder extends StatelessWidget {
                         .fetchRegisteration(userdata: registerModel);
                   }
                 },
-                text: "Sign Up",
+                text: S.of(context).SignUp,
                 txtcolor: Colors.white,
                 btncolor: const Color(0xffB20404),
               ),

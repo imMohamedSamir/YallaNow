@@ -5,7 +5,6 @@ import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginViewBody.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignUpAppBar.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class LoginView extends StatelessWidget {

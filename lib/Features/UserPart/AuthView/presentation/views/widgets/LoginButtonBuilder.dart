@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/LoginPostModel.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class LoginButtonBuilder extends StatelessWidget {
   const LoginButtonBuilder({
@@ -43,7 +44,7 @@ class LoginButtonBuilder extends StatelessWidget {
                 ),
               ),
             CustomButton(
-              text: "Sign In",
+              text: S.of(context).SignIn,
               txtcolor: const Color(0xffFFFFFF),
               btncolor: pKcolor,
               onPressed: () async {

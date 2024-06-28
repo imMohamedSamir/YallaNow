@@ -72,7 +72,42 @@
     "Numberofadult":"Number of adult",
     "NumberofKids":"Number of Kids",
     "NumberofJuniors":"Number of Juniors",
-    "SuccessBook":"Your data has been registered successfully. We will contact you."
+    "SuccessBook":"Your data has been registered successfully. We will contact you.",
+
+
+    "SessionExpired":"Session Expired",
+    "SessionExpiredMsg":"Your session has expired. Please log in again.",
+    "Ok":"Ok",
+    "havntaccount":"Didn't have an account ? ",
+    "continuewith":"or continue with",
+    "PassValidation":"Please enter your password",
+    "passForget":"Forget password?",
+    "firstnameValidation":"Please enter your first name",
+    "lasnameValidation":"Please enter your last name",
+    "userName":"User Name",
+    "usernameValidation":"Please enter your username",
+    "confirmPassvalidation":"Please Confirm your password",
+    "confirmPassCorrectation":"Please enter same password",
+    "SignUprider":"Sign up as a rider",
+    "GenderValidation":"   Please choose your gender",
+    "Wallet":"Wallet",
+    "Logoutofyouraccount":"Logout of your account ?",
+    "change":"change",
+
+
+    
+    "Iwait":"I will wait",
+    "Totalamount":"Total amount",
+    "Disable":"Disable",
+    "Entercurrentplace":"Enter current place",
+    "PaymentMethod":"Payment Method",
+    "Accept":"Accept",
+   "Searchingforrequests":"Searching for requests",
+   "readytosearchforrequests":"Are you ready to search for requests",
+   "Enableyourlocation":"Enable your location",
+   "EnableLocationMsg": "enable your location to get requests in your current area"
+
+
 
     
 }

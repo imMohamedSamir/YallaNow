@@ -14,21 +14,18 @@ class DialogButton extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      width: 110,
-      child: TextButton(
-        onPressed: onPressed ??
-            () {
-              Navigator.pop(context);
-            },
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color?>(btnColor),
-          shape:
-              MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          )),
-        ),
+    return TextButton(
+      onPressed: onPressed ??
+          () {
+            Navigator.pop(context);
+          },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color?>(btnColor),
+        shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        )),
+      ),
+      child: Center(
         child: Text(
           text,
           style: AppStyles.styleRegular16(context).copyWith(color: textColor),

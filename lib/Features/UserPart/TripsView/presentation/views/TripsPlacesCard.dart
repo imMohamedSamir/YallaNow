@@ -2,17 +2,16 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_places_model.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/translate_cubit/translate_cubit.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripsPlaceView.dart';
 
 class TripsPlacesCard extends StatelessWidget {
-  const TripsPlacesCard({
-    super.key,
-    required this.place,
-  });
+  const TripsPlacesCard({super.key, required this.place});
   final TripPlacesModel place;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,16 @@ class TripsPlacesCard extends StatelessWidget {
       child: Column(children: [
         TripsPlacesCardImg(img: chooseimg()),
         const SizedBox(height: 12),
-        Text(place.name!, style: AppStyles.styleMedium14(context))
+        BlocBuilder<TranslateCubit, TranslateState>(
+          builder: (context, state) {
+            if (state is TranslateSuccess) {
+              return Text(state.translatedText,
+                  style: AppStyles.styleMedium14(context));
+            } else {
+              return Text(place.name!, style: AppStyles.styleMedium14(context));
+            }
+          },
+        )
       ]),
     );
   }

@@ -21,6 +21,7 @@ class UserProfileDetails extends HiveObject {
   dynamic addresses;
   @HiveField(8)
   double? wallet;
+  String? gender;
 
   UserProfileDetails(
       {this.email,
@@ -31,7 +32,8 @@ class UserProfileDetails extends HiveObject {
       this.userName,
       this.restaurantsOrders,
       this.addresses,
-      this.wallet});
+      this.wallet,
+      this.gender});
 
   factory UserProfileDetails.fromJson(Map<String, dynamic> json) {
     return UserProfileDetails(

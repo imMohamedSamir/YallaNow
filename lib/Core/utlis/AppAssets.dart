@@ -1,6 +1,6 @@
 class Assets {
   Assets._();
-
+  
   /// Assets for imagesApple
   /// assets/images/apple.svg
   static const String imagesApple = "assets/images/apple.svg";
@@ -45,14 +45,17 @@ class Assets {
   /// assets/images/ComingSoon.png
   static const String imagesComingSoon = "assets/images/ComingSoon.png";
 
+  /// Assets for imagesComingsoonTap
+  /// assets/images/comingsoonTap.png
+  static const String imagesComingsoonTap = "assets/images/comingsoonTap.png";
+
   /// Assets for imagesCreditcardIcon
   /// assets/images/creditcardIcon.png
   static const String imagesCreditcardIcon = "assets/images/creditcardIcon.png";
 
   /// Assets for imagesCurrentLocationIcon
   /// assets/images/CurrentLocationIcon.svg
-  static const String imagesCurrentLocationIcon =
-      "assets/images/CurrentLocationIcon.svg";
+  static const String imagesCurrentLocationIcon = "assets/images/CurrentLocationIcon.svg";
 
   /// Assets for imagesDeliveredimg
   /// assets/images/deliveredimg.png
@@ -116,8 +119,7 @@ class Assets {
 
   /// Assets for imagesInviteFriendsIcon
   /// assets/images/InviteFriendsIcon.svg
-  static const String imagesInviteFriendsIcon =
-      "assets/images/InviteFriendsIcon.svg";
+  static const String imagesInviteFriendsIcon = "assets/images/InviteFriendsIcon.svg";
 
   /// Assets for imagesLOGO1
   /// assets/images/LOGO1.png
@@ -205,13 +207,11 @@ class Assets {
 
   /// Assets for imagesNotificationsIcon
   /// assets/images/notificationsIcon.svg
-  static const String imagesNotificationsIcon =
-      "assets/images/notificationsIcon.svg";
+  static const String imagesNotificationsIcon = "assets/images/notificationsIcon.svg";
 
   /// Assets for imagesNotificationsIconActive
   /// assets/images/notificationsIconActive.svg
-  static const String imagesNotificationsIconActive =
-      "assets/images/notificationsIconActive.svg";
+  static const String imagesNotificationsIconActive = "assets/images/notificationsIconActive.svg";
 
   /// Assets for imagesOB1
   /// assets/images/OB1.png
@@ -243,8 +243,7 @@ class Assets {
 
   /// Assets for imagesOrdersIconActive
   /// assets/images/ordersIconActive.svg
-  static const String imagesOrdersIconActive =
-      "assets/images/ordersIconActive.svg";
+  static const String imagesOrdersIconActive = "assets/images/ordersIconActive.svg";
 
   /// Assets for imagesPartnerIcon
   /// assets/images/partnerIcon.png
@@ -288,8 +287,7 @@ class Assets {
 
   /// Assets for imagesProfileIconActive
   /// assets/images/profileIconActive.svg
-  static const String imagesProfileIconActive =
-      "assets/images/profileIconActive.svg";
+  static const String imagesProfileIconActive = "assets/images/profileIconActive.svg";
 
   /// Assets for imagesRideCateg
   /// assets/images/rideCateg.svg
@@ -309,18 +307,15 @@ class Assets {
 
   /// Assets for imagesScooterRideICon
   /// assets/images/scooterRideICon.svg
-  static const String imagesScooterRideICon =
-      "assets/images/scooterRideICon.svg";
+  static const String imagesScooterRideICon = "assets/images/scooterRideICon.svg";
 
   /// Assets for imagesScooterVehicle1
   /// assets/images/ScooterVehicle1.png
-  static const String imagesScooterVehicle1 =
-      "assets/images/ScooterVehicle1.png";
+  static const String imagesScooterVehicle1 = "assets/images/ScooterVehicle1.png";
 
   /// Assets for imagesScooterVehicle2
   /// assets/images/ScooterVehicle2.png
-  static const String imagesScooterVehicle2 =
-      "assets/images/ScooterVehicle2.png";
+  static const String imagesScooterVehicle2 = "assets/images/ScooterVehicle2.png";
 
   /// Assets for imagesScootercateg
   /// assets/images/Scootercateg.png
@@ -358,12 +353,20 @@ class Assets {
   /// assets/images/Trip1.png
   static const String imagesTrip1 = "assets/images/Trip1.png";
 
+  /// Assets for imagesTripsCateg
+  /// assets/images/TripsCateg.png
+  static const String imagesTripsCateg = "assets/images/TripsCateg.png";
+
+  /// Assets for imagesWallet
+  /// assets/images/wallet.svg
+  static const String imagesWallet = "assets/images/wallet.svg";
+
   /// Assets for imagesYallaNowLogo
   /// assets/images/YallaNowLogo.png
   static const String imagesYallaNowLogo = "assets/images/YallaNowLogo.png";
 
   /// Assets for imagesYallaNowLogoWhite
   /// assets/images/YallaNowLogoWhite.png
-  static const String imagesYallaNowLogoWhite =
-      "assets/images/YallaNowLogoWhite.png";
+  static const String imagesYallaNowLogoWhite = "assets/images/YallaNowLogoWhite.png";
 }
+

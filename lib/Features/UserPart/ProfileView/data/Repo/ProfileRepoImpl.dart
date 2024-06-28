@@ -19,9 +19,8 @@ class ProfileRepoImpl implements ProfileRepo {
     log(usertoken.toString());
     String endPoint = "UserProfile/User";
     try {
-      var response = await yallaNowServices.get(
-        endPoint: endPoint,
-      );
+      var response =
+          await yallaNowServices.get(endPoint: endPoint, token: usertoken);
 
       return right(UserProfileDetails.fromJson(response));
     } catch (e) {

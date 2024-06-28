@@ -53,6 +53,7 @@ dependencies:
   flutter_polyline_points: ^2.0.0
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.0
+  flutter_secure_storage: ^9.2.2
   flutter_share: ^2.0.0
   flutter_svg: ^2.0.9
   form_builder_file_picker: ^4.1.0
@@ -69,7 +70,10 @@ dependencies:
   http: ^1.2.1
   intl: 0.18.1
   introduction_screen: ^3.1.14
+  jwt_decoder: ^2.0.1
   location: ^6.0.1
+  logging: ^1.2.0
+  lottie: ^3.1.2
   pinput: ^4.0.0
   scrollable_list_tab_scroller: ^1.1.2
   shared_preferences: ^2.2.3

@@ -18,7 +18,7 @@ class CallDetailsSec extends StatelessWidget {
         const Spacer(),
         SvgPicture.asset(Assets.imagesIconCall),
         const SizedBox(width: 10),
-        Text("call the rider", style: AppStyles.styleMedium16(context)),
+        Text("call the Driver", style: AppStyles.styleMedium16(context)),
       ],
     );
   }

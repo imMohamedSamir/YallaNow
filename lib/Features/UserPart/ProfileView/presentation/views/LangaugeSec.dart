@@ -39,7 +39,7 @@ class _LangaugeSecState extends State<LangaugeSec> {
           onChanged: (String? value) {
             setState(() {
               groupValue = value; // Update groupValue when user selects English
-              // Change locale to English
+             
               BlocProvider.of<LanguageCubit>(context)
                   .changeLanguage(context, const Locale('en'));
             });

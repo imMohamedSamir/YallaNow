@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/trip_details_cubit.dart/trip_details_cubit.dart';
@@ -21,8 +22,9 @@ class TripPage extends StatelessWidget {
             create: (context) => TripPageCubit()..scrollUpdate(),
           ),
           BlocProvider(
-            create: (context) =>
-                TripDetailsCubit(getIt.get<TripsRepoImpl>())..get(id: id!),
+            create: (context) => TripDetailsCubit(
+                getIt.get<TripsRepoImpl>(), getIt.get<GoogleMapsServices>())
+              ..get(id: id!),
           ),
         ],
         child: const TripPgaeBody(),

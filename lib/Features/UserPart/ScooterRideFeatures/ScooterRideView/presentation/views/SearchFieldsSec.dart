@@ -20,7 +20,7 @@ class SearchFieldsSec extends StatelessWidget {
               .sourceTextController,
           focusNode:
               BlocProvider.of<AutoCompletePlacesCubit>(context).sourceFocusNode,
-          hintText: "Enter current place",
+          hintText: S.of(context).Entercurrentplace,
           prefixIcon: const Icon(Icons.my_location_rounded),
           onChanged: (value) {
             if (value.isNotEmpty) {

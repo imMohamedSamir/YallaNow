@@ -57,7 +57,7 @@ class LocationAppBar extends StatelessWidget {
             }
           },
         ),
-        trailing: const BasketIconBuilder(),
+        // trailing: const BasketIconBuilder(),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class DriverBottomNavBar extends StatelessWidget {
   const DriverBottomNavBar(
@@ -22,9 +23,9 @@ class DriverBottomNavBar extends StatelessWidget {
         unselectedLabelStyle: AppStyles.styleMedium12(context)
             .copyWith(color: const Color(0xff9E9D9D)),
         items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: "Home",
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home_rounded),
+            label: S.of(context).Home,
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(

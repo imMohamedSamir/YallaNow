@@ -4,6 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
+import 'package:yallanow/main.dart';
 
 class YallaNowServices {
   String _baseUrl = 'https://yallanow.runasp.net/api/';
@@ -14,33 +17,30 @@ class YallaNowServices {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         final token = await _getToken();
-
         if (token != null) {
           options.headers['Authorization'] = 'Bearer $token';
         }
         return handler.next(options); // Continue
       },
       onError: (DioException e, handler) async {
-        // NavigateToPage.slideFromTopAndRemove(context: context, page: page)
         if (e.response?.statusCode == 401) {
-          final newToken = await _refreshToken();
-          log("New token: $newToken");
-
-          if (newToken != null) {
-            // Update token in headers and retry the request
-            e.requestOptions.headers['Authorization'] = 'Bearer $newToken';
-            final opts = Options(
-              method: e.requestOptions.method,
-              headers: e.requestOptions.headers,
-            );
-            final cloneReq = await _dio.request(
-              e.requestOptions.path,
-              options: opts,
-              data: e.requestOptions.data,
-              queryParameters: e.requestOptions.queryParameters,
-            );
-            return handler.resolve(cloneReq); // Return the new response
-          }
+          // final newToken = await _refreshToken();
+          sessionExpMethode(navigatorKey.currentContext!);
+          // if (newToken != null) {
+          //   // Update token in headers and retry the request
+          //   e.requestOptions.headers['Authorization'] = 'Bearer $newToken';
+          //   final opts = Options(
+          //     method: e.requestOptions.method,
+          //     headers: e.requestOptions.headers,
+          //   );
+          //   final cloneReq = await _dio.request(
+          //     e.requestOptions.path,
+          //     options: opts,
+          //     data: e.requestOptions.data,
+          //     queryParameters: e.requestOptions.queryParameters,
+          //   );
+          //   return handler.resolve(cloneReq); // Return the new response
+          // }
         }
         return handler
             .next(e); // Continue with the error if token refresh fails
@@ -48,9 +48,7 @@ class YallaNowServices {
     ));
   }
   Future<String?> _getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // log(prefs.getString(savedToken) ?? "token not found");
-    return prefs.getString(savedToken);
+    return await TokenManager.getUserToken();
   }
 
   Future<void> _saveToken(String token) async {

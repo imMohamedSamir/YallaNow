@@ -9,6 +9,7 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/present
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinMapSec.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/RequestDetails.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class CaptinRequestBS extends StatelessWidget {
   const CaptinRequestBS(
@@ -61,7 +62,7 @@ class CaptinRequestBS extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    requestDetails.userName,
+                    requestDetails.userName ?? "",
                     style: AppStyles.styleMedium14(context),
                   ),
                   const Spacer(),
@@ -80,12 +81,12 @@ class CaptinRequestBS extends StatelessWidget {
 
               const Divider(),
               Text(
-                "Payment Method",
+                S.of(context).PaymentMethod,
                 style: AppStyles.styleMedium16(context),
               ),
               const SizedBox(height: 8),
               Text(
-                requestDetails.paymentMethod,
+                requestDetails.paymentMethod ?? "",
                 style: AppStyles.styleMedium14(context),
               ),
               // const Spacer(),
@@ -93,11 +94,12 @@ class CaptinRequestBS extends StatelessWidget {
               isAccepted
                   ? const SizedBox()
                   : CustomButton(
-                      text: "Accept",
+                      text: S.of(context).Accept,
                       txtcolor: Colors.white,
                       btncolor: pKcolor,
                       onPressed: () async {
-                        await cubit.acceptRequest(requestDetails.requestId,
+                        await cubit.acceptRequest(
+                            requestDetails.requestId ?? "",
                             requestDetails: requestDetails);
                         if (!context.mounted) return;
                         Navigator.pop(context);

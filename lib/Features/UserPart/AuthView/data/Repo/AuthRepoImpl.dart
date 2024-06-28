@@ -1,20 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/Errors/HttpFailurs.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
-import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/login_response_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
 import 'package:http/http.dart' as http;
-import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final YallaNowServicesHttp yallaNowServicesHttp;
-  AuthRepoImpl({
-    required this.yallaNowServicesHttp,
-  });
+  AuthRepoImpl({required this.yallaNowServices});
+  final YallaNowServices yallaNowServices;
   @override
   Future<Either<FailureHttp, dynamic>> fetchRegisteration(
       {required UserRegisterModel userdata}) async {
@@ -42,31 +40,24 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<FailureHttp, LoginResponseModel>> fetchLogin(
+  Future<Either<Failure, LoginResponseModel>> fetchLogin(
       {required String email, required String password}) async {
-    // String endPoint = "Auth/token";
-    String url = "https://yallanow.runasp.net/api/Auth/token";
+    String endPoint = "Auth/token";
     try {
-      var response = await http.post(Uri.parse(url),
-          headers: {
-            'accept': '*/*',
-            'Content-Type': 'application/json',
-          },
-          body: jsonEncode({
-            "email": email,
-            "password": password,
-          }));
-      if (response.statusCode == 200) {
-        // log(jsonDecode(response.body).toString());
-        // var resutle = await ProfileRepoImpl(
-        //         yallaNowServices: getIt.get<YallaNowServices>())
-        //     .fetchUserDetails();
-        return right(LoginResponseModel.fromJson(jsonDecode(response.body)));
-      } else {
-        return left(ServerFailureHttp.fromHttpError(response));
+      var response = await yallaNowServices.post(
+          endPoint: endPoint,
+          body: jsonEncode({"email": email, "password": password}));
+
+      return right(LoginResponseModel.fromJson(response));
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e.type));
       }
-    } on Exception catch (e) {
-      throw left(e.toString());
+
+      return left(
+        ServerFailure(e.toString()),
+      );
     }
   }
 }

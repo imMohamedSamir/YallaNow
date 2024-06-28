@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class RideTotalAmount extends StatelessWidget {
   const RideTotalAmount({
@@ -11,15 +12,10 @@ class RideTotalAmount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          "Total amount ",
-          style: AppStyles.styleMedium14(context),
-        ),
+        Text(S.of(context).Totalamount,
+            style: AppStyles.styleMedium16(context)),
         const Spacer(),
-        Text(
-          "$price EPG",
-          style: AppStyles.styleMedium14(context),
-        ),
+        Text("$price EPG", style: AppStyles.styleMedium16(context)),
       ],
     );
   }

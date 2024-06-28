@@ -20,9 +20,14 @@ class AutoCompletePlacesCubit extends Cubit<AutoCompletePlacesState> {
     if (currentLocation != null) {
       sourceTextController.text =
           "${currentLocation.subAdministrativeArea} , ${currentLocation.locality} , ${currentLocation.street}";
+
+      destinationFocusNode.requestFocus();
     }
   }
 
+  // BlocProvider.of<AutoCompletePlacesCubit>(context)
+  //             .destinationFocusNode
+  //             .requestFocus();
   void getPlaces({required String input}) async {
     emit(AutoCompletePlacesLoading());
 

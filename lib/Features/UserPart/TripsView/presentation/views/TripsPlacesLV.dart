@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_places_model.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/places_info_cubit/places_info_cubit.dart';
@@ -23,7 +24,10 @@ class TripsPlacesLV extends StatelessWidget {
               itemBuilder: (context, index) {
                 final last = places.length - 1 == index;
                 return Padding(
-                  padding: EdgeInsets.only(right: last ? 0 : 16.0),
+                  padding: EdgeInsets.only(
+                    right: AppLang.isArabic() ? 16.0 : (last ? 0 : 16.0),
+                    left: AppLang.isArabic() ? (last ? 0 : 16.0) : 0,
+                  ),
                   child: TripsPlacesCard(
                     place: places[index],
                   ),
