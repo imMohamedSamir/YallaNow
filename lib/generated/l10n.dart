@@ -1039,6 +1039,466 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you want to cancel the ride?`
+  String get cancelRidequestion {
+    return Intl.message(
+      'Are you want to cancel the ride?',
+      name: 'cancelRidequestion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your ride for this will be cancle.`
+  String get cancelRideMsg {
+    return Intl.message(
+      'Your ride for this will be cancle.',
+      name: 'cancelRideMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver and vehicle Details`
+  String get DriverAndVehicle {
+    return Intl.message(
+      'Driver and vehicle Details',
+      name: 'DriverAndVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver details`
+  String get Driverdetails {
+    return Intl.message(
+      'Driver details',
+      name: 'Driverdetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your National ID`
+  String get NIdValidation {
+    return Intl.message(
+      'Please enter your National ID',
+      name: 'NIdValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID should be 16 digits`
+  String get NIDcorrection {
+    return Intl.message(
+      'National ID should be 16 digits',
+      name: 'NIDcorrection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a role`
+  String get selectroleValidation {
+    return Intl.message(
+      'Please select a role',
+      name: 'selectroleValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `As Delivery`
+  String get AsDelivery {
+    return Intl.message(
+      'As Delivery',
+      name: 'AsDelivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `As Captin`
+  String get AsCaptin {
+    return Intl.message(
+      'As Captin',
+      name: 'AsCaptin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your Image`
+  String get SelectDriverImgValidation {
+    return Intl.message(
+      'Please select your Image',
+      name: 'SelectDriverImgValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License Plate`
+  String get licensePlate {
+    return Intl.message(
+      'License Plate',
+      name: 'licensePlate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle color`
+  String get VehicleColor {
+    return Intl.message(
+      'Vehicle color',
+      name: 'VehicleColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle model`
+  String get vehicleModel {
+    return Intl.message(
+      'Vehicle model',
+      name: 'vehicleModel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your vehicle model`
+  String get vehicleModelValidation {
+    return Intl.message(
+      'Please enter your vehicle model',
+      name: 'vehicleModelValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your vehicle color`
+  String get vehicleColorValidation {
+    return Intl.message(
+      'Please enter your vehicle color',
+      name: 'vehicleColorValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your vehicle license Plate`
+  String get licensePlateValidation {
+    return Intl.message(
+      'Please enter your vehicle license Plate',
+      name: 'licensePlateValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver Papers`
+  String get driverPapers {
+    return Intl.message(
+      'Driver Papers',
+      name: 'driverPapers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload your Papers`
+  String get driverPapersValidation {
+    return Intl.message(
+      'Please upload your Papers',
+      name: 'driverPapersValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload your file as PDF`
+  String get driverPapersCorrection {
+    return Intl.message(
+      'Please upload your file as PDF',
+      name: 'driverPapersCorrection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle year`
+  String get vehicleYear {
+    return Intl.message(
+      'Vehicle year',
+      name: 'vehicleYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your vehicle year`
+  String get vehicleYearValidation {
+    return Intl.message(
+      'Please enter your vehicle year',
+      name: 'vehicleYearValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle details`
+  String get VehicleDetails {
+    return Intl.message(
+      'Vehicle details',
+      name: 'VehicleDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle Type`
+  String get VehicleType {
+    return Intl.message(
+      'Vehicle Type',
+      name: 'VehicleType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your vehicle type`
+  String get vehicleTypeValidation {
+    return Intl.message(
+      'Please enter your vehicle type',
+      name: 'vehicleTypeValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image directions`
+  String get imageDirections {
+    return Intl.message(
+      'Image directions',
+      name: 'imageDirections',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle images`
+  String get VehicleImages {
+    return Intl.message(
+      'Vehicle images',
+      name: 'VehicleImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload all 4 vehicle images.`
+  String get vehicleImagesValidation {
+    return Intl.message(
+      'Please upload all 4 vehicle images.',
+      name: 'vehicleImagesValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your address`
+  String get addressValidation {
+    return Intl.message(
+      'Please enter your address',
+      name: 'addressValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 8 characters`
+  String get atLest8 {
+    return Intl.message(
+      'At least 8 characters',
+      name: 'atLest8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UpperCase letter`
+  String get upperCaseLetter {
+    return Intl.message(
+      'UpperCase letter',
+      name: 'upperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LowerCase letter`
+  String get lowerCaseLetter {
+    return Intl.message(
+      'LowerCase letter',
+      name: 'lowerCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number character`
+  String get numericCharacter {
+    return Intl.message(
+      'Number character',
+      name: 'numericCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Special character`
+  String get specialCharacter {
+    return Intl.message(
+      'Special character',
+      name: 'specialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(اجبارى) صورة البطاقة امامى و خلفى`
+  String get id_card {
+    return Intl.message(
+      '(اجبارى) صورة البطاقة امامى و خلفى',
+      name: 'id_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(اجبارى) صورة رخصة القيادة امامى و خلفى`
+  String get driving_license {
+    return Intl.message(
+      '(اجبارى) صورة رخصة القيادة امامى و خلفى',
+      name: 'driving_license',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(اجبارى) صورة رخصة السكوتر امامى و خلفى`
+  String get scooter_license {
+    return Intl.message(
+      '(اجبارى) صورة رخصة السكوتر امامى و خلفى',
+      name: 'scooter_license',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(اجبارى) فيش وتشبية موجه لشركة يلا ناو`
+  String get criminal_record {
+    return Intl.message(
+      '(اجبارى) فيش وتشبية موجه لشركة يلا ناو',
+      name: 'criminal_record',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(مؤقت 15) صورة شهادة ميلاد`
+  String get birth_certificate {
+    return Intl.message(
+      '(مؤقت 15) صورة شهادة ميلاد',
+      name: 'birth_certificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تحليل مخدرات`
+  String get drug_test {
+    return Intl.message(
+      'تحليل مخدرات',
+      name: 'drug_test',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get Orders {
+    return Intl.message(
+      'Orders',
+      name: 'Orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rides`
+  String get rides {
+    return Intl.message(
+      'Rides',
+      name: 'rides',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ratings`
+  String get Ratings {
+    return Intl.message(
+      'Ratings',
+      name: 'Ratings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share ride details`
+  String get Shareridedetails {
+    return Intl.message(
+      'Share ride details',
+      name: 'Shareridedetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `call the Driver`
+  String get calltheDriver {
+    return Intl.message(
+      'call the Driver',
+      name: 'calltheDriver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel the trip? A fee will be applied`
+  String get cancellationWarning {
+    return Intl.message(
+      'Are you sure you want to cancel the trip? A fee will be applied',
+      name: 'cancellationWarning',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

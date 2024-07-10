@@ -8,14 +8,12 @@ import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class DrSignupButtonBuilder extends StatelessWidget {
   const DrSignupButtonBuilder({
     super.key,
-    required GlobalKey<FormState> formKey,
-  }) : _formKey = formKey;
-
-  final GlobalKey<FormState> _formKey;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,7 @@ class DrSignupButtonBuilder extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is DriverRegisterationLoading) {
-          return const CircularProgressIndicator(color: pKcolor);
+          return const Center(child: CircularProgressIndicator(color: pKcolor));
         } else if (state is DriverRegisterationFailure) {
           return _buildFailureState(context, state.errmsg);
         }
@@ -40,13 +38,10 @@ class DrSignupButtonBuilder extends StatelessWidget {
   Widget _buildSignupButton(BuildContext context) {
     return CustomButton(
       onPressed: () async {
-        if (_formKey.currentState!.validate()) {
-          _formKey.currentState!.save();
-          await BlocProvider.of<DriverRegisterationCubit>(context)
-              .fetchDriverRegisteration();
-        }
+        await BlocProvider.of<DriverRegisterationCubit>(context)
+            .fetchDriverRegisteration();
       },
-      text: "Sign Up",
+      text: S.of(context).SignUp,
       txtcolor: Colors.white,
       btncolor: pKcolor,
     );

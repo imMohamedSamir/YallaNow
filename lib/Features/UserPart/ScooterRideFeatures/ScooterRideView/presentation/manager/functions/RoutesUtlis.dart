@@ -67,7 +67,7 @@ class RoutesUtils {
     polyLines.removeWhere((polyLine) => polyLine.polylineId.value == 'route');
     Polyline route = Polyline(
       color: Colors.blue,
-      width: 5,
+      width: 3,
       polylineId: const PolylineId('route'),
       points: points,
     );

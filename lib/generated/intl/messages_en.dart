@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Accept": MessageLookupByLibrary.simpleMessage("Accept"),
+        "AsCaptin": MessageLookupByLibrary.simpleMessage("As Captin"),
+        "AsDelivery": MessageLookupByLibrary.simpleMessage("As Delivery"),
         "Book": MessageLookupByLibrary.simpleMessage("Book"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Choose": MessageLookupByLibrary.simpleMessage("Choose"),
@@ -30,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
         "Disable": MessageLookupByLibrary.simpleMessage("Disable"),
+        "DriverAndVehicle":
+            MessageLookupByLibrary.simpleMessage("Driver and vehicle Details"),
+        "Driverdetails": MessageLookupByLibrary.simpleMessage("Driver details"),
         "Duration": MessageLookupByLibrary.simpleMessage("Duration"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "EnableLocationMsg": MessageLookupByLibrary.simpleMessage(
@@ -61,7 +66,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "MailValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your Email"),
         "Male": MessageLookupByLibrary.simpleMessage("Male"),
+        "NIDcorrection": MessageLookupByLibrary.simpleMessage(
+            "National ID should be 16 digits"),
         "NId": MessageLookupByLibrary.simpleMessage("National Identity"),
+        "NIdValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your National ID"),
         "NameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your Name"),
         "Nationality": MessageLookupByLibrary.simpleMessage("Nationality"),
@@ -75,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Numberofadult":
             MessageLookupByLibrary.simpleMessage("Number of adult"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "Orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "Overview": MessageLookupByLibrary.simpleMessage("Overview"),
         "PassValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
@@ -88,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("Popular Trips"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Program": MessageLookupByLibrary.simpleMessage("Program"),
+        "Ratings": MessageLookupByLibrary.simpleMessage("Ratings"),
         "Recentplaces": MessageLookupByLibrary.simpleMessage("Recent places"),
         "RegistrationDsc": MessageLookupByLibrary.simpleMessage(
             "Please full the form and we will contact you"),
@@ -98,10 +109,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Room": MessageLookupByLibrary.simpleMessage("Room"),
         "Searchingforrequests":
             MessageLookupByLibrary.simpleMessage("Searching for requests"),
+        "SelectDriverImgValidation":
+            MessageLookupByLibrary.simpleMessage("Please select your Image"),
         "SessionExpired":
             MessageLookupByLibrary.simpleMessage("Session Expired"),
         "SessionExpiredMsg": MessageLookupByLibrary.simpleMessage(
             "Your session has expired. Please log in again."),
+        "Shareridedetails":
+            MessageLookupByLibrary.simpleMessage("Share ride details"),
         "SignIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "SignUprider":
@@ -117,12 +132,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "TravellerName": MessageLookupByLibrary.simpleMessage("Name"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
         "TripsType": MessageLookupByLibrary.simpleMessage("Trips Types"),
+        "VehicleColor": MessageLookupByLibrary.simpleMessage("Vehicle color"),
+        "VehicleDetails":
+            MessageLookupByLibrary.simpleMessage("Vehicle details"),
+        "VehicleImages": MessageLookupByLibrary.simpleMessage("Vehicle images"),
+        "VehicleType": MessageLookupByLibrary.simpleMessage("Vehicle Type"),
         "Wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "Yalla": MessageLookupByLibrary.simpleMessage("Yalla"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "addressValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter your address"),
         "adultValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter number of adults"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have account ?"),
+        "atLest8":
+            MessageLookupByLibrary.simpleMessage("At least 8 characters"),
+        "birth_certificate":
+            MessageLookupByLibrary.simpleMessage("(مؤقت 15) صورة شهادة ميلاد"),
+        "calltheDriver":
+            MessageLookupByLibrary.simpleMessage("call the Driver"),
+        "cancelRideMsg": MessageLookupByLibrary.simpleMessage(
+            "Your ride for this will be cancle."),
+        "cancelRidequestion": MessageLookupByLibrary.simpleMessage(
+            "Are you want to cancel the ride?"),
+        "cancellationWarning": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to cancel the trip? A fee will be applied"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
         "confirmPassCorrectation":
             MessageLookupByLibrary.simpleMessage("Please enter same password"),
@@ -136,6 +171,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter correct E-Mail address"),
         "correctPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter correct mobile number"),
+        "criminal_record": MessageLookupByLibrary.simpleMessage(
+            "(اجبارى) فيش وتشبية موجه لشركة يلا ناو"),
+        "driverPapers": MessageLookupByLibrary.simpleMessage("Driver Papers"),
+        "driverPapersCorrection": MessageLookupByLibrary.simpleMessage(
+            "Please upload your file as PDF"),
+        "driverPapersValidation":
+            MessageLookupByLibrary.simpleMessage("Please upload your Papers"),
+        "driving_license": MessageLookupByLibrary.simpleMessage(
+            "(اجبارى) صورة رخصة القيادة امامى و خلفى"),
+        "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
         "editprofile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
         "firstnameValidation": MessageLookupByLibrary.simpleMessage(
@@ -143,18 +188,50 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "havntaccount":
             MessageLookupByLibrary.simpleMessage("Didn\'t have an account ? "),
+        "id_card": MessageLookupByLibrary.simpleMessage(
+            "(اجبارى) صورة البطاقة امامى و خلفى"),
+        "imageDirections":
+            MessageLookupByLibrary.simpleMessage("Image directions"),
         "lasnameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your last name"),
+        "licensePlate": MessageLookupByLibrary.simpleMessage("License Plate"),
+        "licensePlateValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your vehicle license Plate"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "lowerCaseLetter":
+            MessageLookupByLibrary.simpleMessage("LowerCase letter"),
+        "numericCharacter":
+            MessageLookupByLibrary.simpleMessage("Number character"),
         "passForget": MessageLookupByLibrary.simpleMessage("Forget password?"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(
             "Are you ready to search for requests"),
+        "rides": MessageLookupByLibrary.simpleMessage("Rides"),
         "scooterRide": MessageLookupByLibrary.simpleMessage("Scooter Ride"),
+        "scooter_license": MessageLookupByLibrary.simpleMessage(
+            "(اجبارى) صورة رخصة السكوتر امامى و خلفى"),
+        "selectroleValidation":
+            MessageLookupByLibrary.simpleMessage("Please select a role"),
+        "specialCharacter":
+            MessageLookupByLibrary.simpleMessage("Special character"),
+        "upperCaseLetter":
+            MessageLookupByLibrary.simpleMessage("UpperCase letter"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name"),
         "usernameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your username"),
+        "vehicleColorValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your vehicle color"),
+        "vehicleImagesValidation": MessageLookupByLibrary.simpleMessage(
+            "Please upload all 4 vehicle images."),
+        "vehicleModel": MessageLookupByLibrary.simpleMessage("Vehicle model"),
+        "vehicleModelValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your vehicle model"),
+        "vehicleTypeValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your vehicle type"),
+        "vehicleYear": MessageLookupByLibrary.simpleMessage("Vehicle year"),
+        "vehicleYearValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your vehicle year"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "whereTo": MessageLookupByLibrary.simpleMessage("Where to ?")

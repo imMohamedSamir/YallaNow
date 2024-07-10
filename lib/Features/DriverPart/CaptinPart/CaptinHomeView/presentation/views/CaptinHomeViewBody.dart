@@ -4,9 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinRequestBuilder.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:gap/gap.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -21,9 +20,9 @@ class CaptinHomeViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 250),
-        child: BlocBuilder<CaptinRequestCubit, CaptinRequestState>(
+        child: BlocBuilder<CaptinRideRequestCubit, CaptinRideRequestState>(
           builder: (context, state) {
-            if (state is CaptinRequestJoinded) {
+            if (state is CaptinRideRequestConnected) {
               return Column(
                 children: [
                   const Gap(50),
@@ -33,15 +32,13 @@ class CaptinHomeViewBody extends StatelessWidget {
                   LottieBuilder.asset("assets/Indicators/Loading.json"),
                 ],
               );
-            } else if (state is CaptinRequestInitial) {
+            } else if (state is CaptinRideRequestInitial ||
+                state is CaptinRideRequestConnected) {
               return Center(
                 child: Text(S.of(context).readytosearchforrequests,
                     style: AppStyles.styleMedium24(context)),
               );
-            } else if (state is CaptinRequestAccepted) {
-              return const CaptinRequestBuilder();
-            }
-            if (state is CaptinRequestDisabled) {
+            } else if (state is CaptinRideRequestDisabled) {
               return Column(
                 children: [
                   const Spacer(),
@@ -65,7 +62,7 @@ class CaptinHomeViewBody extends StatelessWidget {
                 ],
               );
             } else {
-              return SizedBox();
+              return const LinearProgressIndicator(color: pKcolor);
             }
           },
         ),

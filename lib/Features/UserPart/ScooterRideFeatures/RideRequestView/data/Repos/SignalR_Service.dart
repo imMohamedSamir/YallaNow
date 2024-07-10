@@ -5,7 +5,7 @@ import 'package:logging/logging.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/functions/configureLogging.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/DriverResponse.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/CaptinResponseModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/RequestDetails.dart';
 
 class SignalRService {
@@ -125,7 +125,7 @@ class SignalRService {
   }
 
   Future<Either<String, dynamic>> respondToRideRequest(
-      DriverResponse response) async {
+      CaptinResponseModel response) async {
     try {
       await _connection.invoke('SendDriverResponse', args: [response]);
       _logger.info('Sent driver response: $response');

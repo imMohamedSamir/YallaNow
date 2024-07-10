@@ -6,8 +6,11 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 class ScooterDetailsSec extends StatelessWidget {
   const ScooterDetailsSec({
     super.key,
+    required this.type,
+    required this.color,
+    required this.plate,
   });
-
+  final String type, color, plate;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,9 +21,9 @@ class ScooterDetailsSec extends StatelessWidget {
           width: AppSizes.getWidth(32, context),
         ),
         const SizedBox(width: 12),
-        Text("Scooter type , color", style: AppStyles.styleRegular12(context)),
+        Text("$type, $color", style: AppStyles.styleRegular12(context)),
         const Spacer(),
-        Text("ق م ر  1612", style: AppStyles.styleRegular12(context)),
+        Text(plate, style: AppStyles.styleRegular12(context)),
       ],
     );
   }

@@ -18,13 +18,13 @@ final class CheckPaymentMethodFailuer extends CheckPaymentMethodState {
 }
 
 final class CheckPaymentMethodChange extends CheckPaymentMethodState {
-  final String methode;
+  final PaymentMethod methode;
 
   const CheckPaymentMethodChange({required this.methode});
 }
 
 final class CheckPaymentMethodLoading extends CheckPaymentMethodState {
-  final String? methode;
+  final PaymentMethod methode;
 
-  const CheckPaymentMethodLoading({this.methode});
+  const CheckPaymentMethodLoading({required this.methode});
 }

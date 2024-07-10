@@ -5,7 +5,7 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class PaymobManager {
   Future<Either<Failure, String>> getPaymentKey(
-      {required int amount, String currency = "EGP"}) async {
+      {required double amount, String currency = "EGP"}) async {
     try {
       String authanticationToken = await _getAuthanticationToken();
 

@@ -22,7 +22,8 @@ class CustomButton extends StatelessWidget {
       height: 54,
       child: ElevatedButton(
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            elevation: isBasket ? WidgetStateProperty.all<double>(0) : null,
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   side: BorderSide(

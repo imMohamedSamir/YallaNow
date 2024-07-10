@@ -52,7 +52,10 @@ class AuthRepoImpl implements AuthRepo {
     } catch (e) {
       log(e.toString());
       if (e is DioException) {
-        return left(ServerFailure.fromDioError(e.type));
+        log(e.response?.statusCode.toString() ?? "");
+
+        return left(
+            ServerFailure.fromResponse(e.response!.statusCode, e.response));
       }
 
       return left(

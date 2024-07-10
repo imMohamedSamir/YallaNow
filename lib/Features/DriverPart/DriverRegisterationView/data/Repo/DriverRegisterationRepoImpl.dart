@@ -1,58 +1,84 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
-import 'package:yallanow/Core/Errors/HttpFailurs.dart';
+import 'package:dio/dio.dart';
+import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepo.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
-import 'package:http/http.dart' as http;
 
 class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
-  @override
-  Future<Either<FailureHttp, dynamic>> fetchRegisteration(
-      {required DriverRegisterModel driverDetails}) async {
-    String ur =
-        "https://yallanow.runasp.net/api/Driver/RegisterNewDriver?DriverType=${driverDetails.driverType}";
-    var request = http.MultipartRequest('POST', Uri.parse(ur));
-    ///////////////////////////////////////////////////////
-    // request.headers['Authorization'] = 'Bearer your_access_token';
-    request.headers['Content-Type'] = 'multipart/form-data'; // Adjust as needed
-    request.headers['accept'] = '*/*';
-    request.fields['FirstName'] = driverDetails.firstName ?? '';
-    request.fields['LastName'] = driverDetails.lastName ?? '';
-    request.fields['Gender'] = driverDetails.gender ?? '';
-    request.fields['Username'] = driverDetails.username ?? '';
-    request.fields['PhoneNumber'] = driverDetails.phoneNumber ?? '';
-    request.fields['Password'] = driverDetails.password ?? '';
-    request.fields['Email'] = driverDetails.email ?? '';
-    request.fields['FileName'] = driverDetails.driverPapers!.fileName ?? '';
-    request.fields['ContentType'] =
-        driverDetails.driverPapers!.contentType ?? '';
-    request.fields['Size'] = driverDetails.driverPapers!.fileSize.toString();
-    //////////////////////////////////////////////////////////////
-    if (driverDetails.driverPapers!.driverFile != null) {
-      var filePart = await http.MultipartFile.fromPath(
-          'file', driverDetails.driverPapers!.driverFile!.path);
-      request.files.add(filePart);
-    }
-    ///////////////////////////////////////
-    try {
-      // Send the multipart request
-      var streamedResponse = await request.send();
-      var response = await http.Response.fromStream(streamedResponse);
-      if (response.statusCode == 200) {
-        // log('Registration and file upload successful');
-        // log('Response body: ${response.body}');
+  final Dio _dio = Dio();
 
-        return right(response.body);
-      } else {
-        // log('Registration and file upload failed. Status code: ${response.statusCode}');
-        // log('Response body: ${response.body}');
-        return left(ServerFailureHttp.fromHttpError(response));
+  @override
+  Future<Either<Failure, dynamic>> fetchRegisteration({
+    required DriverRegisterModel driverDetails,
+  }) async {
+    try {
+      String url =
+          "https://yallanow.runasp.net/api/Driver/RegisterNewDriver?DriverType=${driverDetails.driverType}";
+
+      // Create FormData object
+      FormData formData = FormData.fromMap({
+        'FirstName': driverDetails.firstName ?? '',
+        'LastName': driverDetails.lastName ?? '',
+        'Gender': driverDetails.gender ?? '',
+        'Username': driverDetails.username ?? '',
+        'PhoneNumber': driverDetails.phoneNumber ?? '',
+        'Password': driverDetails.password ?? '',
+        'Email': driverDetails.email ?? '',
+        "Address": driverDetails.address ?? '',
+        'FileName': driverDetails.driverPapers!.fileName ?? '',
+        'ContentType': driverDetails.driverPapers!.contentType ?? '',
+        'Size': driverDetails.driverPapers!.fileSize.toString(),
+        'LicensePlate': driverDetails.licensePlate ?? '',
+        'VehicleModel': driverDetails.vehicleModel ?? '',
+        'VehicleYear': driverDetails.vehicleYear ?? '',
+        'VehicleColor': driverDetails.vehicleColor ?? '',
+        'VehicleType': driverDetails.vehicleType.toString(),
+      });
+
+      // Add files to FormData
+      if (driverDetails.driverPapers!.driverFile != null) {
+        formData.files.add(MapEntry(
+          'file',
+          await MultipartFile.fromFile(
+              driverDetails.driverPapers!.driverFile!.path),
+        ));
       }
-    } on Exception catch (e) {
-      return left(
-        ServerFailureHttp(
-          e.toString(),
+      if (driverDetails.driverImg != null) {
+        formData.files.add(MapEntry(
+          'Image',
+          await MultipartFile.fromFile(driverDetails.driverImg!.path),
+        ));
+      }
+      if (driverDetails.vehicleImg != null &&
+          driverDetails.vehicleImg!.isNotEmpty) {
+        for (var vehicleImage in driverDetails.vehicleImg!) {
+          formData.files.add(MapEntry(
+            'VehicleImages',
+            await MultipartFile.fromFile(vehicleImage!.path),
+          ));
+        }
+      }
+
+      // Send the request
+      var response = await _dio.post(
+        url,
+        data: formData,
+        options: Options(
+          headers: {'accept': '*/*', 'Content-Type': 'multipart/form-data'},
         ),
       );
+
+      if (response.statusCode == 200) {
+        return right(response.data);
+      } else {
+        return left(
+            ServerFailure('Failed with status code: ${response.statusCode}'));
+      }
+    } catch (e) {
+      log(e.toString());
+      return left(ServerFailure(e.toString()));
     }
   }
 }

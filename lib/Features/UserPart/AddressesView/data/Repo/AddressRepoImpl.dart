@@ -21,10 +21,10 @@ class AddressesRepoImpl implements AddressesRepo {
   @override
   Future<Either<Failure, List<PlaceModel>>> getPredictions(
       {required String input}) async {
-    String endPoint = 'autocomplete/json?key=$placesApiKey&input=$input';
+    String endPoint = 'place/autocomplete/json?key=$placesApiKey&input=$input';
 
     try {
-      var data = await googleMapsServices.get(endPoint: endPoint);
+      var data = await googleMapsServices.getPreditction(endPoint: endPoint);
       var predictions = data['predictions'];
       List<PlaceModel> places = [];
       for (var item in predictions) {

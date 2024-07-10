@@ -3,10 +3,12 @@
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/data/Repo/CheckOutRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
@@ -15,6 +17,7 @@ import 'package:yallanow/Features/UserPart/FavoriteView/data/Repo/FavoriteRepoIm
 import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/ScooterRequestRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/SignalR_Service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
@@ -29,6 +32,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<YallaNowServicesHttp>(YallaNowServicesHttp());
   getIt.registerSingleton<LocationService>(LocationService());
   getIt.registerSingleton<SignalRService>(SignalRService());
+  getIt.registerSingleton<FirebaseMessagingService>(FirebaseMessagingService());
 
   getIt.registerSingleton<DriverRegisterationRepoImpl>(
       DriverRegisterationRepoImpl());
@@ -56,4 +60,9 @@ void setupServiceLocator() {
       FavoriteRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<TripsRepoImpl>(
       TripsRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
+  getIt.registerSingleton<ScooterRequestRepoImpl>(ScooterRequestRepoImpl(
+      yallaNowServices: getIt.get<YallaNowServices>(),
+      firebaseMessagingService: getIt.get<FirebaseMessagingService>()));
+  getIt.registerSingleton<CaptinRequestRepoImpl>(
+      CaptinRequestRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
 }

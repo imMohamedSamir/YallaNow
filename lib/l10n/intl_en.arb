@@ -93,9 +93,6 @@
     "Wallet":"Wallet",
     "Logoutofyouraccount":"Logout of your account ?",
     "change":"change",
-
-
-    
     "Iwait":"I will wait",
     "Totalamount":"Total amount",
     "Disable":"Disable",
@@ -105,7 +102,58 @@
    "Searchingforrequests":"Searching for requests",
    "readytosearchforrequests":"Are you ready to search for requests",
    "Enableyourlocation":"Enable your location",
-   "EnableLocationMsg": "enable your location to get requests in your current area"
+   "EnableLocationMsg": "enable your location to get requests in your current area",
+   "cancelRidequestion":"Are you want to cancel the ride?",
+   "cancelRideMsg":"Your ride for this will be cancle.",
+   "DriverAndVehicle":"Driver and vehicle Details",
+   "Driverdetails":"Driver details",
+   "NIdValidation":"Please enter your National ID",
+   "NIDcorrection":"National ID should be 16 digits",
+   "selectroleValidation":"Please select a role",
+   "AsDelivery":"As Delivery",
+   "AsCaptin":"As Captin",
+   "SelectDriverImgValidation":"Please select your Image",
+   "licensePlate":"License Plate",
+   "VehicleColor":"Vehicle color",
+   "vehicleModel":"Vehicle model",
+   "vehicleModelValidation":"Please enter your vehicle model",
+   "vehicleColorValidation":"Please enter your vehicle color",
+   "licensePlateValidation":"Please enter your vehicle license Plate",
+   "driverPapers":"Driver Papers",
+   "driverPapersValidation":"Please upload your Papers",
+   "driverPapersCorrection":"Please upload your file as PDF",
+   "vehicleYear":"Vehicle year",
+   "vehicleYearValidation":"Please enter your vehicle year",
+   "VehicleDetails":"Vehicle details",
+   "VehicleType":"Vehicle Type",
+   "vehicleTypeValidation":"Please enter your vehicle type",
+   "imageDirections":"Image directions",
+   "VehicleImages":"Vehicle images",
+   "vehicleImagesValidation":"Please upload all 4 vehicle images.",
+   "address":"Address",
+   "addressValidation":"Please enter your address",
+   "atLest8":"At least 8 characters",
+   "upperCaseLetter":"UpperCase letter",
+   "lowerCaseLetter":"LowerCase letter",
+   "numericCharacter":"Number character",
+   "specialCharacter":"Special character",
+    "id_card": "(اجبارى) صورة البطاقة امامى و خلفى",
+    "driving_license": "(اجبارى) صورة رخصة القيادة امامى و خلفى",
+    "scooter_license": "(اجبارى) صورة رخصة السكوتر امامى و خلفى",
+    "criminal_record": "(اجبارى) فيش وتشبية موجه لشركة يلا ناو",
+    "birth_certificate": "(مؤقت 15) صورة شهادة ميلاد",
+    "drug_test": "تحليل مخدرات",
+    
+    "Orders":"Orders",
+    "rides": "Rides",
+    "Ratings": "Ratings",
+    "Shareridedetails":"Share ride details",
+    "calltheDriver":"call the Driver",
+    "cancellationWarning":"Are you sure you want to cancel the trip? A fee will be applied"
+
+   
+
+
 
 
 

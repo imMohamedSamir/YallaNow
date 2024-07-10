@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRideBS.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/ChooseRideType.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 
 class ChooseRideTypeBuilder extends StatelessWidget {
@@ -27,10 +27,9 @@ class ChooseRideTypeBuilder extends StatelessWidget {
           offset: offset,
           duration: const Duration(milliseconds: 650),
           child: AnimatedOpacity(
-            opacity: opacity,
-            duration: const Duration(milliseconds: 650),
-            child: const ChooseRideType(),
-          ),
+              opacity: opacity,
+              duration: const Duration(milliseconds: 650),
+              child: const ChooseRideType()),
         );
       },
     );

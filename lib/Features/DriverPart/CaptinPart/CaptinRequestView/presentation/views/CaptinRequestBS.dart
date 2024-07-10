@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/CaptinRequestModel.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinSrcDstSec.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinMapSec.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/RequestDetails.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/MapsNavigation.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/launchURL.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class CaptinRequestBS extends StatelessWidget {
@@ -18,11 +22,12 @@ class CaptinRequestBS extends StatelessWidget {
       required this.requestDetails,
       this.isAccepted = false});
   final ScrollController? scrollController;
-  final RequestDetails requestDetails;
+  final CaptinRequestModel requestDetails;
   final bool isAccepted;
   @override
   Widget build(BuildContext context) {
-    var cubit = BlocProvider.of<ScooterRequestCubit>(context);
+    var cubit = BlocProvider.of<CaptinRideRequestCubit>(context);
+
     return Container(
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -44,10 +49,16 @@ class CaptinRequestBS extends StatelessWidget {
                   ),
                   const Spacer(),
                   IconButton(
-                      onPressed: () {
-                        isAccepted
-                            ? cubit.emit(ScooterRequestInitial())
-                            : Navigator.pop(context);
+                      onPressed: () async {
+                        if (isAccepted) {
+                          cancelDriverRidedialogMethode(context);
+                        } else {
+                          await cubit.captinResponseMethod(
+                              tripId: requestDetails.tripId!,
+                              isAccepted: false);
+                          if (!context.mounted) return;
+                          Navigator.pop(context);
+                        }
                       },
                       icon: const Icon(Icons.cancel, size: 28, color: pKcolor))
                 ],
@@ -62,56 +73,105 @@ class CaptinRequestBS extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    requestDetails.userName ?? "",
+                    "${requestDetails.firstName} ${requestDetails.lastName}",
                     style: AppStyles.styleMedium14(context),
                   ),
                   const Spacer(),
                   Text(
-                    "01127523369",
+                    requestDetails.phoneNumber ?? "",
                     style: AppStyles.styleMedium14(context),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        launchURL("tel:${requestDetails.phoneNumber}");
+                      },
                       icon: const Icon(Icons.call, size: 20))
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    getGender(gender: requestDetails.gender ?? "Male"),
+                    style: AppStyles.styleMedium14(context),
+                  ),
+                  const Gap(8),
+                  if (requestDetails.gender == "Male")
+                    const Icon(Icons.male_outlined, color: Colors.blueAccent)
+                  else
+                    const Icon(Icons.female_outlined, color: Colors.pinkAccent)
                 ],
               ),
               // const Divider(),
 
               const Divider(),
-              Text(
-                S.of(context).PaymentMethod,
-                style: AppStyles.styleMedium16(context),
-              ),
+              Text(S.of(context).PaymentMethod,
+                  style: AppStyles.styleMedium18(context)),
               const SizedBox(height: 8),
               Text(
-                requestDetails.paymentMethod ?? "",
-                style: AppStyles.styleMedium14(context),
+                getPaymentMethod(
+                    method: requestDetails.paymentMethod ?? "Cash"),
+                style: AppStyles.styleMedium16(context),
               ),
               // const Spacer(),
-              const Gap.expand(50),
-              isAccepted
-                  ? const SizedBox()
-                  : CustomButton(
+              if (isAccepted)
+                const Column(
+                  children: [
+                    SizedBox(height: 6),
+                    MapsNavigation(),
+                  ],
+                )
+              else
+                Column(
+                  children: [
+                    const Gap.expand(50),
+                    CustomButton(
                       text: S.of(context).Accept,
                       txtcolor: Colors.white,
                       btncolor: pKcolor,
                       onPressed: () async {
-                        await cubit.acceptRequest(
-                            requestDetails.requestId ?? "",
-                            requestDetails: requestDetails);
+                        await cubit.acceptMethod(context,
+                            requestModel: requestDetails);
                         if (!context.mounted) return;
                         Navigator.pop(context);
                         NavigateToPage.slideFromRight(
                             context: context, page: const CaptinMapSec());
                       },
                     ),
-              const SizedBox(height: 6)
+                    const SizedBox(height: 6)
+                  ],
+                ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String getPaymentMethod({required String method}) {
+    if (AppLang.isArabic()) {
+      if (method == "Cash") {
+        return "نقدى";
+      } else if (method == "wallet") {
+        return "محفظة";
+      } else {
+        return "فيزا";
+      }
+    } else {
+      return method;
+    }
+  }
+
+  String getGender({required String gender}) {
+    if (AppLang.isArabic()) {
+      if (gender == "Male") {
+        return "ذكر";
+      } else {
+        return "اثنى";
+      }
+    } else {
+      return gender;
+    }
   }
 }

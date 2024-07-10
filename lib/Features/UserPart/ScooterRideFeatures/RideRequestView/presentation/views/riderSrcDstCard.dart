@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppLang.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
@@ -18,9 +19,12 @@ class RiderSrcDstCard extends StatelessWidget {
         Icon(isSrc ? Icons.mode_standby_rounded : Icons.location_on_sharp,
             color: pKcolor, size: 18),
         const SizedBox(width: 14),
-        Text(
-          dsc,
-          style: AppStyles.styleRegular14(context).copyWith(color: scColor),
+        SizedBox(
+          width: AppSizes.getWidth(290, context),
+          child: Text(
+            dsc,
+            style: AppStyles.styleRegular14(context).copyWith(color: scColor),
+          ),
         )
       ],
     );

@@ -9,7 +9,7 @@ import 'package:yallanow/Core/widgets/Checkout%20Sec/PaymentWebView.dart';
 
 part 'check_payment_method_state.dart';
 
-enum PaymentMethod { cash, creditCard, wallet }
+enum PaymentMethod { cash, wallet, creditCard }
 
 class CheckPaymentMethodCubit extends Cubit<CheckPaymentMethodState> {
   CheckPaymentMethodCubit() : super(CheckPaymentMethodInitial());
@@ -17,9 +17,9 @@ class CheckPaymentMethodCubit extends Cubit<CheckPaymentMethodState> {
     emit(CheckPaymentMethodInitial());
     if (method == PaymentMethod.creditCard) {
       // print(method);
-      emit(const CheckPaymentMethodChange(methode: "Credit Card"));
+      emit(CheckPaymentMethodChange(methode: method));
     } else if (method == PaymentMethod.wallet) {
-      emit(CheckPaymentMethodChange(methode: method.name));
+      emit(CheckPaymentMethodChange(methode: method));
     } else {
       emit(CheckPaymentMethodInitial());
     }
@@ -28,14 +28,14 @@ class CheckPaymentMethodCubit extends Cubit<CheckPaymentMethodState> {
 
   void goToPaymentPage(
     BuildContext context, {
-    required int amount,
+    required double amount,
   }) async {
-    emit(const CheckPaymentMethodLoading(methode: "Credit Card"));
+    emit(const CheckPaymentMethodLoading(methode: PaymentMethod.creditCard));
     var result = await PaymobManager().getPaymentKey(amount: amount);
     result.fold(
         (fail) => emit(CheckPaymentMethodFailuer(errMsg: fail.errMessage)),
         (paymentKey) {
-      emit(const CheckPaymentMethodChange(methode: "Credit Card"));
+      emit(const CheckPaymentMethodChange(methode: PaymentMethod.creditCard));
       NavigateToPage.slideFromRight(
           context: context, page: PaymentWebView(paymentKey: paymentKey));
     });

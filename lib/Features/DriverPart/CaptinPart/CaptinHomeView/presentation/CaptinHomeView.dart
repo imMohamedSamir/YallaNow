@@ -2,7 +2,9 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/NotificationController.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/DriverBottomNavBar.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/CheckHomeAppBar.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDrawer.dart';
@@ -24,19 +26,23 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
   @override
   void initState() {
     AwesomeNotifications().setListeners(
-        onActionReceivedMethod: (receivedAction) async {
-          await BlocProvider.of<CaptinRequestCubit>(context)
-              .handleReceivedRequest(context, action: receivedAction);
-        },
-        onNotificationCreatedMethod:
-            NotificationController.onNotificationCreatedMethod,
-        onNotificationDisplayedMethod:
-            NotificationController.onNotificationDisplayedMethod,
-        onDismissActionReceivedMethod:
-            NotificationController.onDismissActionReceivedMethod);
+      onActionReceivedMethod: (receivedAction) async {
+        await BlocProvider.of<CaptinRideRequestCubit>(context)
+            .handleReceivedRequest(context, action: receivedAction);
+      },
+      onNotificationCreatedMethod:
+          NotificationController.onNotificationCreatedMethod,
+      onNotificationDisplayedMethod:
+          NotificationController.onNotificationDisplayedMethod,
+      onDismissActionReceivedMethod: (receivedAction) async {
+        await BlocProvider.of<CaptinRideRequestCubit>(context)
+            .onDismissAction(context, action: receivedAction);
+      },
+    );
     super.initState();
     _pageController = PageController(initialPage: currentPage);
-    BlocProvider.of<CaptinRequestCubit>(context).checkLocationPermission();
+    BlocProvider.of<CaptinRideRequestCubit>(context).checkLocationPermission();
+    BlocProvider.of<CaptinRideRequestCubit>(context).initialize();
   }
 
   void setCurrentPage(int index) {
@@ -73,7 +79,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
         children: pages,
       ),
       drawer: const DriverCaptinDrawer(),
-      bottomNavigationBar: DriverBottomNavBar(
+      bottomNavigationBar: CaptinBottomNavBar(
         onItemTapped: setCurrentPage,
         currentIndex: currentPage,
       ),

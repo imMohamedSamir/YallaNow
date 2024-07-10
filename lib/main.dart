@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Core/utlis/HiveAdapters.dart';
 import 'package:yallanow/Core/utlis/NotificationHelper.dart';
@@ -14,11 +18,16 @@ import 'package:yallanow/Core/utlis/functions/configureLogging.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/DriverSignUpView.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/VehicleDetailsView.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
@@ -35,8 +44,10 @@ import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/Market
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/ScooterRequestRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/SignalR_Service.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
@@ -61,14 +72,14 @@ import 'package:yallanow/generated/l10n.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupServiceLocator();
   await Hive.initFlutter();
   await initializeNotification();
+
   configureLogging();
   hiveAdapters();
   Bloc.observer = SimpleBlocObserver();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(DevicePreview(
     enabled: false,
     builder: (context) => const YallaNow(),
@@ -133,7 +144,11 @@ class YallaNow extends StatelessWidget {
             create: (context) =>
                 RidePriceCubit(getIt.get<ScooterRideRepoImpl>())),
         BlocProvider(
-          create: (context) => ScooterRequestCubit(getIt.get<SignalRService>()),
+          create: (context) => UserRidRequestCubit(
+              getIt.get<FirebaseMessagingService>(),
+              getIt.get<CaptinRequestRepoImpl>())
+            ..initialize()
+            ..connect(),
         ),
         BlocProvider(
           create: (context) => CaptinRequestCubit(getIt.get<SignalRService>()),
@@ -147,6 +162,16 @@ class YallaNow extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 TranslateCubit(getIt.get<GoogleMapsServices>())),
+        BlocProvider(
+            create: (context) => CaptinRideRequestCubit(
+                getIt.get<FirebaseMessagingService>(),
+                getIt.get<CaptinRequestRepoImpl>())),
+        BlocProvider(
+            create: (context) => DriverRegisterationCubit(
+                getIt.get<DriverRegisterationRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                SendRequestCubit(getIt.get<ScooterRequestRepoImpl>())),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {

@@ -43,9 +43,9 @@ class _DriverPaymentMethodsTileState extends State<DriverPaymentMethodsTile> {
     return BlocBuilder<CheckPaymentMethodCubit, CheckPaymentMethodState>(
       builder: (context, state) {
         if (state is CheckPaymentMethodChange) {
-          if (state.methode == 'cash') {
+          if (state.methode == PaymentMethod.cash) {
             selectedValue = PaymentMethod.cash;
-          } else if (state.methode == 'Credit Card') {
+          } else if (state.methode == PaymentMethod.creditCard) {
             selectedValue = PaymentMethod.creditCard;
           } else {
             selectedValue = PaymentMethod.wallet;

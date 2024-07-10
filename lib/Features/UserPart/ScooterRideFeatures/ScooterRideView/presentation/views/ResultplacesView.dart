@@ -18,7 +18,8 @@ class ResultplacesView extends StatelessWidget {
         } else if (state is ScooterLocationFailuer) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.errmsg)),
+            const SnackBar(
+                content: Text("please try again and choose correct place")),
           );
         }
       },
@@ -34,42 +35,31 @@ class ResultplacesView extends StatelessWidget {
                         bottom: index == places.length - 1 ? 0 : 14.0),
                     child: ResultsPlacesCard(
                       onTap: () async {
-                        var srcNod =
-                            BlocProvider.of<AutoCompletePlacesCubit>(context)
-                                .sourceFocusNode;
-                        var dstNod =
-                            BlocProvider.of<AutoCompletePlacesCubit>(context)
-                                .destinationFocusNode;
+                        var locationCubit =
+                            BlocProvider.of<ScooterLocationCubit>(context);
+                        var autoCompleteCubit =
+                            BlocProvider.of<AutoCompletePlacesCubit>(context);
+                        var srcNod = autoCompleteCubit.sourceFocusNode;
+                        var dstNod = autoCompleteCubit.destinationFocusNode;
                         if (srcNod.hasFocus) {
-                          BlocProvider.of<AutoCompletePlacesCubit>(context)
-                              .sourceTextController
-                              .text = places[index].description!;
+                          autoCompleteCubit.sourceTextController.text =
+                              places[index].description!;
                           dstNod.requestFocus();
-                          BlocProvider.of<AutoCompletePlacesCubit>(context)
-                              .clearPlaces();
-                          BlocProvider.of<ScooterLocationCubit>(context)
-                              .selectedCurrentLocation(
-                                  description: places[index].description!);
+                          autoCompleteCubit.clearPlaces();
+                          locationCubit.selectedCurrentLocation(
+                              description: places[index].description!);
                         }
                         if (dstNod.hasFocus) {
-                          BlocProvider.of<AutoCompletePlacesCubit>(context)
-                              .distanceTextController
-                              .text = places[index].description!;
-                          await BlocProvider.of<ScooterLocationCubit>(context)
-                              .selectedLocation(context,
-                                  description:
-                                      BlocProvider.of<AutoCompletePlacesCubit>(
-                                              context)
-                                          .distanceTextController
-                                          .text);
+                          autoCompleteCubit.distanceTextController.text =
+                              places[index].description!;
+                          await locationCubit.selectedLocation(context,
+                              description: autoCompleteCubit
+                                  .distanceTextController.text);
                         }
-                        await BlocProvider.of<ScooterLocationCubit>(context)
-                            .selectedLocation(context,
-                                description:
-                                    BlocProvider.of<AutoCompletePlacesCubit>(
-                                            context)
-                                        .distanceTextController
-                                        .text);
+                        if (!context.mounted) return;
+                        await locationCubit.selectedLocation(context,
+                            description:
+                                autoCompleteCubit.distanceTextController.text);
                       },
                       address: places[index].description!,
                     ))),

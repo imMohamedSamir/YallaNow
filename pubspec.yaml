@@ -34,15 +34,15 @@ dependencies:
   cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
-  device_preview: ^1.1.0
+  device_preview: ^1.1.5
   dio: ^5.4.2+1
   easy_stepper: ^0.8.5
   equatable: ^2.0.5
   expandable_page_view: ^1.0.17
   file_picker: 5.5.0
-  firebase_auth: ^4.19.2
-  firebase_core: ^2.30.0
-  firebase_messaging: ^14.7.6
+  firebase_auth: ^5.0.0
+  firebase_core: ^3.1.1
+  firebase_messaging: ^15.0.2
   flutter:
     sdk: flutter
   flutter_background_service: ^5.0.5
@@ -65,15 +65,19 @@ dependencies:
   go_router: ^13.0.1
   google_maps_flutter: ^2.2.8
   google_sign_in: ^6.1.6
+  googleapis_auth: ^1.6.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^1.2.1
-  intl: 0.18.1
+  image_picker: ^1.1.2
+  intl: ^0.19.0
   introduction_screen: ^3.1.14
   jwt_decoder: ^2.0.1
+  loader_overlay: ^4.0.0
   location: ^6.0.1
   logging: ^1.2.0
   lottie: ^3.1.2
+  password_field_validator: ^0.0.1
   pinput: ^4.0.0
   scrollable_list_tab_scroller: ^1.1.2
   shared_preferences: ^2.2.3

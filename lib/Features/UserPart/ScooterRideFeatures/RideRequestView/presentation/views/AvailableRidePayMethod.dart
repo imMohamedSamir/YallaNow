@@ -6,7 +6,7 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/RidePaymentView.dart';
 
 class AvailableRidePayMethod extends StatelessWidget {
@@ -30,20 +30,20 @@ class AvailableRidePayMethod extends StatelessWidget {
           BlocBuilder<CheckPaymentMethodCubit, CheckPaymentMethodState>(
             builder: (context, state) {
               var userRequestModel =
-                  BlocProvider.of<ScooterRequestCubit>(context).userRequest;
+                  BlocProvider.of<SendRequestCubit>(context).requestModel;
               if (state is CheckPaymentMethodChange) {
-                userRequestModel.paymentMethod = state.methode;
+                userRequestModel.paymentMethod = state.methode.index;
 
-                return Text(state.methode,
+                return Text(state.methode.name,
                     style: AppStyles.styleSemiBold16(context));
               }
               if (state is CheckPaymentMethodLoading) {
-                userRequestModel.paymentMethod = state.methode;
+                userRequestModel.paymentMethod = state.methode.index;
 
-                return Text(state.methode ?? "Cash",
+                return Text(state.methode.name,
                     style: AppStyles.styleSemiBold16(context));
               } else {
-                userRequestModel.paymentMethod = "Cash";
+                userRequestModel.paymentMethod = PaymentMethod.cash.index;
 
                 return Text("Cash", style: AppStyles.styleSemiBold16(context));
               }

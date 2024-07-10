@@ -8,13 +8,14 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/translate_respons_model/translate_respons_model.dart';
 
 class GoogleMapsServices {
-  final _baseUrl = 'https://maps.googleapis.com/maps/api/place/';
+  final _baseUrl = 'https://maps.googleapis.com/maps/api/';
 
   final Dio _dio;
 
   GoogleMapsServices(this._dio);
 
-  Future<Map<String, dynamic>> get({required String endPoint}) async {
+  Future<Map<String, dynamic>> getPreditction(
+      {required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
   }

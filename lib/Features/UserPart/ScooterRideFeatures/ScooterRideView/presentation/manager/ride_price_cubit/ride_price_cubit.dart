@@ -9,7 +9,7 @@ class RidePriceCubit extends Cubit<RidePriceState> {
   RidePriceCubit(this.scooterRideRepo) : super(RidePriceInitial());
   final ScooterRideRepo scooterRideRepo;
   void getPrices({required double distance}) async {
-    emit(RidePriceInitial());
+    emit(RidePriceLoading());
     distance = distance / 1000;
     var result = await scooterRideRepo.getRidePrice(distance: distance);
     result.fold((fail) => emit(RidePriceFailure(errMsg: fail.errMessage)),

@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 
@@ -27,8 +27,6 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   LatLng? test;
 
   void updateMyLocation(BuildContext context) async {
-    var requestCubit = BlocProvider.of<CaptinRequestCubit>(context);
-
     await locationService.checkAndRequestLocationService();
     var hasPermission =
         await locationService.checkAndRequestLocationPermission();
@@ -37,11 +35,9 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
       // locationDetails = await defineLocationDetails(location: currentposition!);
 
       //26.959558277409748, 31.35835702883909 setMyLocation(currentposition!);
-      test = LatLng(26.959558277409748, 31.35835702883909);
-      setMyCameraPosition(test!);
+      setMyCameraPosition(currentposition!);
       emit(CaptinMapSuccess(locationData: currentposition!, markers: markers));
-      requestCubit.driverInfo.latitude = currentposition!.latitude;
-      requestCubit.driverInfo.longitude = currentposition!.longitude;
+
       isMoved = true;
     }
   }
@@ -49,13 +45,13 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   Future<void> getRoutes(BuildContext context) async {
     emit(CaptinMapInitial());
     var requestCubit =
-        BlocProvider.of<CaptinRequestCubit>(context).requestDetails;
-    double lat = double.parse(requestCubit.srcLat!);
-    double lng = double.parse(requestCubit.srcLng!);
+        BlocProvider.of<CaptinRideRequestCubit>(context).detailsModel;
+    double lat = requestCubit.currentLatitude;
+    double lng = requestCubit.currentLongitude;
     LatLng dist = LatLng(lat, lng);
     try {
-      RouteInfo routeInfo =
-          await routesUtils.getRouteData(desintation: dist, src: test!);
+      RouteInfo routeInfo = await routesUtils.getRouteData(
+          desintation: dist, src: currentposition!);
       polyLines = routesUtils.displayRoute(routeInfo.points,
           polyLines: polyLines, googleMapController: googleMapController!);
       setDistenatioLocation(dist);
@@ -66,25 +62,25 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     }
   }
 
-  void updateMyTrackingLocation(BuildContext context) async {
-    var requestCubit = BlocProvider.of<CaptinRequestCubit>(context);
+  // void updateMyTrackingLocation(BuildContext context) async {
+  //   var requestCubit = BlocProvider.of<CaptinRequestCubit>(context);
 
-    await locationService.checkAndRequestLocationService();
-    var hasPermission =
-        await locationService.checkAndRequestLocationPermission();
-    if (hasPermission) {
-      locationService.getRealTimeLocationData((locationData) async {
-        LatLng postion =
-            LatLng(locationData.latitude!, locationData.longitude!);
-        requestCubit.driverInfo.latitude = postion.latitude;
-        requestCubit.driverInfo.longitude = postion.longitude;
-        requestCubit.driverInfo.vehicleType = "Scooter Vehicle 1";
-        // await requestCubit.updateDriverLocation();
+  //   await locationService.checkAndRequestLocationService();
+  //   var hasPermission =
+  //       await locationService.checkAndRequestLocationPermission();
+  //   if (hasPermission) {
+  //     locationService.getRealTimeLocationData((locationData) async {
+  //       LatLng postion =
+  //           LatLng(locationData.latitude!, locationData.longitude!);
+  //       // requestCubit.driverInfo.latitude = postion.latitude;
+  //       // requestCubit.driverInfo.longitude = postion.longitude;
+  //       // requestCubit.driverInfo.vehicleType = "Scooter Vehicle 1";
+  //       // await requestCubit.updateDriverLocation();
 
-        // setMyCameraPosition(postion);
-      });
-    }
-  }
+  //       // setMyCameraPosition(postion);
+  //     });
+  //   }
+  // }
 
   // Future<Placemark> defineLocationDetails({required LatLng location}) async {
   //   try {

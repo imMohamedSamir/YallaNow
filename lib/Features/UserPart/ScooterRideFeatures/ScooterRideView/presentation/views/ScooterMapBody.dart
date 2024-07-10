@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/CurrentLocationIcon.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/scooter_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/views/ChooseRideTypeBuilder.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/views/ScooterRideMap.dart';
@@ -25,7 +26,15 @@ class ScooterMapBody extends StatelessWidget {
               return Positioned(
                 top: AppSizes.getHeight(50, context),
                 left: 16,
-                child: const MapCloseIcon(),
+                child: BlocBuilder<UserRidRequestCubit, UserRideRequestState>(
+                  builder: (context, state) {
+                    if (state is UserRideRequestAccepted) {
+                      return const SizedBox();
+                    } else {
+                      return const MapCloseIcon();
+                    }
+                  },
+                ),
               );
             } else {
               return Positioned(
@@ -66,7 +75,8 @@ class MapCloseIcon extends StatelessWidget {
             padding: EdgeInsets.zero,
             onPressed: () {
               BlocProvider.of<ScooterLocationCubit>(context).setInitialState();
-              BlocProvider.of<ScooterRequestCubit>(context).cancelRequest();
+              BlocProvider.of<UserRidRequestCubit>(context).setInitialState();
+              BlocProvider.of<SendRequestCubit>(context).setInitial();
             },
             icon: const Icon(Icons.close)));
   }

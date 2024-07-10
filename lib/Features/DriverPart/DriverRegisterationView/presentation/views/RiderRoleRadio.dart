@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 enum RiderRole { delivery, captin }
 
@@ -78,7 +79,7 @@ class _RiderRoleSecState extends State<RiderRoleSec> {
 
   String? _validateRoles(RiderRole? role) {
     if (selectedRole == null) {
-      return "Please select a role";
+      return S.of(context).selectroleValidation;
     }
     return null;
   }
@@ -94,14 +95,14 @@ class _RiderRoleSecState extends State<RiderRoleSec> {
             Row(
               children: [
                 RiderRoleRadio(
-                  title: "As Delivery",
+                  title: S.of(context).AsDelivery,
                   icon: Assets.imagesRiderIcon,
                   value: RiderRole.delivery,
                   groupValue: selectedRole,
                   onChanged: (role) => chooseRole(role, state: state),
                 ),
                 RiderRoleRadio(
-                  title: "As Captin",
+                  title: S.of(context).AsCaptin,
                   icon: Assets.imagesRiderIcon,
                   value: RiderRole.captin,
                   groupValue: selectedRole,

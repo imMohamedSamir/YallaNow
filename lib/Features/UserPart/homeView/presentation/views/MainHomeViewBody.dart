@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Features/UserPart/NotificationView/presentation/NotificationView.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/OredersView.dart';
@@ -19,7 +22,14 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
   int currentPage = 0;
   @override
   void initState() {
+    getToken();
     super.initState();
+  }
+
+  getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      log(token!);
+    });
   }
 
   @override

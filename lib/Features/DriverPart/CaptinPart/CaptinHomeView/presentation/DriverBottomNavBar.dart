@@ -4,8 +4,8 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/generated/l10n.dart';
 
-class DriverBottomNavBar extends StatelessWidget {
-  const DriverBottomNavBar(
+class CaptinBottomNavBar extends StatelessWidget {
+  const CaptinBottomNavBar(
       {super.key, this.currentIndex, required this.onItemTapped});
   final int? currentIndex;
   final void Function(int) onItemTapped;
@@ -33,14 +33,14 @@ class DriverBottomNavBar extends StatelessWidget {
                     ? Assets.imagesOrdersIconActive
                     : Assets.imagesOrdersIcon,
               ),
-              label: "Orders"),
-          const BottomNavigationBarItem(
-            icon: Icon(
+              label: S.of(context).rides),
+          BottomNavigationBarItem(
+            icon: const Icon(
               Icons.star_rounded,
               size: 26,
               // color: currentIndex == 2 ? Color(0xffFEC400) : Colors.grey,
             ),
-            label: "Ratings",
+            label: S.of(context).Ratings,
           )
         ]);
   }
