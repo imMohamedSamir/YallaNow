@@ -22,7 +22,9 @@ class CaptinMapBody extends StatelessWidget {
             if (state is CaptinMapSuccess) {
               initialCameraPosition =
                   CameraPosition(target: state.locationData, zoom: 15);
-              BlocProvider.of<CaptinMapCubit>(context).getRoutes(context);
+              // BlocProvider.of<CaptinMapCubit>(context).getRoutes(context);
+              BlocProvider.of<CaptinMapCubit>(context)
+                  .listenToDriverLocationUpdates(context);
             } else {
               initialCameraPosition =
                   CameraPosition(target: defaultLocation, zoom: 10);
@@ -38,11 +40,11 @@ class CaptinMapBody extends StatelessWidget {
             },
             zoomControlsEnabled: false,
             initialCameraPosition: initialCameraPosition,
-            markers: state is CaptinMapChange ? state.markers! : {},
-            myLocationEnabled: true,
+            markers: state is CaptinMapChange ? state.markers ?? {} : {},
+            compassEnabled: false,
             indoorViewEnabled: true,
             myLocationButtonEnabled: false,
-            polylines: state is CaptinMapChange ? state.polyLine! : {},
+            polylines: state is CaptinMapChange ? state.polyLine ?? {} : {},
           );
         },
       ),

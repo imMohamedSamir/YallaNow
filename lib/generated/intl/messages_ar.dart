@@ -27,8 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "AsDelivery": MessageLookupByLibrary.simpleMessage("كموصل"),
         "Book": MessageLookupByLibrary.simpleMessage("حجز"),
         "Cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "CaptinProfile": MessageLookupByLibrary.simpleMessage("ملف السائق"),
+        "Checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "Choose": MessageLookupByLibrary.simpleMessage("اختر"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("اختر رحلة"),
+        "CodeSentMsg":
+            MessageLookupByLibrary.simpleMessage("تم إرسال الرمز إلى"),
+        "Continue": MessageLookupByLibrary.simpleMessage("استمرار"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
         "Disable": MessageLookupByLibrary.simpleMessage("تعطيل"),
@@ -48,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("البحث عن سائقك"),
         "FirstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+        "ForgetPassword":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "GenderValidation":
             MessageLookupByLibrary.simpleMessage("يرجى اختيار جنسك"),
         "HelpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
@@ -56,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Include": MessageLookupByLibrary.simpleMessage("يشمل"),
         "InviteFriends": MessageLookupByLibrary.simpleMessage("دعوة الأصدقاء"),
         "Iwait": MessageLookupByLibrary.simpleMessage("سأنتظر"),
+        "Km": MessageLookupByLibrary.simpleMessage("كم"),
         "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "LastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
         "Location": MessageLookupByLibrary.simpleMessage("الموقع"),
@@ -77,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "NationalityValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال جنسيتك"),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "Notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "Notinclude": MessageLookupByLibrary.simpleMessage("لا يشمل"),
         "NumberofJuniors": MessageLookupByLibrary.simpleMessage("عدد الصغار"),
         "NumberofKids": MessageLookupByLibrary.simpleMessage("عدد الأطفال"),
@@ -96,12 +105,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("الرحلات الشعبية"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "Program": MessageLookupByLibrary.simpleMessage("البرنامج"),
+        "RatingDriverQ":
+            MessageLookupByLibrary.simpleMessage("كيف كان السائق؟"),
+        "RatingTripQ": MessageLookupByLibrary.simpleMessage("كيف كانت رحلتك؟"),
         "Ratings": MessageLookupByLibrary.simpleMessage("التقييمات"),
         "Recentplaces": MessageLookupByLibrary.simpleMessage("الأماكن الأخيرة"),
         "RegistrationDsc":
             MessageLookupByLibrary.simpleMessage("يرجى ملء النموذج وسنتصل بك"),
         "RegistrationForm":
             MessageLookupByLibrary.simpleMessage("نموذج التسجيل"),
+        "ResetPassword":
+            MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
+        "ResetviaPhone":
+            MessageLookupByLibrary.simpleMessage("إعادة التعيين عبر الهاتف"),
         "Resultplaces": MessageLookupByLibrary.simpleMessage("أماكن النتائج"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("دفع الرحلة"),
         "Room": MessageLookupByLibrary.simpleMessage("الغرفة"),
@@ -116,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفاصيل المشاركة في الرحلة"),
         "SignIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "SignUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "SignUpMsg":
+            MessageLookupByLibrary.simpleMessage("يرجى ملء بياناتك للتسجيل"),
         "SignUprider": MessageLookupByLibrary.simpleMessage("اشترك كسائق"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل بياناتك بنجاح. سنتواصل معك."),
@@ -123,6 +141,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Terms1":
             MessageLookupByLibrary.simpleMessage("بالتسجيل، فإنك توافق على"),
         "Terms2": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
+        "TotalKillos":
+            MessageLookupByLibrary.simpleMessage("إجمالي الكيلومترات"),
+        "TotalTrips": MessageLookupByLibrary.simpleMessage("إجمالي الرحلات"),
         "Totalamount": MessageLookupByLibrary.simpleMessage("المبلغ الإجمالي"),
         "TravellerName": MessageLookupByLibrary.simpleMessage("الاسم"),
         "Trips": MessageLookupByLibrary.simpleMessage("رحلات"),
@@ -132,6 +153,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفاصيل المركبة"),
         "VehicleImages": MessageLookupByLibrary.simpleMessage("صور المركبة"),
         "VehicleType": MessageLookupByLibrary.simpleMessage("نوع المركبة"),
+        "VerificationWithMail":
+            MessageLookupByLibrary.simpleMessage("التحقق من البريد الإلكتروني"),
+        "VerificationWithMailMsg": MessageLookupByLibrary.simpleMessage(
+            "يرجى إدخال بريدك الإلكتروني لارسال كود التأكد  "),
+        "VerificationWithphonenumber":
+            MessageLookupByLibrary.simpleMessage("التحقق برقم الهاتف"),
         "Wallet": MessageLookupByLibrary.simpleMessage("محفظة"),
         "Yalla": MessageLookupByLibrary.simpleMessage("يلا"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
@@ -149,13 +176,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سيتم إلغاء رحلتك لهذا."),
         "cancelRidequestion":
             MessageLookupByLibrary.simpleMessage("هل تريد إلغاء الرحلة؟"),
+        "cancellationWarning": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد إلغاء الرحلة؟ سيتم تطبيق رسوم"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
+        "chooseRestWay": MessageLookupByLibrary.simpleMessage(
+            "اختر طريقة لاستلام رمز إعادة التعيين"),
+        "comment": MessageLookupByLibrary.simpleMessage("تعليق"),
         "confirmPassCorrectation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال نفس كلمة المرور"),
         "confirmPassvalidation":
             MessageLookupByLibrary.simpleMessage("يرجى تأكيد كلمة المرور"),
         "confirmedPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "contactInformationContent": MessageLookupByLibrary.simpleMessage(
+            "لأي أسئلة أو استفسارات بشأن المدفوعات عبر الإنترنت، يرجى الاتصال بنا على:\n- البريد الإلكتروني: [عنوان البريد الإلكتروني]\n- الهاتف: [رقم الهاتف]"),
+        "contactInformationTitle":
+            MessageLookupByLibrary.simpleMessage("8. معلومات الاتصال"),
         "continuewith": MessageLookupByLibrary.simpleMessage("أو تابع مع"),
         "correctEmail": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال عنوان بريد إلكتروني صحيح"),
@@ -163,6 +199,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صحيح"),
         "criminal_record": MessageLookupByLibrary.simpleMessage(
             "(اجبارى) فيش وتشبية موجه لشركة يلا ناو"),
+        "currencyContent": MessageLookupByLibrary.simpleMessage(
+            "جميع الأسعار المدرجة على موقعنا الإلكتروني هي بالعملة المحددة. يجب أن تتم المدفوعات بالعملة المحددة."),
+        "currencyTitle": MessageLookupByLibrary.simpleMessage("5. العملة"),
+        "driverCancelRide":
+            MessageLookupByLibrary.simpleMessage("السائق ألغى الرحلة"),
+        "driverCancelRideMsg":
+            MessageLookupByLibrary.simpleMessage("يرجى المحاولة مرة أخرى"),
         "driverPapers": MessageLookupByLibrary.simpleMessage("أوراق السائق"),
         "driverPapersCorrection":
             MessageLookupByLibrary.simpleMessage("يرجى تحميل الملف بصيغة PDF"),
@@ -173,6 +216,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
         "editprofile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        "failedTransactionsContent": MessageLookupByLibrary.simpleMessage(
+            "إذا فشلت عملية الدفع الخاصة بك، يرجى المحاولة مرة أخرى أو الاتصال بفريق دعم العملاء لدينا للحصول على المساعدة."),
+        "failedTransactionsTitle":
+            MessageLookupByLibrary.simpleMessage("7. المعاملات الفاشلة"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
         "firstnameValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسمك الأول"),
@@ -182,6 +229,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "(اجبارى) صورة البطاقة امامى و خلفى"),
         "imageDirections":
             MessageLookupByLibrary.simpleMessage("اتجاهات الصورة"),
+        "introductionContent": MessageLookupByLibrary.simpleMessage(
+            "مرحبًا بكم في يلا ناو للسفر. توضح سياسة الدفع عبر الإنترنت هذه الشروط والأحكام للمعاملات عبر الإنترنت التي يتم إجراؤها من خلال موقعنا الإلكتروني."),
+        "introductionTitle": MessageLookupByLibrary.simpleMessage("1. المقدمة"),
         "lasnameValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسمك الأخير"),
         "licensePlate": MessageLookupByLibrary.simpleMessage("رقم اللوحة"),
@@ -191,10 +241,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "lowerCaseLetter": MessageLookupByLibrary.simpleMessage("حرف صغير"),
         "numericCharacter": MessageLookupByLibrary.simpleMessage("حرف رقمي"),
         "passForget": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "paymentConfirmationContent": MessageLookupByLibrary.simpleMessage(
+            "بمجرد معالجة دفعتك بنجاح، ستتلقى تأكيدًا عبر البريد الإلكتروني يحتوي على تفاصيل الحجز الخاصة بك. يرجى الاحتفاظ بهذا البريد الإلكتروني كدليل على الدفع."),
+        "paymentConfirmationTitle":
+            MessageLookupByLibrary.simpleMessage("4. تأكيد الدفع"),
+        "paymentMethodsContent": MessageLookupByLibrary.simpleMessage(
+            "نحن نقبل طرق الدفع التالية للحجوزات عبر الإنترنت:\n- بطاقات الائتمان (فيزا، ماستركارد)\n- بطاقات الخصم\n- باي بال\n- التحويلات المصرفية"),
+        "paymentMethodsTitle":
+            MessageLookupByLibrary.simpleMessage("2. طرق الدفع"),
+        "paymentSecurityContent": MessageLookupByLibrary.simpleMessage(
+            "نحن نستخدم تقنية التشفير الآمن لحماية معلومات الدفع الخاصة بك. تتم معالجة جميع المعاملات من خلال بوابة دفع آمنة، مما يضمن سلامة تفاصيلك الشخصية والمالية."),
+        "paymentSecurityTitle":
+            MessageLookupByLibrary.simpleMessage("3. أمان الدفع"),
         "places": MessageLookupByLibrary.simpleMessage("الأماكن"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(
             "هل أنت مستعد للبحث عن الطلبات"),
+        "refundsAndCancellationsContent": MessageLookupByLibrary.simpleMessage(
+            "سيتم معالجة استرداد الأموال للحجوزات الملغاة وفقًا لسياسة الإلغاء الخاصة بنا. يرجى الرجوع إلى سياسة الإلغاء للحصول على تفاصيل حول كيفية طلب استرداد الأموال."),
+        "refundsAndCancellationsTitle":
+            MessageLookupByLibrary.simpleMessage("6. الاسترداد والإلغاء"),
         "rides": MessageLookupByLibrary.simpleMessage("رحلاتى"),
         "scooterRide": MessageLookupByLibrary.simpleMessage("ركوب سكوتر"),
         "scooter_license": MessageLookupByLibrary.simpleMessage(
@@ -202,8 +268,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectroleValidation":
             MessageLookupByLibrary.simpleMessage("يرجى اختيار دور"),
         "specialCharacter": MessageLookupByLibrary.simpleMessage("حرف خاص"),
+        "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
+            "1. المقدمة\nتحكم هذه الشروط والأحكام استخدامك لموقع يلا ناو للسفر والخدمات المقدمة من قبلنا. باستخدام موقعنا الإلكتروني، فإنك توافق على هذه الشروط والأحكام.\n\n2. الحجز والحجوزات\n- جميع الحجوزات تخضع للتوافر.\n- الأسعار والتوافر قابلة للتغيير دون إشعار.\n\n3. الدفع\n- يتطلب الدفع الكامل عند الحجز.\n- يتم قبول المدفوعات عبر الطرق المدرجة في سياسة الدفع عبر الإنترنت الخاصة بنا.\n\n4. الإلغاء والاسترداد\n- يجب إجراء الإلغاءات وفقًا لسياسة الإلغاء الخاصة بنا.\n- سيتم معالجة الاسترداد بناءً على الشروط الموضحة في سياسة الإلغاء.\n\n5. تغييرات الحجوزات\n- تخضع تغييرات الحجوزات للتوافر وقد تتكبد رسوم إضافية.\n- يرجى الاتصال بفريق دعم العملاء لدينا لطلب تغييرات في حجزك.\n\n6. وثائق السفر\n- تقع على عاتقك مسؤولية التأكد من أن لديك الوثائق السفر اللازمة، بما في ذلك جوازات السفر والتأشيرات.\n- لا يتحمل يلا ناو للسفر أي مسؤولية عن أي مشاكل تنشأ من وثائق السفر غير الكاملة أو غير الصحيحة.\n\n7. تحديد المسؤولية\n- لا يتحمل يلا ناو للسفر أي مسؤولية عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو تبعية ناتجة عن استخدام خدماتنا.\n- نحن غير مسؤولين عن أي تأخيرات أو إلغاءات أو تغييرات في ترتيبات السفر التي تسببها مقدمي الخدمات من الأطراف الثالثة.\n\n8. سياسة الخصوصية\n- يتم حماية معلوماتك الشخصية وفقًا لسياسة الخصوصية الخاصة بنا.\n- يرجى الرجوع إلى سياسة الخصوصية الخاصة بنا للحصول على تفاصيل حول كيفية جمع واستخدام وحماية معلوماتك.\n\n9. القانون الساري\n- تخضع هذه الشروط والأحكام لقوانين [البلد/الدولة].\n- سيتم حل أي نزاعات تنشأ من هذه الشروط في محاكم [البلد/الدولة].\n\n10. تغييرات الشروط والأحكام\n- نحتفظ بالحق في تعديل هذه الشروط والأحكام في أي وقت.\n- سيتم نشر أي تغييرات على موقعنا الإلكتروني، ويعد استمرار استخدامك لخدماتنا قبولًا للشروط المحدثة.\n\n11. معلومات الاتصال\nلأي أسئلة أو استفسارات بشأن هذه الشروط والأحكام، يرجى الاتصال بنا على:"),
+        "termsAndConditionsTitle":
+            MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "totalDistance":
+            MessageLookupByLibrary.simpleMessage("المسافة الإجمالية"),
+        "totalRating": MessageLookupByLibrary.simpleMessage("إجمالي التقييمات"),
+        "tripdetails": MessageLookupByLibrary.simpleMessage("تفاصيل الرحلة"),
         "upperCaseLetter": MessageLookupByLibrary.simpleMessage("حرف كبير"),
+        "userCancelRide":
+            MessageLookupByLibrary.simpleMessage("المستخدم ألغى الرحلة"),
+        "userCancelRideMsg": MessageLookupByLibrary.simpleMessage(
+            "اذهب إلى الصفحة الرئيسية لتلقي المزيد من الطلبات"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "usercharges": MessageLookupByLibrary.simpleMessage("رسوم المستخدم"),
         "usernameValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسم المستخدم"),
         "vehicleColorValidation":

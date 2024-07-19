@@ -6,7 +6,7 @@ import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinCancelDialog.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
@@ -114,6 +114,108 @@ void logoutdialogMethode(BuildContext context) {
 }
 
 void cancelRidedialogMethode(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(S.of(context).cancelRidequestion,
+            style: AppStyles.styleSemiBold16(context)
+                .copyWith(color: const Color(0xff240301))),
+        content: Text(
+          S.of(context).cancelRideMsg,
+          style: AppStyles.styleRegular16(context)
+              .copyWith(color: const Color(0xff5A5A5A)),
+        ),
+        actions: [
+          DialogButton(
+              btnColor: pKcolor,
+              textColor: Colors.white,
+              text: S.of(context).Cancel,
+              onPressed: () {
+                Navigator.pop(context);
+                BlocProvider.of<UserRidRequestCubit>(context).setInitialState();
+
+                BlocProvider.of<ScooterLocationCubit>(context)
+                    .setInitialState();
+                BlocProvider.of<SendRequestCubit>(context).setInitial();
+              }),
+          DialogButton(
+            btnColor: Colors.white,
+            textColor: pKcolor,
+            text: S.of(context).Iwait,
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void usercancelRidedialogMethode(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(S.of(context).userCancelRide,
+            style: AppStyles.styleSemiBold16(context)
+                .copyWith(color: const Color(0xff240301))),
+        content: Text(
+          S.of(context).userCancelRideMsg,
+          style: AppStyles.styleRegular16(context)
+              .copyWith(color: const Color(0xff5A5A5A)),
+        ),
+        actions: [
+          DialogButton(
+              btnColor: pKcolor,
+              textColor: Colors.white,
+              text: S.of(context).Ok,
+              onPressed: () {
+                Navigator.pop(context);
+                BlocProvider.of<CaptinMapCubit>(context).cancelListening();
+                BlocProvider.of<CaptinRideRequestCubit>(context).setInitial();
+                BlocProvider.of<CaptinRideRequestCubit>(context).disconnect();
+                NavigateToPage.slideFromLeftAndRemove(
+                    context: context, page: const CaptinHomeView());
+              }),
+        ],
+      );
+    },
+  );
+}
+
+void drivercancelRidedialogMethode(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(S.of(context).driverCancelRide,
+            style: AppStyles.styleSemiBold16(context)
+                .copyWith(color: const Color(0xff240301))),
+        content: Text(
+          S.of(context).driverCancelRideMsg,
+          style: AppStyles.styleRegular16(context)
+              .copyWith(color: const Color(0xff5A5A5A)),
+        ),
+        actions: [
+          DialogButton(
+              btnColor: pKcolor,
+              textColor: Colors.white,
+              text: S.of(context).Ok,
+              onPressed: () {
+                Navigator.pop(context);
+                BlocProvider.of<UserRidRequestCubit>(context).setInitialState();
+                BlocProvider.of<ScooterLocationCubit>(context)
+                    .cancelListening();
+                BlocProvider.of<ScooterLocationCubit>(context)
+                    .setInitialState();
+                BlocProvider.of<SendRequestCubit>(context).setInitial();
+              }),
+        ],
+      );
+    },
+  );
+}
+
+void driverCancelMSGdialogMethode(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) {

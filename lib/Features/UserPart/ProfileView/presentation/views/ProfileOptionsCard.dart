@@ -15,6 +15,7 @@ class ProfileOptionsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       onTap: onTap,
       leading: SvgPicture.asset(
         profileOptionsCardModel.icon,

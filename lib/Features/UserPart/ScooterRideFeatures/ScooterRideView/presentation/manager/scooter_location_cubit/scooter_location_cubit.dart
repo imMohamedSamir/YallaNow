@@ -1,10 +1,15 @@
+import 'dart:async';
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
@@ -13,6 +18,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/p
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
+import 'dart:ui' as ui;
 
 part 'scooter_location_state.dart';
 
@@ -28,6 +34,18 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   LatLng? currentposition;
   Set<Polyline> polyLines = {};
   bool isMoved = false;
+
+  LatLng? newposition;
+  StreamSubscription<DatabaseEvent>? _driversSubscription;
+  Future<BitmapDescriptor> getIcon({required String assetName}) async {
+    final ByteData data = await rootBundle.load(assetName);
+    final ui.Codec codec = await ui
+        .instantiateImageCodec(data.buffer.asUint8List(), targetWidth: 100);
+    final ui.FrameInfo fi = await codec.getNextFrame();
+    final ByteData? resizedData =
+        await fi.image.toByteData(format: ui.ImageByteFormat.png);
+    return BitmapDescriptor.fromBytes(resizedData!.buffer.asUint8List());
+  }
 
   CameraTargetBounds appCamerabounds = CameraTargetBounds(LatLngBounds(
     southwest: const LatLng(29.994944894366228, 31.28310130035875),
@@ -95,6 +113,40 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     }
   }
 
+  void cancelListening() {
+    if (_driversSubscription != null) {
+      _driversSubscription!.cancel();
+      _driversSubscription =
+          null; // Set to null to ensure it is not used after cancellation
+    }
+  }
+
+  void listenToDriverLocationUpdates({required String driverId}) async {
+    emit(ScooterLocationLoading());
+    cancelListening();
+    DatabaseReference driversRef =
+        FirebaseDatabase.instance.ref('drivers/$driverId');
+    _driversSubscription = driversRef.onValue.listen((event) async {
+      if (event.snapshot.value != null) {
+        emit(ScooterLocationLoading());
+
+        final data = event.snapshot.value as Map<dynamic, dynamic>;
+        final newLatitude = data['CurrentLatitude'] as double;
+        final newLongitude = data['CurrentLongitude'] as double;
+
+        newposition = LatLng(newLatitude, newLongitude);
+        await setDriverMark(newposition!);
+        log("new position: $newposition");
+
+        RouteInfo routeInfo = await getRoute(newposition!);
+        emit(ScooterLocationChange(
+            polyLines: polyLines,
+            markers: markers,
+            duration: routeInfo.duration));
+      }
+    });
+  }
+
   Future<void> selectedLocation(BuildContext context,
       {required String description}) async {
     try {
@@ -126,11 +178,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
         setSearchedLocationMark(destination);
 
         // Fetch the route data
-        RouteInfo routeInfo = await routesUtils.getRouteData(
-            desintation: destination, src: currentposition!);
-
-        polyLines = routesUtils.displayRoute(routeInfo.points,
-            polyLines: polyLines, googleMapController: googleMapController!);
+        RouteInfo routeInfo = await getRoute(destination);
         priceCubit.getPrices(distance: routeInfo.distance);
 
         userRequestModel.location =
@@ -149,6 +197,15 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
       log("Error fetching location: $e");
       emit(const ScooterLocationFailuer(errmsg: "Failed to fetch location"));
     }
+  }
+
+  Future<RouteInfo> getRoute(LatLng destination) async {
+    RouteInfo routeInfo = await routesUtils.getRouteData(
+        desintation: destination, src: currentposition!);
+
+    polyLines = routesUtils.displayRoute(routeInfo.points,
+        polyLines: polyLines, googleMapController: googleMapController!);
+    return routeInfo;
   }
 
 /////////////////////////////////////////////////////////////////////////
@@ -188,18 +245,18 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   }
 
 ////////////////////////////////////////////////////////////////////
-  void handleCameraMove({required CameraPosition position}) async {
-    // emit(ScooterLocationInitial());
-    LatLng newLocation = position.target;
-    currentposition = newLocation;
-    locationDetails = await defineLocationDetails(location: newLocation);
-    log(locationDetails!.toJson().toString());
-    // setMyLocationMark(newLocation);
-  }
+  // void handleCameraMove({required CameraPosition position}) async {
+  //   // emit(ScooterLocationInitial());
+  //   LatLng newLocation = position.target;
+  //   currentposition = newLocation;
+  //   locationDetails = await defineLocationDetails(location: newLocation);
+  //   log(locationDetails!.toJson().toString());
+  //   // setMyLocationMark(newLocation);
+  // }
 
   ///////////////////////////////////////////////////////////
   void setMyCameraPosition(LatLng locationData) {
-    var camerPosition = CameraPosition(target: locationData, zoom: 15);
+    var camerPosition = CameraPosition(target: locationData, zoom: 19);
     googleMapController
         ?.animateCamera(CameraUpdate.newCameraPosition(camerPosition));
     if (!isClosed) {
@@ -227,7 +284,7 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
     // Remove the existing searched location marker if it exists
     markers.removeWhere((marker) =>
         marker.markerId.value == 'searched_location_marker' ||
-        marker.markerId.value == 'my_location_marker');
+        marker.markerId.value == 'driver_mark');
 
     // Add a new marker for the searched location
     markers.add(
@@ -235,12 +292,19 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
           markerId: const MarkerId('searched_location_marker'),
           position: locationData),
     );
+  }
 
-    // Emit a new state with updated location data and markers
-    // emit(ScooterLocationChange(
-    //   // locationData: locationData,
-    //   markers: markers,
-    // ));
+  Future<void> setDriverMark(LatLng locationData) async {
+    // Remove the existing searched location marker if it exists
+    markers.removeWhere((marker) => marker.markerId.value == 'driver_mark');
+
+    // Add a new marker for the searched location
+    markers.add(
+      Marker(
+          markerId: const MarkerId('driver_mark'),
+          position: locationData,
+          icon: await getIcon(assetName: Assets.imagesDriverMarker)),
+    );
   }
 
   ////////////////////////////////////////////////////////////////
@@ -250,17 +314,9 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
   }
 
   void setInitialState() {
+    // await _driversSubscription?.cancel();
+    markers.removeWhere((marker) => marker.markerId.value == 'driver_mark');
     emit(ScooterLocationInitial());
     updateMyLocation();
-  }
-
-  DraggableScrollableController dragcontroller =
-      DraggableScrollableController();
-  void openRiderType() {
-    dragcontroller.animateTo(
-      100, // This will collapse the sheet
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn,
-    );
   }
 }

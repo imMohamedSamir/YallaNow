@@ -22,3 +22,5 @@ const String kBasket = "Basket";
 const String driverGroup = "Drivers";
 const String userGroup = "Riders";
 const String kTrips = "kTrips";
+const String tokenId = "idToken";
+const String providerId = "provider";

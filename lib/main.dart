@@ -21,7 +21,7 @@ import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_metho
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ready_for_trips_cubit/ready_for_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/DriverSignUpView.dart';
@@ -45,9 +45,9 @@ import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoIm
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/ScooterRequestRepoImpl.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/SignalR_Service.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/RatingPage.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/Repo/ScooterRideRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
@@ -65,6 +65,7 @@ import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.da
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_marts_cubit/fetch_popular_marts_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/fetch_popular_resturants_cubit/fetch_popular_resturants_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/MainHomeViewBody.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
 import 'package:yallanow/firebase_options.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -76,8 +77,6 @@ void main() async {
   setupServiceLocator();
   await Hive.initFlutter();
   await initializeNotification();
-
-  configureLogging();
   hiveAdapters();
   Bloc.observer = SimpleBlocObserver();
   runApp(DevicePreview(
@@ -149,9 +148,6 @@ class YallaNow extends StatelessWidget {
               getIt.get<CaptinRequestRepoImpl>())
             ..initialize()
             ..connect(),
-        ),
-        BlocProvider(
-          create: (context) => CaptinRequestCubit(getIt.get<SignalRService>()),
         ),
         BlocProvider(
           create: (context) => CaptinMapCubit(LocationService(), RoutesUtils()),

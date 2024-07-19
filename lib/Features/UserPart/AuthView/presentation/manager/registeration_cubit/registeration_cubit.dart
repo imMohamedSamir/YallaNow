@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,13 +52,11 @@ class RegisterationCubit extends Cubit<RegisterationState> {
   //           //   ),
   //           // );
   //         } else {
-  //           Navigator.push(
-  //             context,
-  //             MaterialPageRoute(
-  //               builder: (context) => ForgetPasswordVerify(
-  //                 verificationId: verificationId,
-  //                 endOfNumber: phoneNumber.substring(phoneNumber.length - 2),
-  //               ),
+  //           NavigateToPage.slideFromRight(
+  //             context: context,
+  //             page: ForgetPasswordVerify(
+  //               verificationId: verificationId,
+  //               endOfNumber: phoneNumber.substring(phoneNumber.length - 2),
   //             ),
   //           );
   //         }

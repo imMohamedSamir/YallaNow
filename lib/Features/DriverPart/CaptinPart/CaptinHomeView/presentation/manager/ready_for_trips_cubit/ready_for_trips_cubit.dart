@@ -16,6 +16,7 @@ part 'ready_for_trips_state.dart';
 class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
   ReadyForTripsCubit(this.captinRequestRepo) : super(ReadyForTripsInitial()) {
     getLocation();
+    emit(ReadyForTripsInitial());
   }
 
   final CaptinRequestRepo captinRequestRepo;
@@ -54,7 +55,7 @@ class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
     // Cancel any existing subscription before creating a new one
     await positionStreamSubscription?.cancel();
     positionStreamSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(distanceFilter: 10),
+      locationSettings: const LocationSettings(distanceFilter: 0),
     ).listen(
       (position) async {
         updateLocationModel.latitude = position.latitude;

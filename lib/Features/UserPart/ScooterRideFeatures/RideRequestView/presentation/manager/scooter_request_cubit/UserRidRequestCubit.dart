@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/utlis/functions/convertMapToString.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepo.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
@@ -15,7 +17,9 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/mode
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/AcceptRideModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/DriverInfoModel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/RatingPage.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
+import 'package:yallanow/main.dart';
 
 part 'UserRequestState.dart';
 
@@ -27,7 +31,7 @@ class UserRidRequestCubit extends Cubit<UserRideRequestState> {
   final FirebaseMessagingService messagingService;
   final CaptinRequestRepo captinRequestRepo;
   var uuid = const Uuid();
-  CaptinCancelModel cancelModel = CaptinCancelModel();
+  CancelModel cancelModel = CancelModel();
   AcceptRideModel? acceptRideModel;
   bool _isJoined = false;
   Future<void> initialize() async {
@@ -59,28 +63,45 @@ class UserRidRequestCubit extends Cubit<UserRideRequestState> {
 
   void receiveResponse() {
     messagingService.onMessage.listen((message) {
-      try {
-        log(message.data.toString());
-        acceptRideModel = AcceptRideModel.fromJson(message.data);
-        cancelModel.tripId = acceptRideModel!.tripId;
-        log(acceptRideModel?.toJson().toString() ?? "error");
-        emit(UserRideRequestAccepted(driverInfoModel: acceptRideModel!));
-        // _createNotification(message, "accepted ride request");
-      } catch (e) {
-        _createNotification(message, "No Drivers available");
+      final key = message.data['key'] as String?;
+      switch (key) {
+        case "DriverResponse":
+          log(message.data.toString());
+          acceptRideModel = AcceptRideModel.fromJson(message.data);
+          cancelModel.tripId = acceptRideModel!.tripId;
+          log(acceptRideModel?.toJson().toString() ?? "error");
+          emit(UserRideRequestAccepted(driverInfoModel: acceptRideModel!));
+          break;
+        case "DriverCancel":
+          drivercancelRidedialogMethode(navigatorKey.currentContext!);
+          _createNotification(message);
+          break;
+        case "Start":
+          emit(UserRideRequestLoading());
+          startTrip(navigatorKey.currentContext!);
+          emit(UserRideRequestAccepted(
+              driverInfoModel: acceptRideModel!, isStarted: true));
+          _createNotification(message);
+          break;
+        case "End":
+          endTrip(navigatorKey.currentContext!);
+          _createNotification(message);
+          break;
+        default:
+          log(key!);
+          break;
       }
     });
   }
 
-  void _createNotification(RemoteMessage requestModel, String title) {
+  void _createNotification(RemoteMessage requestModel) {
     log("notification: ${requestModel.data.toString()}");
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: requestModel.hashCode,
         channelKey: notifChannelKey,
         actionType: ActionType.Default,
-        // payload: convertMapToString(originalMap: requestModel.data),
-        title: title,
+        title: requestModel.notification!.title,
         body: requestModel.notification!.body,
         notificationLayout: NotificationLayout.Default,
         backgroundColor: pKcolor,
@@ -92,6 +113,7 @@ class UserRidRequestCubit extends Cubit<UserRideRequestState> {
   Future<void> cancelRequest(BuildContext context,
       {required String reason}) async {
     cancelModel.cancelationReason = reason;
+    cancelModel.isUser = true;
     log(cancelModel.toJson().toString());
     var result = await captinRequestRepo.cancelRide(cancelModel: cancelModel);
     result.fold((fail) => emit(UserRideRequestFailure()), (details) {
@@ -106,5 +128,18 @@ class UserRidRequestCubit extends Cubit<UserRideRequestState> {
 
   void setInitialState() {
     emit(UserRideRequestInitial());
+  }
+
+  void startTrip(BuildContext context) {
+    BlocProvider.of<ScooterLocationCubit>(context).cancelListening();
+  }
+
+  void endTrip(BuildContext context) {
+    emit(UserRideRequestInitial());
+    BlocProvider.of<ScooterLocationCubit>(context).setInitialState();
+    BlocProvider.of<ScooterLocationCubit>(context).cancelListening();
+    BlocProvider.of<SendRequestCubit>(context).setInitial();
+    NavigateToPage.slideFromBottom(
+        context: context, page: const ScooterRatingPage());
   }
 }

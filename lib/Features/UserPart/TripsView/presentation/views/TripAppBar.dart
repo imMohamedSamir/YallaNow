@@ -34,6 +34,7 @@ class TripAppBar extends StatelessWidget {
           if (state is TripPageScrolled) {
             bool istop = state.isTop;
             return SliverAppBar(
+              backgroundColor: Colors.white,
               floating: false,
               titleSpacing: -4,
               pinned: true,
@@ -80,27 +81,29 @@ class TripAppBar extends StatelessWidget {
                                 .copyWith(color: blackdcolor));
                       },
                     ),
-              actions: [
-                FavIcon(height: AppSizes.getHeight(32, context)),
-                const SizedBox(width: 10),
-                ResturantHeaderIcon(
-                  child: SvgPicture.asset(Assets.imagesShareIcon),
-                  onPressed: () {},
-                ),
-                const SizedBox(width: 10),
-                // ResturantHeaderIcon(
-                //   child: SvgPicture.asset(
-                //     Assets.imagesSearchIcon,
-                //     colorFilter: const ColorFilter.mode(
-                //         Color(0xff240301), BlendMode.srcIn),
-                //   ),
-                //   onPressed: () {},
-                // ),
-                // const SizedBox(width: 16)
-              ],
+              // actions: [
+              //   FavIcon(height: AppSizes.getHeight(32, context)),
+              //   const SizedBox(width: 10),
+              //   ResturantHeaderIcon(
+              //     child: SvgPicture.asset(Assets.imagesShareIcon),
+              //     onPressed: () {},
+              //   ),
+              //   const SizedBox(width: 10),
+              //   ResturantHeaderIcon(
+              //     child: SvgPicture.asset(
+              //       Assets.imagesSearchIcon,
+              //       colorFilter: const ColorFilter.mode(
+              //           Color(0xff240301), BlendMode.srcIn),
+              //     ),
+              //     onPressed: () {},
+              //   ),
+              //   const SizedBox(width: 16)
+              // ],
             );
           } else {
             return SliverAppBar(
+              backgroundColor: Colors.white,
+
               titleSpacing: -4,
               pinned: true,
               expandedHeight: AppSizes.getHeight(150, context),
@@ -125,24 +128,24 @@ class TripAppBar extends StatelessWidget {
                       }),
                 ),
               ),
-              actions: [
-                FavIcon(height: AppSizes.getHeight(32, context)),
-                const SizedBox(width: 10),
-                ResturantHeaderIcon(
-                  child: SvgPicture.asset(Assets.imagesShareIcon),
-                  onPressed: () {},
-                ),
-                const SizedBox(width: 10),
-                // ResturantHeaderIcon(
-                //   child: SvgPicture.asset(
-                //     Assets.imagesSearchIcon,
-                //     colorFilter: const ColorFilter.mode(
-                //         Color(0xff240301), BlendMode.srcIn),
-                //   ),
-                //   onPressed: () {},
-                // ),
-                // const SizedBox(width: 16)
-              ],
+              // actions: [
+              //   FavIcon(height: AppSizes.getHeight(32, context)),
+              //   const SizedBox(width: 10),
+              //   ResturantHeaderIcon(
+              //     child: SvgPicture.asset(Assets.imagesShareIcon),
+              //     onPressed: () {},
+              //   ),
+              //   const SizedBox(width: 10),
+              //   ResturantHeaderIcon(
+              //     child: SvgPicture.asset(
+              //       Assets.imagesSearchIcon,
+              //       colorFilter: const ColorFilter.mode(
+              //           Color(0xff240301), BlendMode.srcIn),
+              //     ),
+              //     onPressed: () {},
+              //   ),
+              //   const SizedBox(width: 16)
+              // ],
             );
           }
         },

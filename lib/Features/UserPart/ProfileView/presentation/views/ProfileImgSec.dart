@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileEditIcon.dart';
 
 class ProfileImgSec extends StatelessWidget {
   const ProfileImgSec({

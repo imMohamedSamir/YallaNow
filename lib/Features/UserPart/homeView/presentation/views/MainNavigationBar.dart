@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class MainNavigationBar extends StatelessWidget {
@@ -18,7 +19,7 @@ class MainNavigationBar extends StatelessWidget {
         elevation: 15,
         onTap: onItemTapped,
         currentIndex: currentIndex ?? 0,
-        selectedItemColor: const Color(0xffB20404),
+        selectedItemColor: pKcolor,
         unselectedItemColor: const Color(0xff9E9D9D),
         selectedLabelStyle: AppStyles.styleMedium14(context),
         showUnselectedLabels: true,
@@ -31,12 +32,9 @@ class MainNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                Assets.imagesScooterRideICon,
-                colorFilter: ColorFilter.mode(
-                    currentIndex == 1
-                        ? const Color(0xffB20404)
-                        : const Color(0xff9E9D9D),
-                    BlendMode.srcIn),
+                currentIndex == 1
+                    ? Assets.imagesActiveScooterIcon
+                    : Assets.imagesScooterRideICon,
               ),
               label: S.of(context).scooterRide),
           // BottomNavigationBarItem(
@@ -46,16 +44,16 @@ class MainNavigationBar extends StatelessWidget {
           //           : Assets.imagesOrdersIcon,
           //     ),
           //     label: "Orders"),
-          // BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(
-          //       currentIndex == 3
-          //           ? Assets.imagesNotificationsIconActive
-          //           : Assets.imagesNotificationsIcon,
-          //     ),
-          //     label: "Notifications"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 currentIndex == 2
+                    ? Assets.imagesNotificationsIconActive
+                    : Assets.imagesNotificationsIcon,
+              ),
+              label: S.of(context).Notifications),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                currentIndex == 3
                     ? Assets.imagesProfileIconActive
                     : Assets.imagesProfileIcon,
               ),

@@ -16,9 +16,12 @@ class AuthHeader extends StatelessWidget {
           firstHeader,
           style: AppStyles.styleMedium24(context),
         ),
-        Text(secondHeader,
-            style: AppStyles.styleRegular16(context)
-                .copyWith(color: const Color(0xff9E9D9D)))
+        Text(
+          secondHeader,
+          style: AppStyles.styleRegular16(context)
+              .copyWith(color: const Color(0xff9E9D9D)),
+          textAlign: TextAlign.center,
+        )
       ],
     );
   }

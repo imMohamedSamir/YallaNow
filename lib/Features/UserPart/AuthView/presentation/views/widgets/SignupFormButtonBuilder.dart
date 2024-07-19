@@ -53,7 +53,7 @@ class SignupFormButtonBuilder extends StatelessWidget {
                 },
                 text: S.of(context).SignUp,
                 txtcolor: Colors.white,
-                btncolor: const Color(0xffB20404),
+                btncolor: pKcolor,
               ),
             ],
           );

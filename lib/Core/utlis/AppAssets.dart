@@ -1,6 +1,11 @@
 class Assets {
   Assets._();
 
+  /// Assets for imagesActiveScooterIcon
+  /// assets/images/activeScooterIcon.svg
+  static const String imagesActiveScooterIcon =
+      "assets/images/activeScooterIcon.svg";
+
   /// Assets for imagesApple
   /// assets/images/apple.svg
   static const String imagesApple = "assets/images/apple.svg";
@@ -89,6 +94,10 @@ class Assets {
   /// Assets for imagesDriverImg
   /// assets/images/driverImg.png
   static const String imagesDriverImg = "assets/images/driverImg.png";
+
+  /// Assets for imagesDriverMarker
+  /// assets/images/driverMarker.png
+  static const String imagesDriverMarker = "assets/images/driverMarker.png";
 
   /// Assets for imagesDriverShare
   /// assets/images/DriverShare.svg
@@ -374,13 +383,17 @@ class Assets {
   /// assets/images/trendingIcon.png
   static const String imagesTrendingIcon = "assets/images/trendingIcon.png";
 
-  /// Assets for imagesTrip1
-  /// assets/images/Trip1.png
-  static const String imagesTrip1 = "assets/images/Trip1.png";
-
   /// Assets for imagesTripsCateg
   /// assets/images/TripsCateg.png
   static const String imagesTripsCateg = "assets/images/TripsCateg.png";
+
+  /// Assets for imagesUserMarker
+  /// assets/images/userMarker.png
+  static const String imagesUserMarker = "assets/images/userMarker.png";
+
+  /// Assets for imagesUserMarker2
+  /// assets/images/userMarker2.png
+  static const String imagesUserMarker2 = "assets/images/userMarker2.png";
 
   /// Assets for imagesVehicleType1
   /// assets/images/VehicleType1.png

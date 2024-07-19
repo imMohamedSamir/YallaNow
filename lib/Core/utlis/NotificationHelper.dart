@@ -7,18 +7,19 @@ Future<void> initializeNotification() async {
       "resource://drawable/yallared",
       [
         NotificationChannel(
-            icon: "resource://drawable/yallared",
-            channelGroupKey: "basic_channel_group",
-            channelKey: notifChannelKey,
-            channelName: "basic notification",
-            channelDescription: "test notification",
-            enableVibration: true,
-            importance: NotificationImportance.Default,
-            criticalAlerts: true,
-            soundSource: "resource://raw/res_sound",
-            defaultColor: Colors.green,
-            channelShowBadge: true,
-            playSound: true)
+          icon: "resource://drawable/yallared",
+          channelGroupKey: "basic_channel_group",
+          channelKey: notifChannelKey,
+          channelName: "basic notification",
+          channelDescription: "test notification",
+          enableVibration: true,
+          importance: NotificationImportance.High,
+          criticalAlerts: true,
+          soundSource: "resource://raw/res_sound",
+          defaultColor: Colors.green,
+          channelShowBadge: true,
+          playSound: true,
+        )
       ],
       channelGroups: [
         NotificationChannelGroup(

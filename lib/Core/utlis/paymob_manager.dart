@@ -3,9 +3,62 @@ import 'package:dio/dio.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 
+class BillingData {
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String phoneNumber;
+  final String apartment;
+  final String floor;
+  final String street;
+  final String building;
+  final String shippingMethod;
+  final String postalCode;
+  final String city;
+  final String country;
+  final String state;
+
+  BillingData({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.phoneNumber,
+    this.apartment = "NA",
+    this.floor = "NA",
+    this.street = "NA",
+    this.building = "NA",
+    this.shippingMethod = "NA",
+    this.postalCode = "NA",
+    this.city = "NA",
+    this.country = "NA",
+    this.state = "NA",
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      "first_name": firstName,
+      "last_name": lastName,
+      "email": email,
+      "phone_number": phoneNumber,
+      "apartment": apartment,
+      "floor": floor,
+      "street": street,
+      "building": building,
+      "shipping_method": shippingMethod,
+      "postal_code": postalCode,
+      "city": city,
+      "country": country,
+      "state": state,
+    };
+  }
+}
+
 class PaymobManager {
-  Future<Either<Failure, String>> getPaymentKey(
-      {required double amount, String currency = "EGP"}) async {
+  Future<Either<Failure, String>> getPaymentKey({
+    required double amount,
+    BillingData? billingData,
+    String currency = "EGP",
+  }) async {
     try {
       String authanticationToken = await _getAuthanticationToken();
 
@@ -17,9 +70,10 @@ class PaymobManager {
 
       String paymentKey = await _getPaymentKey(
         authanticationToken: authanticationToken,
+        orderId: orderId.toString(),
         amount: (100 * amount).toString(),
         currency: currency,
-        orderId: orderId.toString(),
+        billingData: billingData,
       );
       return right(paymentKey);
     } catch (e) {
@@ -70,6 +124,7 @@ class PaymobManager {
     required String orderId,
     required String amount,
     required String currency,
+    BillingData? billingData,
   }) async {
     final Response response = await Dio()
         .post("https://accept.paymob.com/api/acceptance/payment_keys", data: {
@@ -83,24 +138,7 @@ class PaymobManager {
       "amount_cents": amount,
       "currency": currency,
 
-      "billing_data": {
-        //Have To Be Values
-        "first_name": "Clifford",
-        "last_name": "Nicolas",
-        "email": "claudette09@exa.com",
-        "phone_number": "+86(8)9135210487",
-
-        //Can Set "NA"
-        "apartment": "NA",
-        "floor": "NA",
-        "street": "NA",
-        "building": "NA",
-        "shipping_method": "NA",
-        "postal_code": "NA",
-        "city": "NA",
-        "country": "NA",
-        "state": "NA"
-      },
+      "billing_data": billingData!.toJson(),
     });
     return response.data["token"];
   }

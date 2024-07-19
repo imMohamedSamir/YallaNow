@@ -36,18 +36,17 @@ class RoutesUtils {
     // double distancePrice = calculateTheDistancePrice(distance: distanceMeters);
     var duration = routes.routes!.first.duration!;
     String routeDurations = calculateDistanceDuration(duration: duration);
-
     return RouteInfo(
         points: points, distance: distanceMeters, duration: routeDurations);
   }
 
   String calculateDistanceDuration({required String duration}) {
-    double currentDuration = double.parse(duration.replaceAll('s', '')) / 60;
+    double currentDuration = int.parse(duration.replaceAll('s', '')) / 60;
     if (currentDuration > 60) {
       currentDuration = currentDuration / 60;
     }
-    dev.log(currentDuration.toString());
-    return currentDuration.toString();
+    dev.log("duration: ${currentDuration.toString()}");
+    return currentDuration.toInt().toString();
   }
 
   List<LatLng> getDecodedRoute(

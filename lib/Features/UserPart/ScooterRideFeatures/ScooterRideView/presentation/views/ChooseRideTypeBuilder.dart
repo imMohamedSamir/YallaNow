@@ -19,7 +19,7 @@ class ChooseRideTypeBuilder extends StatelessWidget {
           offset = const Offset(0, 0);
           opacity = 1.0;
         } else {
-          offset = const Offset(0, 1);
+          offset = const Offset(0, 0.5);
           opacity = 0.0;
         }
 

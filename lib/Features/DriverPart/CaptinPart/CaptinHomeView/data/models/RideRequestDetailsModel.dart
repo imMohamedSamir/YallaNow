@@ -1,5 +1,6 @@
 class RideRequestDetailsModel {
   final String message;
+  final String driverId;
   final double currentLongitude;
   final double currentLatitude;
   final double dstLongitude;
@@ -7,6 +8,7 @@ class RideRequestDetailsModel {
 
   RideRequestDetailsModel({
     required this.message,
+    required this.driverId,
     required this.currentLongitude,
     required this.currentLatitude,
     required this.dstLongitude,
@@ -21,6 +23,7 @@ class RideRequestDetailsModel {
       currentLatitude: (json['currentLatitude'] as num).toDouble(),
       dstLongitude: (json['dstLongitude'] as num).toDouble(),
       dstLatitude: (json['dstLatitude'] as num).toDouble(),
+      driverId: json['driverId'] ?? '',
     );
   }
 
@@ -32,6 +35,7 @@ class RideRequestDetailsModel {
       'currentLatitude': currentLatitude,
       'dstLongitude': dstLongitude,
       'dstLatitude': dstLatitude,
+      'DirverId': driverId
     };
   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/utlis/functions/convertMapToString.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepo.dart';
@@ -18,6 +19,7 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/mode
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinMapSec.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinRequestBS.dart';
+import 'package:yallanow/main.dart';
 
 part 'captin_ride_request_state.dart';
 
@@ -30,7 +32,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   final CaptinRequestRepo captinRequestRepo;
   bool _isJoined = false;
   late RideRequestDetailsModel detailsModel;
-  CaptinCancelModel cancelModel = CaptinCancelModel();
+  CancelModel cancelModel = CancelModel();
   void checkLocationPermission() async {
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
 
@@ -79,11 +81,44 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
 
   void receiveRequest() {
     messagingService.onMessage.listen((message) {
-      _createNotification(message);
+      final key = message.data['key'] as String?;
+
+      if (key == null) {
+        log('Key is null');
+        return;
+      } else {
+        switch (key) {
+          case "Request":
+            _requestNotification(message);
+            break;
+          case "UserCancel":
+            _createCancelNotification(message);
+            usercancelRidedialogMethode(navigatorKey.currentContext!);
+            break;
+          default:
+            log("error");
+            break;
+        }
+      }
     });
   }
 
-  void _createNotification(RemoteMessage requestModel) {
+  void _createCancelNotification(RemoteMessage requestModel) {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: requestModel.hashCode,
+        channelKey: notifChannelKey,
+        actionType: ActionType.Default,
+        title: "تم الغاء الرحلة من العميل",
+        body: requestModel.notification!.body,
+        notificationLayout: NotificationLayout.Default,
+        backgroundColor: pKcolor,
+        wakeUpScreen: true,
+      ),
+    );
+  }
+
+  void _requestNotification(RemoteMessage requestModel) {
     log("notification: ${requestModel.data.toString()}");
     AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -91,7 +126,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
         channelKey: notifChannelKey,
         actionType: ActionType.Default,
         payload: convertMapToString(originalMap: requestModel.data),
-        title: "هناك رحلة لك",
+        title: requestModel.notification!.title,
         body: requestModel.notification!.body,
         notificationLayout: NotificationLayout.Default,
         backgroundColor: pKcolor,
@@ -110,6 +145,10 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
         ),
       ],
     );
+    // Future.delayed(const Duration(seconds: 4), () async {
+    //   AwesomeNotifications().dismiss(requestModel.hashCode);
+    //   await rejectMethod(tripId: requestModel.tripId!);
+    // });
   }
 
   Future<void> handleReceivedRequest(BuildContext context,
@@ -122,7 +161,8 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
       NavigateToPage.slideFromRight(
           context: context, page: const CaptinMapSec());
     } else if (action.buttonKeyPressed == "REJECT") {
-      await rejectMethod(context, tripId: requestModel.tripId!);
+      await captinResponseMethod(
+          tripId: requestModel.tripId!, isAccepted: false);
     } else {
       showModalBottomSheet(
         isScrollControlled: true,
@@ -140,7 +180,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
       {required ReceivedAction action}) async {
     CaptinRequestModel requestModel =
         CaptinRequestModel.fromPayload(action.payload!);
-    await rejectMethod(context, tripId: requestModel.tripId!);
+    await captinResponseMethod(tripId: requestModel.tripId!, isAccepted: false);
   }
 
   Future<void> captinResponseMethod(
@@ -166,21 +206,15 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
     await captinResponseMethod(tripId: requestModel.tripId!, isAccepted: true);
     emit(CaptinRideRequestjAccepted(detailsModel: requestModel));
     _isJoined = false;
-    messagingService.disconnect();
-  }
-
-  Future<void> rejectMethod(BuildContext context,
-      {required String tripId}) async {
-    await captinResponseMethod(tripId: tripId, isAccepted: false);
+    // messagingService.disconnect();
   }
 
   Future<void> cancelRequest(BuildContext context,
       {required String reason}) async {
     cancelModel.cancelationReason = reason;
-    log(cancelModel.toJson().toString());
+    cancelModel.isUser = false;
     var result = await captinRequestRepo.cancelRide(cancelModel: cancelModel);
     result.fold((fail) => emit(CaptinRideRequestFailure()), (details) {
-      log(details.toString());
       Navigator.pop(context);
       NavigateToPage.slideFromLeftAndRemove(
           context: context, page: const CaptinHomeView());

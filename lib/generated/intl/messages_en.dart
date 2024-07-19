@@ -27,10 +27,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "AsDelivery": MessageLookupByLibrary.simpleMessage("As Delivery"),
         "Book": MessageLookupByLibrary.simpleMessage("Book"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "CaptinProfile": MessageLookupByLibrary.simpleMessage("Captin Profile"),
+        "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "Choose": MessageLookupByLibrary.simpleMessage("Choose"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("Choose a ride"),
+        "CodeSentMsg":
+            MessageLookupByLibrary.simpleMessage("Code has been send to"),
+        "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
+        "DidntReciveCode":
+            MessageLookupByLibrary.simpleMessage("Didn’t receive code? "),
         "Disable": MessageLookupByLibrary.simpleMessage("Disable"),
         "DriverAndVehicle":
             MessageLookupByLibrary.simpleMessage("Driver and vehicle Details"),
@@ -48,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("Finding your Driver"),
         "FirstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "ForgetPassword":
+            MessageLookupByLibrary.simpleMessage("Forget password"),
         "GenderValidation": MessageLookupByLibrary.simpleMessage(
             "   Please choose your gender"),
         "HelpCenter": MessageLookupByLibrary.simpleMessage("Help Center"),
@@ -56,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Include": MessageLookupByLibrary.simpleMessage("Include"),
         "InviteFriends": MessageLookupByLibrary.simpleMessage("Invite Friends"),
         "Iwait": MessageLookupByLibrary.simpleMessage("I will wait"),
+        "Km": MessageLookupByLibrary.simpleMessage("Km"),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "LastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "Location": MessageLookupByLibrary.simpleMessage("Location"),
@@ -77,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "NationalityValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your Nationality"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "Notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "Notinclude": MessageLookupByLibrary.simpleMessage("Not include"),
         "NumberofJuniors":
             MessageLookupByLibrary.simpleMessage("Number of Juniors"),
@@ -98,12 +109,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("Popular Trips"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Program": MessageLookupByLibrary.simpleMessage("Program"),
+        "RatingDriverQ":
+            MessageLookupByLibrary.simpleMessage("How was your driver?"),
+        "RatingTripQ":
+            MessageLookupByLibrary.simpleMessage("How was your trip?"),
         "Ratings": MessageLookupByLibrary.simpleMessage("Ratings"),
         "Recentplaces": MessageLookupByLibrary.simpleMessage("Recent places"),
         "RegistrationDsc": MessageLookupByLibrary.simpleMessage(
             "Please full the form and we will contact you"),
         "RegistrationForm":
             MessageLookupByLibrary.simpleMessage("Registration Form"),
+        "ResetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "ResetviaPhone":
+            MessageLookupByLibrary.simpleMessage("Reset via Phone"),
         "Resultplaces": MessageLookupByLibrary.simpleMessage("Result places"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("Ride Payment"),
         "Room": MessageLookupByLibrary.simpleMessage("Room"),
@@ -115,10 +133,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Session Expired"),
         "SessionExpiredMsg": MessageLookupByLibrary.simpleMessage(
             "Your session has expired. Please log in again."),
+        "SetNewpassword":
+            MessageLookupByLibrary.simpleMessage("Set New password"),
+        "SetNewpasswordMsg":
+            MessageLookupByLibrary.simpleMessage("Set your new password"),
         "Shareridedetails":
             MessageLookupByLibrary.simpleMessage("Share ride details"),
         "SignIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "SignUpMsg": MessageLookupByLibrary.simpleMessage(
+            "please fill your data to SignUp"),
         "SignUprider":
             MessageLookupByLibrary.simpleMessage("Sign up as a rider"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
@@ -128,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "By registering, you agree to our"),
         "Terms2":
             MessageLookupByLibrary.simpleMessage("  Terms and Conditions"),
+        "TotalKillos": MessageLookupByLibrary.simpleMessage("Total killos"),
+        "TotalTrips": MessageLookupByLibrary.simpleMessage("Total trips"),
         "Totalamount": MessageLookupByLibrary.simpleMessage("Total amount"),
         "TravellerName": MessageLookupByLibrary.simpleMessage("Name"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
@@ -137,6 +163,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vehicle details"),
         "VehicleImages": MessageLookupByLibrary.simpleMessage("Vehicle images"),
         "VehicleType": MessageLookupByLibrary.simpleMessage("Vehicle Type"),
+        "VerificationWithMail":
+            MessageLookupByLibrary.simpleMessage("Verification your Email"),
+        "VerificationWithMailMsg": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email to send reset code"),
+        "VerificationWithphonenumber":
+            MessageLookupByLibrary.simpleMessage("Verification phone number"),
         "Wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "Yalla": MessageLookupByLibrary.simpleMessage("Yalla"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
@@ -159,12 +191,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancellationWarning": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to cancel the trip? A fee will be applied"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
+        "chooseRestWay": MessageLookupByLibrary.simpleMessage(
+            "Choose way to receive Reset code"),
+        "comment": MessageLookupByLibrary.simpleMessage("Comment"),
         "confirmPassCorrectation":
             MessageLookupByLibrary.simpleMessage("Please enter same password"),
         "confirmPassvalidation": MessageLookupByLibrary.simpleMessage(
             "Please Confirm your password"),
         "confirmedPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "contactInformationContent": MessageLookupByLibrary.simpleMessage(
+            "For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]"),
+        "contactInformationTitle":
+            MessageLookupByLibrary.simpleMessage("8. Contact Information"),
         "continuewith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "correctEmail": MessageLookupByLibrary.simpleMessage(
@@ -173,6 +212,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter correct mobile number"),
         "criminal_record": MessageLookupByLibrary.simpleMessage(
             "(اجبارى) فيش وتشبية موجه لشركة يلا ناو"),
+        "currencyContent": MessageLookupByLibrary.simpleMessage(
+            "All prices listed on our website are in EGP. Payments must be made in the currency specified."),
+        "currencyTitle": MessageLookupByLibrary.simpleMessage("5. Currency"),
+        "driverCancelRide":
+            MessageLookupByLibrary.simpleMessage("driver cancelled trip"),
+        "driverCancelRideMsg":
+            MessageLookupByLibrary.simpleMessage("please try again "),
         "driverPapers": MessageLookupByLibrary.simpleMessage("Driver Papers"),
         "driverPapersCorrection": MessageLookupByLibrary.simpleMessage(
             "Please upload your file as PDF"),
@@ -182,6 +228,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "(اجبارى) صورة رخصة القيادة امامى و خلفى"),
         "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
         "editprofile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "failedTransactionsContent": MessageLookupByLibrary.simpleMessage(
+            "If your payment transaction fails, please try again or contact our customer support team for assistance."),
+        "failedTransactionsTitle":
+            MessageLookupByLibrary.simpleMessage("7. Failed Transactions"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
         "firstnameValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your first name"),
@@ -192,6 +242,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "(اجبارى) صورة البطاقة امامى و خلفى"),
         "imageDirections":
             MessageLookupByLibrary.simpleMessage("Image directions"),
+        "introductionContent": MessageLookupByLibrary.simpleMessage(
+            "Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website."),
+        "introductionTitle":
+            MessageLookupByLibrary.simpleMessage("1. Introduction"),
         "lasnameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your last name"),
         "licensePlate": MessageLookupByLibrary.simpleMessage("License Plate"),
@@ -203,10 +257,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "numericCharacter":
             MessageLookupByLibrary.simpleMessage("Number character"),
         "passForget": MessageLookupByLibrary.simpleMessage("Forget password?"),
+        "paymentConfirmationContent": MessageLookupByLibrary.simpleMessage(
+            "Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment."),
+        "paymentConfirmationTitle":
+            MessageLookupByLibrary.simpleMessage("4. Payment Confirmation"),
+        "paymentMethodsContent": MessageLookupByLibrary.simpleMessage(
+            "We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers"),
+        "paymentMethodsTitle":
+            MessageLookupByLibrary.simpleMessage("2. Payment Methods"),
+        "paymentSecurityContent": MessageLookupByLibrary.simpleMessage(
+            "We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details."),
+        "paymentSecurityTitle":
+            MessageLookupByLibrary.simpleMessage("3. Payment Security"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(
             "Are you ready to search for requests"),
+        "refundsAndCancellationsContent": MessageLookupByLibrary.simpleMessage(
+            "Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund."),
+        "refundsAndCancellationsTitle": MessageLookupByLibrary.simpleMessage(
+            "6. Refunds and Cancellations"),
+        "resendAgain": MessageLookupByLibrary.simpleMessage("Resend again"),
+        "resetSuccesful": MessageLookupByLibrary.simpleMessage(
+            "your password changed successfully"),
         "rides": MessageLookupByLibrary.simpleMessage("Rides"),
         "scooterRide": MessageLookupByLibrary.simpleMessage("Scooter Ride"),
         "scooter_license": MessageLookupByLibrary.simpleMessage(
@@ -215,9 +288,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select a role"),
         "specialCharacter":
             MessageLookupByLibrary.simpleMessage("Special character"),
+        "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
+            "1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:"),
+        "termsAndConditionsTitle":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
+        "totalDistance": MessageLookupByLibrary.simpleMessage("Total distance"),
+        "totalRating": MessageLookupByLibrary.simpleMessage("Total Ratings"),
+        "tripdetails": MessageLookupByLibrary.simpleMessage("Trips details"),
         "upperCaseLetter":
             MessageLookupByLibrary.simpleMessage("UpperCase letter"),
+        "userCancelRide":
+            MessageLookupByLibrary.simpleMessage("User cancelled trip"),
+        "userCancelRideMsg": MessageLookupByLibrary.simpleMessage(
+            "go to home page to receive more requests"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name"),
+        "usercharges": MessageLookupByLibrary.simpleMessage("The user charges"),
         "usernameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your username"),
         "vehicleColorValidation": MessageLookupByLibrary.simpleMessage(

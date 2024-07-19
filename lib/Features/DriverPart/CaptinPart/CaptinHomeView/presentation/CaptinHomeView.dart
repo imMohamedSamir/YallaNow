@@ -2,12 +2,15 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/NotificationController.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/DriverBottomNavBar.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/CheckHomeAppBar.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_details_cubit/captin_details_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ride_request_cubit/CaptinRequestCubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDrawer.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/manager/captin_trips_cubit/captin_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinOrdersViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRatingView/presentation/views/CaptinRatingView.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DriverBottomNavBar.dart';
@@ -66,22 +69,34 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
-      appBar: checkCaptinAppBar(context, currnetpage: currentPage),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        children: pages,
-      ),
-      drawer: const DriverCaptinDrawer(),
-      bottomNavigationBar: CaptinBottomNavBar(
-        onItemTapped: setCurrentPage,
-        currentIndex: currentPage,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              CaptinDetailsCubit(getIt.get<CaptinRequestRepoImpl>())..get(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              CaptinTripsCubit(getIt.get<CaptinRequestRepoImpl>())..get(),
+        ),
+      ],
+      child: Scaffold(
+        backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
+        appBar: checkCaptinAppBar(context, currnetpage: currentPage),
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              currentPage = index;
+            });
+          },
+          children: pages,
+        ),
+        drawer: const DriverCaptinDrawer(),
+        bottomNavigationBar: CaptinBottomNavBar(
+          onItemTapped: setCurrentPage,
+          currentIndex: currentPage,
+        ),
       ),
     );
   }

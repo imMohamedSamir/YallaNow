@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/phone_verification_cubit/phone_verification_cubit.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/verify_otp_cubit/verify_otp_cubit.dart';
 
 class OTPTextField extends StatelessWidget {
-  const OTPTextField({super.key, required this.verificationId, this.isRest});
-  final String verificationId;
-  final bool? isRest;
-
+  const OTPTextField({super.key, this.email});
+  final String? email;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PhoneVerificationCubit, PhoneVerificationState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Pinput(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: BlocBuilder<VerifyOtpCubit, VerifyOtpState>(
+        builder: (context, state) {
+          return Pinput(
+            pinAnimationType: PinAnimationType.scale,
+            animationDuration: const Duration(milliseconds: 250),
+            controller:
+                BlocProvider.of<VerifyOtpCubit>(context).textEditingController,
             length: 6,
-            forceErrorState: state is PhoneVerificationFail,
-            errorText: state is PhoneVerificationFail ? state.errmsg : null,
+            forceErrorState: state is VerifyOtpFailure,
+            errorText: state is VerifyOtpFailure ? state.errMsg : null,
             errorTextStyle:
                 AppStyles.styleMedium14(context).copyWith(color: Colors.red),
             errorPinTheme: PinTheme(
@@ -30,7 +32,7 @@ class OTPTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(width: 2, color: Colors.red),
                 )),
-            submittedPinTheme: state is PhoneVerificationSuccess
+            submittedPinTheme: state is VerifyOtpSuccess
                 ? PinTheme(
                     textStyle: AppStyles.styleMedium16(context),
                     margin: const EdgeInsets.only(left: 8),
@@ -60,16 +62,12 @@ class OTPTextField extends StatelessWidget {
                   border: Border.all(width: 2, color: const Color(0xff9E9D9D)),
                 )),
             onCompleted: (value) async {
-              BlocProvider.of<PhoneVerificationCubit>(context)
-                  .phoneVerificationFetch(
-                      verificationId: verificationId,
-                      smsCode: value,
-                      context: context,
-                      isRest: isRest);
+              BlocProvider.of<VerifyOtpCubit>(context)
+                  .verifyOtp(context, email: email!, otp: value);
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

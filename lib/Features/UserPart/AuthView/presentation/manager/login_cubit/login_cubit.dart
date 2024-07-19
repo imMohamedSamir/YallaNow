@@ -7,10 +7,11 @@ import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
-import 'package:yallanow/Features/UserPart/AuthView/data/Models/login_response_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/ExternalAuthPage.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
+import 'package:yallanow/main.dart';
 
 part 'login_state.dart';
 
@@ -40,7 +41,55 @@ class LoginCubit extends Cubit<LoginState> {
           NavigateToPage.slideFromRightandRemove(
               context: context, page: const DeliverHomeView());
         }
-        emit(LoginSuccess(logindetails: logindetails));
+        emit(LoginSuccess());
+      }
+    });
+  }
+
+  void signinWithGoogle() async {
+    emit(LoginLoading());
+    var result = await authRepo.signinWithGoogle();
+    result.fold((fail) {
+      if (fail.errMessage == "User not found.") {
+        NavigateToPage.slideFromRight(
+            context: navigatorKey.currentContext!,
+            page: const ExternalAuthPage());
+        emit(LoginInitial());
+      } else {
+        emit(LoginFailure(errorMessage: fail.errMessage));
+      }
+    }, (logindetails) async {
+      if (logindetails['isAuthSuccessful']) {
+        SavedUserDetails userDetails =
+            SavedUserDetails(token: logindetails["token"], role: "User");
+        TokenManager.saveUserToken(userDetails: userDetails);
+        NavigateToPage.slideFromRightandRemove(
+            context: navigatorKey.currentContext!, page: const MainHomeView());
+        emit(LoginSuccess());
+      }
+    });
+  }
+
+  void signinWithFacebook() async {
+    emit(LoginLoading());
+    var result = await authRepo.signinWithFaceBook();
+    result.fold((fail) {
+      if (fail.errMessage == "User not found.") {
+        NavigateToPage.slideFromRight(
+            context: navigatorKey.currentContext!,
+            page: const ExternalAuthPage());
+        emit(LoginFailure(errorMessage: ""));
+      } else {
+        emit(LoginFailure(errorMessage: fail.errMessage));
+      }
+    }, (logindetails) async {
+      if (logindetails['isAuthSuccessful']) {
+        SavedUserDetails userDetails =
+            SavedUserDetails(token: logindetails["token"], role: "User");
+        TokenManager.saveUserToken(userDetails: userDetails);
+        NavigateToPage.slideFromRightandRemove(
+            context: navigatorKey.currentContext!, page: const MainHomeView());
+        emit(LoginSuccess());
       }
     });
   }

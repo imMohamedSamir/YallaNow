@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/openGoogleMaps.dart';
@@ -7,8 +8,8 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentat
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 
 class MapsNavigation extends StatelessWidget {
-  const MapsNavigation({super.key});
-
+  const MapsNavigation({super.key, this.isStarted = false});
+  final bool isStarted;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,11 +18,13 @@ class MapsNavigation extends StatelessWidget {
             BlocProvider.of<CaptinRideRequestCubit>(context).detailsModel;
         var driverPos =
             BlocProvider.of<CaptinMapCubit>(context).currentposition;
-        openGoogleMaps(
-            srclat: driverPos!.latitude,
-            srclng: driverPos.longitude,
-            dstlat: detailsModel.currentLatitude,
-            dstlng: detailsModel.currentLongitude);
+        if (isStarted) {
+        } else {
+          openGoogleMaps(
+              src: driverPos!,
+              dst: LatLng(
+                  detailsModel.currentLatitude, detailsModel.currentLongitude));
+        }
       },
       child: Container(
         width: double.infinity,

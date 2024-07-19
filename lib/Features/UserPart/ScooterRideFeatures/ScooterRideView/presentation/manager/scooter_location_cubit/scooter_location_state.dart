@@ -28,13 +28,11 @@ final class ScooterLocationSuccess extends ScooterLocationState {
 final class ScooterLocationChange extends ScooterLocationState {
   final Set<Polyline>? polyLines;
   final Set<Marker>? markers;
-  final bool? isUpdateed, isSent;
+  final bool? isSent;
+  final String? duration;
 
   const ScooterLocationChange(
-      {this.markers,
-      this.polyLines,
-      this.isUpdateed = false,
-      this.isSent = false});
+      {this.markers, this.polyLines, this.isSent = false, this.duration});
 }
 
 final class ScooterLocationGetLocation extends ScooterLocationState {

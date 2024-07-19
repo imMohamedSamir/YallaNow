@@ -17,8 +17,10 @@ final class UserRideRequestFailure extends UserRideRequestState {}
 
 final class UserRideRequestAccepted extends UserRideRequestState {
   final AcceptRideModel driverInfoModel;
+  final bool isStarted;
 
-  const UserRideRequestAccepted({required this.driverInfoModel});
+  const UserRideRequestAccepted(
+      {required this.driverInfoModel, this.isStarted = false});
 }
 
 final class UserRideRequesConnected extends UserRideRequestState {}

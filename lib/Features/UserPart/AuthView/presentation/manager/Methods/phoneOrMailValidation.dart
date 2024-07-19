@@ -1,13 +1,16 @@
+import 'package:yallanow/generated/l10n.dart';
+import 'package:yallanow/main.dart';
+
 String? phoneOrMailValidation(String? value) {
   if (value == null || value.trim().isEmpty) {
-    return 'Please enter your Email or phone number';
+    return S.of(navigatorKey.currentContext!).MailValidation;
   }
   if (value.startsWith("0")) {
     if (value.length > 11 || value.length < 11) {
-      return 'Please enter correct mobile number ';
+      return null;
     }
-  } else if (!value.contains("@")) {
-    return 'Please enter correct email ';
+  } else if (!value.contains("@") || value.trim().isEmpty) {
+    return S.of(navigatorKey.currentContext!).correctEmail;
   }
   return null;
 }

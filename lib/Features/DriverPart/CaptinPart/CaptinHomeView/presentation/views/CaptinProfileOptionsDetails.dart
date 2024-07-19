@@ -16,7 +16,10 @@ class CaptinProfileOptionsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     List<ProfileOptionsCardModel> options = [
       ProfileOptionsCardModel(
-          title: S.of(context).editprofile, icon: Assets.imagesProfileIcon),
+          title: S.of(context).CaptinProfile, icon: Assets.imagesProfileIcon),
+      ProfileOptionsCardModel(
+          title: S.of(context).VehicleDetails,
+          icon: Assets.imagesScooterRideICon),
       ProfileOptionsCardModel(
           title: S.of(context).Language, icon: Assets.imagesLanguageIcon),
       ProfileOptionsCardModel(
@@ -40,7 +43,7 @@ class CaptinProfileOptionsDetails extends StatelessWidget {
           (index) => ProfileOptionsCard(
                 profileOptionsCardModel: options[index],
                 onTap: () {
-                  deliveryGoToOptionPage(index: index, context: context);
+                  captinGoToOptionPage(index: index, context: context);
                 },
               )),
       ListTile(

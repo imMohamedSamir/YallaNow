@@ -8,8 +8,10 @@ import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepo.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/CaptinCancelModel.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/CaptinResponseModel.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/driver_details.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/ready_model.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/update_location_model.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/data/models/driver_trips_model/CaptinTripsModel.dart';
 
 class CaptinRequestRepoImpl implements CaptinRequestRepo {
   final YallaNowServices yallaNowServices;
@@ -60,6 +62,7 @@ class CaptinRequestRepoImpl implements CaptinRequestRepo {
 
       return right(response);
     } catch (e) {
+      log(e.toString());
       if (e is DioException) {
         log(e.response?.data.toString() ?? "error");
 
@@ -107,9 +110,9 @@ class CaptinRequestRepoImpl implements CaptinRequestRepo {
 
   @override
   Future<Either<Failure, dynamic>> cancelRide(
-      {required CaptinCancelModel cancelModel}) async {
+      {required CancelModel cancelModel}) async {
     String endPoint =
-        'Ride/cancel?tripId=${cancelModel.tripId}&cancelationReason=${cancelModel.cancelationReason}';
+        'Ride/cancel?tripId=${cancelModel.tripId}&cancelationReason=${cancelModel.cancelationReason}&IsUser=${cancelModel.isUser}';
     String token = await TokenManager.getUserToken() ?? "";
     try {
       var response = await yallaNowServices.post(
@@ -121,6 +124,109 @@ class CaptinRequestRepoImpl implements CaptinRequestRepo {
     } catch (e) {
       if (e is DioException) {
         log(e.response?.data.toString() ?? "cancel error");
+
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, CaptinDetailsModel>> captinDetails() async {
+    String endPoint = 'Driver/RiderDetails';
+    String token = await TokenManager.getUserToken() ?? "";
+    try {
+      var response =
+          await yallaNowServices.get(endPoint: endPoint, token: token);
+      return right(CaptinDetailsModel.fromJson(response['riderDetails']));
+    } catch (e) {
+      log(e.toString());
+
+      if (e is DioException) {
+        log(e.response?.data.toString() ?? e.toString());
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, CaptinTripsModel>> captinTrips() async {
+    String endPoint = 'Driver/RiderTrips';
+    String token = await TokenManager.getUserToken() ?? "";
+    try {
+      var response =
+          await yallaNowServices.get(endPoint: endPoint, token: token);
+
+      return right(CaptinTripsModel.fromJson(response));
+    } catch (e) {
+      log(e.toString());
+
+      if (e is DioException) {
+        log(e.response?.data.toString() ?? e.toString());
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> startTrip({required String tripId}) async {
+    String endPoint = 'Ride/start?tripId=$tripId';
+    String token = await TokenManager.getUserToken() ?? "";
+    try {
+      var response = await yallaNowServices.post(
+        endPoint: endPoint,
+        token: token,
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        log(e.response?.data.toString() ?? "error");
+
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> endTrip({required String tripId}) async {
+    String endPoint = 'Ride/end?tripId=$tripId';
+    String token = await TokenManager.getUserToken() ?? "";
+    try {
+      var response = await yallaNowServices.post(
+        endPoint: endPoint,
+        token: token,
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        log(e.response?.data.toString() ?? "error");
 
         return left(
           ServerFailure.fromDioError(e.type),

@@ -21,9 +21,13 @@ class LoginButtonBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is LoginSuccess) {
-          // NavigateToPage.slideFromRightandRemove(
-          //     context: context, page: const MainHomeView());
+        if (state is LoginFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+            state.errorMessage,
+            style:
+                AppStyles.styleMedium16(context).copyWith(color: Colors.white),
+          )));
         }
       },
       builder: (context, state) {
@@ -31,34 +35,20 @@ class LoginButtonBuilder extends StatelessWidget {
           return const CircularProgressIndicator(color: pKcolor);
         }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (state is LoginFailure)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Text(
-                  state.errorMessage,
-                  style: AppStyles.styleRegular14(context)
-                      .copyWith(color: pKcolor),
-                ),
-              ),
-            CustomButton(
-              text: S.of(context).SignIn,
-              txtcolor: const Color(0xffFFFFFF),
-              btncolor: pKcolor,
-              onPressed: () async {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  await BlocProvider.of<LoginCubit>(context).fetchLogin(
-                    context,
-                    email: loginPostModel.email!,
-                    password: loginPostModel.password!,
-                  );
-                }
-              },
-            ),
-          ],
+        return CustomButton(
+          text: S.of(context).SignIn,
+          txtcolor: const Color(0xffFFFFFF),
+          btncolor: pKcolor,
+          onPressed: () async {
+            if (formKey.currentState!.validate()) {
+              formKey.currentState!.save();
+              await BlocProvider.of<LoginCubit>(context).fetchLogin(
+                context,
+                email: loginPostModel.email!,
+                password: loginPostModel.password!,
+              );
+            }
+          },
         );
       },
     );

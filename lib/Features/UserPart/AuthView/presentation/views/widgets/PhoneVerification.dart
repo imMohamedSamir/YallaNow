@@ -23,7 +23,7 @@ class PhoneVerification extends StatelessWidget {
             firstHeader: "Phone verification",
             secondHeader: "Enter your OTP code"),
         const SizedBox(height: 40),
-        OTPTextField(verificationId: verificationId!, isRest: isRest),
+        OTPTextField(),
         const SizedBox(height: 20),
         const ResendVerifyOTP(),
         const SizedBox(height: 36),

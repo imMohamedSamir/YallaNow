@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsLoading.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/AvailableRideBS.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverInfoPanel.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 
 class ChooseRideType extends StatelessWidget {
@@ -54,9 +52,10 @@ class ChooseRideType extends StatelessWidget {
 
   Widget _buildRideTypeSheet(BuildContext context) {
     return DraggableScrollableSheet(
+      snap: true,
       initialChildSize: 0.30,
       minChildSize: 0.13,
-      maxChildSize: 0.62,
+      maxChildSize: 0.55,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

@@ -1499,6 +1499,506 @@ class S {
       args: [],
     );
   }
+
+  /// `Trips details`
+  String get tripdetails {
+    return Intl.message(
+      'Trips details',
+      name: 'tripdetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total distance`
+  String get totalDistance {
+    return Intl.message(
+      'Total distance',
+      name: 'totalDistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Km`
+  String get Km {
+    return Intl.message(
+      'Km',
+      name: 'Km',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How was your driver?`
+  String get RatingDriverQ {
+    return Intl.message(
+      'How was your driver?',
+      name: 'RatingDriverQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How was your trip?`
+  String get RatingTripQ {
+    return Intl.message(
+      'How was your trip?',
+      name: 'RatingTripQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment`
+  String get comment {
+    return Intl.message(
+      'Comment',
+      name: 'comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User cancelled trip`
+  String get userCancelRide {
+    return Intl.message(
+      'User cancelled trip',
+      name: 'userCancelRide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `go to home page to receive more requests`
+  String get userCancelRideMsg {
+    return Intl.message(
+      'go to home page to receive more requests',
+      name: 'userCancelRideMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `driver cancelled trip`
+  String get driverCancelRide {
+    return Intl.message(
+      'driver cancelled trip',
+      name: 'driverCancelRide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please try again `
+  String get driverCancelRideMsg {
+    return Intl.message(
+      'please try again ',
+      name: 'driverCancelRideMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get Checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'Checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The user charges`
+  String get usercharges {
+    return Intl.message(
+      'The user charges',
+      name: 'usercharges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification phone number`
+  String get VerificationWithphonenumber {
+    return Intl.message(
+      'Verification phone number',
+      name: 'VerificationWithphonenumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget password`
+  String get ForgetPassword {
+    return Intl.message(
+      'Forget password',
+      name: 'ForgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get Continue {
+    return Intl.message(
+      'Continue',
+      name: 'Continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get Notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'Notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification your Email`
+  String get VerificationWithMail {
+    return Intl.message(
+      'Verification your Email',
+      name: 'VerificationWithMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email to send reset code`
+  String get VerificationWithMailMsg {
+    return Intl.message(
+      'Please enter your email to send reset code',
+      name: 'VerificationWithMailMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset password`
+  String get ResetPassword {
+    return Intl.message(
+      'Reset password',
+      name: 'ResetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose way to receive Reset code`
+  String get chooseRestWay {
+    return Intl.message(
+      'Choose way to receive Reset code',
+      name: 'chooseRestWay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset via Phone`
+  String get ResetviaPhone {
+    return Intl.message(
+      'Reset via Phone',
+      name: 'ResetviaPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code has been send to`
+  String get CodeSentMsg {
+    return Intl.message(
+      'Code has been send to',
+      name: 'CodeSentMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Captin Profile`
+  String get CaptinProfile {
+    return Intl.message(
+      'Captin Profile',
+      name: 'CaptinProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total trips`
+  String get TotalTrips {
+    return Intl.message(
+      'Total trips',
+      name: 'TotalTrips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total killos`
+  String get TotalKillos {
+    return Intl.message(
+      'Total killos',
+      name: 'TotalKillos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Ratings`
+  String get totalRating {
+    return Intl.message(
+      'Total Ratings',
+      name: 'totalRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please fill your data to SignUp`
+  String get SignUpMsg {
+    return Intl.message(
+      'please fill your data to SignUp',
+      name: 'SignUpMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. Introduction`
+  String get introductionTitle {
+    return Intl.message(
+      '1. Introduction',
+      name: 'introductionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website.`
+  String get introductionContent {
+    return Intl.message(
+      'Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website.',
+      name: 'introductionContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2. Payment Methods`
+  String get paymentMethodsTitle {
+    return Intl.message(
+      '2. Payment Methods',
+      name: 'paymentMethodsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers`
+  String get paymentMethodsContent {
+    return Intl.message(
+      'We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers',
+      name: 'paymentMethodsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3. Payment Security`
+  String get paymentSecurityTitle {
+    return Intl.message(
+      '3. Payment Security',
+      name: 'paymentSecurityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details.`
+  String get paymentSecurityContent {
+    return Intl.message(
+      'We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details.',
+      name: 'paymentSecurityContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `4. Payment Confirmation`
+  String get paymentConfirmationTitle {
+    return Intl.message(
+      '4. Payment Confirmation',
+      name: 'paymentConfirmationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment.`
+  String get paymentConfirmationContent {
+    return Intl.message(
+      'Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment.',
+      name: 'paymentConfirmationContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `5. Currency`
+  String get currencyTitle {
+    return Intl.message(
+      '5. Currency',
+      name: 'currencyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All prices listed on our website are in EGP. Payments must be made in the currency specified.`
+  String get currencyContent {
+    return Intl.message(
+      'All prices listed on our website are in EGP. Payments must be made in the currency specified.',
+      name: 'currencyContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `6. Refunds and Cancellations`
+  String get refundsAndCancellationsTitle {
+    return Intl.message(
+      '6. Refunds and Cancellations',
+      name: 'refundsAndCancellationsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund.`
+  String get refundsAndCancellationsContent {
+    return Intl.message(
+      'Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund.',
+      name: 'refundsAndCancellationsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `7. Failed Transactions`
+  String get failedTransactionsTitle {
+    return Intl.message(
+      '7. Failed Transactions',
+      name: 'failedTransactionsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your payment transaction fails, please try again or contact our customer support team for assistance.`
+  String get failedTransactionsContent {
+    return Intl.message(
+      'If your payment transaction fails, please try again or contact our customer support team for assistance.',
+      name: 'failedTransactionsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `8. Contact Information`
+  String get contactInformationTitle {
+    return Intl.message(
+      '8. Contact Information',
+      name: 'contactInformationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]`
+  String get contactInformationContent {
+    return Intl.message(
+      'For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]',
+      name: 'contactInformationContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions`
+  String get termsAndConditionsTitle {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'termsAndConditionsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:`
+  String get termsAndConditionsContent {
+    return Intl.message(
+      '1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:',
+      name: 'termsAndConditionsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn’t receive code? `
+  String get DidntReciveCode {
+    return Intl.message(
+      'Didn’t receive code? ',
+      name: 'DidntReciveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend again`
+  String get resendAgain {
+    return Intl.message(
+      'Resend again',
+      name: 'resendAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set New password`
+  String get SetNewpassword {
+    return Intl.message(
+      'Set New password',
+      name: 'SetNewpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set your new password`
+  String get SetNewpasswordMsg {
+    return Intl.message(
+      'Set your new password',
+      name: 'SetNewpasswordMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your password changed successfully`
+  String get resetSuccesful {
+    return Intl.message(
+      'your password changed successfully',
+      name: 'resetSuccesful',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

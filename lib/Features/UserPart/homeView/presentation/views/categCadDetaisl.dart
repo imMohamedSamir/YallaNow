@@ -29,7 +29,7 @@ class CategCardDetails extends StatelessWidget {
         if (!cardDetails.isComingSoon!) {
           if (index == 0) {
             NavigateToPage.slideFromRight(
-                context: context, page: const ScooterRideView());
+                context: context, page: const ScooterRideView(fromHome: true));
           } else if (index == 1) {
             NavigateToPage.slideFromRight(
                 context: context, page: const TripsView());
@@ -61,15 +61,17 @@ class CategCardDetails extends StatelessWidget {
                         style: AppStyles.styleSemiBold16(context),
                         textAlign: AppLang.isArabic() ? TextAlign.left : null,
                       ),
-                const Spacer(),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Image.asset(
-                    cardDetails.img,
+                // const Spacer(),
+                Flexible(
+                  child: Align(
                     alignment: Alignment.bottomRight,
-                    height: AppSizes.getHeight(63, context),
-                    width: AppSizes.getWidth(65, context),
-                    fit: BoxFit.contain,
+                    child: Image.asset(
+                      cardDetails.img,
+                      alignment: Alignment.bottomRight,
+                      height: AppSizes.getHeight(63, context),
+                      width: AppSizes.getWidth(65, context),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ],
@@ -82,17 +84,12 @@ class CategCardDetails extends StatelessWidget {
                     color: Colors.black.withOpacity(0.6),
                     borderRadius: BorderRadius.circular(12)),
                 child: Center(
-                  child: Transform.rotate(
-                    angle:
-                        -45 * 3.1415926535897932 / 180, // 45 degrees in radians
-
-                    child: Text(
-                      'Coming Soon',
-                      style: AppStyles.styleSemiBold14(context).copyWith(
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
+                  child: Text(
+                    'Coming Soon',
+                    style: AppStyles.styleSemiBold14(context).copyWith(
+                      color: Colors.white,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),

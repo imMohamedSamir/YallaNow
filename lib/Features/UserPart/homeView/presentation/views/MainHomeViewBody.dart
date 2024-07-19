@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Features/UserPart/NotificationView/presentation/NotificationView.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/OredersView.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/ProfileView.dart';
@@ -9,6 +11,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/p
 import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomePage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/MainNavigationBar.dart';
+import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 
 class MainHomeViewBody extends StatefulWidget {
   const MainHomeViewBody({Key? key}) : super(key: key);
@@ -43,11 +46,27 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
     });
   }
 
+  UpgraderMessages _upgraderMessages() {
+    UpgraderMessages upgraderMessage =
+        UpgraderMessages(code: AppLang.isArabic() ? 'ar' : "en");
+    return upgraderMessage;
+  }
+
+  Upgrader _upgrader() {
+    return Upgrader(
+        countryCode: "EG",
+        languageCode: AppLang.isArabic() ? 'ar' : "en",
+        messages: _upgraderMessages(),
+        debugLogging: true,
+        debugDisplayOnce: true,
+        minAppVersion: "1.0.1");
+  }
+
   static List<Widget> pages = [
     const HomePage(),
-    const ScooterRideView(),
+    const ScooterRideView(fromHome: false),
     // const OrdersView(),
-    // const NotificationPage(),
+    const NotificationPage(),
     const ProfileView(),
   ];
 

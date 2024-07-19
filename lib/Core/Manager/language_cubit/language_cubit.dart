@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
-import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
 
 class LanguageCubit extends Cubit<Locale> {
   static const String _selectedLanguageKey = 'selected_language';

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -66,6 +67,7 @@ class UserCancelDialogState extends State<UserCancelDialog> {
           textColor: Colors.white,
           text: S.of(context).Cancel,
           onPressed: () {
+            BlocProvider.of<ScooterLocationCubit>(context).cancelListening();
             BlocProvider.of<UserRidRequestCubit>(context)
                 .cancelRequest(context, reason: selectedReason!);
           },

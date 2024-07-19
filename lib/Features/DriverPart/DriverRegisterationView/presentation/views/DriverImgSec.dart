@@ -12,8 +12,8 @@ import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/Profil
 import 'package:yallanow/generated/l10n.dart';
 
 class DriverImgSec extends StatefulWidget {
-  const DriverImgSec({super.key});
-
+  const DriverImgSec({super.key, this.netImg});
+  final String? netImg;
   @override
   State<DriverImgSec> createState() => _DriverImgSecState();
 }
@@ -50,6 +50,15 @@ class _DriverImgSecState extends State<DriverImgSec> {
                     ClipOval(
                       child: Image.file(
                         img!,
+                        width: AppSizes.getWidth(130, context),
+                        height: AppSizes.getHeight(130, context),
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  else if (widget.netImg != null)
+                    ClipOval(
+                      child: Image.network(
+                        widget.netImg!,
                         width: AppSizes.getWidth(130, context),
                         height: AppSizes.getHeight(130, context),
                         fit: BoxFit.cover,

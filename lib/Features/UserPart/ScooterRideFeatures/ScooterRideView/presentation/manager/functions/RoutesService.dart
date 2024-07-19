@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/location_info.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/routes_model/routes_model.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/routes_modifiers.dart';
@@ -8,7 +9,6 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/d
 class RoutesService {
   final String baseUrl =
       'https://routes.googleapis.com/directions/v2:computeRoutes';
-  final String apiKey = 'AIzaSyCxHMBWhEn5YR3V9MeqLOUg8_wYha4r820';
   Future<RoutesModel> fetchRoutes(
       {required LocationInfoModel origin,
       required LocationInfoModel destination,
@@ -16,7 +16,7 @@ class RoutesService {
     Uri url = Uri.parse(baseUrl);
     Map<String, String> headers = {
       'Content-Type': 'application/json',
-      'X-Goog-Api-Key': apiKey,
+      'X-Goog-Api-Key': googleApiKey,
       'X-Goog-FieldMask':
           'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline'
     };

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:password_field_validator/password_field_validator.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
@@ -16,6 +18,7 @@ class SignupForm extends StatefulWidget {
 class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
   UserRegisterModel registerModel = UserRegisterModel();
+  TextEditingController passEditingController = TextEditingController();
 
   String password = '', confirmPassword = '';
   bool p1 = true, p2 = true;
@@ -113,6 +116,7 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 16),
           CustomTextField(
+              controller: passEditingController,
               hintText: S.of(context).Password,
               secure: p1,
               maxLines: 1,
@@ -132,6 +136,25 @@ class _SignupFormState extends State<SignupForm> {
                   });
                 },
               )),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: PasswordFieldValidator(
+              controller: passEditingController,
+              minLength: 8,
+              uppercaseCharCount: 1,
+              lowercaseCharCount: 1,
+              numericCharCount: 1,
+              specialCharCount: 1,
+              defaultColor: pKcolor,
+              successColor: Colors.green,
+              failureColor: pKcolor,
+              minLengthMessage: S.of(context).atLest8,
+              uppercaseCharMessage: S.of(context).upperCaseLetter,
+              lowercaseMessage: S.of(context).lowerCaseLetter,
+              numericCharMessage: S.of(context).numericCharacter,
+              specialCharacterMessage: S.of(context).specialCharacter,
+            ),
+          ),
           const SizedBox(height: 16),
           CustomTextField(
               hintText: S.of(context).confirmedPassword,

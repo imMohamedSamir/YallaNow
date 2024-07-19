@@ -12,7 +12,9 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/p
 class ScooterMapBody extends StatelessWidget {
   const ScooterMapBody({
     super.key,
+    this.fromHome = false,
   });
+  final bool fromHome;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,13 @@ class ScooterMapBody extends StatelessWidget {
                   },
                 ),
               );
+            } else if (state is ScooterLocationLoading) {
+              return const SizedBox();
             } else {
               return Positioned(
-                  top: AppSizes.getHeight(50, context),
+                  top: AppSizes.getHeight(fromHome ? 12 : 50, context),
                   left: 16,
+                  right: 16,
                   child: const SearchCard());
             }
           },

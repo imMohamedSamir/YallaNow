@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/AuthQ.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/OTP_TextField.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
+import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/password_reset_request_cubit/password_reset_request_cubit.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/verify_otp_cubit/verify_otp_cubit.dart';
+import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/ForgetPasswordVerifyBody.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/SignUpAppBar.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/verifyHeader.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class ForgetPasswordVerify extends StatelessWidget {
-  const ForgetPasswordVerify(
-      {super.key, this.verificationId, this.endOfNumber});
-  final String? verificationId;
-  final String? endOfNumber;
+  const ForgetPasswordVerify({super.key, this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(context, title: "Forget password ", onPressed: () {
-        Navigator.pop(context);
-      }),
-      body: Column(
-        children: [
-          AuthHeader(
-              firstHeader: "Forgot Password",
-              secondHeader: "Code has been send to ***** ***$endOfNumber"),
-          const SizedBox(height: 40),
-          OTPTextField(verificationId: verificationId!, isRest: true),
-          const SizedBox(height: 20),
-          const AuthQ(
-              firstText: "Didn’t receive code? ", secondText: "Resend again"),
-        ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => VerifyOtpCubit(getIt.get<AuthRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              PasswordResetRequestCubit(getIt.get<AuthRepoImpl>()),
+        ),
+      ],
+      child: Scaffold(
+        appBar: customAppBar(context, title: S.of(context).ForgetPassword,
+            onPressed: () {
+          Navigator.pop(context);
+        }),
+        body: ForgetPasswordVerifyBody(email: email),
       ),
     );
   }

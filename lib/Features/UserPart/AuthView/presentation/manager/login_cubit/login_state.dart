@@ -11,11 +11,7 @@ final class LoginInitial extends LoginState {}
 
 final class LoginLoading extends LoginState {}
 
-final class LoginSuccess extends LoginState {
-  final LoginResponseModel logindetails;
-
-  LoginSuccess({required this.logindetails});
-}
+final class LoginSuccess extends LoginState {}
 
 final class LoginFailure extends LoginState {
   final String errorMessage;

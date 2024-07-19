@@ -10,17 +10,14 @@ class CaptinMapSec extends StatelessWidget {
   const CaptinMapSec({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CaptinMapCubit(LocationService(), RoutesUtils())
-        ..updateMyLocation(context),
-      child: Scaffold(
-        body: PopScope(
-            canPop: false,
-            onPopInvoked: (didPop) {
-              cancelDriverRidedialogMethode(context);
-            },
-            child: const CaptinMapBodyandRequest()),
-      ),
+    BlocProvider.of<CaptinMapCubit>(context).updateMyLocation(context);
+    return Scaffold(
+      body: PopScope(
+          canPop: false,
+          onPopInvoked: (didPop) {
+            cancelDriverRidedialogMethode(context);
+          },
+          child: const CaptinMapBodyandRequest()),
     );
   }
 }

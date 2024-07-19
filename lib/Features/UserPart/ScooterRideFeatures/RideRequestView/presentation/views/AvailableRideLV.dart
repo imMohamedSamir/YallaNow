@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
@@ -45,7 +43,6 @@ class _AvailableRideLVState extends State<AvailableRideLV> {
     return BlocConsumer<RidePriceCubit, RidePriceState>(
       listener: (context, state) {
         if (state is RidePriceSuccess) {
-          log(state.pricesModel.rideXPrice.toString());
           setState(() {
             rideprice = state.pricesModel.ridePrice ?? 0;
             ridePricex = state.pricesModel.rideXPrice ?? 0;

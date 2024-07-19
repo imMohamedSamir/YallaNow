@@ -22,6 +22,14 @@ final class CaptinMapChange extends CaptinMapState {
   final LatLng? currentLtLng;
   final Set<Marker>? markers;
   final Set<Polyline>? polyLine;
+  final double? distance;
+  final bool? isStarted;
 
-  const CaptinMapChange({this.currentLtLng, this.markers, this.polyLine});
+  const CaptinMapChange({
+    this.currentLtLng,
+    this.markers,
+    this.polyLine,
+    this.distance,
+    this.isStarted = false,
+  });
 }

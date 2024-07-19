@@ -4,10 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/LocationAppBar.dart';
+import 'package:yallanow/main.dart';
 
 AppBar favoriteAppBar(BuildContext context,
     {required String title, bool isOrder = false}) {
@@ -82,6 +84,7 @@ AppBar authAppBar(BuildContext context, {required String title}) {
 
 AppBar secondAppBar(BuildContext context, {required String title}) {
   return AppBar(
+      backgroundColor: Colors.white,
       elevation: 0,
       titleSpacing: -8,
       title: Text(title, style: AppStyles.styleMedium18(context)),
@@ -94,10 +97,17 @@ AppBar secondAppBar(BuildContext context, {required String title}) {
 
 AppBar homeAppBar() {
   return AppBar(
+    backgroundColor: Colors.white,
     elevation: 0,
+    scrolledUnderElevation: 0,
     automaticallyImplyLeading: false,
-    title: const LocationAppBar(),
+    title: Image.asset(
+      Assets.imagesYallaNowLogo,
+      height: AppSizes.getHeight(55, navigatorKey.currentContext!),
+      width: AppSizes.getWidth(55, navigatorKey.currentContext!),
+    ),
   );
+// const LocationAppBar()
 }
 
 AppBar categoryAppBar(BuildContext context,
