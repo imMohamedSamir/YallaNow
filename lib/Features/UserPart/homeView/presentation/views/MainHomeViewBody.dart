@@ -11,7 +11,6 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/p
 import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomePage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/MainNavigationBar.dart';
-import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 
 class MainHomeViewBody extends StatefulWidget {
   const MainHomeViewBody({Key? key}) : super(key: key);

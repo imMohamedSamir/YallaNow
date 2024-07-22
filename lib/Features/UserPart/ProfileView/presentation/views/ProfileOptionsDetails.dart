@@ -14,8 +14,9 @@ class ProfileOptionsDetails extends StatelessWidget {
           title: S.of(context).editprofile, icon: Assets.imagesProfileIcon),
       // ProfileOptionsCardModel(
       //     title: 'Your orders', icon: Assets.imagesOrdersIcon),
-      // ProfileOptionsCardModel(
-      //     title: 'Your rides', icon: Assets.imagesScooterRideICon),
+      ProfileOptionsCardModel(
+          title: S.of(context).RidesHistory,
+          icon: Assets.imagesScooterRideICon),
       // ProfileOptionsCardModel(
       //     title: 'Addresses', icon: Assets.imagesLocationMark),
       // ProfileOptionsCardModel(

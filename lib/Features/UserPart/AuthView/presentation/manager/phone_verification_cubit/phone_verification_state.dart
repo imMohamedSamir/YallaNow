@@ -1,20 +1,20 @@
-part of 'phone_verification_cubit.dart';
+// part of 'phone_verification_cubit.dart';
 
-sealed class PhoneVerificationState extends Equatable {
-  const PhoneVerificationState();
+// sealed class PhoneVerificationState extends Equatable {
+//   const PhoneVerificationState();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-final class PhoneVerificationInitial extends PhoneVerificationState {}
+// final class PhoneVerificationInitial extends PhoneVerificationState {}
 
-final class PhoneVerificationSuccess extends PhoneVerificationState {}
+// final class PhoneVerificationSuccess extends PhoneVerificationState {}
 
-final class PhoneVerificationLoading extends PhoneVerificationState {}
+// final class PhoneVerificationLoading extends PhoneVerificationState {}
 
-final class PhoneVerificationFail extends PhoneVerificationState {
-  final String errmsg;
+// final class PhoneVerificationFail extends PhoneVerificationState {
+//   final String errmsg;
 
-  PhoneVerificationFail({required this.errmsg});
-}
+//   PhoneVerificationFail({required this.errmsg});
+// }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Core/utlis/service_locator.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ready_for_trips_cubit/ready_for_trips_cubit.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -11,11 +9,7 @@ import 'package:yallanow/generated/l10n.dart';
 AppBar captinAppBar({required BuildContext context}) {
   return AppBar(
     centerTitle: true,
-    title: BlocProvider(
-      create: (context) =>
-          ReadyForTripsCubit(getIt.get<CaptinRequestRepoImpl>()),
-      child: const CaptinYallButton(),
-    ),
+    title: const CaptinYallButton(),
   );
 }
 
@@ -57,6 +51,7 @@ class CaptinYallButton extends StatelessWidget {
                 return BlocBuilder<ReadyForTripsCubit, ReadyForTripsState>(
                   builder: (context, state) {
                     isLoading = state is ReadyForTripsLoading;
+                    // isJoined = state is ReadyForTripsFailure ? false ;
                     return Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 35, vertical: 6),

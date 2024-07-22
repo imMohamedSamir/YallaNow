@@ -18,13 +18,13 @@ class DriverRegisterationCubit extends Cubit<DriverRegisterationState> {
     driverRegisterModel.driverType = true;
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      log(driverRegisterModel.toJson().toString());
-      // emit(DriverRegisterationLoading());
-      // var result = await driverRegisterationRepo.fetchRegisteration(
-      //     driverDetails: driverRegisterModel);
-      // result.fold(
-      //     (fail) => emit(DriverRegisterationFailure(errmsg: fail.errMessage)),
-      //     (success) => emit(DriverRegisterationSuccess()));
+      // log(driverRegisterModel.toJson().toString());
+      emit(DriverRegisterationLoading());
+      var result = await driverRegisterationRepo.fetchRegisteration(
+          driverDetails: driverRegisterModel);
+      result.fold(
+          (fail) => emit(DriverRegisterationFailure(errmsg: fail.errMessage)),
+          (success) => emit(DriverRegisterationSuccess()));
     } //just for now
   }
 }

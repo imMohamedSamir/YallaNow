@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/models/captin_drawer_details_model.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/manager/captin_drawer_cubit/captin_drawer_cubit.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/views/CaptinLoading.dart';
 
 class DriverCaptinDetails extends StatelessWidget {
   const DriverCaptinDetails({
@@ -11,25 +14,38 @@ class DriverCaptinDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipOval(
-          child: Image.asset(
-            Assets.imagesDriverImg,
-            width: AppSizes.getWidth(70, context),
-            height: AppSizes.getHeight(70, context),
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Kareem", style: AppStyles.styleRegular16(context)),
-            const DriverRatingIndicator(rate: 3)
-          ],
-        )
-      ],
+    return BlocBuilder<CaptinDrawerCubit, CaptinDrawerState>(
+      builder: (context, state) {
+        if (state is CaptinDrawerSuccess) {
+          CaptinDrawerDetailsModel detailsModel = state.detailsModel;
+          return Row(
+            children: [
+              ClipOval(
+                child: Image.network(
+                  detailsModel.image!,
+                  width: AppSizes.getWidth(70, context),
+                  height: AppSizes.getHeight(70, context),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(detailsModel.name ?? "",
+                      style: AppStyles.styleRegular16(context)),
+                  DriverRatingIndicator(
+                      rate: detailsModel.rating?.toDouble() ?? 0)
+                ],
+              )
+            ],
+          );
+        } else if (state is CaptinDrawerLoading) {
+          return const CaptinLoading();
+        } else {
+          return const CaptinLoading();
+        }
+      },
     );
   }
 }

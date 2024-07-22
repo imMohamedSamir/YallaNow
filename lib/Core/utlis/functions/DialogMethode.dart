@@ -98,7 +98,6 @@ void logoutdialogMethode(BuildContext context) {
               text: S.of(context).logout,
               onPressed: () {
                 TokenManager.removeToken();
-                BlocProvider.of<BasketManagerCubit>(context).clearBasket();
                 Navigator.pop(context);
                 NavigateToPage.slideFromTopAndRemove(
                     context: context, page: const LoginView());

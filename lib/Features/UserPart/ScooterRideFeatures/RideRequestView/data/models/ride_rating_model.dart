@@ -4,12 +4,16 @@ class RideRatingModel {
   int? tripRate;
   String? note;
 
-  RideRatingModel({this.tripId, this.driverRate, this.note});
+  RideRatingModel({
+    this.tripId,
+    this.tripRate,
+    this.note,
+  });
 
   factory RideRatingModel.fromJson(Map<String, dynamic> json) {
     return RideRatingModel(
       tripId: json['tripId'] as String?,
-      driverRate: json['rate'] as int?,
+      tripRate: json['rate'] as int?,
       note: json['note'] as String?,
     );
   }
@@ -17,7 +21,7 @@ class RideRatingModel {
   Map<String, dynamic> toJson() => {
         'tripId': tripId,
         'rate': driverRate,
-        'tripRate': tripRate,
+        // 'tripRate': tripRate,
         'note': note,
       };
 }

@@ -199,7 +199,19 @@
     "resendAgain":"Resend again",
      "SetNewpassword": "Set New password",
      "SetNewpasswordMsg":"Set your new password",
-     "resetSuccesful":"your password changed successfully"
+     "resetSuccesful":"your password changed successfully",
+     "Youneedbeonline":"You need to be online ",
+     "youNeesBeOnlineMsg":"You need be online to get requests in youe current area",
+     "RidesHistory":"My Trips",
+     "ViewDetails":"View details",
+     "Driver":"Driver",
+     "PromoCode":"Promo Code",
+     "enterPromoCode":"Enter your Promo Code to get the offer",
+     "Submit":"Submit",
+     "addToWallet":"Add to Wallet",
+     "EGP":"EGP",
+     "CaptinwalletMsg":"Please enter the amount received from the customer",
+     "CaptinwalletMsg2":" will be added to customer's Wallet"
 }
 
     

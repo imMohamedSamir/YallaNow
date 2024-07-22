@@ -35,9 +35,12 @@ class ScooterRequestRepoImpl implements ScooterRequestRepo {
       log(e.toString());
       if (e is DioException) {
         log(e.response.toString());
-        return left(
-          ServerFailure.fromDioError(e.type),
-        );
+        if (e.response.toString() == "No drivers available.") {
+          return left(ServerFailure(e.response.toString()));
+        } else {
+          return left(
+              ServerFailure.fromResponse(e.response!.statusCode, e.response));
+        }
       }
 
       return left(

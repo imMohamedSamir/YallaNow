@@ -1,37 +1,43 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
 import 'package:yallanow/generated/l10n.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class DriverPapersBuilder extends StatefulWidget {
   const DriverPapersBuilder({super.key, required this.textEditingController});
   final TextEditingController textEditingController;
   @override
-  _DriverPapersBuilderState createState() => _DriverPapersBuilderState();
+  DriverPapersBuilderState createState() => DriverPapersBuilderState();
 }
 
-class _DriverPapersBuilderState extends State<DriverPapersBuilder> {
+class DriverPapersBuilderState extends State<DriverPapersBuilder> {
   final List<File?> _driverPapers = List<File?>.filled(9, null);
   final ImagePicker _picker = ImagePicker();
   late DriverRegisterModel driverDetails;
   final GlobalKey<FormState> key = GlobalKey<FormState>();
   Future<void> _pickImage(int index) async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      setState(() {
-        _driverPapers[index] = File(image.path);
-      });
+    try {
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        setState(() {
+          _driverPapers[index] = File(image.path);
+        });
+      }
+    } on Exception catch (e) {
+      log(e.toString());
     }
   }
 
@@ -51,8 +57,60 @@ class _DriverPapersBuilderState extends State<DriverPapersBuilder> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
+  }
+
+  Future<File> convertImagesToPdfFile(List<File?> imageFiles) async {
+    final pdf = pw.Document();
+    final titles = [
+      S.of(context).id_card,
+      S.of(context).driving_license,
+      S.of(context).scooter_license,
+      S.of(context).birth_certificate,
+      S.of(context).criminal_record,
+      S.of(context).drug_test,
+    ];
+    final subtitles = ['امامى', 'خلفى'];
+
+    for (int i = 0; i < imageFiles.length; i++) {
+      if (imageFiles[i] != null) {
+        final image = pw.MemoryImage(imageFiles[i]!.readAsBytesSync());
+        pdf.addPage(
+          pw.Page(
+            pageFormat: PdfPageFormat.a4,
+            build: (pw.Context context) {
+              return pw.Column(
+                children: [
+                  pw.Text(i < titles.length ? titles[i ~/ 2] : '',
+                      style: pw.TextStyle(
+                        color: const PdfColor.fromInt(0xFF1F2937),
+                        fontSize: getResponsiveFontSize(context, fontSize: 18),
+                      )),
+                  if (i < titles.length * 2 && i % 2 == 1)
+                    pw.Text(subtitles[i % 2]),
+                  pw.SizedBox(height: 16),
+                  pw.Image(image),
+                ],
+              );
+            },
+          ),
+        );
+      }
+    }
+
+    final directory = await getExternalStorageDirectory();
+    final file = File("${directory!.path}/driverPapers.pdf");
+    await file.writeAsBytes(await pdf.save());
+
+    if (await file.exists()) {
+      log('Number of pages: ${pdf.document.pdfPageList.pages.length}');
+      final fileSize = await file.length();
+      log('File size: $fileSize bytes');
+      log("PDF saved at ${file.path}");
+    } else {
+      log("Failed to save PDF.");
+    }
+    return file;
   }
 
   @override
@@ -61,9 +119,15 @@ class _DriverPapersBuilderState extends State<DriverPapersBuilder> {
       key: key,
       child: FormField(
         validator: _validateImages,
-        onSaved: (_) {
+        onSaved: (_) async {
           if (_driverPapers.isNotEmpty) {
-            driverDetails.vehicleImg = _driverPapers;
+            FileDetails fileDetails = FileDetails();
+            fileDetails.driverFile =
+                await convertImagesToPdfFile(_driverPapers);
+            fileDetails.contentType = "driverPapers.pdf";
+            fileDetails.fileName = "driverPapers.pdf";
+            fileDetails.fileSize = await fileDetails.driverFile?.length() ?? 0;
+            driverDetails.driverPapers = fileDetails;
           }
         },
         builder: (FormFieldState<String> state) {
@@ -136,13 +200,13 @@ class _DriverPapersBuilderState extends State<DriverPapersBuilder> {
                       ),
                     const SizedBox(height: 16),
                     CustomButton(
-                      text: S.of(context).Yalla,
+                      text: S.of(context).Continue,
                       txtcolor: Colors.white,
                       btncolor: pKcolor,
-                      onPressed: () {
+                      onPressed: () async {
                         if (key.currentState!.validate()) {
                           key.currentState!.save();
-                          widget.textEditingController.text = " تم حفظ الملفات";
+                          widget.textEditingController.text = " تم حفظ الملف";
                           Navigator.pop(context);
                         }
                       },
@@ -243,7 +307,8 @@ class _DriverPapersBuilderState extends State<DriverPapersBuilder> {
   Widget _buildImageNoExpand(int index) {
     return GestureDetector(
       onTap: () => _pickImage(index),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
         decoration: BoxDecoration(
           border: Border.all(
             color: _driverPapers[index] != null ? Colors.green : Colors.grey,

@@ -46,12 +46,10 @@ class FirebaseMessagingService {
 
   Future<void> setupMessageHandler() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      log(message.notification!.body!);
       if (!_isDisconnected) {
-        log('Got a message whilst in the foreground!');
-        log('Message data: ${message.notification!.title}\n${message.notification!.body}');
-
         if (message.notification != null) {
-          log('Message also contained a notification: ${message.notification}');
+          // log('Message also contained a notification: ${message.notification}');
           _messageController.add(message);
         }
       }

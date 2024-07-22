@@ -140,6 +140,7 @@ class UserRidRequestCubit extends Cubit<UserRideRequestState> {
     BlocProvider.of<ScooterLocationCubit>(context).cancelListening();
     BlocProvider.of<SendRequestCubit>(context).setInitial();
     NavigateToPage.slideFromBottom(
-        context: context, page: const ScooterRatingPage());
+        context: context,
+        page: ScooterRatingPage(tripId: acceptRideModel!.tripId));
   }
 }

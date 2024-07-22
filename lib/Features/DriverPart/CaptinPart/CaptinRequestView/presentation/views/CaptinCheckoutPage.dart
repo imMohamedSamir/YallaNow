@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/AddWalletPage.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class CaptinCheckoutPage extends StatelessWidget {
@@ -52,6 +53,16 @@ class CaptinCheckoutBody extends StatelessWidget {
                         Navigator.pop(context);
                         NavigateToPage.slideFromLeft(
                             context: context, page: const CaptinHomeView());
+                      },
+                    ),
+                    const SizedBox(height: 32),
+                    CustomButton(
+                      text: S.of(context).addToWallet,
+                      txtcolor: Colors.white,
+                      btncolor: pKcolor,
+                      onPressed: () {
+                        NavigateToPage.slideFromRight(
+                            context: context, page: const AddWalletPage());
                       },
                     )
                   ],

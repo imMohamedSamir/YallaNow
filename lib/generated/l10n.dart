@@ -1999,6 +1999,126 @@ class S {
       args: [],
     );
   }
+
+  /// `You need to be online `
+  String get Youneedbeonline {
+    return Intl.message(
+      'You need to be online ',
+      name: 'Youneedbeonline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need be online to get requests in youe current area`
+  String get youNeesBeOnlineMsg {
+    return Intl.message(
+      'You need be online to get requests in youe current area',
+      name: 'youNeesBeOnlineMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Trips`
+  String get RidesHistory {
+    return Intl.message(
+      'My Trips',
+      name: 'RidesHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View details`
+  String get ViewDetails {
+    return Intl.message(
+      'View details',
+      name: 'ViewDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver`
+  String get Driver {
+    return Intl.message(
+      'Driver',
+      name: 'Driver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo Code`
+  String get PromoCode {
+    return Intl.message(
+      'Promo Code',
+      name: 'PromoCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Promo Code to get the offer`
+  String get enterPromoCode {
+    return Intl.message(
+      'Enter your Promo Code to get the offer',
+      name: 'enterPromoCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get Submit {
+    return Intl.message(
+      'Submit',
+      name: 'Submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to Wallet`
+  String get addToWallet {
+    return Intl.message(
+      'Add to Wallet',
+      name: 'addToWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EGP`
+  String get EGP {
+    return Intl.message(
+      'EGP',
+      name: 'EGP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the amount received from the customer`
+  String get CaptinwalletMsg {
+    return Intl.message(
+      'Please enter the amount received from the customer',
+      name: 'CaptinwalletMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` will be added to customer's Wallet`
+  String get CaptinwalletMsg2 {
+    return Intl.message(
+      ' will be added to customer\'s Wallet',
+      name: 'CaptinwalletMsg2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

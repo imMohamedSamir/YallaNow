@@ -9,6 +9,7 @@ import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/data/Repo/CheckOutRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/repo/CatpinProfileRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
@@ -31,7 +32,6 @@ void setupServiceLocator() {
   getIt.registerSingleton<YallaNowServicesHttp>(YallaNowServicesHttp());
   getIt.registerSingleton<LocationService>(LocationService());
   getIt.registerSingleton<FirebaseMessagingService>(FirebaseMessagingService());
-
   getIt.registerSingleton<DriverRegisterationRepoImpl>(
       DriverRegisterationRepoImpl());
   getIt.registerSingleton<AddressesRepoImpl>(AddressesRepoImpl(
@@ -63,4 +63,6 @@ void setupServiceLocator() {
       firebaseMessagingService: getIt.get<FirebaseMessagingService>()));
   getIt.registerSingleton<CaptinRequestRepoImpl>(
       CaptinRequestRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
+  getIt.registerSingleton<CatpinProfileRepoImpl>(
+      CatpinProfileRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
 }

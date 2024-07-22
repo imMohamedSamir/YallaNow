@@ -43,8 +43,6 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   }
 
   // Add a reference to the Firebase Realtime Database
-  final DatabaseReference _driversRef = FirebaseDatabase.instance
-      .ref('drivers/7a100182-0666-4486-601e-08dc9a154717');
 
   @override
   Future<void> close() async {
@@ -69,7 +67,11 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   }
 
   void listenToDriverLocationUpdates(BuildContext context) async {
-    _driversSubscription = _driversRef.onValue.listen((event) {
+    String driverId =
+        BlocProvider.of<CaptinRideRequestCubit>(context).detailsModel.driverId;
+    final DatabaseReference driversRef =
+        FirebaseDatabase.instance.ref('drivers/$driverId');
+    _driversSubscription = driversRef.onValue.listen((event) {
       if (event.snapshot.value != null) {
         final data = event.snapshot.value as Map<dynamic, dynamic>;
         final newLatitude = data['CurrentLatitude'] as double;

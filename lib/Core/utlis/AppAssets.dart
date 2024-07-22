@@ -258,6 +258,10 @@ class Assets {
   /// assets/images/OB4.png
   static const String imagesOB4 = "assets/images/OB4.png";
 
+  /// Assets for imagesOfflineDriver
+  /// assets/images/offlineDriver.png
+  static const String imagesOfflineDriver = "assets/images/offlineDriver.png";
+
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding1.png
   static const String imagesOnboarding1 = "assets/images/onboarding1.png";
@@ -358,6 +362,11 @@ class Assets {
   /// Assets for imagesSearchIcon
   /// assets/images/searchIcon.svg
   static const String imagesSearchIcon = "assets/images/searchIcon.svg";
+
+  /// Assets for imagesSearchingReqeust
+  /// assets/images/searchingReqeust.gif
+  static const String imagesSearchingReqeust =
+      "assets/images/searchingReqeust.gif";
 
   /// Assets for imagesShareIcon
   /// assets/images/shareIcon.svg

@@ -6,13 +6,14 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/p
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/ScooterRatingBody.dart';
 
 class ScooterRatingPage extends StatelessWidget {
-  const ScooterRatingPage({super.key});
-
+  const ScooterRatingPage({super.key, required this.tripId});
+  final String tripId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ScooterRatingCubit(getIt.get<ScooterRequestRepoImpl>()),
+          ScooterRatingCubit(getIt.get<ScooterRequestRepoImpl>())
+            ..rating.tripId = tripId,
       child: const Scaffold(
         body: ScooterRatingBody(),
       ),

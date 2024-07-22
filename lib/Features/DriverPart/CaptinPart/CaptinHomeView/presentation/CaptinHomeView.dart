@@ -6,14 +6,14 @@ import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/DriverBottomNavBar.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/CheckHomeAppBar.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_details_cubit/captin_details_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDrawer.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/manager/captin_trips_cubit/captin_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinOrdersViewBody.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/repo/CatpinProfileRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/manager/captin_drawer_cubit/captin_drawer_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRatingView/presentation/views/CaptinRatingView.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DriverBottomNavBar.dart';
 
 class CaptinHomeView extends StatefulWidget {
   const CaptinHomeView({super.key});
@@ -73,7 +73,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
       providers: [
         BlocProvider(
           create: (context) =>
-              CaptinDetailsCubit(getIt.get<CaptinRequestRepoImpl>())..get(),
+              CaptinDrawerCubit(getIt.get<CatpinProfileRepoImpl>())..get(),
         ),
         BlocProvider(
           create: (context) =>

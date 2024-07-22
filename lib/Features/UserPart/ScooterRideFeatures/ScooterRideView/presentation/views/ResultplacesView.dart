@@ -11,61 +11,57 @@ class ResultplacesView extends StatelessWidget {
   // final TextEditingController textEditingController;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ScooterLocationCubit, ScooterLocationState>(
-      listener: (context, state) {
-        if (state is ScooterLocationChange) {
-          Navigator.of(context).pop();
-        } else if (state is ScooterLocationFailuer) {
-          Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text("please try again and choose correct place")),
-          );
-        }
-      },
-      builder: (context, state) {
-        if (state is ScooterLocationLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else {
-          return Column(
-            children: List.generate(
-                places.length,
-                (index) => Padding(
-                    padding: EdgeInsets.only(
-                        bottom: index == places.length - 1 ? 0 : 14.0),
-                    child: ResultsPlacesCard(
-                      onTap: () async {
-                        var locationCubit =
-                            BlocProvider.of<ScooterLocationCubit>(context);
-                        var autoCompleteCubit =
-                            BlocProvider.of<AutoCompletePlacesCubit>(context);
-                        var srcNod = autoCompleteCubit.sourceFocusNode;
-                        var dstNod = autoCompleteCubit.destinationFocusNode;
-                        if (srcNod.hasFocus) {
-                          autoCompleteCubit.sourceTextController.text =
-                              places[index].description!;
-                          dstNod.requestFocus();
-                          autoCompleteCubit.clearPlaces();
-                          locationCubit.selectedCurrentLocation(
-                              description: places[index].description!);
-                        }
-                        if (dstNod.hasFocus) {
-                          autoCompleteCubit.distanceTextController.text =
-                              places[index].description!;
-                          await locationCubit.selectedLocation(context,
-                              description: autoCompleteCubit
-                                  .distanceTextController.text);
-                        }
-                        if (!context.mounted) return;
+    return BlocListener<ScooterLocationCubit, ScooterLocationState>(
+        listener: (context, state) {
+          if (state is ScooterLocationChange) {
+            Navigator.of(context).pop();
+          } else if (state is ScooterLocationFailuer) {
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text("please try again and choose correct place")),
+            );
+          }
+        },
+        child: Column(
+          children: List.generate(
+              places.length,
+              (index) => Padding(
+                  padding: EdgeInsets.only(
+                      bottom: index == places.length - 1 ? 0 : 14.0),
+                  child: ResultsPlacesCard(
+                    onTap: () async {
+                      var locationCubit =
+                          BlocProvider.of<ScooterLocationCubit>(context);
+                      var autoCompleteCubit =
+                          BlocProvider.of<AutoCompletePlacesCubit>(context);
+                      autoCompleteCubit.sessionToken = null;
+                      var srcNod = autoCompleteCubit.sourceFocusNode;
+                      var dstNod = autoCompleteCubit.destinationFocusNode;
+                      if (srcNod.hasFocus) {
+                        autoCompleteCubit.sourceTextController.text =
+                            places[index].description!;
+                        dstNod.requestFocus();
+                        autoCompleteCubit.clearPlaces();
+                        locationCubit.selectedCurrentLocation(
+                            description: places[index].description!);
+                      }
+                      if (dstNod.hasFocus) {
+                        autoCompleteCubit.distanceTextController.text =
+                            places[index].description!;
                         await locationCubit.selectedLocation(context,
                             description:
                                 autoCompleteCubit.distanceTextController.text);
-                      },
-                      address: places[index].description!,
-                    ))),
-          );
-        }
-      },
-    );
+                      }
+                      if (!context.mounted) return;
+                      autoCompleteCubit.distanceTextController.text =
+                          places[index].description!;
+                      await locationCubit.selectedLocation(context,
+                          description:
+                              autoCompleteCubit.distanceTextController.text);
+                    },
+                    address: places[index].description!,
+                  ))),
+        ));
   }
 }

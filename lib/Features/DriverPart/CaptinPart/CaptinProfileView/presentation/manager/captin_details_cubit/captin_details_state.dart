@@ -12,9 +12,9 @@ final class CaptinDetailsInitial extends CaptinDetailsState {}
 final class CaptinDetailsLoading extends CaptinDetailsState {}
 
 final class CaptinDetailsSuccess extends CaptinDetailsState {
-  final CaptinDetailsModel detailsModel;
+  final CaptinDetailsModel captinModel;
 
-  const CaptinDetailsSuccess({required this.detailsModel});
+  const CaptinDetailsSuccess({required this.captinModel});
 }
 
 final class CaptinDetailsFailure extends CaptinDetailsState {

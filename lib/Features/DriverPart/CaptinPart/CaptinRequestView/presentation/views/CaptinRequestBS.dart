@@ -107,7 +107,8 @@ class CaptinRequestBS extends StatelessWidget {
                       style: AppStyles.styleMedium14(context),
                     ),
                     const Gap(8),
-                    if (requestDetails.gender == "Male")
+                    if (requestDetails.gender == "Male" ||
+                        requestDetails.gender == "male")
                       const Icon(Icons.male_outlined, color: Colors.blueAccent)
                     else
                       const Icon(Icons.female_outlined,
@@ -136,11 +137,11 @@ class CaptinRequestBS extends StatelessWidget {
                           if (state is CaptinMapChange &&
                                   state.distance! <= 40 ||
                               state is CaptinMapInitial) {
-                            return CaptinStartSlide(
+                            return CaptinSlideAction(
                                 tripId: requestDetails.tripId!);
                           } else if (state is CaptinMapChange &&
                               state.isStarted!) {
-                            return CaptinStartSlide(
+                            return CaptinSlideAction(
                                 isStarted: true,
                                 tripId: requestDetails.tripId!);
                           } else {
@@ -194,7 +195,7 @@ class CaptinRequestBS extends StatelessWidget {
 
   String getGender({required String gender}) {
     if (AppLang.isArabic()) {
-      if (gender == "Male") {
+      if (gender == "Male" || gender == "male") {
         return "ذكر";
       } else {
         return "اثنى";

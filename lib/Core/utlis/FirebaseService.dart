@@ -29,15 +29,7 @@ class FirebaseService {
 
         // PhoneAuthCredential credential = PhoneAuthProvider.credential(
         //     verificationId: verificationId, smsCode: smsCode);
-        try {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  PhoneVerification(verificationId: verificationId),
-            ),
-          );
-        } catch (e) {
+        try {} catch (e) {
           log(e.toString().contains("invalid-verification-code").toString());
         }
       },

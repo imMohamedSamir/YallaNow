@@ -73,13 +73,15 @@ class _DriverImgSecState extends State<DriverImgSec> {
                           shape: BoxShape.circle),
                       child: const Center(child: Icon(Icons.image, size: 32)),
                     ),
-                  ProfileEditIcon(
-                    onPressed: () async {
-                      img = await DriverFileMangement().pickImageFromgallery();
-                      driverDetails.driverImg = img;
-                      setState(() {});
-                    },
-                  ),
+                  if (widget.netImg == null)
+                    ProfileEditIcon(
+                      onPressed: () async {
+                        img =
+                            await DriverFileMangement().pickImageFromgallery();
+                        driverDetails.driverImg = img;
+                        setState(() {});
+                      },
+                    ),
                 ],
               ),
               if (state.hasError)

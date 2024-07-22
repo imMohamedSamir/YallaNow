@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,12 +21,16 @@ class _VehicleImgBuilderState extends State<VehicleImgBuilder> {
   final ImagePicker _picker = ImagePicker();
   late DriverRegisterModel driverDetails;
   Future<void> _pickImage(int index) async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    try {
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-    if (image != null) {
-      setState(() {
-        _vehicleImages[index] = File(image.path);
-      });
+      if (image != null) {
+        setState(() {
+          _vehicleImages[index] = File(image.path);
+        });
+      }
+    } on Exception catch (e) {
+      log(e.toString());
     }
   }
 

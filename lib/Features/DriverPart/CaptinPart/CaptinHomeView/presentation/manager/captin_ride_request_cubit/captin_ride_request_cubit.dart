@@ -32,6 +32,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   final CaptinRequestRepo captinRequestRepo;
   bool _isJoined = false;
   late RideRequestDetailsModel detailsModel;
+  CaptinRequestModel requestModel = CaptinRequestModel();
   CancelModel cancelModel = CancelModel();
   void checkLocationPermission() async {
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -82,6 +83,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   void receiveRequest() {
     messagingService.onMessage.listen((message) {
       final key = message.data['key'] as String?;
+      log(message.data.toString());
 
       if (key == null) {
         log('Key is null');
@@ -118,16 +120,16 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
     );
   }
 
-  void _requestNotification(RemoteMessage requestModel) {
-    log("notification: ${requestModel.data.toString()}");
+  void _requestNotification(RemoteMessage requestmessage) {
+    log("notification: ${requestmessage.data.toString()}");
     AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: requestModel.hashCode,
+        id: requestmessage.hashCode,
         channelKey: notifChannelKey,
         actionType: ActionType.Default,
-        payload: convertMapToString(originalMap: requestModel.data),
-        title: requestModel.notification!.title,
-        body: requestModel.notification!.body,
+        payload: convertMapToString(originalMap: requestmessage.data),
+        title: requestmessage.notification!.title,
+        body: requestmessage.notification!.body,
         notificationLayout: NotificationLayout.Default,
         backgroundColor: pKcolor,
         wakeUpScreen: true,
@@ -145,16 +147,16 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
         ),
       ],
     );
-    // Future.delayed(const Duration(seconds: 4), () async {
-    //   AwesomeNotifications().dismiss(requestModel.hashCode);
-    //   await rejectMethod(tripId: requestModel.tripId!);
-    // });
+    Future.delayed(const Duration(seconds: 4), () async {
+      AwesomeNotifications().dismiss(requestmessage.hashCode);
+      await captinResponseMethod(
+          tripId: requestmessage.data["TripId"], isAccepted: false);
+    });
   }
 
   Future<void> handleReceivedRequest(BuildContext context,
       {required ReceivedAction action}) async {
-    CaptinRequestModel requestModel =
-        CaptinRequestModel.fromPayload(action.payload!);
+    requestModel = CaptinRequestModel.fromPayload(action.payload!);
     if (action.buttonKeyPressed == "ACCEPT") {
       await acceptMethod(context, requestModel: requestModel);
       if (!context.mounted) return;
@@ -191,6 +193,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
     var result = await captinRequestRepo.sendDriverResponse(
         driverResponse: responseModel);
     result.fold((fail) => emit(CaptinRideRequestFailure()), (details) {
+      log(details.toString());
       if (responseModel.isAccepted!) {
         detailsModel = RideRequestDetailsModel.fromJson(details);
         log(detailsModel.toJson().toString());

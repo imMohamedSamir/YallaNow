@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
@@ -6,6 +8,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoCard.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/data/models/driver_trips_model/ride_history.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/manager/Methods/getDate.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinSrcDstSec.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardHeader.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -17,7 +20,7 @@ class CaptinOrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool getStatus() {
-      if (rideHistory.status == 'Accepted') {
+      if (rideHistory.status == 'Completed') {
         return true;
       } else {
         return false;
@@ -30,7 +33,9 @@ class CaptinOrderDetailsPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(children: [
-            OrderCardHeader(date: "October 17, 2023", isSuccess: getStatus()),
+            OrderCardHeader(
+                date: getdate(date: rideHistory.startTime ?? ""),
+                isSuccess: getStatus()),
             const SizedBox(height: 16),
             CaptinSrcDstSec(src: rideHistory.from, dst: rideHistory.to),
             const Divider(height: 32),

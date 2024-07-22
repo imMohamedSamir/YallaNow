@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/GotoOptionPage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/ProfileOptionsCard.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class CaptinProfileOptionsDetails extends StatelessWidget {
@@ -17,6 +16,8 @@ class CaptinProfileOptionsDetails extends StatelessWidget {
     List<ProfileOptionsCardModel> options = [
       ProfileOptionsCardModel(
           title: S.of(context).CaptinProfile, icon: Assets.imagesProfileIcon),
+      ProfileOptionsCardModel(
+          title: S.of(context).driverPapers, icon: Assets.imagesOrdersIcon),
       ProfileOptionsCardModel(
           title: S.of(context).VehicleDetails,
           icon: Assets.imagesScooterRideICon),
@@ -53,8 +54,7 @@ class CaptinProfileOptionsDetails extends StatelessWidget {
         },
         leading: SvgPicture.asset(Assets.imagesLogoutIcon),
         title: Text(S.of(context).logout,
-            style: AppStyles.styleSemiBold16(context)
-                .copyWith(color: const Color(0xffB20404))),
+            style: AppStyles.styleSemiBold16(context).copyWith(color: pKcolor)),
       )
     ]);
   }

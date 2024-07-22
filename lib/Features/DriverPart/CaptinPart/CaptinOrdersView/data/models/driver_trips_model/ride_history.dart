@@ -4,6 +4,7 @@ class RideHistory {
   String? from;
   String? to;
   String? status;
+  String? startTime;
   String? payment;
   int? totalKillos;
   String? price;
@@ -13,6 +14,7 @@ class RideHistory {
     this.userName,
     this.from,
     this.to,
+    this.startTime,
     this.status,
     this.payment,
     this.totalKillos,
@@ -24,6 +26,7 @@ class RideHistory {
         userName: json['userName'] as String?,
         from: json['from'] as String?,
         to: json['to'] as String?,
+        startTime: json['startTime'] as String?,
         status: json['status'] as String?,
         payment: json['payment'] as String?,
         totalKillos: json['totalKillos'] as int?,

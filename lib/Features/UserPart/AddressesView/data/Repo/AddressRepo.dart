@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addres
 
 abstract class AddressesRepo {
   Future<Either<Failure, List<PlaceModel>>> getPredictions(
-      {required String input});
+      {required String input, String? sesstionToken});
   Future<Either<Failure, List<UserAddressesDetailsModel>>> fetchUserAddresses();
   Future<Either<Failure, dynamic>> addNewUserAddresses(
       {required UserInputAddressModel userAddressDetailsModel});

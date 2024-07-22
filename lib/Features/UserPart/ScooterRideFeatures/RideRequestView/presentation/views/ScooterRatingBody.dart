@@ -37,20 +37,20 @@ class ScooterRatingBody extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  Text(S.of(context).RatingDriverQ,
-                      style: AppStyles.styleSemiBold20(context)),
-                  const Gap(16),
-                  RatingBar.builder(
-                    itemBuilder: (context, index) {
-                      return const Icon(Icons.star_rate_rounded,
-                          color: Color(0xffFEC400));
-                    },
-                    onRatingUpdate: (value) {
-                      log(value.toString());
-                      ratingCubit.rating.driverRate = value.round();
-                    },
-                  ),
-                  const Gap(24),
+                  // Text(S.of(context).RatingDriverQ,
+                  //     style: AppStyles.styleSemiBold20(context)),
+                  // const Gap(16),
+                  // RatingBar.builder(
+                  //   itemBuilder: (context, index) {
+                  //     return const Icon(Icons.star_rate_rounded,
+                  //         color: Color(0xffFEC400));
+                  //   },
+                  //   onRatingUpdate: (value) {
+                  //     log(value.toString());
+                  //     ratingCubit.rating.driverRate = value.round();
+                  //   },
+                  // ),
+                  // const Gap(24),
                   Text(S.of(context).RatingTripQ,
                       style: AppStyles.styleSemiBold20(context)),
                   const Gap(16),

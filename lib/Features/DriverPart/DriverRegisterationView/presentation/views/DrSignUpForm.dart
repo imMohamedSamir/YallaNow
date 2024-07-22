@@ -256,13 +256,13 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
             txtcolor: Colors.white,
             btncolor: pKcolor,
             onPressed: () {
-              NavigateToPage.slideFromRight(
-                  context: context, page: const DriverDetailsView());
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   NavigateToPage.slideFromRight(
-              //       context: context, page: const DriverDetailsView());
-              // }
+              // NavigateToPage.slideFromRight(
+              //     context: context, page: const DriverDetailsView());
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                NavigateToPage.slideFromRight(
+                    context: context, page: const DriverDetailsView());
+              }
             },
           ),
         ],

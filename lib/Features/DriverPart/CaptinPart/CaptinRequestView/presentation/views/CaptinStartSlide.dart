@@ -11,8 +11,8 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presen
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_start_trip_cubit/captin_start_trip_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinCheckoutPage.dart';
 
-class CaptinStartSlide extends StatelessWidget {
-  const CaptinStartSlide({
+class CaptinSlideAction extends StatelessWidget {
+  const CaptinSlideAction({
     super.key,
     this.isStarted = false,
     required this.tripId,

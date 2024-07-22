@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Book": MessageLookupByLibrary.simpleMessage("Book"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "CaptinProfile": MessageLookupByLibrary.simpleMessage("Captin Profile"),
+        "CaptinwalletMsg": MessageLookupByLibrary.simpleMessage(
+            "Please enter the amount received from the customer"),
+        "CaptinwalletMsg2": MessageLookupByLibrary.simpleMessage(
+            " will be added to customer\'s Wallet"),
         "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "Choose": MessageLookupByLibrary.simpleMessage("Choose"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("Choose a ride"),
@@ -39,10 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "DidntReciveCode":
             MessageLookupByLibrary.simpleMessage("Didn’t receive code? "),
         "Disable": MessageLookupByLibrary.simpleMessage("Disable"),
+        "Driver": MessageLookupByLibrary.simpleMessage("Driver"),
         "DriverAndVehicle":
             MessageLookupByLibrary.simpleMessage("Driver and vehicle Details"),
         "Driverdetails": MessageLookupByLibrary.simpleMessage("Driver details"),
         "Duration": MessageLookupByLibrary.simpleMessage("Duration"),
+        "EGP": MessageLookupByLibrary.simpleMessage("EGP"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "EnableLocationMsg": MessageLookupByLibrary.simpleMessage(
             "enable your location to get requests in your current area"),
@@ -109,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("Popular Trips"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Program": MessageLookupByLibrary.simpleMessage("Program"),
+        "PromoCode": MessageLookupByLibrary.simpleMessage("Promo Code"),
         "RatingDriverQ":
             MessageLookupByLibrary.simpleMessage("How was your driver?"),
         "RatingTripQ":
@@ -124,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reset via Phone"),
         "Resultplaces": MessageLookupByLibrary.simpleMessage("Result places"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("Ride Payment"),
+        "RidesHistory": MessageLookupByLibrary.simpleMessage("My Trips"),
         "Room": MessageLookupByLibrary.simpleMessage("Room"),
         "Searchingforrequests":
             MessageLookupByLibrary.simpleMessage("Searching for requests"),
@@ -145,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "please fill your data to SignUp"),
         "SignUprider":
             MessageLookupByLibrary.simpleMessage("Sign up as a rider"),
+        "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
             "Your data has been registered successfully. We will contact you."),
         "Takewithyou": MessageLookupByLibrary.simpleMessage("Take with you"),
@@ -169,8 +178,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your email to send reset code"),
         "VerificationWithphonenumber":
             MessageLookupByLibrary.simpleMessage("Verification phone number"),
+        "ViewDetails": MessageLookupByLibrary.simpleMessage("View details"),
         "Wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "Yalla": MessageLookupByLibrary.simpleMessage("Yalla"),
+        "Youneedbeonline":
+            MessageLookupByLibrary.simpleMessage("You need to be online "),
+        "addToWallet": MessageLookupByLibrary.simpleMessage("Add to Wallet"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your address"),
@@ -228,6 +241,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "(اجبارى) صورة رخصة القيادة امامى و خلفى"),
         "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
         "editprofile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "enterPromoCode": MessageLookupByLibrary.simpleMessage(
+            "Enter your Promo Code to get the offer"),
         "failedTransactionsContent": MessageLookupByLibrary.simpleMessage(
             "If your payment transaction fails, please try again or contact our customer support team for assistance."),
         "failedTransactionsTitle":
@@ -319,6 +334,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your vehicle year"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
-        "whereTo": MessageLookupByLibrary.simpleMessage("Where to ?")
+        "whereTo": MessageLookupByLibrary.simpleMessage("Where to ?"),
+        "youNeesBeOnlineMsg": MessageLookupByLibrary.simpleMessage(
+            "You need be online to get requests in youe current area")
       };
 }

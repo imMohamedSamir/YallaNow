@@ -6,8 +6,8 @@ import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/driver_details.dart';
-import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_details_cubit/captin_details_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/models/captin_details_model.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/manager/captin_details_cubit/captin_details_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverImgSec.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/profileLoading.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -23,7 +23,7 @@ class CaptinProfileViewBody extends StatelessWidget {
       child: BlocBuilder<CaptinDetailsCubit, CaptinDetailsState>(
         builder: (context, state) {
           if (state is CaptinDetailsSuccess) {
-            CaptinDetailsModel captinDetailsModel = state.detailsModel;
+            CaptinDetailsModel captinDetailsModel = state.captinModel;
             return Column(
               children: [
                 Align(

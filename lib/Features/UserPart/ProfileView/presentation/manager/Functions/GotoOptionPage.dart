@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/CaptinProfileView.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/views/CaptinPDFviewer.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/views/CaptinVehicleDetaisView.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/shareApp.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/EditProfilePage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/HelpCenterPage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/LanguagePage.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/PrivacyPolicyPage.dart';
+import 'package:yallanow/Features/UserPart/RidesHistoryView/presentation/UserRidesHistoryView.dart';
 
 void goToOptionPage({required int index, required BuildContext context}) {
   switch (index) {
@@ -14,9 +16,10 @@ void goToOptionPage({required int index, required BuildContext context}) {
       NavigateToPage.slideFromRight(
           context: context, page: const EditProfilePage());
       break;
-    // case 1:
-    //   NavigateToPage.slideFromRight(context: context, page: const OrdersView());
-    //   break;
+    case 1:
+      NavigateToPage.slideFromRight(
+          context: context, page: const UserRidesHistoryView());
+      break;
     // case 2:
     //   // Handle case 2 if necessary
     //   break;
@@ -28,18 +31,18 @@ void goToOptionPage({required int index, required BuildContext context}) {
     //   NavigateToPage.slideFromRight(
     //       context: context, page: const FavoriteView());
     //   break;
-    case 1:
+    case 2:
       NavigateToPage.slideFromRight(
           context: context, page: const LanguagePage());
       break;
-    case 2:
+    case 3:
       NavigateToPage.slideFromRight(
           context: context, page: const HelpCenterPage());
       break;
-    case 3:
+    case 4:
       shareApp();
       break;
-    case 4:
+    case 5:
       NavigateToPage.slideFromRight(
           context: context, page: const PrivacyPolicyPage());
       break;
@@ -80,7 +83,8 @@ void deliveryGoToOptionPage(
   }
 }
 
-void captinGoToOptionPage({required int index, required BuildContext context}) {
+void captinGoToOptionPage(
+    {required int index, required BuildContext context, String? pdfURL}) {
   switch (index) {
     case 0:
       NavigateToPage.slideFromRight(
@@ -88,17 +92,21 @@ void captinGoToOptionPage({required int index, required BuildContext context}) {
       break;
     case 1:
       NavigateToPage.slideFromRight(
-          context: context, page: const CaptinVehicleDetaisView());
+          context: context, page: const CaptinPDFviewer());
       break;
     case 2:
       NavigateToPage.slideFromRight(
-          context: context, page: const LanguagePage());
+          context: context, page: const CaptinVehicleDetaisView());
       break;
     case 3:
       NavigateToPage.slideFromRight(
-          context: context, page: const HelpCenterPage());
+          context: context, page: const LanguagePage());
       break;
     case 4:
+      NavigateToPage.slideFromRight(
+          context: context, page: const HelpCenterPage());
+      break;
+    case 5:
       NavigateToPage.slideFromRight(
           context: context, page: const PrivacyPolicyPage());
       break;

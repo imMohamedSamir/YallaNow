@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
+import 'package:yallanow/Core/utlis/geolocatorService.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepo.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/ready_model.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/models/update_location_model.dart';
@@ -15,12 +16,14 @@ part 'ready_for_trips_state.dart';
 
 class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
   ReadyForTripsCubit(this.captinRequestRepo) : super(ReadyForTripsInitial()) {
-    getLocation();
     emit(ReadyForTripsInitial());
+
+    getLocation();
   }
 
   final CaptinRequestRepo captinRequestRepo;
   StreamSubscription<Position>? positionStreamSubscription;
+  final LocationService _locationService = LocationService();
 
   ReadyModel readyModel = ReadyModel();
   UpdateLocationModel updateLocationModel = UpdateLocationModel();
@@ -32,8 +35,9 @@ class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
     emit(ReadyForTripsLoading());
     var result = await captinRequestRepo.readyForTrips(readyModel: readyModel);
     result.fold((fail) => emit(ReadyForTripsFailure()), (respons) async {
-      emit(ReadyForTripsSuccess());
       await getData();
+
+      emit(ReadyForTripsSuccess());
     });
   }
 
@@ -45,10 +49,14 @@ class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
   Future<void> getLocation() async {
     readyModel.id = uuid.v4();
     readyModel.deviceToken = await FirebaseMessagingService().getToken();
-    var locationData = await location.getLocation();
-    readyModel.currentLatitude = locationData.latitude;
-    readyModel.currentLongitude = locationData.longitude;
-    log("first position :${readyModel.toJson().toString()}");
+    await _locationService.checkAndRequestLocationPermission();
+    bool permetion = await _locationService.checkAndRequestLocationPermission();
+    if (permetion) {
+      var locationData = await Geolocator.getCurrentPosition();
+      readyModel.currentLatitude = locationData.latitude;
+      readyModel.currentLongitude = locationData.longitude;
+      log("first position :${readyModel.toJson().toString()}");
+    }
   }
 
   Future<void> updateLocation() async {
@@ -76,7 +84,7 @@ class ReadyForTripsCubit extends Cubit<ReadyForTripsState> {
     );
   }
 
-  void stopListening() async {
+  Future<void> stopListening() async {
     await positionStreamSubscription?.cancel();
     positionStreamSubscription = null;
     isFirst = true;

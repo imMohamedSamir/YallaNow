@@ -12,8 +12,9 @@ class SendRequestCubit extends Cubit<SendRequestState> {
   void send() async {
     emit(SendRequestLoading());
     var result = await scooterRequestRepo.sendRequest(request: requestModel);
-    result.fold((fail) => emit(SendRequestFailure(errMsg: fail.errMessage)),
-        (r) => emit(SendRequestSuccess(requestModel: requestModel)));
+    result.fold((fail) {
+      emit(SendRequestFailure(errMsg: fail.errMessage));
+    }, (r) => emit(SendRequestSuccess(requestModel: requestModel)));
   }
 
   void setInitial() {
