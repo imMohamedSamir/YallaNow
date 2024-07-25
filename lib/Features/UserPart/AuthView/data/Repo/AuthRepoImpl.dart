@@ -61,7 +61,7 @@ class AuthRepoImpl implements AuthRepo {
         log(e.response?.statusCode.toString() ?? "");
 
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -94,7 +94,7 @@ class AuthRepoImpl implements AuthRepo {
       log(e.toString());
       if (e is DioException) {
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -123,7 +123,7 @@ class AuthRepoImpl implements AuthRepo {
       log(e.toString());
       if (e is DioException) {
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -172,7 +172,7 @@ class AuthRepoImpl implements AuthRepo {
       log(e.toString());
       if (e is DioException) {
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -212,7 +212,7 @@ class AuthRepoImpl implements AuthRepo {
       log(e.toString());
       if (e is DioException) {
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -236,7 +236,7 @@ class AuthRepoImpl implements AuthRepo {
         log(e.response?.statusCode.toString() ?? "");
 
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -264,7 +264,7 @@ class AuthRepoImpl implements AuthRepo {
         log(e.response?.statusCode.toString() ?? "");
 
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(
@@ -288,7 +288,7 @@ class AuthRepoImpl implements AuthRepo {
         log(e.response?.statusCode.toString() ?? "");
 
         return left(
-            ServerFailure.fromResponse(e.response!.statusCode, e.response));
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
 
       return left(

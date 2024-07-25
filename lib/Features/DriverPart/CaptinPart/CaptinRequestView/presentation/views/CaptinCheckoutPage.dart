@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/AddWalletPage.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -23,6 +25,8 @@ class CaptinCheckoutBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final price =
+        BlocProvider.of<CaptinRideRequestCubit>(context).requestModel.price;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 100),
       child: Column(
@@ -41,7 +45,7 @@ class CaptinCheckoutBody extends StatelessWidget {
                       style: AppStyles.styleMedium18(context),
                     ),
                     const SizedBox(height: 16),
-                    Text("350 EGP",
+                    Text("$price ${S.of(context).EGP}",
                         style: AppStyles.styleBold18(context)
                             .copyWith(fontSize: 28)),
                     const SizedBox(height: 32),

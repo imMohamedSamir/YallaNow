@@ -1,86 +1,43 @@
 {
   "project_info": {
-    "project_number": "595105457821",
-    "firebase_url": "https://yallanowtest-default-rtdb.firebaseio.com",
-    "project_id": "yallanowtest",
-    "storage_bucket": "yallanowtest.appspot.com"
+    "project_number": "534527622387",
+    "firebase_url": "https://yalla-now-ad0c8-default-rtdb.firebaseio.com",
+    "project_id": "yalla-now-ad0c8",
+    "storage_bucket": "yalla-now-ad0c8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:595105457821:android:81f25f3c81bf708a155674",
+        "mobilesdk_app_id": "1:534527622387:android:72e8b4f2a44608839c4b86",
         "android_client_info": {
-          "package_name": "com.example.firebasetest"
+          "package_name": "com.yallanowofficial.yallanow"
         }
       },
       "oauth_client": [
         {
-          "client_id": "595105457821-0kg4716h8jkv15p5dvhsv1t7t3dq9lvg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDU1afFJuNwNH2g_p2vDZ9ojXhjZpMcZOk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "595105457821-0kg4716h8jkv15p5dvhsv1t7t3dq9lvg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "595105457821-ms5v6mq0mp0t1ob42ep6q9dj7fe3lt85.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.yallanow"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:595105457821:android:609384c01ffeec66155674",
-        "android_client_info": {
-          "package_name": "com.example.yallanow"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "595105457821-g2skvs6qnmag094qeirvn28puveda4uj.apps.googleusercontent.com",
+          "client_id": "534527622387-22n2ql1plqbganl857acsghaalvcnohd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.yallanow",
+            "package_name": "com.yallanowofficial.yallanow",
             "certificate_hash": "7c37eba5a7d104d3f4dc2c4e353e5a5b64e2fcc8"
           }
         },
         {
-          "client_id": "595105457821-0kg4716h8jkv15p5dvhsv1t7t3dq9lvg.apps.googleusercontent.com",
+          "client_id": "534527622387-654i9v9jccmhrmsnmrmrnk1j58jic2su.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDU1afFJuNwNH2g_p2vDZ9ojXhjZpMcZOk"
+          "current_key": "AIzaSyDU9In_J53jqt9H99zvmTDs3HD0RqjoLSA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "595105457821-0kg4716h8jkv15p5dvhsv1t7t3dq9lvg.apps.googleusercontent.com",
+              "client_id": "534527622387-654i9v9jccmhrmsnmrmrnk1j58jic2su.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "595105457821-ms5v6mq0mp0t1ob42ep6q9dj7fe3lt85.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.yallanow"
-              }
             }
           ]
         }

@@ -15,17 +15,19 @@ class CategorySec extends StatelessWidget {
       CardCategDetails(
           title: S.of(context).Trips, img: Assets.imagesTripsCateg),
       CardCategDetails(
-          title: "Food", img: Assets.imagesFood, isComingSoon: true),
+          title: S.of(context).Food,
+          img: Assets.imagesFood,
+          isComingSoon: true),
       CardCategDetails(
-          title: "Pharmacy",
+          title: S.of(context).pharmacy,
           img: Assets.imagesPharamcyLogo,
           isComingSoon: true),
       CardCategDetails(
-          title: "Mart & Groceries",
+          title: S.of(context).marts,
           img: Assets.imagesMarketbasket,
           isComingSoon: true),
-      CardCategDetails(
-          title: "Bazar", img: Assets.imagesMarketbasket, isComingSoon: true),
+      // CardCategDetails(
+      //     title: "Bazar", img: Assets.imagesMarketbasket, isComingSoon: true),
     ];
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),

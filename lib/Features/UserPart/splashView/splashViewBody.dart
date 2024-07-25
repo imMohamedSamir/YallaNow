@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif/gif.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/TokenManger.dart';
@@ -13,10 +12,8 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentat
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DeliveryHomeView.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
 import 'package:yallanow/Features/UserPart/Onboarding/presentation/onboarding.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 import 'package:yallanow/Features/UserPart/splashView/TabletScreen.dart';
-import 'package:yallanow/main.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -70,6 +67,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
       } else {
         if (userToken != null && !TokenManager.tokenIsExp(userToken)) {
           if (userRole == "Driver") {
+            BlocProvider.of<LanguageCubit>(context)
+                .changeLanguage(const Locale('ar'));
             return const CaptinHomeView();
           } else if (userRole == "User") {
             return const MainHomeView();

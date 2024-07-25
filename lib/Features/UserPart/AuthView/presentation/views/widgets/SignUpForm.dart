@@ -187,6 +187,7 @@ class _SignupFormState extends State<SignupForm> {
               )),
           const SizedBox(height: 16),
           Genderdropmenu(
+            enabled: true,
             onChanged: (value) {
               registerModel.gender = value!.trim();
             },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/place_autocomplete_model/place_autocomplete_model.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddressLoadingPage.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/views/ResultsPlacesCard.dart';
 
@@ -11,19 +12,23 @@ class ResultplacesView extends StatelessWidget {
   // final TextEditingController textEditingController;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ScooterLocationCubit, ScooterLocationState>(
-        listener: (context, state) {
-          if (state is ScooterLocationChange) {
-            Navigator.of(context).pop();
-          } else if (state is ScooterLocationFailuer) {
-            Navigator.of(context).pop();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text("please try again and choose correct place")),
-            );
-          }
-        },
-        child: Column(
+    return BlocConsumer<ScooterLocationCubit, ScooterLocationState>(
+      listener: (context, state) {
+        if (state is ScooterLocationChange) {
+          Navigator.of(context).pop();
+        } else if (state is ScooterLocationFailuer) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text("please try again and choose correct place")),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is ScooterLocationLoading) {
+          return const AddressLoadingPage();
+        }
+        return Column(
           children: List.generate(
               places.length,
               (index) => Padding(
@@ -62,6 +67,8 @@ class ResultplacesView extends StatelessWidget {
                     },
                     address: places[index].description!,
                   ))),
-        ));
+        );
+      },
+    );
   }
 }

@@ -9,7 +9,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/d
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/location.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/location_info/location_info.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/routes_model/routes_model.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesService.dart';
+import 'package:yallanow/Core/utlis/RoutesService.dart';
 
 class RoutesUtils {
   Future<RouteInfo> getRouteData(
@@ -45,7 +45,6 @@ class RoutesUtils {
     if (currentDuration > 60) {
       currentDuration = currentDuration / 60;
     }
-    dev.log("duration: ${currentDuration.toString()}");
     return currentDuration.toInt().toString();
   }
 

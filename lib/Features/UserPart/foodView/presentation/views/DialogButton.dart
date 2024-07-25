@@ -20,8 +20,8 @@ class DialogButton extends StatelessWidget {
             Navigator.pop(context);
           },
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color?>(btnColor),
-        shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+        backgroundColor: WidgetStateProperty.all<Color?>(btnColor),
+        shape: WidgetStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         )),
       ),

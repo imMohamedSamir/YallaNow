@@ -14,11 +14,11 @@ final class RegisterationLoading extends RegisterationState {}
 final class RegisterationSuccess extends RegisterationState {
   final dynamic respons;
 
-  RegisterationSuccess({required this.respons});
+  const RegisterationSuccess({required this.respons});
 }
 
 final class RegisterationFailure extends RegisterationState {
   final String failmsg;
 
-  RegisterationFailure({required this.failmsg});
+  const RegisterationFailure({required this.failmsg});
 }

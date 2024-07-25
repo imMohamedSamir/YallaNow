@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppLang.dart';
-import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
@@ -42,7 +41,7 @@ class CaptinRequestBS extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
         child: SingleChildScrollView(
-          controller: scrollController ?? null,
+          controller: scrollController,
           child: BlocProvider(
             create: (context) =>
                 CaptinStartTripCubit(getIt.get<CaptinRequestRepoImpl>()),

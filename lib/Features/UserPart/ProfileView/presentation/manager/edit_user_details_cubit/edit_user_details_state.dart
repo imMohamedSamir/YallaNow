@@ -13,6 +13,8 @@ final class EditUserDetailsLoading extends EditUserDetailsState {}
 
 final class EditUserDetailsSuccess extends EditUserDetailsState {}
 
+final class EditUserDetailsEnabeled extends EditUserDetailsState {}
+
 final class EditUserDetailsFailure extends EditUserDetailsState {
   final String errMsg;
 

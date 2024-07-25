@@ -16,9 +16,9 @@ class ChooseRideType extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ScooterLocationCubit, ScooterLocationState>(
       builder: (context, state) {
-        if (state is ScooterLocationFailuer) {
-          return _buildFailureSheet(context, state.errmsg);
-        }
+        // if (state is ScooterLocationFailuer) {
+        //   return _buildFailureSheet(context, state.errmsg);
+        // }
         return _buildRideTypeSheet(context);
       },
     );

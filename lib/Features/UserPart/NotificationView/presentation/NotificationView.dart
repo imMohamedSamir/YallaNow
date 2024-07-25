@@ -13,17 +13,3 @@ class NotificationPage extends StatelessWidget {
         body: const NotificationPageBody());
   }
 }
-
-class NotificationDetailsModel {
-  final String day, title, subtitle;
-
-  NotificationDetailsModel(
-      {required this.day, required this.title, required this.subtitle});
-}
-
-class NotificationGroup {
-  final String day;
-  final List<NotificationDetailsModel> notifications;
-
-  NotificationGroup({required this.day, required this.notifications});
-}

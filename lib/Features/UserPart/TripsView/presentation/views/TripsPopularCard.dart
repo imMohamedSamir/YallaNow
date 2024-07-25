@@ -10,7 +10,6 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_popular_model.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripPage.dart';
-import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripsFavIcon.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class TripsPopularCard extends StatelessWidget {

@@ -41,48 +41,58 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDpTZVqtmF4OXXI0wXrCqlfuvqpiZGjUJU',
-    appId: '1:595105457821:web:6b4680e11ae61748155674',
-    messagingSenderId: '595105457821',
-    projectId: 'yallanowtest',
-    authDomain: 'yallanowtest.firebaseapp.com',
-    storageBucket: 'yallanowtest.appspot.com',
-    measurementId: 'G-NXHD477EPG',
+    apiKey: 'AIzaSyA1Y4Zm-cGfdk1GPBS-0KrxtSbtl9gUbnY',
+    appId: '1:534527622387:web:98890071d05599f09c4b86',
+    messagingSenderId: '534527622387',
+    projectId: 'yalla-now-ad0c8',
+    authDomain: 'yalla-now-ad0c8.firebaseapp.com',
+    databaseURL: 'https://yalla-now-ad0c8-default-rtdb.firebaseio.com',
+    storageBucket: 'yalla-now-ad0c8.appspot.com',
+    measurementId: 'G-9JNLY936W0',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDU1afFJuNwNH2g_p2vDZ9ojXhjZpMcZOk',
-    appId: '1:595105457821:android:609384c01ffeec66155674',
-    messagingSenderId: '595105457821',
-    projectId: 'yallanowtest',
-    storageBucket: 'yallanowtest.appspot.com',
+    apiKey: 'AIzaSyDU9In_J53jqt9H99zvmTDs3HD0RqjoLSA',
+    appId: '1:534527622387:android:72e8b4f2a44608839c4b86',
+    messagingSenderId: '534527622387',
+    projectId: 'yalla-now-ad0c8',
+    databaseURL: 'https://yalla-now-ad0c8-default-rtdb.firebaseio.com',
+    storageBucket: 'yalla-now-ad0c8.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA7I9Q9O6GBgXYcga3J2nls5JaDu3xsXtY',
-    appId: '1:595105457821:ios:f3d45badda498e44155674',
-    messagingSenderId: '595105457821',
-    projectId: 'yallanowtest',
-    storageBucket: 'yallanowtest.appspot.com',
-    iosBundleId: 'com.example.yallanow',
+    apiKey: 'AIzaSyDKMRUQCmKf8jlqMBoIuQSQvKFcDw3xybI',
+    appId: '1:534527622387:ios:bda787e1c89208e69c4b86',
+    messagingSenderId: '534527622387',
+    projectId: 'yalla-now-ad0c8',
+    databaseURL: 'https://yalla-now-ad0c8-default-rtdb.firebaseio.com',
+    storageBucket: 'yalla-now-ad0c8.appspot.com',
+    androidClientId: '534527622387-22n2ql1plqbganl857acsghaalvcnohd.apps.googleusercontent.com',
+    iosClientId: '534527622387-3ik6ll42fddjolvth8251pokehviv390.apps.googleusercontent.com',
+    iosBundleId: 'com.yallanowofficial.yallanow',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA7I9Q9O6GBgXYcga3J2nls5JaDu3xsXtY',
-    appId: '1:595105457821:ios:f3d45badda498e44155674',
-    messagingSenderId: '595105457821',
-    projectId: 'yallanowtest',
-    storageBucket: 'yallanowtest.appspot.com',
+    apiKey: 'AIzaSyDKMRUQCmKf8jlqMBoIuQSQvKFcDw3xybI',
+    appId: '1:534527622387:ios:4493257b6890a64c9c4b86',
+    messagingSenderId: '534527622387',
+    projectId: 'yalla-now-ad0c8',
+    databaseURL: 'https://yalla-now-ad0c8-default-rtdb.firebaseio.com',
+    storageBucket: 'yalla-now-ad0c8.appspot.com',
+    androidClientId: '534527622387-22n2ql1plqbganl857acsghaalvcnohd.apps.googleusercontent.com',
+    iosClientId: '534527622387-rmp5n3slk1hptvoj7pb485m3pq4i21jr.apps.googleusercontent.com',
     iosBundleId: 'com.example.yallanow',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDpTZVqtmF4OXXI0wXrCqlfuvqpiZGjUJU',
-    appId: '1:595105457821:web:d3f9bff0dff3ab21155674',
-    messagingSenderId: '595105457821',
-    projectId: 'yallanowtest',
-    authDomain: 'yallanowtest.firebaseapp.com',
-    storageBucket: 'yallanowtest.appspot.com',
-    measurementId: 'G-79Q6N75X6T',
+    apiKey: 'AIzaSyA1Y4Zm-cGfdk1GPBS-0KrxtSbtl9gUbnY',
+    appId: '1:534527622387:web:5a84881c4236781b9c4b86',
+    messagingSenderId: '534527622387',
+    projectId: 'yalla-now-ad0c8',
+    authDomain: 'yalla-now-ad0c8.firebaseapp.com',
+    databaseURL: 'https://yalla-now-ad0c8-default-rtdb.firebaseio.com',
+    storageBucket: 'yalla-now-ad0c8.appspot.com',
+    measurementId: 'G-GCD926TKX7',
   );
+
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
-import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripsPlacesCard.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripsTypeView.dart';
 
 class TripsTypesCard extends StatelessWidget {

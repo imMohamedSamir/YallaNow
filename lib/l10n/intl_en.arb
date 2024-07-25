@@ -210,8 +210,26 @@
      "Submit":"Submit",
      "addToWallet":"Add to Wallet",
      "EGP":"EGP",
-     "CaptinwalletMsg":"Please enter the amount received from the customer",
-     "CaptinwalletMsg2":" will be added to customer's Wallet"
+     "CaptinwalletMsg":"enter the amount received from the customer",
+     "CaptinwalletMsg2":" will be added to customer's Wallet",
+     "Food":"Food & Resturants",
+     "pharmacy":"pharmacy",
+     "marts":"Mart & Groceries",
+
+     "addWalletValidation":"please enter the amount received from the customer",
+     "addWalletSuccessMsg":"the amoun added to customer Wallet",
+     "Save":"save",
+     "edit":"Edit",
+     "editSuccess":"successfully edit",
+     "DeleteAcc":"Delete Account",
+     "deleteAccQ":"Important Notice: Account Deletion",
+     "deleteAccMsg":"Please be aware that by deleting your account, all associated data will be permanently deleted. This includes:",
+     "deleteAccMsginclude1":"Transactions such as orders and points.",
+     "deleteAccMsginclude2":"Personal information and account details.",
+     "deleteAccMsg2":"Once your account is deleted, this data cannot be recovered. Please ensure you have saved any necessary information before proceeding.",
+    "deletedSuccess":"your account has been deleted",
+    "noNotificationsMsg":"You have no notifications at the moment. All your notifications will appear here."
+
 }
 
     

@@ -12,7 +12,7 @@ class AddresseButton extends StatelessWidget {
       constraints: BoxConstraints.tight(const Size(56, 56)),
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color?>(const Color(0xffB20404))),
+              WidgetStateProperty.all<Color?>(const Color(0xffB20404))),
       onPressed: () {
         Navigator.push(
             context,

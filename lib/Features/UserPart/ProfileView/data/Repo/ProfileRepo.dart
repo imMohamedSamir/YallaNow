@@ -4,4 +4,5 @@ import 'package:yallanow/Features/UserPart/ProfileView/data/models/user_profile_
 
 abstract class ProfileRepo {
   Future<Either<Failure, UserProfileDetails>> fetchUserDetails();
+  Future<Either<Failure, dynamic>> deletAccount();
 }

@@ -7,10 +7,8 @@ import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
-import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DrSignupButtonBuilder.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverDetailsView.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverImgSec.dart';
-import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/RiderRoleRadio.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -240,6 +238,7 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               )),
           const SizedBox(height: 16),
           Genderdropmenu(
+            enabled: true,
             onChanged: (value) {
               cubit!.driverRegisterModel.gender = value!.trim();
             },

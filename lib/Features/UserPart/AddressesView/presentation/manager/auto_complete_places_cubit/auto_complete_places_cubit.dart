@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
@@ -39,6 +41,7 @@ class AutoCompletePlacesCubit extends Cubit<AutoCompletePlacesState> {
     results.fold((faliure) {
       emit(AutoCompletePlacesFailure(errmsg: faliure.errMessage));
     }, (places) {
+      log(places.length.toString());
       emit(AutoCompletePlacesSucssess(places: places));
     });
   }

@@ -1,25 +1,11 @@
 import 'package:hive/hive.dart';
-part 'user_profile_details.g.dart';
 
-@HiveType(typeId: 0)
 class UserProfileDetails extends HiveObject {
-  @HiveField(0)
   String? email;
-  @HiveField(1)
   String? firstName;
-  @HiveField(2)
   String? lastName;
-  @HiveField(3)
   dynamic phoneNumber;
-  @HiveField(4)
   String? id;
-  @HiveField(5)
-  String? userName;
-  @HiveField(6)
-  dynamic restaurantsOrders;
-  @HiveField(7)
-  dynamic addresses;
-  @HiveField(8)
   double? wallet;
   String? gender;
 
@@ -29,9 +15,6 @@ class UserProfileDetails extends HiveObject {
       this.lastName,
       this.phoneNumber,
       this.id,
-      this.userName,
-      this.restaurantsOrders,
-      this.addresses,
       this.wallet,
       this.gender});
 
@@ -41,10 +24,6 @@ class UserProfileDetails extends HiveObject {
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       phoneNumber: json['phoneNumber'] as dynamic,
-      id: json['id'] as String?,
-      userName: json['userName'] as String?,
-      restaurantsOrders: json['restaurantsOrders'] as dynamic,
-      addresses: json['addresses'] as dynamic,
       wallet: json['wallet'] as double?,
     );
   }
@@ -54,10 +33,6 @@ class UserProfileDetails extends HiveObject {
         'firstName': firstName,
         'lastName': lastName,
         'phoneNumber': phoneNumber,
-        'id': id,
-        'userName': userName,
-        'restaurantsOrders': restaurantsOrders,
-        'addresses': addresses,
-        'wallet': wallet
+        'gender': gender,
       };
 }

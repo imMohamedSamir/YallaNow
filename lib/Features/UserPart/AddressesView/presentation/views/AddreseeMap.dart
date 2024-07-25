@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoIm
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/CurrentLocationCubit/current_location_cubit_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddressMapBody.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
+import 'package:yallanow/Core/utlis/RoutesUtlis.dart';
 
 class AddressMapView extends StatelessWidget {
   const AddressMapView({super.key});

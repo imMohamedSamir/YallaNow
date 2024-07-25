@@ -240,4 +240,36 @@ class CaptinRequestRepoImpl implements CaptinRequestRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, dynamic>> addToWallet(
+      {required String userId, required double value}) async {
+    String endPoint = 'Wallets/add-value';
+    String token = await TokenManager.getUserToken() ?? "";
+    try {
+      var response = await yallaNowServices.post(
+        endPoint: endPoint,
+        token: token,
+        body: {
+          'userId': userId,
+          'value': value,
+        },
+      );
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        log(e.response?.data.toString() ?? "error");
+
+        return left(
+          ServerFailure.fromResponse(e.response!.statusCode, e.response!),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
 }

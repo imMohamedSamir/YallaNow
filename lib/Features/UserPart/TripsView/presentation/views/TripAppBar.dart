@@ -1,16 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/trip_details_cubit.dart/trip_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/trip_page_cubit/trip_page_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
 class TripAppBar extends StatelessWidget {
   const TripAppBar({super.key});

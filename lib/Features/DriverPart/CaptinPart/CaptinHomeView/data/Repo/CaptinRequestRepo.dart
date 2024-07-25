@@ -19,4 +19,6 @@ abstract class CaptinRequestRepo {
   Future<Either<Failure, dynamic>> startTrip({required String tripId});
   Future<Either<Failure, dynamic>> endTrip({required String tripId});
   Future<Either<Failure, dynamic>> disconnect();
+  Future<Either<Failure, dynamic>> addToWallet(
+      {required String userId, required double value});
 }

@@ -2100,10 +2100,10 @@ class S {
     );
   }
 
-  /// `Please enter the amount received from the customer`
+  /// `enter the amount received from the customer`
   String get CaptinwalletMsg {
     return Intl.message(
-      'Please enter the amount received from the customer',
+      'enter the amount received from the customer',
       name: 'CaptinwalletMsg',
       desc: '',
       args: [],
@@ -2115,6 +2115,166 @@ class S {
     return Intl.message(
       ' will be added to customer\'s Wallet',
       name: 'CaptinwalletMsg2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Food & Resturants`
+  String get Food {
+    return Intl.message(
+      'Food & Resturants',
+      name: 'Food',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pharmacy`
+  String get pharmacy {
+    return Intl.message(
+      'pharmacy',
+      name: 'pharmacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mart & Groceries`
+  String get marts {
+    return Intl.message(
+      'Mart & Groceries',
+      name: 'marts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter the amount received from the customer`
+  String get addWalletValidation {
+    return Intl.message(
+      'please enter the amount received from the customer',
+      name: 'addWalletValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the amoun added to customer Wallet`
+  String get addWalletSuccessMsg {
+    return Intl.message(
+      'the amoun added to customer Wallet',
+      name: 'addWalletSuccessMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `save`
+  String get Save {
+    return Intl.message(
+      'save',
+      name: 'Save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `successfully edit`
+  String get editSuccess {
+    return Intl.message(
+      'successfully edit',
+      name: 'editSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get DeleteAcc {
+    return Intl.message(
+      'Delete Account',
+      name: 'DeleteAcc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Important Notice: Account Deletion`
+  String get deleteAccQ {
+    return Intl.message(
+      'Important Notice: Account Deletion',
+      name: 'deleteAccQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please be aware that by deleting your account, all associated data will be permanently deleted. This includes:`
+  String get deleteAccMsg {
+    return Intl.message(
+      'Please be aware that by deleting your account, all associated data will be permanently deleted. This includes:',
+      name: 'deleteAccMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions such as orders and points.`
+  String get deleteAccMsginclude1 {
+    return Intl.message(
+      'Transactions such as orders and points.',
+      name: 'deleteAccMsginclude1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal information and account details.`
+  String get deleteAccMsginclude2 {
+    return Intl.message(
+      'Personal information and account details.',
+      name: 'deleteAccMsginclude2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once your account is deleted, this data cannot be recovered. Please ensure you have saved any necessary information before proceeding.`
+  String get deleteAccMsg2 {
+    return Intl.message(
+      'Once your account is deleted, this data cannot be recovered. Please ensure you have saved any necessary information before proceeding.',
+      name: 'deleteAccMsg2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your account has been deleted`
+  String get deletedSuccess {
+    return Intl.message(
+      'your account has been deleted',
+      name: 'deletedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no notifications at the moment. All your notifications will appear here.`
+  String get noNotificationsMsg {
+    return Intl.message(
+      'You have no notifications at the moment. All your notifications will appear here.',
+      name: 'noNotificationsMsg',
       desc: '',
       args: [],
     );

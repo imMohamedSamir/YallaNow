@@ -8,10 +8,8 @@ import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/models/DrRegisterModel.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/DriverFileMangement.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
-import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DrRequiredPapers.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverPapersBuilder.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/VehicleDetailsView.dart';
-import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/VehicleImgBuilder.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class DriverDetailsForm extends StatefulWidget {

@@ -20,7 +20,7 @@ abstract class TokenManager {
   static Future<String?> getUserRole() async {
     try {
       return await _storage.read(key: savedRole);
-    } on Exception catch (e) {
+    } on Exception {
       return "";
     }
   }

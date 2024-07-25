@@ -38,4 +38,28 @@ class ProfileRepoImpl implements ProfileRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, dynamic>> deletAccount() async {
+    String userId = await TokenManager.getUserId();
+    String endPoint = "UserProfile/DeleteUser?userId=$userId";
+    try {
+      var response = await yallaNowServices.delete(endPoint: endPoint);
+
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+          ServerFailure.fromResponse(e.response!.statusCode, e.response),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
 }

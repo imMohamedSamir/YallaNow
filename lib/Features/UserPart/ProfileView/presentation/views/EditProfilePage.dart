@@ -25,7 +25,7 @@ class EditProfilePage extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        appBar: secondAppBar(context, title: S.of(context).editprofile),
+        appBar: profileAppBar(context, title: S.of(context).editprofile),
         body: const EditProfileBody(),
       ),
     );

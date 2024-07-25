@@ -22,7 +22,7 @@ class FoodTopCategBody extends StatelessWidget {
           const SizedBox(height: 16),
           const FilterListView(),
           const SizedBox(height: 24),
-          FoodTopCategResturantLV()
+          const FoodTopCategResturantLV()
         ],
       ),
     );

@@ -25,7 +25,14 @@ class YallaNowServices {
       onError: (DioException e, handler) async {
         if (e.response?.statusCode == 401) {
           // final newToken = await _refreshToken();
-          sessionExpMethode(navigatorKey.currentContext!);
+          await TokenManager.getUserRole().then((role) {
+            if (role == "Driver") {
+              captinSessionExpMethode(navigatorKey.currentContext!);
+            } else {
+              sessionExpMethode(navigatorKey.currentContext!);
+            }
+          });
+
           // if (newToken != null) {
           //   // Update token in headers and retry the request
           //   e.requestOptions.headers['Authorization'] = 'Bearer $newToken';

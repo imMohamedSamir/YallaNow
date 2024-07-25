@@ -23,7 +23,8 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.autovalidateMode,
       this.focusNode,
-      this.label});
+      this.label,
+      this.enabled = true});
   final String? hintText;
   final TextInputType? keyboardType;
   final int? maxLines;
@@ -42,11 +43,12 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final AutovalidateMode? autovalidateMode;
   final FocusNode? focusNode;
+  final bool? enabled;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       textDirection: AppLang.isArabic() ? TextDirection.rtl : TextDirection.ltr,
-      maxLines: maxLines ?? null,
+      maxLines: maxLines,
       focusNode: focusNode,
       autovalidateMode: autovalidateMode,
       controller: controller,
@@ -63,6 +65,7 @@ class CustomTextField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      enabled: enabled,
       decoration: InputDecoration(
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: suffixIcon,
@@ -131,7 +134,7 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: maxLines ?? null,
+      maxLines: maxLines,
       focusNode: focusNode,
       autovalidateMode: autovalidateMode,
       controller: controller,

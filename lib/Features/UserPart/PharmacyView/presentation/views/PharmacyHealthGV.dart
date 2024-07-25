@@ -41,7 +41,7 @@ class PharmacyHealthGV extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => PharmacyCategoryPage(
                       title: categories[index].title,
-                      items: [],
+                      items: const [],
                     ),
                   ));
             },

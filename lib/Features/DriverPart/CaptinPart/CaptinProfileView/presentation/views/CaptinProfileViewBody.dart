@@ -93,7 +93,7 @@ class CaptinProfileViewBody extends StatelessWidget {
               child: Text(state.errMsg),
             );
           } else {
-            return SizedBox();
+            return const SizedBox();
           }
         },
       ),

@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
+import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepo.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/UserInputAddressModel.dart';
@@ -15,17 +15,20 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addres
 class AddressesRepoImpl implements AddressesRepo {
   final GoogleMapsServices googleMapsServices;
   final YallaNowServices yallaNowServices;
-  final String placesApiKey = 'AIzaSyCxHMBWhEn5YR3V9MeqLOUg8_wYha4r820';
+  final String placesApiKey = 'AIzaSyC5oitatJsw_65vQ0F6e957BnzntH69rVQ';
   AddressesRepoImpl(this.googleMapsServices, this.yallaNowServices);
 
   @override
   Future<Either<Failure, List<PlaceModel>>> getPredictions(
       {required String input, String? sesstionToken}) async {
     String endPoint =
-        'place/autocomplete/json?key=$placesApiKey&input=$input,&sessiontoken=$sesstionToken';
+        'place/autocomplete/json?key=$googleApiKey&input=$input,&sessiontoken=$sesstionToken';
 
     try {
       var data = await googleMapsServices.getPreditction(endPoint: endPoint);
+      if (data['error_message'] != null) {
+        return left(ServerFailure(data['status']));
+      }
       var predictions = data['predictions'];
       List<PlaceModel> places = [];
       for (var item in predictions) {
@@ -51,8 +54,7 @@ class AddressesRepoImpl implements AddressesRepo {
   Future<Either<Failure, List<UserAddressesDetailsModel>>>
       fetchUserAddresses() async {
     String endPoint = "UserAddress/get";
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(savedToken);
+    usertoken = await TokenManager.getUserToken();
 
     try {
       var response =
@@ -82,8 +84,7 @@ class AddressesRepoImpl implements AddressesRepo {
   Future<Either<Failure, dynamic>> addNewUserAddresses(
       {required UserInputAddressModel userAddressDetailsModel}) async {
     String endPoint = "UserAddress/add";
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(savedToken);
+    usertoken = await TokenManager.getUserToken();
     try {
       var response = await yallaNowServices.post(
         endPoint: endPoint,
@@ -114,8 +115,7 @@ class AddressesRepoImpl implements AddressesRepo {
       {required String useraddressId, required String addressId}) async {
     String endPoint =
         "UserAddress/delete/$addressId?useraddressId=$useraddressId";
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    usertoken = prefs.getString(savedToken);
+    usertoken = await TokenManager.getUserToken();
 
     try {
       var response =

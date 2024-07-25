@@ -41,7 +41,7 @@ class _LangaugeSecState extends State<LangaugeSec> {
               groupValue = value; // Update groupValue when user selects English
 
               BlocProvider.of<LanguageCubit>(context)
-                  .changeLanguage(context, const Locale('en'));
+                  .changeLanguage(const Locale('en'));
             });
           },
         ),
@@ -54,7 +54,7 @@ class _LangaugeSecState extends State<LangaugeSec> {
                 setState(() {
                   groupValue = value;
                   BlocProvider.of<LanguageCubit>(context)
-                      .changeLanguage(context, const Locale('ar'));
+                      .changeLanguage(const Locale('ar'));
                 });
               },
               title: state.languageCode == 'en' ? 'Arabic' : 'العربية',

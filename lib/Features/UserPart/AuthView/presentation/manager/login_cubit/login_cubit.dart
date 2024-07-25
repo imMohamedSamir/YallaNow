@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +58,13 @@ class LoginCubit extends Cubit<LoginState> {
             page: const ExternalAuthPage());
         emit(LoginInitial());
       } else {
-        emit(LoginFailure(errorMessage: fail.errMessage));
+        log(fail.errMessage);
+        if (fail.errMessage.contains(
+            "At least one of ID token and access token is required")) {
+          emit(LoginInitial());
+        } else {
+          emit(LoginFailure(errorMessage: fail.errMessage));
+        }
       }
     }, (logindetails) async {
       if (logindetails['isAuthSuccessful']) {

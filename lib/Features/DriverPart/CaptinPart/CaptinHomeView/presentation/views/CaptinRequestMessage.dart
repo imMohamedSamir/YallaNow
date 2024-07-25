@@ -57,11 +57,11 @@ class _CaptinRequestMessageState extends State<CaptinRequestMessage>
           const Text("Timed Message"),
         ],
       ),
-      content: Column(
+      content: const Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('This dialog will disappear after 5 seconds.'),
-          const SizedBox(height: 20),
+          Text('This dialog will disappear after 5 seconds.'),
+          SizedBox(height: 20),
         ],
       ),
     );

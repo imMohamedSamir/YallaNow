@@ -8,10 +8,11 @@ part 'ride_price_state.dart';
 class RidePriceCubit extends Cubit<RidePriceState> {
   RidePriceCubit(this.scooterRideRepo) : super(RidePriceInitial());
   final ScooterRideRepo scooterRideRepo;
-  void getPrices({required double distance}) async {
+  void getPrices({required double distance, required int duration}) async {
     emit(RidePriceLoading());
     distance = distance / 1000;
-    var result = await scooterRideRepo.getRidePrice(distance: distance);
+    var result = await scooterRideRepo.getRidePrice(
+        distance: distance, duration: duration);
     result.fold((fail) => emit(RidePriceFailure(errMsg: fail.errMessage)),
         (prices) => emit(RidePriceSuccess(pricesModel: prices)));
   }

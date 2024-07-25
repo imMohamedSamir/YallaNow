@@ -52,11 +52,9 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
 
   Future<void> toggleGroupMembership() async {
     if (!_isJoined) {
-      // await joinGroup(groupName: group);
       await connect();
       _isJoined = true;
     } else {
-      // await leaveGroup(groupName: group);
       await disconnect();
       _isJoined = false;
       emit(CaptinRideRequestInitial());
@@ -76,7 +74,8 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
 
   Future<void> disconnect() async {
     emit(CaptinRideRequestloading());
-    await messagingService.disconnect();
+    await captinRequestRepo.disconnect();
+    emit(CaptinRideRequestInitial());
     _isJoined = false;
   }
 

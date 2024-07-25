@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/showOrderPlaced.dart';

@@ -152,7 +152,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
             ],
           );
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

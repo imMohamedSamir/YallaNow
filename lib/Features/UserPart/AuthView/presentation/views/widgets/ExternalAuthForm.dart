@@ -58,6 +58,7 @@ class _ExternalAuthFormState extends State<ExternalAuthForm> {
               ),
               const Gap(16),
               Genderdropmenu(
+                enabled: true,
                 onChanged: (value) {
                   authModel.gender = value!.trim();
                 },

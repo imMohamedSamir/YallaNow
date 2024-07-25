@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/edit_user_details_cubit/edit_user_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/LocationAppBar.dart';
+import 'package:yallanow/generated/l10n.dart';
 import 'package:yallanow/main.dart';
 
 AppBar favoriteAppBar(BuildContext context,
@@ -95,6 +96,39 @@ AppBar secondAppBar(BuildContext context, {required String title}) {
           }));
 }
 
+AppBar profileAppBar(BuildContext context,
+    {required String title, Widget? action}) {
+  return AppBar(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    titleSpacing: -8,
+    title: Text(title, style: AppStyles.styleMedium18(context)),
+    leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios),
+        onPressed: () {
+          Navigator.pop(context);
+        }),
+    actions: [
+      BlocBuilder<EditUserDetailsCubit, EditUserDetailsState>(
+        builder: (context, state) {
+          if (state is EditUserDetailsInitial) {
+            return TextButton.icon(
+                onPressed: () {
+                  BlocProvider.of<EditUserDetailsCubit>(context).enableEdite();
+                },
+                label: Text(
+                  S.of(context).edit,
+                  style:
+                      AppStyles.styleMedium16(context).copyWith(color: pKcolor),
+                ));
+          }
+          return SizedBox();
+        },
+      )
+    ],
+  );
+}
+
 AppBar homeAppBar() {
   return AppBar(
     backgroundColor: Colors.white,
@@ -139,10 +173,12 @@ AppBar drAppBar(BuildContext context, {required String title}) {
       elevation: 0,
       titleSpacing: 16,
       title: Text(title, style: AppStyles.styleMedium18(context)),
-      actions: [LanguageDropdown()]);
+      actions: const [LanguageDropdown()]);
 }
 
 class LanguageDropdown extends StatefulWidget {
+  const LanguageDropdown({super.key});
+
   @override
   _LanguageDropdownState createState() => _LanguageDropdownState();
 }
@@ -167,10 +203,10 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
               _selectedLanguage = newValue!;
               if (_selectedLanguage == 'العربية') {
                 BlocProvider.of<LanguageCubit>(context)
-                    .changeLanguage(context, const Locale('ar'));
+                    .changeLanguage(const Locale('ar'));
               } else {
                 BlocProvider.of<LanguageCubit>(context)
-                    .changeLanguage(context, const Locale('en'));
+                    .changeLanguage(const Locale('en'));
               }
             });
           },

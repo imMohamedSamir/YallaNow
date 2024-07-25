@@ -7,14 +7,13 @@ class LanguageCubit extends Cubit<Locale> {
   static const List<Locale> supportedLocales = [
     Locale('en'),
     Locale('ar'),
-    // Add more supported locales here if needed
   ];
 
   LanguageCubit() : super(const Locale('en')) {
     _loadSavedLanguage();
   }
 
-  void changeLanguage(BuildContext context, Locale newLocale) {
+  void changeLanguage(Locale newLocale) {
     if (supportedLocales.contains(newLocale)) {
       emit(newLocale);
       _saveLanguage(newLocale);

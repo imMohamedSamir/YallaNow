@@ -16,5 +16,5 @@ final class DriverRegisterationLoading extends DriverRegisterationState {}
 final class DriverRegisterationFailure extends DriverRegisterationState {
   final String errmsg;
 
-  DriverRegisterationFailure({required this.errmsg});
+  const DriverRegisterationFailure({required this.errmsg});
 }

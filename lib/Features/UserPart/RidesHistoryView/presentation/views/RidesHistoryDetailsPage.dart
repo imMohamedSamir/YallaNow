@@ -7,6 +7,7 @@ import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoCard.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardHeader.dart';
 import 'package:yallanow/Features/UserPart/RidesHistoryView/data/models/UserRideHistoryModel.dart';
+import 'package:yallanow/Features/UserPart/RidesHistoryView/presentation/manager/Methods/userRideStatus.dart';
 import 'package:yallanow/Features/UserPart/RidesHistoryView/presentation/views/UserSrcDstSec.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -16,14 +17,6 @@ class RidesHistoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool getStatus() {
-      if (rideHistory.status == 'Completed') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     return Scaffold(
       appBar: secondAppBar(context, title: S.of(context).tripdetails),
       body: SingleChildScrollView(
@@ -31,7 +24,8 @@ class RidesHistoryDetailsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(children: [
             OrderCardHeader(
-                date: rideHistory.date ?? "", isSuccess: getStatus()),
+                date: rideHistory.date ?? "",
+                isSuccess: userRideStatus(rideHistory.status!)),
             const SizedBox(height: 16),
             UserSrcDstSec(src: rideHistory.from, dst: rideHistory.to),
             const Divider(height: 32),

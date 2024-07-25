@@ -16,7 +16,7 @@ class ResultsPlacesSec extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(S.of(context).Recentplaces,
+        Text(S.of(context).Resultplaces,
             style: AppStyles.styleMedium16(context)
                 .copyWith(color: const Color(0xff5A5A5A))),
         const SizedBox(height: 16),

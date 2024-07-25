@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
+import 'package:yallanow/Core/utlis/RoutesUtlis.dart';
 
 part 'current_location_cubit_state.dart';
 

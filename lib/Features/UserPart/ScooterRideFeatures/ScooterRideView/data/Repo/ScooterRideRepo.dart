@@ -5,6 +5,6 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/d
 
 abstract class ScooterRideRepo {
   Future<Either<Failure, RidePricesModel>> getRidePrice(
-      {required double distance});
+      {required double distance, required int duration});
   Future<Either<Failure, List<UserRideHistoryModel>>> getRideHistory();
 }

@@ -6,6 +6,7 @@ import 'package:yallanow/Core/utlis/TokenManger.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ready_for_trips_cubit/ready_for_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinCancelDialog.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/LoginView.dart';
@@ -83,6 +84,45 @@ void sessionExpMethode(BuildContext context) {
   );
 }
 
+void captinSessionExpMethode(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(S.of(context).SessionExpired,
+            style: AppStyles.styleSemiBold16(context)
+                .copyWith(color: const Color(0xff240301))),
+        content: Text(
+          S.of(context).SessionExpiredMsg,
+          style: AppStyles.styleRegular16(context)
+              .copyWith(color: const Color(0xff5A5A5A)),
+        ),
+        actions: [
+          DialogButton(
+              btnColor: pKcolor,
+              textColor: Colors.white,
+              text: S.of(context).Ok,
+              onPressed: () async {
+                await TokenManager.getUserRole().then((role) {
+                  if (role == "Driver") {
+                    BlocProvider.of<CaptinRideRequestCubit>(context)
+                        .disconnect();
+                    BlocProvider.of<ReadyForTripsCubit>(context)
+                        .stopListening();
+                  }
+                });
+                await TokenManager.removeToken().then((_) {
+                  Navigator.pop(context);
+                  NavigateToPage.slideFromTopAndRemove(
+                      context: context, page: const LoginView());
+                });
+              })
+        ],
+      );
+    },
+  );
+}
+
 void logoutdialogMethode(BuildContext context) {
   showDialog(
     context: context,
@@ -96,11 +136,20 @@ void logoutdialogMethode(BuildContext context) {
               btnColor: pKcolor,
               textColor: Colors.white,
               text: S.of(context).logout,
-              onPressed: () {
-                TokenManager.removeToken();
-                Navigator.pop(context);
-                NavigateToPage.slideFromTopAndRemove(
-                    context: context, page: const LoginView());
+              onPressed: () async {
+                await TokenManager.getUserRole().then((role) {
+                  if (role == "Driver") {
+                    BlocProvider.of<CaptinRideRequestCubit>(context)
+                        .disconnect();
+                    BlocProvider.of<ReadyForTripsCubit>(context)
+                        .stopListening();
+                  }
+                });
+                await TokenManager.removeToken().then((_) {
+                  Navigator.pop(context);
+                  NavigateToPage.slideFromTopAndRemove(
+                      context: context, page: const LoginView());
+                });
               }),
           DialogButton(
               btnColor: Colors.white,
@@ -171,7 +220,6 @@ void usercancelRidedialogMethode(BuildContext context) {
                 Navigator.pop(context);
                 BlocProvider.of<CaptinMapCubit>(context).cancelListening();
                 BlocProvider.of<CaptinRideRequestCubit>(context).setInitial();
-                BlocProvider.of<CaptinRideRequestCubit>(context).disconnect();
                 NavigateToPage.slideFromLeftAndRemove(
                     context: context, page: const CaptinHomeView());
               }),

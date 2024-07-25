@@ -1,13 +1,8 @@
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Models/register_model.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/PhoneVerification.dart';
-import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/forgetPasswordVerify.dart';
 
 part 'registeration_state.dart';
 

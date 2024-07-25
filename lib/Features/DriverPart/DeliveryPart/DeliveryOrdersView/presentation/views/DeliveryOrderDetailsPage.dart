@@ -17,7 +17,7 @@ class DeliveryOrderDetailsPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(children: [
-            DeliveryOrderCard(),
+            const DeliveryOrderCard(),
             ContactInfoCard(
               isordered: true,
               height: AppSizes.getHeight(101, context),

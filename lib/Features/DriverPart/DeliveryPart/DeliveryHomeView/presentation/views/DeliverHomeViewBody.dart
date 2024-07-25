@@ -3,8 +3,6 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/driverAppBar.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryRequestView/presentation/views/DeliveryRequestBS.dart';
 
 class DeliverHomeViewBody extends StatelessWidget {
   const DeliverHomeViewBody({super.key});

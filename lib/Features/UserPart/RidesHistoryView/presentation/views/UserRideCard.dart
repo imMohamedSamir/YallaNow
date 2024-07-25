@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinOrdersView/presentation/views/CaptinSrcDstSec.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardHeader.dart';
 import 'package:yallanow/Features/UserPart/RidesHistoryView/data/models/UserRideHistoryModel.dart';
+import 'package:yallanow/Features/UserPart/RidesHistoryView/presentation/manager/Methods/userRideStatus.dart';
 import 'package:yallanow/Features/UserPart/RidesHistoryView/presentation/views/RidesHistoryDetailsPage.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -25,7 +26,8 @@ class UserRideCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OrderCardHeader(
-                date: rideHistory.date ?? "", isSuccess: getStatus()),
+                date: rideHistory.date ?? "",
+                isSuccess: userRideStatus(rideHistory.status!)),
             const SizedBox(height: 16),
             CaptinSrcDstSec(src: rideHistory.from, dst: rideHistory.to),
             const Divider(height: 32),
@@ -36,13 +38,5 @@ class UserRideCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  bool getStatus() {
-    if (rideHistory.status == 'Completed') {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

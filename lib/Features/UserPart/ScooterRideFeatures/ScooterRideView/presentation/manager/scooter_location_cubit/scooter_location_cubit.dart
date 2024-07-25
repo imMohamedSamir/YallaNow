@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:typed_data';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,13 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/FindingRideView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
-import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/functions/RoutesUtlis.dart';
+import 'package:yallanow/Core/utlis/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 import 'dart:ui' as ui;
 
@@ -179,7 +175,9 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
 
         // Fetch the route data
         RouteInfo routeInfo = await getRoute(destination);
-        priceCubit.getPrices(distance: routeInfo.distance);
+        priceCubit.getPrices(
+            distance: routeInfo.distance,
+            duration: int.parse(routeInfo.duration));
 
         userRequestModel.location =
             "${locationDetails!.administrativeArea} ${locationDetails!.name} ${locationDetails!.thoroughfare}";

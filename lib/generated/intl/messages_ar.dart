@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Book": MessageLookupByLibrary.simpleMessage("حجز"),
         "Cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "CaptinProfile": MessageLookupByLibrary.simpleMessage("ملف السائق"),
+        "CaptinwalletMsg": MessageLookupByLibrary.simpleMessage(
+            "أدخل المبلغ المستلم من العميل"),
+        "CaptinwalletMsg2": MessageLookupByLibrary.simpleMessage(
+            "سيتم إضافته إلى محفظة العميل"),
         "Checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "Choose": MessageLookupByLibrary.simpleMessage("اختر"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("اختر رحلة"),
@@ -36,11 +40,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "Continue": MessageLookupByLibrary.simpleMessage("استمرار"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "DidntReciveCode":
+            MessageLookupByLibrary.simpleMessage("لم تستلم الرمز؟"),
         "Disable": MessageLookupByLibrary.simpleMessage("تعطيل"),
+        "Driver": MessageLookupByLibrary.simpleMessage("السائق"),
         "DriverAndVehicle":
             MessageLookupByLibrary.simpleMessage("تفاصيل السائق والمركبة"),
         "Driverdetails": MessageLookupByLibrary.simpleMessage("تفاصيل السائق"),
         "Duration": MessageLookupByLibrary.simpleMessage("المدة"),
+        "EGP": MessageLookupByLibrary.simpleMessage("ج.م. "),
         "Email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "EnableLocationMsg": MessageLookupByLibrary.simpleMessage(
             "فعّل موقعك لتلقي الطلبات في منطقتك الحالية"),
@@ -53,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("البحث عن سائقك"),
         "FirstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+        "Food": MessageLookupByLibrary.simpleMessage("الطعام والمطاعم"),
         "ForgetPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "GenderValidation":
@@ -105,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("الرحلات الشعبية"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "Program": MessageLookupByLibrary.simpleMessage("البرنامج"),
+        "PromoCode": MessageLookupByLibrary.simpleMessage("رمز ترويجي"),
         "RatingDriverQ":
             MessageLookupByLibrary.simpleMessage("كيف كان السائق؟"),
         "RatingTripQ": MessageLookupByLibrary.simpleMessage("كيف كانت رحلتك؟"),
@@ -120,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إعادة التعيين عبر الهاتف"),
         "Resultplaces": MessageLookupByLibrary.simpleMessage("أماكن النتائج"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("دفع الرحلة"),
+        "RidesHistory": MessageLookupByLibrary.simpleMessage("رحلاتي"),
         "Room": MessageLookupByLibrary.simpleMessage("الغرفة"),
         "Searchingforrequests":
             MessageLookupByLibrary.simpleMessage("البحث عن الطلبات"),
@@ -128,6 +139,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "SessionExpired": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
         "SessionExpiredMsg": MessageLookupByLibrary.simpleMessage(
             "انتهت جلستك. يرجى تسجيل الدخول مرة أخرى."),
+        "SetNewpassword":
+            MessageLookupByLibrary.simpleMessage("قم بتعيين كلمة مرور جديدة"),
+        "SetNewpasswordMsg": MessageLookupByLibrary.simpleMessage(
+            "قم بتعيين كلمة المرور الجديدة الخاصة بك"),
         "Shareridedetails":
             MessageLookupByLibrary.simpleMessage("تفاصيل المشاركة في الرحلة"),
         "SignIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -135,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "SignUpMsg":
             MessageLookupByLibrary.simpleMessage("يرجى ملء بياناتك للتسجيل"),
         "SignUprider": MessageLookupByLibrary.simpleMessage("اشترك كسائق"),
+        "Submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل بياناتك بنجاح. سنتواصل معك."),
         "Takewithyou": MessageLookupByLibrary.simpleMessage("خذ معك"),
@@ -159,8 +175,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى إدخال بريدك الإلكتروني لارسال كود التأكد  "),
         "VerificationWithphonenumber":
             MessageLookupByLibrary.simpleMessage("التحقق برقم الهاتف"),
+        "ViewDetails": MessageLookupByLibrary.simpleMessage("عرض التفاصيل"),
         "Wallet": MessageLookupByLibrary.simpleMessage("محفظة"),
         "Yalla": MessageLookupByLibrary.simpleMessage("يلا"),
+        "Youneedbeonline":
+            MessageLookupByLibrary.simpleMessage("تحتاج إلى أن تكون متصلاً "),
+        "addToWallet":
+            MessageLookupByLibrary.simpleMessage("إضافة إلى المحفظة"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "addressValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال عنوانك"),
@@ -216,6 +237,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
         "editprofile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        "enterPromoCode": MessageLookupByLibrary.simpleMessage(
+            "أدخل الرمز الترويجي للحصول على العرض"),
         "failedTransactionsContent": MessageLookupByLibrary.simpleMessage(
             "إذا فشلت عملية الدفع الخاصة بك، يرجى المحاولة مرة أخرى أو الاتصال بفريق دعم العملاء لدينا للحصول على المساعدة."),
         "failedTransactionsTitle":
@@ -239,6 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم لوحة مركبتك"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "lowerCaseLetter": MessageLookupByLibrary.simpleMessage("حرف صغير"),
+        "marts": MessageLookupByLibrary.simpleMessage("السوبرماركت والبقالة"),
         "numericCharacter": MessageLookupByLibrary.simpleMessage("حرف رقمي"),
         "passForget": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "paymentConfirmationContent": MessageLookupByLibrary.simpleMessage(
@@ -253,6 +277,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "نحن نستخدم تقنية التشفير الآمن لحماية معلومات الدفع الخاصة بك. تتم معالجة جميع المعاملات من خلال بوابة دفع آمنة، مما يضمن سلامة تفاصيلك الشخصية والمالية."),
         "paymentSecurityTitle":
             MessageLookupByLibrary.simpleMessage("3. أمان الدفع"),
+        "pharmacy": MessageLookupByLibrary.simpleMessage("الصيدلية"),
         "places": MessageLookupByLibrary.simpleMessage("الأماكن"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(
@@ -261,6 +286,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "سيتم معالجة استرداد الأموال للحجوزات الملغاة وفقًا لسياسة الإلغاء الخاصة بنا. يرجى الرجوع إلى سياسة الإلغاء للحصول على تفاصيل حول كيفية طلب استرداد الأموال."),
         "refundsAndCancellationsTitle":
             MessageLookupByLibrary.simpleMessage("6. الاسترداد والإلغاء"),
+        "resendAgain":
+            MessageLookupByLibrary.simpleMessage("أعد الإرسال مرة أخرى"),
+        "resetSuccesful":
+            MessageLookupByLibrary.simpleMessage("تم تغيير كلمة المرور بنجاح"),
         "rides": MessageLookupByLibrary.simpleMessage("رحلاتى"),
         "scooterRide": MessageLookupByLibrary.simpleMessage("ركوب سكوتر"),
         "scooter_license": MessageLookupByLibrary.simpleMessage(
@@ -299,6 +328,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال سنة المركبة"),
         "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
-        "whereTo": MessageLookupByLibrary.simpleMessage("إلى أين؟")
+        "whereTo": MessageLookupByLibrary.simpleMessage("إلى أين؟"),
+        "youNeesBeOnlineMsg": MessageLookupByLibrary.simpleMessage(
+            "تحتاج إلى أن تكون متصلاً  للحصول على الطلبات في منطقتك الحالية")
       };
 }

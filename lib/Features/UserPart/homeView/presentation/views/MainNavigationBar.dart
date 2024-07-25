@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/NotificationIconBuilder.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class MainNavigationBar extends StatelessWidget {
@@ -45,11 +46,7 @@ class MainNavigationBar extends StatelessWidget {
           //     ),
           //     label: "Orders"),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                currentIndex == 2
-                    ? Assets.imagesNotificationsIconActive
-                    : Assets.imagesNotificationsIcon,
-              ),
+              icon: NotificationIconBuilder(currentIndex: currentIndex),
               label: S.of(context).Notifications),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(

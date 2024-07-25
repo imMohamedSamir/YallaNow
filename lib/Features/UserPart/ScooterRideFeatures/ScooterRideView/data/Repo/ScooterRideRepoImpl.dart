@@ -13,8 +13,9 @@ class ScooterRideRepoImpl implements ScooterRideRepo {
   ScooterRideRepoImpl({required this.yallaNowServices});
   @override
   Future<Either<Failure, RidePricesModel>> getRidePrice(
-      {required double distance}) async {
-    String endPoint = "TripRequests/calculate-price?distance=$distance";
+      {required double distance, required int duration}) async {
+    String endPoint =
+        "TripRequests/calculate-price?distance=$distance&duration=$duration";
     try {
       var response = await yallaNowServices.get(endPoint: endPoint);
       return right(RidePricesModel.fromJson(response));

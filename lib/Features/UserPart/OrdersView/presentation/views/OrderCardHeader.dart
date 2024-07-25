@@ -30,7 +30,7 @@ class OrderCardHeader extends StatelessWidget {
               .copyWith(color: const Color(0xff240301)),
         ),
         const Spacer(),
-        isOrderDetail ? const ReoderButton() : SizedBox(),
+        isOrderDetail ? const ReoderButton() : const SizedBox(),
       ],
     );
   }

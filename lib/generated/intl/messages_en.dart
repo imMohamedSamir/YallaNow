@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "CaptinProfile": MessageLookupByLibrary.simpleMessage("Captin Profile"),
         "CaptinwalletMsg": MessageLookupByLibrary.simpleMessage(
-            "Please enter the amount received from the customer"),
+            "enter the amount received from the customer"),
         "CaptinwalletMsg2": MessageLookupByLibrary.simpleMessage(
             " will be added to customer\'s Wallet"),
         "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
+        "DeleteAcc": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "DidntReciveCode":
             MessageLookupByLibrary.simpleMessage("Didn’t receive code? "),
         "Disable": MessageLookupByLibrary.simpleMessage("Disable"),
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("Finding your Driver"),
         "FirstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "Food": MessageLookupByLibrary.simpleMessage("Food & Resturants"),
         "ForgetPassword":
             MessageLookupByLibrary.simpleMessage("Forget password"),
         "GenderValidation": MessageLookupByLibrary.simpleMessage(
@@ -133,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "RidePayment": MessageLookupByLibrary.simpleMessage("Ride Payment"),
         "RidesHistory": MessageLookupByLibrary.simpleMessage("My Trips"),
         "Room": MessageLookupByLibrary.simpleMessage("Room"),
+        "Save": MessageLookupByLibrary.simpleMessage("save"),
         "Searchingforrequests":
             MessageLookupByLibrary.simpleMessage("Searching for requests"),
         "SelectDriverImgValidation":
@@ -184,6 +187,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Youneedbeonline":
             MessageLookupByLibrary.simpleMessage("You need to be online "),
         "addToWallet": MessageLookupByLibrary.simpleMessage("Add to Wallet"),
+        "addWalletSuccessMsg": MessageLookupByLibrary.simpleMessage(
+            "the amoun added to customer Wallet"),
+        "addWalletValidation": MessageLookupByLibrary.simpleMessage(
+            "please enter the amount received from the customer"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your address"),
@@ -228,6 +235,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "currencyContent": MessageLookupByLibrary.simpleMessage(
             "All prices listed on our website are in EGP. Payments must be made in the currency specified."),
         "currencyTitle": MessageLookupByLibrary.simpleMessage("5. Currency"),
+        "deleteAccMsg": MessageLookupByLibrary.simpleMessage(
+            "Please be aware that by deleting your account, all associated data will be permanently deleted. This includes:"),
+        "deleteAccMsg2": MessageLookupByLibrary.simpleMessage(
+            "Once your account is deleted, this data cannot be recovered. Please ensure you have saved any necessary information before proceeding."),
+        "deleteAccMsginclude1": MessageLookupByLibrary.simpleMessage(
+            "Transactions such as orders and points."),
+        "deleteAccMsginclude2": MessageLookupByLibrary.simpleMessage(
+            "Personal information and account details."),
+        "deleteAccQ": MessageLookupByLibrary.simpleMessage(
+            "Important Notice: Account Deletion"),
+        "deletedSuccess": MessageLookupByLibrary.simpleMessage(
+            "your account has been deleted"),
         "driverCancelRide":
             MessageLookupByLibrary.simpleMessage("driver cancelled trip"),
         "driverCancelRideMsg":
@@ -240,6 +259,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "driving_license": MessageLookupByLibrary.simpleMessage(
             "(اجبارى) صورة رخصة القيادة امامى و خلفى"),
         "drug_test": MessageLookupByLibrary.simpleMessage("تحليل مخدرات"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editSuccess":
+            MessageLookupByLibrary.simpleMessage("successfully edit"),
         "editprofile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "enterPromoCode": MessageLookupByLibrary.simpleMessage(
             "Enter your Promo Code to get the offer"),
@@ -269,6 +291,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "lowerCaseLetter":
             MessageLookupByLibrary.simpleMessage("LowerCase letter"),
+        "marts": MessageLookupByLibrary.simpleMessage("Mart & Groceries"),
+        "noNotificationsMsg": MessageLookupByLibrary.simpleMessage(
+            "You have no notifications at the moment. All your notifications will appear here."),
         "numericCharacter":
             MessageLookupByLibrary.simpleMessage("Number character"),
         "passForget": MessageLookupByLibrary.simpleMessage("Forget password?"),
@@ -284,6 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details."),
         "paymentSecurityTitle":
             MessageLookupByLibrary.simpleMessage("3. Payment Security"),
+        "pharmacy": MessageLookupByLibrary.simpleMessage("pharmacy"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(

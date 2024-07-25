@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/app_launcher_icon">
          <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCEdbbCwcVhQOaUnU5Bcpfcn6ll7KW7uwA"/>
+               android:value="AIzaSyC5oitatJsw_65vQ0F6e957BnzntH69rVQ"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
         <!-- <meta-data

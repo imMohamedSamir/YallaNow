@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
                       color:
                           isBasket ? Colors.white : const Color(0xffB20404))),
             ),
-            backgroundColor: MaterialStatePropertyAll<Color>(btncolor)),
+            backgroundColor: WidgetStatePropertyAll<Color>(btncolor)),
         onPressed: onPressed,
         child: Text(
           text,
@@ -64,14 +64,14 @@ class CustomButton2 extends StatelessWidget {
       height: 54,
       child: ElevatedButton(
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   side: BorderSide(
                       color:
                           isBasket ? Colors.white : const Color(0xffB20404))),
             ),
-            backgroundColor: MaterialStatePropertyAll<Color>(btncolor)),
+            backgroundColor: WidgetStatePropertyAll<Color>(btncolor)),
         onPressed: onPressed,
         child: text == null
             ? child
