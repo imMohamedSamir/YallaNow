@@ -63,22 +63,22 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          CustomTextField(
-            hintText: S.of(context).userName,
-            keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return S.of(context).usernameValidation;
-              }
+          // const SizedBox(height: 16),
+          // CustomTextField(
+          //   hintText: S.of(context).userName,
+          //   keyboardType: TextInputType.emailAddress,
+          //   textInputAction: TextInputAction.next,
+          //   validator: (value) {
+          //     if (value == null || value.trim().isEmpty) {
+          //       return S.of(context).usernameValidation;
+          //     }
 
-              return null;
-            },
-            onSaved: (value) {
-              registerModel.username = value!.trim();
-            },
-          ),
+          //     return null;
+          //   },
+          //   onSaved: (value) {
+          //     registerModel.username = value!.trim();
+          //   },
+          // ),
           const SizedBox(height: 16),
           CustomTextField(
             hintText: S.of(context).Email,

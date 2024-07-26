@@ -216,7 +216,8 @@
     "PromoCodeSuccess":"Promo Code applied successfully",
     "YallaNowPhone":"+20 1143888697",
 
-    "emptyRideMsg":"You have no rides at the moment. Go ahead and book your ride!"
+    "emptyRideMsg":"You have no rides at the moment. Go ahead and book your ride!",
+    "NoDriversMsg":"No drivers available Now , please try again later"
 
 }
 

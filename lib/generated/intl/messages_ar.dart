@@ -95,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "NationalityValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال جنسيتك"),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "NoDriversMsg": MessageLookupByLibrary.simpleMessage(
+            "لا يوجد سائقين متاحين الآن، يُرجى المحاولة مرة أخرى لاحقًا"),
         "Notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "Notinclude": MessageLookupByLibrary.simpleMessage("لا يشمل"),
         "NumberofJuniors": MessageLookupByLibrary.simpleMessage("عدد الصغار"),

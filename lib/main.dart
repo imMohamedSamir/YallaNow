@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/FirebaseMessagingService.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
@@ -49,7 +50,9 @@ void main() async {
   await hiveAdapters();
 
   await initializeNotification();
+  await Upgrader().initialize();
   await openHiveBoxes();
+
   Bloc.observer = SimpleBlocObserver();
   runApp(DevicePreview(
     enabled: false,

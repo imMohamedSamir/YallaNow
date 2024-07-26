@@ -2169,6 +2169,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No drivers available Now , please try again later`
+  String get NoDriversMsg {
+    return Intl.message(
+      'No drivers available Now , please try again later',
+      name: 'NoDriversMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

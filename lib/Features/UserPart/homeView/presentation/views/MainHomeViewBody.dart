@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Features/UserPart/NotificationView/presentation/NotificationView.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/ProfileView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/ScooterRideView.dart';
@@ -22,7 +21,8 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
   int currentPage = 0;
   @override
   void initState() {
-    getToken();
+    Upgrader().initialize();
+
     super.initState();
   }
 
@@ -41,22 +41,6 @@ class _MainHomeViewBodyState extends State<MainHomeViewBody> {
     setState(() {
       currentPage = index;
     });
-  }
-
-  UpgraderMessages _upgraderMessages() {
-    UpgraderMessages upgraderMessage =
-        UpgraderMessages(code: AppLang.isArabic() ? 'ar' : "en");
-    return upgraderMessage;
-  }
-
-  Upgrader _upgrader() {
-    return Upgrader(
-        countryCode: "EG",
-        languageCode: AppLang.isArabic() ? 'ar' : "en",
-        messages: _upgraderMessages(),
-        debugLogging: true,
-        debugDisplayOnce: true,
-        minAppVersion: "1.0.1");
   }
 
   static List<Widget> pages = [

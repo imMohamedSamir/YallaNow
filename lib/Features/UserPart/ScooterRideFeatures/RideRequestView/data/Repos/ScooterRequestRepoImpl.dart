@@ -10,6 +10,8 @@ import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/ScooterRequestRepo.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/ride_rating_model.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/models/user_request_model.dart';
+import 'package:yallanow/generated/l10n.dart';
+import 'package:yallanow/main.dart';
 
 class ScooterRequestRepoImpl implements ScooterRequestRepo {
   final YallaNowServices yallaNowServices;
@@ -37,7 +39,8 @@ class ScooterRequestRepoImpl implements ScooterRequestRepo {
       if (e is DioException) {
         log(e.response.toString());
         if (e.response.toString() == "No drivers available.") {
-          return left(ServerFailure("error"));
+          return left(
+              ServerFailure(S.of(navigatorKey.currentContext!).NoDriversMsg));
         } else {
           return left(
               ServerFailure.fromResponse(e.response!.statusCode, e.response));

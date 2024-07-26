@@ -91,22 +91,22 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          CustomTextField(
-            hintText: S.of(context).userName,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return S.of(context).usernameValidation;
-              }
+          // const SizedBox(height: 16),
+          // CustomTextField(
+          //   hintText: S.of(context).userName,
+          //   keyboardType: TextInputType.text,
+          //   textInputAction: TextInputAction.next,
+          //   validator: (value) {
+          //     if (value == null || value.trim().isEmpty) {
+          //       return S.of(context).usernameValidation;
+          //     }
 
-              return null;
-            },
-            onSaved: (value) {
-              cubit!.driverRegisterModel.username = value!.trim();
-            },
-          ),
+          //     return null;
+          //   },
+          //   onSaved: (value) {
+          //     cubit!.driverRegisterModel.username = value!.trim();
+          //   },
+          // ),
           const SizedBox(height: 16),
           CustomTextField(
             hintText: S.of(context).Email,

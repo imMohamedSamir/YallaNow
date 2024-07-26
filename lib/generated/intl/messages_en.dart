@@ -95,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "NationalityValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your Nationality"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "NoDriversMsg": MessageLookupByLibrary.simpleMessage(
+            "No drivers available Now , please try again later"),
         "Notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "Notinclude": MessageLookupByLibrary.simpleMessage("Not include"),
         "NumberofJuniors":

@@ -4,7 +4,6 @@ import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentatio
 class DriverRegisterModel {
   String? firstName;
   String? lastName;
-  String? username;
   String? nIDcard;
   String? email;
   String? password;
@@ -25,7 +24,6 @@ class DriverRegisterModel {
   DriverRegisterModel(
       {this.firstName,
       this.lastName,
-      this.username,
       this.nIDcard,
       this.email,
       this.address,
@@ -47,7 +45,6 @@ class DriverRegisterModel {
       DriverRegisterModel(
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
-        username: json['username'] as String?,
         nIDcard: json['nIDcard'] as String?,
         email: json['email'] as String?,
         address: json['address'] as String?,
@@ -67,7 +64,6 @@ class DriverRegisterModel {
     return {
       'firstName': firstName,
       'lastName': lastName,
-      'username': username,
       'nIDcard': nIDcard,
       'email': email,
       'address': address,

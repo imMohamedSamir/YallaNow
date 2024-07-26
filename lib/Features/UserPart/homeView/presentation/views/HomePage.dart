@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
+import 'package:yallanow/Core/utlis/functions/UpgradeMethods.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepoImpl.dart';
@@ -28,9 +30,20 @@ class HomePage extends StatelessWidget {
             ..get(),
         ),
       ],
-      child: Scaffold(
-        appBar: homeAppBar(),
-        body: const HomePageBody(),
+      child: UpgradeAlert(
+        // showLater: false,
+        showIgnore: false,
+        upgrader: upgrader(),
+        onUpdate: () {
+          updateLink().then((value) {
+            return value;
+          });
+          return false;
+        },
+        child: Scaffold(
+          appBar: homeAppBar(),
+          body: const HomePageBody(),
+        ),
       ),
     );
   }

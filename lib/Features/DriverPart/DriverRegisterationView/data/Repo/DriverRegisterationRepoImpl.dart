@@ -22,7 +22,6 @@ class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
         'FirstName': driverDetails.firstName ?? '',
         'LastName': driverDetails.lastName ?? '',
         'Gender': driverDetails.gender ?? '',
-        'Username': driverDetails.username ?? '',
         'PhoneNumber': driverDetails.phoneNumber ?? '',
         'Password': driverDetails.password ?? '',
         'Email': driverDetails.email ?? '',

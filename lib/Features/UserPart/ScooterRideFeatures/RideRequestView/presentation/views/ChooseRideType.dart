@@ -121,6 +121,7 @@ class ChooseRideType extends StatelessWidget {
     } else if (sendRequestState is SendRequestFailure) {
       return Center(
         child: Text(sendRequestState.errMsg,
+            textAlign: TextAlign.center,
             style: AppStyles.styleBold16(context).copyWith(color: pKcolor)),
       );
     } else {
