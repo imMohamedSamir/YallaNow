@@ -22,6 +22,7 @@ class HelpCenterCard extends StatelessWidget {
           onTap: onTap,
           leading: child,
           title: Text(title,
+              textDirection: TextDirection.ltr,
               style: AppStyles.styleBold18(context)
                   .copyWith(color: const Color(0xff212121))),
         ),

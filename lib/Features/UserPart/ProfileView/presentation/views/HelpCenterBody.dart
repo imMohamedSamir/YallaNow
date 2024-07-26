@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/launchURL.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/HelpCenterCard.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class HelpCenterBody extends StatelessWidget {
   const HelpCenterBody({super.key});
@@ -13,14 +14,15 @@ class HelpCenterBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
       child: Column(
+        textDirection: TextDirection.ltr,
         children: [
-          // HelpCenterCard(
-          //     onTap: () {
-          //       launchURL("tel:+0111");
-          //     },
-          //     title: '0111',
-          //     child: const Icon(Icons.call, color: pKcolor)),
-          // const SizedBox(height: 24),
+          HelpCenterCard(
+              onTap: () {
+                launchURL("tel:+20 1143888697");
+              },
+              title: S.of(context).YallaNowPhone,
+              child: const Icon(Icons.call, color: pKcolor)),
+          const SizedBox(height: 24),
           HelpCenterCard(
               onTap: () {
                 launchURL('mailto:info@yallanowofficial.com');

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
@@ -37,15 +39,19 @@ class ScooterRideRepoImpl implements ScooterRideRepo {
     try {
       var response =
           await yallaNowServices.get(endPoint: endPoint, token: token);
+      log(response.toString());
       List<UserRideHistoryModel> rides = [];
       for (var ride in response["ridesHistory"]) {
         rides.add(UserRideHistoryModel.fromJson(ride));
       }
       return right(rides);
     } catch (e) {
-      // log(e.toString());
+      log(e.toString());
       if (e is DioException) {
-        return left(ServerFailure.fromDioError(e.type));
+        log(e.response.toString());
+
+        return left(
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
       }
       return left(
         ServerFailure(e.toString()),

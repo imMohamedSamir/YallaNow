@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -56,11 +57,70 @@ class ScooterRequestRepoImpl implements ScooterRequestRepo {
       {required RideRatingModel rating}) async {
     String endPoint = 'Ride/RateTrip';
     String token = await TokenManager.getUserToken() ?? "";
-    log(rating.toJson().toString());
 
     try {
       var response = await yallaNowServices.post(
           endPoint: endPoint, body: rating.toJson(), token: token);
+
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> applyPromoCode(
+      {required String userId, required String promoCode}) async {
+    String endPoint = 'PromoCode/apply';
+    String token = await TokenManager.getUserToken() ?? "";
+
+    try {
+      var response = await yallaNowServices.post(
+        endPoint: endPoint,
+        body: jsonEncode({"userId": userId, "promoCode": promoCode}),
+      );
+
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+          ServerFailure.fromResponse(e.response!.statusCode, e.response),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> cancelPromoCode(
+      {required String userId, required String promoCode}) async {
+    String endPoint = 'PromoCode/cancel';
+    String token = await TokenManager.getUserToken() ?? "";
+
+    try {
+      var response = await yallaNowServices.post(
+          endPoint: endPoint,
+          body: jsonEncode({"userId": userId, "promoCode": promoCode}),
+          token: token);
 
       return right(response);
     } catch (e) {

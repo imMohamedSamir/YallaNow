@@ -8,4 +8,8 @@ abstract class ScooterRequestRepo {
       {required UserRequestModel request});
   Future<Either<Failure, dynamic>> tripRating(
       {required RideRatingModel rating});
+  Future<Either<Failure, dynamic>> applyPromoCode(
+      {required String userId, required String promoCode});
+  Future<Either<Failure, dynamic>> cancelPromoCode(
+      {required String userId, required String promoCode});
 }

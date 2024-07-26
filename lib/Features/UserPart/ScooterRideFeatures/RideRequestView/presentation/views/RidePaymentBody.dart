@@ -3,6 +3,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverPaymentMethodsTile.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/PromoCodeField.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class RidePaymentBody extends StatelessWidget {
@@ -20,6 +21,8 @@ class RidePaymentBody extends StatelessWidget {
                   .copyWith(color: const Color(0xff240301))),
           const SizedBox(height: 16),
           const DriverPaymentMethodsTile(),
+          const Divider(height: 32, color: scColor),
+          const PromoCodeField(),
           const Spacer(),
           CustomButton(
               text: S.of(context).Choose,

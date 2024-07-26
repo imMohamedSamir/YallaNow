@@ -130,7 +130,11 @@ class EditProfileForm extends StatelessWidget {
                 ),
                 SizedBox(height: AppSizes.getHeight(65, context)),
                 if (enabeld)
-                  const EditBtnBuilder()
+                  if (state is EditUserDetailsLoading)
+                    const Center(
+                        child: CircularProgressIndicator(color: pKcolor))
+                  else
+                    const EditBtnBuilder()
                 else
                   CustomButton(
                     text: S.of(context).DeleteAcc,

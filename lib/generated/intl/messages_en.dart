@@ -117,7 +117,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "PopularTrips": MessageLookupByLibrary.simpleMessage("Popular Trips"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Program": MessageLookupByLibrary.simpleMessage("Program"),
-        "PromoCode": MessageLookupByLibrary.simpleMessage("Promo Code"),
+        "PromoCode": MessageLookupByLibrary.simpleMessage("Promo Code /coupon"),
+        "PromoCodeMsg":
+            MessageLookupByLibrary.simpleMessage("Enter your Promo Code"),
+        "PromoCodeSuccess": MessageLookupByLibrary.simpleMessage(
+            "Promo Code applied successfully"),
         "RatingDriverQ":
             MessageLookupByLibrary.simpleMessage("How was your driver?"),
         "RatingTripQ":
@@ -184,6 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ViewDetails": MessageLookupByLibrary.simpleMessage("View details"),
         "Wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "Yalla": MessageLookupByLibrary.simpleMessage("Yalla"),
+        "YallaNowPhone": MessageLookupByLibrary.simpleMessage("+20 1143888697"),
         "Youneedbeonline":
             MessageLookupByLibrary.simpleMessage("You need to be online "),
         "addToWallet": MessageLookupByLibrary.simpleMessage("Add to Wallet"),
@@ -198,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter number of adults"),
         "already_have_account":
             MessageLookupByLibrary.simpleMessage("Already have account ?"),
+        "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "atLest8":
             MessageLookupByLibrary.simpleMessage("At least 8 characters"),
         "birth_certificate":
@@ -220,10 +226,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please Confirm your password"),
         "confirmedPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
-        "contactInformationContent": MessageLookupByLibrary.simpleMessage(
-            "For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]"),
-        "contactInformationTitle":
-            MessageLookupByLibrary.simpleMessage("8. Contact Information"),
         "continuewith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "correctEmail": MessageLookupByLibrary.simpleMessage(
@@ -232,9 +234,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter correct mobile number"),
         "criminal_record": MessageLookupByLibrary.simpleMessage(
             "(اجبارى) فيش وتشبية موجه لشركة يلا ناو"),
-        "currencyContent": MessageLookupByLibrary.simpleMessage(
-            "All prices listed on our website are in EGP. Payments must be made in the currency specified."),
-        "currencyTitle": MessageLookupByLibrary.simpleMessage("5. Currency"),
         "deleteAccMsg": MessageLookupByLibrary.simpleMessage(
             "Please be aware that by deleting your account, all associated data will be permanently deleted. This includes:"),
         "deleteAccMsg2": MessageLookupByLibrary.simpleMessage(
@@ -263,12 +262,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "editSuccess":
             MessageLookupByLibrary.simpleMessage("successfully edit"),
         "editprofile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "emptyRideMsg": MessageLookupByLibrary.simpleMessage(
+            "You have no rides at the moment. Go ahead and book your ride!"),
         "enterPromoCode": MessageLookupByLibrary.simpleMessage(
             "Enter your Promo Code to get the offer"),
-        "failedTransactionsContent": MessageLookupByLibrary.simpleMessage(
-            "If your payment transaction fails, please try again or contact our customer support team for assistance."),
-        "failedTransactionsTitle":
-            MessageLookupByLibrary.simpleMessage("7. Failed Transactions"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),
         "firstnameValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your first name"),
@@ -279,10 +276,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "(اجبارى) صورة البطاقة امامى و خلفى"),
         "imageDirections":
             MessageLookupByLibrary.simpleMessage("Image directions"),
-        "introductionContent": MessageLookupByLibrary.simpleMessage(
-            "Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website."),
-        "introductionTitle":
-            MessageLookupByLibrary.simpleMessage("1. Introduction"),
         "lasnameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your last name"),
         "licensePlate": MessageLookupByLibrary.simpleMessage("License Plate"),
@@ -297,27 +290,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "numericCharacter":
             MessageLookupByLibrary.simpleMessage("Number character"),
         "passForget": MessageLookupByLibrary.simpleMessage("Forget password?"),
-        "paymentConfirmationContent": MessageLookupByLibrary.simpleMessage(
-            "Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment."),
-        "paymentConfirmationTitle":
-            MessageLookupByLibrary.simpleMessage("4. Payment Confirmation"),
-        "paymentMethodsContent": MessageLookupByLibrary.simpleMessage(
-            "We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers"),
-        "paymentMethodsTitle":
-            MessageLookupByLibrary.simpleMessage("2. Payment Methods"),
-        "paymentSecurityContent": MessageLookupByLibrary.simpleMessage(
-            "We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details."),
-        "paymentSecurityTitle":
-            MessageLookupByLibrary.simpleMessage("3. Payment Security"),
         "pharmacy": MessageLookupByLibrary.simpleMessage("pharmacy"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "promoCodeCorrect": MessageLookupByLibrary.simpleMessage(
+            "please enter correct promo code"),
+        "promoCodeValidate":
+            MessageLookupByLibrary.simpleMessage("Please enter Promo Code"),
         "readytosearchforrequests": MessageLookupByLibrary.simpleMessage(
             "Are you ready to search for requests"),
-        "refundsAndCancellationsContent": MessageLookupByLibrary.simpleMessage(
-            "Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund."),
-        "refundsAndCancellationsTitle": MessageLookupByLibrary.simpleMessage(
-            "6. Refunds and Cancellations"),
         "resendAgain": MessageLookupByLibrary.simpleMessage("Resend again"),
         "resetSuccesful": MessageLookupByLibrary.simpleMessage(
             "your password changed successfully"),
@@ -329,10 +310,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select a role"),
         "specialCharacter":
             MessageLookupByLibrary.simpleMessage("Special character"),
-        "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
-            "1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:"),
-        "termsAndConditionsTitle":
-            MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "totalDistance": MessageLookupByLibrary.simpleMessage("Total distance"),
         "totalRating": MessageLookupByLibrary.simpleMessage("Total Ratings"),
         "tripdetails": MessageLookupByLibrary.simpleMessage("Trips details"),

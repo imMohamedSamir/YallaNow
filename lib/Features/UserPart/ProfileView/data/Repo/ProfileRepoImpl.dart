@@ -21,7 +21,7 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       var response =
           await yallaNowServices.get(endPoint: endPoint, token: usertoken);
-
+      log(UserProfileDetails.fromJson(response).toJson().toString());
       return right(UserProfileDetails.fromJson(response));
     } catch (e) {
       log("msg: ${e.toString()}");
@@ -45,6 +45,32 @@ class ProfileRepoImpl implements ProfileRepo {
     String endPoint = "UserProfile/DeleteUser?userId=$userId";
     try {
       var response = await yallaNowServices.delete(endPoint: endPoint);
+
+      return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+          ServerFailure.fromResponse(e.response!.statusCode, e.response),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> editUserProfile(
+      {required UserProfileDetails userDetails}) async {
+    usertoken = await TokenManager.getUserToken();
+    String endPoint = "UserProfile/EditUserProfile";
+    try {
+      var response = await yallaNowServices.put(
+          endPoint: endPoint, body: userDetails.toJson(), token: usertoken);
 
       return right(response);
     } catch (e) {

@@ -119,7 +119,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
     );
   }
 
-  void _requestNotification(RemoteMessage requestmessage) {
+  void _requestNotification(RemoteMessage requestmessage) async {
     log("notification: ${requestmessage.data.toString()}");
     AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -146,11 +146,11 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
         ),
       ],
     );
-    Future.delayed(const Duration(seconds: 4), () async {
-      AwesomeNotifications().dismiss(requestmessage.hashCode);
-      await captinResponseMethod(
-          tripId: requestmessage.data["TripId"], isAccepted: false);
-    });
+    // await Future.delayed(const Duration(seconds: 4), () async {
+    //   AwesomeNotifications().dismiss(requestmessage.hashCode);
+    //   await captinResponseMethod(
+    //       tripId: requestmessage.data["TripId"], isAccepted: false);
+    // });
   }
 
   Future<void> handleReceivedRequest(BuildContext context,

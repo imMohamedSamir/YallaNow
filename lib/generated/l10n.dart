@@ -1770,186 +1770,6 @@ class S {
     );
   }
 
-  /// `1. Introduction`
-  String get introductionTitle {
-    return Intl.message(
-      '1. Introduction',
-      name: 'introductionTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website.`
-  String get introductionContent {
-    return Intl.message(
-      'Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website.',
-      name: 'introductionContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `2. Payment Methods`
-  String get paymentMethodsTitle {
-    return Intl.message(
-      '2. Payment Methods',
-      name: 'paymentMethodsTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers`
-  String get paymentMethodsContent {
-    return Intl.message(
-      'We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers',
-      name: 'paymentMethodsContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `3. Payment Security`
-  String get paymentSecurityTitle {
-    return Intl.message(
-      '3. Payment Security',
-      name: 'paymentSecurityTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details.`
-  String get paymentSecurityContent {
-    return Intl.message(
-      'We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details.',
-      name: 'paymentSecurityContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `4. Payment Confirmation`
-  String get paymentConfirmationTitle {
-    return Intl.message(
-      '4. Payment Confirmation',
-      name: 'paymentConfirmationTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment.`
-  String get paymentConfirmationContent {
-    return Intl.message(
-      'Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment.',
-      name: 'paymentConfirmationContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `5. Currency`
-  String get currencyTitle {
-    return Intl.message(
-      '5. Currency',
-      name: 'currencyTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All prices listed on our website are in EGP. Payments must be made in the currency specified.`
-  String get currencyContent {
-    return Intl.message(
-      'All prices listed on our website are in EGP. Payments must be made in the currency specified.',
-      name: 'currencyContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `6. Refunds and Cancellations`
-  String get refundsAndCancellationsTitle {
-    return Intl.message(
-      '6. Refunds and Cancellations',
-      name: 'refundsAndCancellationsTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund.`
-  String get refundsAndCancellationsContent {
-    return Intl.message(
-      'Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund.',
-      name: 'refundsAndCancellationsContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `7. Failed Transactions`
-  String get failedTransactionsTitle {
-    return Intl.message(
-      '7. Failed Transactions',
-      name: 'failedTransactionsTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `If your payment transaction fails, please try again or contact our customer support team for assistance.`
-  String get failedTransactionsContent {
-    return Intl.message(
-      'If your payment transaction fails, please try again or contact our customer support team for assistance.',
-      name: 'failedTransactionsContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `8. Contact Information`
-  String get contactInformationTitle {
-    return Intl.message(
-      '8. Contact Information',
-      name: 'contactInformationTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]`
-  String get contactInformationContent {
-    return Intl.message(
-      'For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]',
-      name: 'contactInformationContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Terms and Conditions`
-  String get termsAndConditionsTitle {
-    return Intl.message(
-      'Terms and Conditions',
-      name: 'termsAndConditionsTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:`
-  String get termsAndConditionsContent {
-    return Intl.message(
-      '1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:',
-      name: 'termsAndConditionsContent',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Didn’t receive code? `
   String get DidntReciveCode {
     return Intl.message(
@@ -2050,10 +1870,10 @@ class S {
     );
   }
 
-  /// `Promo Code`
+  /// `Promo Code /coupon`
   String get PromoCode {
     return Intl.message(
-      'Promo Code',
+      'Promo Code /coupon',
       name: 'PromoCode',
       desc: '',
       args: [],
@@ -2275,6 +2095,76 @@ class S {
     return Intl.message(
       'You have no notifications at the moment. All your notifications will appear here.',
       name: 'noNotificationsMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Promo Code`
+  String get PromoCodeMsg {
+    return Intl.message(
+      'Enter your Promo Code',
+      name: 'PromoCodeMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Promo Code`
+  String get promoCodeValidate {
+    return Intl.message(
+      'Please enter Promo Code',
+      name: 'promoCodeValidate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter correct promo code`
+  String get promoCodeCorrect {
+    return Intl.message(
+      'please enter correct promo code',
+      name: 'promoCodeCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message(
+      'Apply',
+      name: 'apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo Code applied successfully`
+  String get PromoCodeSuccess {
+    return Intl.message(
+      'Promo Code applied successfully',
+      name: 'PromoCodeSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+20 1143888697`
+  String get YallaNowPhone {
+    return Intl.message(
+      '+20 1143888697',
+      name: 'YallaNowPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no rides at the moment. Go ahead and book your ride!`
+  String get emptyRideMsg {
+    return Intl.message(
+      'You have no rides at the moment. Go ahead and book your ride!',
+      name: 'emptyRideMsg',
       desc: '',
       args: [],
     );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +15,11 @@ class EditUserDetailsCubit extends Cubit<EditUserDetailsState> {
     emit(EditUserDetailsLoading());
     if (key.currentState!.validate()) {
       key.currentState!.save();
-      log("done editing \n ${userdetails.toJson().toString()}");
+      var result = await profileRepo.editUserProfile(userDetails: userdetails);
+      result.fold(
+          (fail) => emit(EditUserDetailsFailure(errMsg: fail.errMessage)),
+          (response) => emit(EditUserDetailsSuccess()));
     }
-    emit(EditUserDetailsSuccess());
   }
 
   void enableEdite() {

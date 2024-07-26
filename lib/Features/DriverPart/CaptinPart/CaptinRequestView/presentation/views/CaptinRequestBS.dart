@@ -182,7 +182,7 @@ class CaptinRequestBS extends StatelessWidget {
     if (AppLang.isArabic()) {
       if (method == "Cash") {
         return "نقدى";
-      } else if (method == "wallet") {
+      } else if (method == "Wallet") {
         return "محفظة";
       } else {
         return "فيزا";

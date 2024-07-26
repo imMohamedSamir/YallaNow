@@ -14,6 +14,11 @@ class CaptinOrdersViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is CaptinTripsSuccess) {
           List<RideHistory> trips = state.captinTripsModel.rideHistory!;
+          trips.sort((a, b) {
+            DateTime dateA = DateTime.parse(a.startTime!);
+            DateTime dateB = DateTime.parse(b.startTime!);
+            return dateB.compareTo(dateA); // Sort in descending order
+          });
           return ListView.builder(
             itemCount: trips.length,
             itemBuilder: (BuildContext context, int index) {

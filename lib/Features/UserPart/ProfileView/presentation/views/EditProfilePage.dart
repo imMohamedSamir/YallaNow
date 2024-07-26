@@ -20,9 +20,8 @@ class EditProfilePage extends StatelessWidget {
             ..fetchUserDetails(),
         ),
         BlocProvider(
-          create: (context) =>
-              EditUserDetailsCubit(getIt.get<ProfileRepoImpl>()),
-        ),
+            create: (context) =>
+                EditUserDetailsCubit(getIt.get<ProfileRepoImpl>())),
       ],
       child: Scaffold(
         appBar: profileAppBar(context, title: S.of(context).editprofile),

@@ -19,6 +19,12 @@ import 'package:http/http.dart' as http;
 class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.yallaNowServices});
   final YallaNowServices yallaNowServices;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
   @override
   Future<Either<FailureHttp, dynamic>> fetchRegisteration(
       {required UserRegisterModel userdata}) async {
@@ -133,10 +139,10 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   Future<OAuthCredential> _getGooglCredential() async {
-    if (await GoogleSignIn().isSignedIn()) {
-      await GoogleSignIn().signOut();
+    if (await _googleSignIn.isSignedIn()) {
+      await _googleSignIn.signOut();
     }
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(

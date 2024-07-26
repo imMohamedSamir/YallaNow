@@ -40,7 +40,7 @@ class ScooterButtonBuilder extends StatelessWidget {
                     BlocProvider.of<CheckPaymentMethodCubit>(context)
                         .goToPaymentPage(context, amount: price);
                   } else if (paymentState.methode == PaymentMethod.wallet) {
-                    // Handle wallet payment method
+                    BlocProvider.of<SendRequestCubit>(context).send();
                   }
                 },
               );

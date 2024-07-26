@@ -1,6 +1,8 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/NotificationController.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
@@ -28,6 +30,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
 
   @override
   void initState() {
+    BlocProvider.of<LanguageCubit>(context).changeLanguage(arabicLoc);
     AwesomeNotifications().setListeners(
       onActionReceivedMethod: (receivedAction) async {
         await BlocProvider.of<CaptinRideRequestCubit>(context)
@@ -59,7 +62,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
   List<Widget> pages = [
     const CaptinHomeViewBody(),
     const CaptinOrdersViewBody(),
-    const CaptinRatingView()
+    // const CaptinRatingView()
   ];
   @override
   void dispose() {
@@ -81,6 +84,7 @@ class _CaptinHomeViewState extends State<CaptinHomeView> {
         ),
       ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
         appBar: checkCaptinAppBar(context, currnetpage: currentPage),
         body: PageView(

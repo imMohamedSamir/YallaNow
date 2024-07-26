@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/widgets/LanguageDropdown.dart';
 import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/edit_user_details_cubit/edit_user_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
@@ -67,6 +67,7 @@ AppBar mainAppBar(BuildContext context, {required String title}) {
 
 AppBar secondHomeAppBar(BuildContext context, {required String title}) {
   return AppBar(
+    backgroundColor: Colors.white,
     automaticallyImplyLeading: false,
     elevation: 0,
     titleSpacing: 16,
@@ -111,7 +112,8 @@ AppBar profileAppBar(BuildContext context,
     actions: [
       BlocBuilder<EditUserDetailsCubit, EditUserDetailsState>(
         builder: (context, state) {
-          if (state is EditUserDetailsInitial) {
+          if (state is EditUserDetailsInitial ||
+              state is EditUserDetailsSuccess) {
             return TextButton.icon(
                 onPressed: () {
                   BlocProvider.of<EditUserDetailsCubit>(context).enableEdite();
@@ -122,7 +124,7 @@ AppBar profileAppBar(BuildContext context,
                       AppStyles.styleMedium16(context).copyWith(color: pKcolor),
                 ));
           }
-          return SizedBox();
+          return const SizedBox();
         },
       )
     ],
@@ -174,53 +176,4 @@ AppBar drAppBar(BuildContext context, {required String title}) {
       titleSpacing: 16,
       title: Text(title, style: AppStyles.styleMedium18(context)),
       actions: const [LanguageDropdown()]);
-}
-
-class LanguageDropdown extends StatefulWidget {
-  const LanguageDropdown({super.key});
-
-  @override
-  _LanguageDropdownState createState() => _LanguageDropdownState();
-}
-
-class _LanguageDropdownState extends State<LanguageDropdown> {
-  String _selectedLanguage = 'English';
-  final List<String> _languages = [
-    'English',
-    'العربية',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          icon: const Icon(Icons.language, color: Colors.black),
-          value: _selectedLanguage,
-          onChanged: (String? newValue) {
-            setState(() {
-              _selectedLanguage = newValue!;
-              if (_selectedLanguage == 'العربية') {
-                BlocProvider.of<LanguageCubit>(context)
-                    .changeLanguage(const Locale('ar'));
-              } else {
-                BlocProvider.of<LanguageCubit>(context)
-                    .changeLanguage(const Locale('en'));
-              }
-            });
-          },
-          items: _languages.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Text(value),
-              ),
-            );
-          }).toList(),
-        ),
-      ),
-    );
-  }
 }

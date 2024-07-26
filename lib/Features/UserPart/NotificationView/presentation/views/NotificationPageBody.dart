@@ -14,7 +14,8 @@ class NotificationPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     deleteOldNotifications();
     markNotificationsAsRead();
-    return Expanded(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: ValueListenableBuilder(
         valueListenable:
             Hive.box<SavedNotificationModel>(kNotification).listenable(),
@@ -43,55 +44,51 @@ class NotificationPageBody extends StatelessWidget {
           }
 
           return Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ListView(
-                // shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: groupedNotifications.entries.map((entry) {
-                  String date = entry.key;
-                  List<SavedNotificationModel> notifications = entry.value;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child:
-                            Text(date, style: AppStyles.styleMedium16(context)),
-                      ),
-                      ...notifications.map((notification) {
-                        return Dismissible(
-                          background: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.only(right: 20.0),
-                            child:
-                                const Icon(Icons.delete, color: Colors.white),
+            child: ListView(
+              // shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              children: groupedNotifications.entries.map((entry) {
+                String date = entry.key;
+                List<SavedNotificationModel> notifications = entry.value;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child:
+                          Text(date, style: AppStyles.styleMedium16(context)),
+                    ),
+                    ...notifications.map((notification) {
+                      return Dismissible(
+                        background: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          direction: DismissDirection.endToStart,
-                          key: UniqueKey(),
-                          onDismissed: (direction) async {
-                            await notification.delete();
-                          },
-                          child: ListTile(
-                            title: Text(notification.title,
-                                style: AppStyles.styleMedium16(context)),
-                            subtitle: Text(notification.body,
-                                style: AppStyles.styleMedium14(context)),
-                            trailing: Text(
-                              DateFormat.Hm().format(notification.dateTime),
-                              style: AppStyles.styleMedium14(context),
-                            ),
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: const Icon(Icons.delete, color: Colors.white),
+                        ),
+                        direction: DismissDirection.endToStart,
+                        key: UniqueKey(),
+                        onDismissed: (direction) async {
+                          await notification.delete();
+                        },
+                        child: ListTile(
+                          title: Text(notification.title,
+                              style: AppStyles.styleMedium16(context)),
+                          subtitle: Text(notification.body,
+                              style: AppStyles.styleMedium14(context)),
+                          trailing: Text(
+                            DateFormat.Hm().format(notification.dateTime),
+                            style: AppStyles.styleMedium14(context),
                           ),
-                        );
-                      }).toList(),
-                    ],
-                  );
-                }).toList(),
-              ),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                );
+              }).toList(),
             ),
           );
         },

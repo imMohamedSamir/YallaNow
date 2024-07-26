@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -68,11 +69,15 @@ getGender({required String gender}) {
 }
 
 getGenderFromEn({required String gender}) {
-  if (gender == "male" || gender == "Male") {
-    return "ذكر";
-  } else if (gender == "female" || gender == "Female") {
-    return "انثى";
+  if (AppLang.isArabic()) {
+    if (gender == "male" || gender == "Male") {
+      return "ذكر";
+    } else if (gender == "female" || gender == "Female") {
+      return "انثى";
+    } else {
+      return null;
+    }
   } else {
-    return null;
+    return gender;
   }
 }

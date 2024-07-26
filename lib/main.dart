@@ -36,6 +36,7 @@ import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/p
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/translate_cubit/translate_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
+import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
 import 'package:yallanow/firebase_options.dart';
 import 'package:yallanow/generated/l10n.dart';
 
@@ -144,6 +145,8 @@ class YallaNow extends StatelessWidget {
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {
           return MaterialApp(
+            theme:
+                ThemeData(colorScheme: const ColorScheme.highContrastLight()),
             navigatorKey: navigatorKey,
             localizationsDelegates: const [
               S.delegate,
@@ -154,7 +157,7 @@ class YallaNow extends StatelessWidget {
             supportedLocales: S.delegate.supportedLocales,
             locale: state,
             debugShowCheckedModeBanner: false,
-            home: const MainHomeView(),
+            home: const SplashView(),
           );
         },
       ),

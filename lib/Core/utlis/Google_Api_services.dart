@@ -43,6 +43,8 @@ class GoogleMapsServices {
     } on Exception catch (e) {
       log(e.toString());
       if (e is DioException) {
+        log(e.response.toString());
+
         return left(ServerFailure.fromDioError(e.type));
       }
 

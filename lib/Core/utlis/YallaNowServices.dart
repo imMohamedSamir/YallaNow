@@ -117,6 +117,23 @@ class YallaNowServices {
     return response.data;
   }
 
+  Future<dynamic> put({required String endPoint, body, String? token}) async {
+    var response = await _dio.put('$_baseUrl$endPoint',
+        data: body,
+        options: Options(headers: {
+          'accept': '*/*',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }));
+    if (response.statusCode == 200) {
+      dynamic responseData = response.data;
+      return responseData;
+    } else {
+      // Handle HTTP error status codes
+    }
+    return response.data;
+  }
+
   Future<dynamic> delete({required String endPoint, String? token}) async {
     var response = await _dio.delete('$_baseUrl$endPoint',
         options: token == null

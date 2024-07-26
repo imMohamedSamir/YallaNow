@@ -176,25 +176,6 @@
     "TotalKillos": "Total killos",
     "totalRating":"Total Ratings",
     "SignUpMsg":"please fill your data to SignUp",
-    "introductionTitle": "1. Introduction",
-    "introductionContent": "Welcome to Yalla Now Travel. This Online Payment Policy outlines the terms and conditions for online transactions conducted through our website.",
-    "paymentMethodsTitle": "2. Payment Methods",
-    "paymentMethodsContent": "We accept the following payment methods for online bookings:\n- Credit Cards (Visa, MasterCard)\n- Debit Cards\n- PayPal\n- Bank Transfers",
-    "paymentSecurityTitle": "3. Payment Security",
-    "paymentSecurityContent": "We use secure encryption technology to protect your payment information. All transactions are processed through a secure payment gateway, ensuring the safety of your personal and financial details.",
-    "paymentConfirmationTitle": "4. Payment Confirmation",
-    "paymentConfirmationContent": "Once your payment is successfully processed, you will receive an email confirmation with your booking details. Please retain this email as proof of payment.",
-    "currencyTitle": "5. Currency",
-    "currencyContent": "All prices listed on our website are in EGP. Payments must be made in the currency specified.",
-    "refundsAndCancellationsTitle": "6. Refunds and Cancellations",
-    "refundsAndCancellationsContent": "Refunds for canceled bookings will be processed according to our Cancellation Policy. Please refer to our Cancellation Policy for details on how to request a refund.",
-    "failedTransactionsTitle": "7. Failed Transactions",
-    "failedTransactionsContent": "If your payment transaction fails, please try again or contact our customer support team for assistance.",
-    "contactInformationTitle": "8. Contact Information",
-    "contactInformationContent": "For any questions or concerns regarding online payments, please contact us at:\n- Email: [email address]\n- Phone: [phone number]",
-    "termsAndConditionsTitle": "Terms and Conditions",
-    "termsAndConditionsContent": "1. Introduction\nThese Terms and Conditions govern your use of the Yalla Now Travel website and the services provided by us. By using our website, you agree to these Terms and Conditions.\n\n2. Booking and Reservations\n- All bookings are subject to availability.\n- Prices and availability are subject to change without notice.\n\n3. Payment\n- Full payment is required at the time of booking.\n- Payments are accepted through the methods listed in our Online Payment Policy.\n\n4. Cancellation and Refunds\n- Cancellations must be made in accordance with our Cancellation Policy.\n- Refunds will be processed based on the terms outlined in the Cancellation Policy.\n\n5. Changes to Bookings\n- Changes to bookings are subject to availability and may incur additional charges.\n- Please contact our customer support team to request changes to your booking.\n\n6. Travel Documents\n- It is your responsibility to ensure that you have the necessary travel documents, including passports and visas.\n- Yalla Now Travel is not responsible for any issues arising from incomplete or incorrect travel documentation.\n\n7. Limitation of Liability\n- Yalla Now Travel is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.\n- We are not responsible for any delays, cancellations, or changes in travel arrangements caused by third-party service providers.\n\n8. Privacy Policy\n- Your personal information is protected in accordance with our Privacy Policy.\n- Please refer to our Privacy Policy for details on how we collect, use, and protect your information.\n\n9. Governing Law\n- These Terms and Conditions are governed by the laws of [Country/State].\n- Any disputes arising from these terms will be resolved in the courts of [Country/State].\n\n10. Changes to Terms and Conditions\n- We reserve the right to modify these Terms and Conditions at any time.\n- Any changes will be posted on our website, and continued use of our services constitutes acceptance of the updated terms.\n\n11. Contact Information\nFor any questions or concerns regarding these Terms and Conditions, please contact us at:",
-
     "DidntReciveCode":"Didn’t receive code? ",
     "resendAgain":"Resend again",
      "SetNewpassword": "Set New password",
@@ -205,7 +186,7 @@
      "RidesHistory":"My Trips",
      "ViewDetails":"View details",
      "Driver":"Driver",
-     "PromoCode":"Promo Code",
+     "PromoCode":"Promo Code /coupon",
      "enterPromoCode":"Enter your Promo Code to get the offer",
      "Submit":"Submit",
      "addToWallet":"Add to Wallet",
@@ -215,7 +196,6 @@
      "Food":"Food & Resturants",
      "pharmacy":"pharmacy",
      "marts":"Mart & Groceries",
-
      "addWalletValidation":"please enter the amount received from the customer",
      "addWalletSuccessMsg":"the amoun added to customer Wallet",
      "Save":"save",
@@ -228,7 +208,15 @@
      "deleteAccMsginclude2":"Personal information and account details.",
      "deleteAccMsg2":"Once your account is deleted, this data cannot be recovered. Please ensure you have saved any necessary information before proceeding.",
     "deletedSuccess":"your account has been deleted",
-    "noNotificationsMsg":"You have no notifications at the moment. All your notifications will appear here."
+    "noNotificationsMsg":"You have no notifications at the moment. All your notifications will appear here.",
+    "PromoCodeMsg":"Enter your Promo Code",
+    "promoCodeValidate":"Please enter Promo Code",
+    "promoCodeCorrect":"please enter correct promo code",
+    "apply":"Apply",
+    "PromoCodeSuccess":"Promo Code applied successfully",
+    "YallaNowPhone":"+20 1143888697",
+
+    "emptyRideMsg":"You have no rides at the moment. Go ahead and book your ride!"
 
 }
 
