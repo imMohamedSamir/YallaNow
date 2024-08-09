@@ -5,6 +5,7 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/S
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_search_cubit/pharmacy_search_cubit.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacySearchPageBody.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class PharmacySearchPage extends StatelessWidget {
   const PharmacySearchPage({super.key});
@@ -14,7 +15,8 @@ class PharmacySearchPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => PharmacySearchCubit(getIt.get<PharmacyRepoImpl>()),
       child: Scaffold(
-        appBar: customAppBar(context, title: "Pharmacy", onPressed: () {
+        appBar:
+            customAppBar(context, title: S.of(context).pharmacy, onPressed: () {
           Navigator.pop(context);
         }),
         body: const PharmacySearchPageBody(),

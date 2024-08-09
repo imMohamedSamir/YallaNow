@@ -96,7 +96,7 @@ class _VehicleImgBuilderState extends State<VehicleImgBuilder> {
                             borderRadius: BorderRadius.circular(8),
                             child: Image.file(
                               _vehicleImages[index]!,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fitWidth,
                             ),
                           )
                         : const Icon(

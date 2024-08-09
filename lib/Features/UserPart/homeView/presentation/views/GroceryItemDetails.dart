@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketItemPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryItemCard.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class GroceryItemDetails extends StatelessWidget {
   const GroceryItemDetails({
@@ -33,7 +34,7 @@ class GroceryItemDetails extends StatelessWidget {
             style: AppStyles.styleMedium14(context),
           ),
           Text(
-            "${item.price} EGP",
+            "${item.price} ${S.of(context).EGP}",
             style: AppStyles.styleMedium14(context)
                 .copyWith(color: const Color(0xff5A5A5A)),
           )

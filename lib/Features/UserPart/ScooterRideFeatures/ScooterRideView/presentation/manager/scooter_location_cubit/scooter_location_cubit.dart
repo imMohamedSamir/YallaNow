@@ -134,11 +134,8 @@ class ScooterLocationCubit extends Cubit<ScooterLocationState> {
         await setDriverMark(newposition!);
         log("new position: $newposition");
 
-        RouteInfo routeInfo = await getRoute(newposition!);
-        emit(ScooterLocationChange(
-            polyLines: polyLines,
-            markers: markers,
-            duration: routeInfo.duration));
+        // RouteInfo routeInfo = await getRoute(newposition!);
+        emit(ScooterLocationChange(polyLines: polyLines, markers: markers));
       }
     });
   }

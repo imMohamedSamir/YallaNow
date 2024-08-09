@@ -14,7 +14,7 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<PopularResturants>>>
       fetchPopularResturant() async {
-    String endpoint1 = "FoodHome/ExploreRestaurants?page=1&pageSize=5";
+    String endpoint1 = "Home/PopularResturants";
     // String endPoint = "FoodHome/PopularResturants";
     try {
       var response = await yallaNowServices.get(endPoint: endpoint1);

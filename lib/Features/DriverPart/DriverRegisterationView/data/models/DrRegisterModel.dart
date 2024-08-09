@@ -5,6 +5,7 @@ class DriverRegisterModel {
   String? firstName;
   String? lastName;
   String? nIDcard;
+
   String? email;
   String? password;
   String? phoneNumber;

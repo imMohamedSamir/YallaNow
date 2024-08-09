@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/CaptinProfileOptionsDetails.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/views/DriverCaptinDetails.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/views/DriverProfileOptionsDetails.dart';
 
 class DriverDrawer extends StatelessWidget {
   const DriverDrawer({super.key});
@@ -15,7 +15,7 @@ class DriverDrawer extends StatelessWidget {
             SizedBox(height: 12),
             DriverCaptinDetails(),
             SizedBox(height: 12),
-            DriverProfileOptionsDetails()
+            CaptinProfileOptionsDetails()
           ],
         ),
       ),

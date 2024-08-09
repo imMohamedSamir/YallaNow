@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
@@ -13,14 +14,13 @@ class SelectedItemCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onTap: () {},
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Image.network(
-          selectedItems.img,
-          width: AppSizes.getWidth(80, context),
-          height: AppSizes.getHeight(80, context),
-          fit: BoxFit.cover,
-        ),
-      ),
+          borderRadius: BorderRadius.circular(8),
+          child: CachedNetworkImage(
+            imageUrl: selectedItems.img,
+            width: AppSizes.getWidth(80, context),
+            height: AppSizes.getHeight(80, context),
+            fit: BoxFit.cover,
+          )),
       contentPadding: EdgeInsets.zero,
       title: Text(selectedItems.name,
           style: AppStyles.styleMedium16(context)

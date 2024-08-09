@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/utlis/functions/scaffoldMsgMethod.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
@@ -61,7 +62,8 @@ class DeleteAccountPageBody extends StatelessWidget {
                   txtcolor: Colors.white,
                   btncolor: pKcolor,
                   onPressed: () {
-                    BlocProvider.of<DeleteAccountCubit>(context).delete();
+                    deleteAccountDialog(context);
+                    // BlocProvider.of<DeleteAccountCubit>(context).delete();
                   },
                 ),
               const Gap(16),

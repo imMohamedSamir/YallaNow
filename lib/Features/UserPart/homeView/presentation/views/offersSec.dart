@@ -40,7 +40,10 @@ class _OffersSecState extends State<OffersSec> {
           color2: widget.color2,
         ),
         const SizedBox(height: 16),
-        dotIndicatorgroup(currentIndex: currentPage),
+        DotIndicatorgroup(
+          currentIndex: currentPage,
+          length: widget.offers.length,
+        ),
       ],
     );
   }

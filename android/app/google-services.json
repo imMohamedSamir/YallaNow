@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "534527622387-7pmhrcr6grofcmkujp5fjhs4iuaogvj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yallanowofficial.yallanow",
+            "certificate_hash": "3ff8de75df882340dddf19b029a76dda18201e54"
+          }
+        },
+        {
+          "client_id": "534527622387-954f93jgmt5qm84fs1id8iqtq0smogtd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yallanowofficial.yallanow",
+            "certificate_hash": "2de2b1a0c6a819fd703b0949a7f417a7ab00d42e"
+          }
+        },
+        {
           "client_id": "534527622387-654i9v9jccmhrmsnmrmrnk1j58jic2su.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -38,6 +54,13 @@
             {
               "client_id": "534527622387-654i9v9jccmhrmsnmrmrnk1j58jic2su.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "534527622387-3ik6ll42fddjolvth8251pokehviv390.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yallanowofficial.yallanow"
+              }
             }
           ]
         }

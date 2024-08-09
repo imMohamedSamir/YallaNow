@@ -19,6 +19,7 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/mode
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/CaptinHomeView.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinMapSec.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/views/CaptinRequestBS.dart';
+import 'package:yallanow/generated/l10n.dart';
 import 'package:yallanow/main.dart';
 
 part 'captin_ride_request_state.dart';
@@ -27,6 +28,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   CaptinRideRequestCubit(this.messagingService, this.captinRequestRepo)
       : super(CaptinRideRequestInitial()) {
     receiveRequest();
+    receiveBackgroundRequest();
   }
   final FirebaseMessagingService messagingService;
   final CaptinRequestRepo captinRequestRepo;
@@ -82,7 +84,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   void receiveRequest() {
     messagingService.onMessage.listen((message) {
       final key = message.data['key'] as String?;
-      log(message.data.toString());
+      // log(message.data.toString());
 
       if (key == null) {
         log('Key is null');
@@ -96,6 +98,42 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
             _createCancelNotification(message);
             usercancelRidedialogMethode(navigatorKey.currentContext!);
             break;
+          default:
+            log("error");
+            break;
+        }
+      }
+    });
+  }
+
+  void receiveBackgroundRequest() {
+    messagingService.onBgMessage.listen((message) {
+      log("message ${message.notification?.title}");
+      final key = message.data['key'] as String?;
+      requestModel = CaptinRequestModel.fromPayload(
+          convertMapToString(originalMap: message.data));
+      // log(message.data.toString());
+
+      if (key == null) {
+        log('Key is null');
+        return;
+      } else {
+        switch (key) {
+          case "Request":
+            showModalBottomSheet(
+              isScrollControlled: true,
+              enableDrag: false,
+              isDismissible: false,
+              context: navigatorKey.currentContext!,
+              builder: (context) {
+                return CaptinRequestBS(requestDetails: requestModel);
+              },
+            );
+            break;
+          // case "UserCancel":
+          //   _createCancelNotification(message);
+          //   usercancelRidedialogMethode(navigatorKey.currentContext!);
+          //   break;
           default:
             log("error");
             break;
@@ -120,15 +158,15 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
   }
 
   void _requestNotification(RemoteMessage requestmessage) async {
-    log("notification: ${requestmessage.data.toString()}");
+    // log("notification: ${requestmessage.data.toString()}");
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: requestmessage.hashCode,
         channelKey: notifChannelKey,
         actionType: ActionType.Default,
         payload: convertMapToString(originalMap: requestmessage.data),
-        title: requestmessage.notification!.title,
-        body: requestmessage.notification!.body,
+        title: S.of(navigatorKey.currentContext!).NewRequest,
+        body: S.of(navigatorKey.currentContext!).NewRequestBody,
         notificationLayout: NotificationLayout.Default,
         backgroundColor: pKcolor,
         wakeUpScreen: true,

@@ -5,6 +5,7 @@ import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/top_categ_resturant_cubit/top_categ_resturant_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodTopCategBody.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class FoodTopCategPage extends StatelessWidget {
   const FoodTopCategPage(
@@ -16,7 +17,7 @@ class FoodTopCategPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => TopCategResturantCubit(getIt.get<FoodRepoImpl>()),
       child: Scaffold(
-        appBar: categoryAppBar(context, title: 'Food'),
+        appBar: categoryAppBar(context, title: S.of(context).Food),
         body: FoodTopCategBody(categTitle: categTitle, categID: categID),
       ),
     );

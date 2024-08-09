@@ -10,7 +10,7 @@ class MartsCategoryItemsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: categoryAppBar(context, title: "Marts"),
+      appBar: categoryAppBar(context, title: categ.name ?? ""),
       body: MartsCategoryItemsPageBody(categ: categ),
     );
   }

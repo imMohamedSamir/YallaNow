@@ -75,7 +75,10 @@ class _TripsPopularSecState extends State<TripsPopularSec> {
           scrollController: scrollController,
         ),
         const Gap(12),
-        dotIndicatorgroup(currentIndex: currentIndex)
+        DotIndicatorgroup(
+          currentIndex: currentIndex,
+          length: 4,
+        )
       ],
     );
   }

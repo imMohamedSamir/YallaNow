@@ -14,7 +14,7 @@ Upgrader upgrader() {
       languageCode: AppLang.isArabic() ? 'ar' : "en",
       messages: upgraderMessages(),
       durationUntilAlertAgain: const Duration(days: 1),
-      // debugLogging: true,
+      debugLogging: true,
       debugDisplayOnce: true,
       minAppVersion: "1.0.0");
 }

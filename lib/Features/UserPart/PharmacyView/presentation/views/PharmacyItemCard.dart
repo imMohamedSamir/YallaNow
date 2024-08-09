@@ -39,7 +39,7 @@ class PharmacyItemCard extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(right: 7, bottom: 7, child: PharmacyAddIcon(item: item))
+            // Positioned(right: 7, bottom: 7, child: PharmacyAddIcon(item: item))
           ],
         ),
       ),

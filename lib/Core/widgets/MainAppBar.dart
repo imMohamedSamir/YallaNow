@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/LanguageDropdown.dart';
 import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/edit_user_details_cubit/edit_user_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
+import 'package:yallanow/Features/UserPart/homeView/presentation/views/LocationAppBar.dart';
 import 'package:yallanow/generated/l10n.dart';
-import 'package:yallanow/main.dart';
 
 AppBar favoriteAppBar(BuildContext context,
     {required String title, bool isOrder = false}) {
@@ -133,17 +132,11 @@ AppBar profileAppBar(BuildContext context,
 
 AppBar homeAppBar() {
   return AppBar(
-    backgroundColor: Colors.white,
-    elevation: 0,
-    scrolledUnderElevation: 0,
-    automaticallyImplyLeading: false,
-    title: Image.asset(
-      Assets.imagesYallaNowLogo,
-      height: AppSizes.getHeight(55, navigatorKey.currentContext!),
-      width: AppSizes.getWidth(55, navigatorKey.currentContext!),
-    ),
-  );
-// const LocationAppBar()
+      backgroundColor: Colors.white,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      automaticallyImplyLeading: false,
+      title: const LocationAppBar());
 }
 
 AppBar categoryAppBar(BuildContext context,

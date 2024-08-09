@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class OrderDetailsRow extends StatelessWidget {
   const OrderDetailsRow({
@@ -17,17 +18,15 @@ class OrderDetailsRow extends StatelessWidget {
         Text(
           type,
           style: total
-              ? AppStyles.styleMedium14(context)
-                  .copyWith(color: const Color(0xff5A5A5A))
-              : AppStyles.styleRegular14(context)
+              ? AppStyles.styleMedium16(context).copyWith(color: blackdcolor)
+              : AppStyles.styleRegular16(context)
                   .copyWith(color: const Color(0xff5A5A5A)),
         ),
         const Spacer(),
         Text(
           price,
           style: total
-              ? AppStyles.styleMedium14(context)
-                  .copyWith(color: const Color(0xff5A5A5A))
+              ? AppStyles.styleMedium16(context).copyWith(color: blackdcolor)
               : AppStyles.styleRegular14(context)
                   .copyWith(color: const Color(0xff5A5A5A)),
         ),

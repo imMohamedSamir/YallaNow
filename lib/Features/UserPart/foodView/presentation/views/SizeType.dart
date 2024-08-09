@@ -20,9 +20,6 @@ class _SizeTypeState extends State<SizeType> {
   @override
   void initState() {
     sizes = widget.item.sizes ?? [];
-    // if (sizes.isNotEmpty) {
-    //   selectedSizeType = sizes.first;
-    // }
     super.initState();
   }
 

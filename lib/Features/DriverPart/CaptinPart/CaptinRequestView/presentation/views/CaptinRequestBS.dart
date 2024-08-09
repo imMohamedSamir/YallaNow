@@ -134,14 +134,13 @@ class CaptinRequestBS extends StatelessWidget {
                       BlocBuilder<CaptinMapCubit, CaptinMapState>(
                         builder: (context, state) {
                           if (state is CaptinMapChange &&
-                                  state.distance! <= 40 ||
+                                  (state.distance ?? 0) <= 40 ||
                               state is CaptinMapInitial) {
                             return CaptinSlideAction(
                                 tripId: requestDetails.tripId!);
                           } else if (state is CaptinMapChange &&
                               state.isStarted!) {
                             return CaptinSlideAction(
-                                isStarted: true,
                                 tripId: requestDetails.tripId!);
                           } else {
                             return const MapsNavigation();

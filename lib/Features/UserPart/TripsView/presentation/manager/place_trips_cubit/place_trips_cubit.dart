@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepo.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_card_model.dart';
@@ -22,9 +21,7 @@ class PlaceTripsCubit extends Cubit<PlaceTripsState> {
         (trips) async {
       allTrips = trips;
       List<TripCardModel> selectedTrips = allTrips.take(pageSize).toList();
-      if (AppLang.isArabic()) {
-        selectedTrips = await _translateTrips(trips: selectedTrips);
-      }
+
       emit(PlaceTripsSuccess(
           trips: selectedTrips,
           hasMore: allTrips.length > pageSize,
@@ -43,9 +40,7 @@ class PlaceTripsCubit extends Cubit<PlaceTripsState> {
 
     List<TripCardModel> newTrips =
         allTrips.sublist(start, end > allTrips.length ? allTrips.length : end);
-    if (AppLang.isArabic()) {
-      newTrips = await _translateTrips(trips: newTrips);
-    }
+
     emit(PlaceTripsSuccess(
         trips: newTrips,
         currentPage: nextPage,
@@ -63,9 +58,7 @@ class PlaceTripsCubit extends Cubit<PlaceTripsState> {
     emit(PlaceTripsLoading());
 
     List<TripCardModel> newTrips = allTrips.sublist(start, end);
-    if (AppLang.isArabic()) {
-      newTrips = await _translateTrips(trips: newTrips);
-    }
+
     emit(PlaceTripsSuccess(
         trips: newTrips,
         currentPage: prevPage,

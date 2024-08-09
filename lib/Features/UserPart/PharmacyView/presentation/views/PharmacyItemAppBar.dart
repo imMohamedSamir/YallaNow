@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
@@ -27,13 +28,12 @@ class PharmacyItemAppBar extends StatelessWidget {
                     },
                     child: const Center(child: Icon(Icons.close)))),
             Center(
-              child: Image.network(
-                url,
-                height: AppSizes.getHeight(180, context),
-                width: AppSizes.getWidth(180, context),
-                fit: BoxFit.fill,
-              ),
-            )
+                child: CachedNetworkImage(
+              imageUrl: url,
+              height: AppSizes.getHeight(180, context),
+              width: AppSizes.getWidth(180, context),
+              fit: BoxFit.fill,
+            ))
           ],
         ));
   }

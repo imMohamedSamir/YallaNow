@@ -13,8 +13,13 @@ class FoodResturantPageBody extends StatelessWidget {
       this.deliveryTime,
       this.deliveryPrice,
       this.resurantName,
-      this.returantImg});
-  final String? deliveryTime, deliveryPrice, resurantName, returantImg;
+      this.returantImg,
+      this.partnerId});
+  final String? deliveryTime,
+      deliveryPrice,
+      resurantName,
+      returantImg,
+      partnerId;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +31,7 @@ class FoodResturantPageBody extends StatelessWidget {
         FoodResturantSecondAppBar(
           resturantName: resurantName,
           resturantImg: returantImg,
+          partnerId: partnerId,
         ),
         SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

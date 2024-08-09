@@ -5,7 +5,6 @@ import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_details_model/PharmacyItem.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyItemAppBar.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyItemDescription.dart';
-import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyRelatedProductsSec.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ItemPageBottomBar.dart';
 
 class PharmacyItemPage extends StatelessWidget {
@@ -48,9 +47,9 @@ class PharmacyItemPageBody extends StatelessWidget {
           PharmacyItemAppBar(imgUrl: item.imageUrl!),
           PharmacyItemDescription(item: item),
           const SizedBox(height: 10),
-          const Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: PharmacyRelatedProductsSec())
+          // const Padding(
+          //     padding: EdgeInsets.only(left: 16),
+          //     child: PharmacyRelatedProductsSec())
         ],
       ),
     );

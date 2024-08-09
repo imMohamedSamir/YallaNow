@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -57,13 +58,12 @@ class _DriverImgSecState extends State<DriverImgSec> {
                     )
                   else if (widget.netImg != null)
                     ClipOval(
-                      child: Image.network(
-                        widget.netImg!,
-                        width: AppSizes.getWidth(130, context),
-                        height: AppSizes.getHeight(130, context),
-                        fit: BoxFit.cover,
-                      ),
-                    )
+                        child: CachedNetworkImage(
+                      imageUrl: widget.netImg!,
+                      width: AppSizes.getWidth(130, context),
+                      height: AppSizes.getHeight(130, context),
+                      fit: BoxFit.cover,
+                    ))
                   else
                     Container(
                       width: AppSizes.getWidth(130, context),

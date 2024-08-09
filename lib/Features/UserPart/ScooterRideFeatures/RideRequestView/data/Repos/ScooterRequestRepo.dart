@@ -12,4 +12,5 @@ abstract class ScooterRequestRepo {
       {required String userId, required String promoCode});
   Future<Either<Failure, dynamic>> cancelPromoCode(
       {required String userId, required String promoCode});
+  Future<Either<Failure, dynamic>> checkbalance({required double value});
 }

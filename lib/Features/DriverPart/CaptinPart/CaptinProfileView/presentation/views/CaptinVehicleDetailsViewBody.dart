@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +8,7 @@ import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/models/vehicel_detaisl_model.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/manager/vehicle_details_cubit/vehicle_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/ProfileView/presentation/views/profileLoading.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantSecondAppBar.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class CaptinVehicleDetailsViewBody extends StatelessWidget {
@@ -54,7 +56,7 @@ class CaptinVehicleDetailsViewBody extends StatelessWidget {
               ),
             );
           } else if (state is VehicleDetailsLoading) {
-            return const ProfileLoading();
+            return const VehiclesPageLoading();
           } else if (state is VehicleDetailsFailure) {
             return Center(
               child: Text(state.errMsg),
@@ -78,20 +80,24 @@ class CaptinVehicleDetailsViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: Image.network(
-                images[0],
+              child: CachedNetworkImage(
+                imageUrl: images[0],
                 height: AppSizes.getHeight(120, context),
                 width: AppSizes.getWidth(120, context),
                 fit: BoxFit.contain,
+                placeholder: (context, url) => const LoadingImg(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const Gap(16),
             Expanded(
-              child: Image.network(
-                images[1],
+              child: CachedNetworkImage(
+                imageUrl: images[1],
                 height: AppSizes.getHeight(120, context),
                 width: AppSizes.getWidth(120, context),
                 fit: BoxFit.contain,
+                placeholder: (context, url) => const LoadingImg(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             )
           ],
@@ -100,20 +106,24 @@ class CaptinVehicleDetailsViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: Image.network(
-                images[2],
+              child: CachedNetworkImage(
+                imageUrl: images[2],
                 height: AppSizes.getHeight(120, context),
                 width: AppSizes.getWidth(120, context),
                 fit: BoxFit.contain,
+                placeholder: (context, url) => const LoadingImg(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const Gap(16),
             Expanded(
-              child: Image.network(
-                images[3],
+              child: CachedNetworkImage(
+                imageUrl: images[3],
                 height: AppSizes.getHeight(120, context),
                 width: AppSizes.getWidth(120, context),
                 fit: BoxFit.contain,
+                placeholder: (context, url) => const LoadingImg(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             )
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/marts_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
@@ -16,14 +17,10 @@ class SuperMarketCard extends StatelessWidget {
       child: ListTile(
         onTap: () {
           savePartnerId(id: martsModel.id!, type: 1);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MarketPage(
-                  martName: martsModel.name!,
-                  martID: martsModel.id,
-                ),
-              ));
+          NavigateToPage.slideFromRight(
+              context: context,
+              page: MarketPage(
+                  martName: martsModel.name!, martID: martsModel.id));
         },
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),

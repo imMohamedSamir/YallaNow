@@ -1,47 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class ItemSelectedDetails extends StatelessWidget {
-  const ItemSelectedDetails(
-      {super.key,
-      this.value,
-      this.groupValue,
-      this.onChanged,
-      required this.mealSize,
-      required this.prices});
+  const ItemSelectedDetails({
+    super.key,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
+    required this.mealSize,
+    required this.prices,
+  });
 
-  final value, groupValue;
+  final dynamic value;
+  final dynamic groupValue;
   final void Function(dynamic)? onChanged;
-  final String mealSize, prices;
+  final String mealSize;
+  final String prices;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        value == groupValue
-            ? Container(
-                height: 20,
-                width: 3,
-                decoration: BoxDecoration(
-                    color: pKcolor, borderRadius: BorderRadius.circular(32)))
-            : const SizedBox(),
-        const SizedBox(width: 16),
-        Text(
-          mealSize,
-          style: AppStyles.styleRegular16(context)
-              .copyWith(color: const Color(0xff5A5A5A)),
+    return RadioListTile(
+      contentPadding: EdgeInsets.zero,
+      value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
+      activeColor: pKcolor,
+      title: Row(
+        children: [
+          Text(
+            mealSize,
+            style: AppStyles.styleRegular16(context)
+                .copyWith(color: const Color(0xff5A5A5A)),
+          ),
+          const Spacer(),
+          Text("+ $prices ${S.of(context).EGP}",
+              style: AppStyles.styleRegular14(context)
+                  .copyWith(color: const Color(0xff5A5A5A)))
+        ],
+      ),
+      secondary: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        height: 20,
+        width: value == groupValue ? 3 : 0,
+        decoration: BoxDecoration(
+          color: pKcolor,
+          borderRadius: BorderRadius.circular(32),
         ),
-        const Spacer(),
-        Text("+ $prices EPG",
-            style: AppStyles.styleRegular12(context)
-                .copyWith(color: const Color(0xff5A5A5A))),
-        Radio(
-          value: value,
-          groupValue: groupValue,
-          onChanged: onChanged,
-          activeColor: const Color(0xffB20404),
-        )
-      ],
+      ),
     );
   }
 }

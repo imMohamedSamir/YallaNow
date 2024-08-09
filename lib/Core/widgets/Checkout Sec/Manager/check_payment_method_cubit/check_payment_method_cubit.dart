@@ -31,10 +31,12 @@ class CheckPaymentMethodCubit extends Cubit<CheckPaymentMethodState> {
     required double amount,
   }) async {
     emit(const CheckPaymentMethodLoading(methode: PaymentMethod.creditCard));
-    var result = await PaymobManager().getPaymentKey(amount: amount);
-    result.fold(
-        (fail) => emit(CheckPaymentMethodFailuer(errMsg: fail.errMessage)),
-        (paymentKey) {
+    var result = await PaymobManager()
+        .getPaymentKey(amount: amount, billingData: BillingData());
+    result.fold((fail) {
+      log(fail.errMessage);
+      emit(CheckPaymentMethodFailuer(errMsg: fail.errMessage));
+    }, (paymentKey) {
       emit(const CheckPaymentMethodChange(methode: PaymentMethod.creditCard));
       NavigateToPage.slideFromRight(
           context: context, page: PaymentWebView(paymentKey: paymentKey));

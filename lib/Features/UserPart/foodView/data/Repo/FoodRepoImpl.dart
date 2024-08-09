@@ -125,4 +125,32 @@ class FoodRepoImpl implements FoodRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<TopCategResturant>>>
+      fetchExploreResturant() async {
+    String endPoint = "FoodHome/ExploreRestaurants?page=1&pageSize=5";
+
+    try {
+      var response = await yallaNowServices.get(endPoint: endPoint);
+      List<TopCategResturant> popularCategories = [];
+      for (var category in response) {
+        popularCategories.add(TopCategResturant.fromJson(category));
+      }
+      return right(popularCategories);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
 }

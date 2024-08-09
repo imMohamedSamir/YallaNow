@@ -11,23 +11,23 @@ class CategorySec extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CardCategDetails> details = [
       CardCategDetails(
-          title: S.of(context).scooterRide, img: Assets.imagesScootercateg),
+        title: S.of(context).Food,
+        img: Assets.imagesFoodCategory,
+      ),
+      CardCategDetails(
+        title: S.of(context).marts,
+        img: Assets.imagesMarketbasket,
+      ),
+      CardCategDetails(
+        title: S.of(context).Pharamcies,
+        img: Assets.imagesPharamcyLogo,
+      ),
       CardCategDetails(
           title: S.of(context).Trips, img: Assets.imagesTripsCateg),
-      CardCategDetails(
-          title: S.of(context).Food,
-          img: Assets.imagesFood,
-          isComingSoon: true),
-      CardCategDetails(
-          title: S.of(context).pharmacy,
-          img: Assets.imagesPharamcyLogo,
-          isComingSoon: true),
-      CardCategDetails(
-          title: S.of(context).marts,
-          img: Assets.imagesMarketbasket,
-          isComingSoon: true),
       // CardCategDetails(
-      //     title: "Bazar", img: Assets.imagesMarketbasket, isComingSoon: true),
+      //     title: S.of(context).Bazar, img: Assets.imagesMarketbasket),
+      CardCategDetails(
+          title: S.of(context).scooterRide, img: Assets.imagesScootercateg),
     ];
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
@@ -37,7 +37,7 @@ class CategorySec extends StatelessWidget {
       itemCount: details.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
-          padding: getPadding(index: index, lastIndex: 2, paddingValue: 16),
+          padding: getPadding(index: index, lastIndex: 2, paddingValue: 4),
           child: Card(
               elevation: .9,
               child: CategCardDetails(

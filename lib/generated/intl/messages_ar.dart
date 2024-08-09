@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل المبلغ المستلم من العميل"),
         "CaptinwalletMsg2": MessageLookupByLibrary.simpleMessage(
             "سيتم إضافته إلى محفظة العميل"),
+        "Cash": MessageLookupByLibrary.simpleMessage("نقدي"),
         "Checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "Choose": MessageLookupByLibrary.simpleMessage("اختر"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("اختر رحلة"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Continue": MessageLookupByLibrary.simpleMessage("استمرار"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "CreditCard": MessageLookupByLibrary.simpleMessage("بطاقة ائتمان"),
         "DeleteAcc": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "DidntReciveCode":
             MessageLookupByLibrary.simpleMessage("لم تستلم الرمز؟"),
@@ -94,7 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Nationality": MessageLookupByLibrary.simpleMessage("الجنسية"),
         "NationalityValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال جنسيتك"),
+        "NewRequest": MessageLookupByLibrary.simpleMessage("طلب رحلة جديد"),
+        "NewRequestBody": MessageLookupByLibrary.simpleMessage(
+            "لديك طلب رحلة جديد. انقر لعرض التفاصيل."),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "NoBalanceWallet": MessageLookupByLibrary.simpleMessage(
+            "رصيد المحفظة غير كافٍ. يرجى اختيار طريقة دفع أخرى."),
         "NoDriversMsg": MessageLookupByLibrary.simpleMessage(
             "لا يوجد سائقين متاحين الآن، يُرجى المحاولة مرة أخرى لاحقًا"),
         "Notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
@@ -257,6 +264,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "editSuccess": MessageLookupByLibrary.simpleMessage("تم التعديل بنجاح"),
         "editprofile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        "emptyRideMsg": MessageLookupByLibrary.simpleMessage(
+            "لا توجد رحلات في الوقت الحالي. اذهب واحجز رحلتك!"),
         "enterPromoCode": MessageLookupByLibrary.simpleMessage(
             "أدخل الرمز الترويجي للحصول على العرض"),
         "feesh": MessageLookupByLibrary.simpleMessage("الفيش و التشبيه"),

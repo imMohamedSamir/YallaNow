@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
@@ -22,15 +23,18 @@ class OffresPageView extends StatelessWidget {
         controller: pageController,
         scrollDirection: Axis.horizontal,
         children: List.generate(
-            4,
+            offers.length,
             (index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: AspectRatio(
                     aspectRatio: 361 / 140,
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      padding:
-                          const EdgeInsets.only(left: 16, top: 16, bottom: 0),
+                      padding: EdgeInsets.only(
+                          left: AppLang.isArabic() ? 0 : 16,
+                          right: AppLang.isArabic() ? 16 : 0,
+                          top: 16,
+                          bottom: 0),
                       decoration: BoxDecoration(
                           image: const DecorationImage(
                               alignment: Alignment.centerRight,

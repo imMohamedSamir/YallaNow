@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/service_locator.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/repo/CatpinProfileRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/presentation/manager/captin_drawer_cubit/captin_drawer_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/DriverBottomNavBar.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/manager/CheckHomeAppBar.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/manager/CheckDeliveryAppBar.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/views/DeliverHomeViewBody.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/views/DriverDrawer.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryOrdersView/presentation/views/DeliveyOrdersViewBody.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryRatingView/presentation/views/DeliveryRatingView.dart';
 
 class DeliverHomeView extends StatefulWidget {
   const DeliverHomeView({super.key});
@@ -18,16 +23,14 @@ class _DeliverHomeViewState extends State<DeliverHomeView> {
   late PageController _pageController;
   @override
   void initState() {
+    BlocProvider.of<LanguageCubit>(context).changeLanguage(arabicLoc);
+
     super.initState();
     _pageController = PageController(initialPage: currentPage);
   }
 
   void setCurrentPage(int index) {
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
+    _pageController.jumpToPage(index);
   }
 
   @override
@@ -39,26 +42,30 @@ class _DeliverHomeViewState extends State<DeliverHomeView> {
   static List<Widget> pages = [
     const DeliverHomeViewBody(),
     const DeliveryOrdersView(),
-    const DeliveryRatingView()
+    // const DeliveryRatingView()
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
-      appBar: checkAppBar(context, currnetpage: currentPage),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        children: pages,
-      ),
-      drawer: const DriverDrawer(),
-      bottomNavigationBar: DriverBottomNavBar(
-        onItemTapped: setCurrentPage,
-        currentIndex: currentPage,
+    return BlocProvider(
+      create: (context) =>
+          CaptinDrawerCubit(getIt.get<CatpinProfileRepoImpl>())..get(),
+      child: Scaffold(
+        backgroundColor: currentPage == 1 ? const Color(0xffF5F5F5) : null,
+        appBar: checkDeliveryAppBar(context, currnetpage: currentPage),
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              currentPage = index;
+            });
+          },
+          children: pages,
+        ),
+        drawer: const DriverDrawer(),
+        bottomNavigationBar: DriverBottomNavBar(
+          onItemTapped: setCurrentPage,
+          currentIndex: currentPage,
+        ),
       ),
     );
   }

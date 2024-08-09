@@ -4,8 +4,11 @@ import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/MarketsView.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/PharmacyView.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/ScooterRideView.dart';
-import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsVew.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/TripsView.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/FoodView.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/CardDetailModel.dart';
 
 class CategCardDetails extends StatelessWidget {
@@ -26,14 +29,32 @@ class CategCardDetails extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        if (!cardDetails.isComingSoon!) {
-          if (index == 0) {
+        switch (index) {
+          case 0:
             NavigateToPage.slideFromRight(
-                context: context, page: const ScooterRideView(fromHome: true));
-          } else if (index == 1) {
+                context: context, page: const FoodView());
+            break;
+          case 1:
+            NavigateToPage.slideFromRight(
+                context: context, page: const MarketsView());
+            break;
+          case 2:
+            NavigateToPage.slideFromRight(
+                context: context, page: const PharmacyView());
+            break;
+          case 3:
             NavigateToPage.slideFromRight(
                 context: context, page: const TripsView());
-          }
+            break;
+          case 4:
+            NavigateToPage.slideFromRight(
+                context: context, page: const ScooterRideView(fromHome: true));
+            // NavigateToPage.slideFromRight(
+            //     context: context, page: const ScooterRideView(fromHome: true));
+            break;
+          case 5:
+            break;
+          default:
         }
       },
       child: Stack(
@@ -70,6 +91,7 @@ class CategCardDetails extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       height: AppSizes.getHeight(63, context),
                       width: AppSizes.getWidth(65, context),
+                      filterQuality: FilterQuality.high,
                       fit: BoxFit.contain,
                     ),
                   ),

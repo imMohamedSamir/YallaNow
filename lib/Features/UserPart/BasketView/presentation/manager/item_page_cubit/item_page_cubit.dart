@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
@@ -60,9 +58,8 @@ class ItemPageCubit extends Cubit<ItemPageState> {
 
     if (checkPartner) {
       if (createditem != null) {
+        emit(ItemPageInitial());
         await box.put(createditem!.itemID, createditem!);
-        log("added: ${box.length}");
-
         emit(ItemPageAdded());
       }
     } else {

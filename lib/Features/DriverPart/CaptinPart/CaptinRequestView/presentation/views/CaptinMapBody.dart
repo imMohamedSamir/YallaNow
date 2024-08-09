@@ -22,7 +22,8 @@ class CaptinMapBody extends StatelessWidget {
             if (state is CaptinMapSuccess) {
               initialCameraPosition =
                   CameraPosition(target: state.locationData, zoom: 15);
-              // BlocProvider.of<CaptinMapCubit>(context).getRoutes(context);
+              BlocProvider.of<CaptinMapCubit>(context).getRoutes(context);
+
               BlocProvider.of<CaptinMapCubit>(context)
                   .listenToDriverLocationUpdates(context);
             } else {
@@ -34,6 +35,13 @@ class CaptinMapBody extends StatelessWidget {
       ],
       child: BlocBuilder<CaptinMapCubit, CaptinMapState>(
         builder: (context, state) {
+          Set<Polyline>? polyLine;
+
+          if (state is CaptinMapLoading) {
+            polyLine = state.polyLine;
+          } else if (state is CaptinMapChange) {
+            polyLine = state.polyLine;
+          }
           return GoogleMap(
             onMapCreated: (controller) {
               context.read<CaptinMapCubit>().setMapController(controller);
@@ -44,7 +52,7 @@ class CaptinMapBody extends StatelessWidget {
             compassEnabled: false,
             indoorViewEnabled: true,
             myLocationButtonEnabled: false,
-            polylines: state is CaptinMapChange ? state.polyLine ?? {} : {},
+            polylines: polyLine ?? {},
           );
         },
       ),

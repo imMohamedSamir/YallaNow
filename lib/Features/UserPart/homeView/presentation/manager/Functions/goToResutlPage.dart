@@ -5,7 +5,6 @@ import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/search_result_model.dart';
 
@@ -16,11 +15,11 @@ void goToResutlPage(BuildContext context,
       : resultModel.imageUrl!;
   if (resultModel.type == "Restaurant" || type == 2) {
     savePartnerId(id: resultModel.id!, type: 2);
-    BlocProvider.of<ResturantBranchesCubit>(context)
-        .fetchResturantBranches(restaurantId: resultModel.id!);
+
     NavigateToPage.slideFromRight(
         context: context,
         page: FoodResturantPage(
+            id: resultModel.id!,
             deliveryPrice: resultModel.deliveryFees.toString(),
             deliveryTime: resultModel.deliveryTime,
             resurantName: resultModel.name,

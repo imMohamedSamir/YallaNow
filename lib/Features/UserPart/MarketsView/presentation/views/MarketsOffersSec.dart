@@ -21,11 +21,6 @@ class MarketsOffersSec extends StatelessWidget {
         subtitle: "Friday Offer!",
         description: "Get discount up to 30%",
         img: Assets.imagesMarketOffer),
-    OfferDetailsModel(
-        title: "20%",
-        subtitle: "Friday Offer!",
-        description: "Get discount up to 30%",
-        img: Assets.imagesMarketOffer)
   ];
   @override
   Widget build(BuildContext context) {

@@ -7,6 +7,7 @@ import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addresses_details_model/user_addresses_details_model.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/LocationAppBar.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class ContactInfoSec extends StatefulWidget {
   const ContactInfoSec({super.key});
@@ -37,7 +38,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
       _addressController.text = "${addressData.city}\n${addressData.street}";
       readonlyAddress = _addressController.text.isNotEmpty;
       _phoneController.text = addressData.contact?.contactPhone ?? '';
-      readonlyPhone = _phoneController.text.isNotEmpty;
+      readonlyPhone = _phoneController.text.isEmpty;
     });
   }
 
@@ -49,7 +50,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
       _addressController.text = "${addressData.city}\n${addressData.street}";
       readonlyAddress = _addressController.text.isNotEmpty;
       _phoneController.text = addressData.contact?.contactPhone ?? '';
-      readonlyPhone = _phoneController.text.isNotEmpty;
+      readonlyPhone = _phoneController.text.isEmpty;
     }
   }
 
@@ -76,29 +77,34 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Contact Info", style: AppStyles.styleSemiBold16(context)),
-              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Text(S.of(context).ContactInfo,
+                      style: AppStyles.styleSemiBold16(context)),
+                  const Spacer(),
+                  TextButton(
+                      onPressed: () {
+                        addressBottomSheet(context: context);
+                        setState(() {
+                          readonlyPhone = true;
+                        });
+                      },
+                      child: Text(
+                        S.of(context).change,
+                        style: AppStyles.styleMedium14(context)
+                            .copyWith(color: pKcolor),
+                      ))
+                ],
+              ),
               CustomTextField(
                 controller: _addressController,
                 autovalidateMode: autovalidateModeAddress,
-                prefixIcon: const Icon(
-                  Icons.location_pin,
-                  color: scColor,
-                ),
-                hintText: "Address",
+                prefixIcon: const Icon(Icons.location_pin, color: scColor),
+                hintText: S.of(context).address,
                 readOnly: readonlyAddress,
-                suffixIcon: TextButton(
-                    onPressed: () {
-                      addressBottomSheet(context: context);
-                    },
-                    child: Text(
-                      "Change",
-                      style: AppStyles.styleMedium12(context)
-                          .copyWith(color: const Color(0xffB20404)),
-                    )),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your Address';
+                    return S.of(context).addressValidation;
                   }
                   return null;
                 },
@@ -115,33 +121,23 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
               CustomTextField(
                 controller: _phoneController,
                 autovalidateMode: autovalidateModePhone,
-                readOnly: readonlyPhone,
+                enabled: readonlyPhone,
                 prefixIcon: const Icon(Icons.call, color: scColor),
-                hintText: "Phone Number",
+                hintText: S.of(context).PhoneNumber,
                 keyboardType: TextInputType.number,
-                suffixIcon: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      readonlyPhone = false;
-                    });
-                  },
-                  child: Text(
-                    "Change",
-                    style: AppStyles.styleMedium12(context)
-                        .copyWith(color: const Color(0xffB20404)),
-                  ),
-                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your mobile number';
+                    return S.of(context).PhoneValidation;
                   }
                   if (value.length > 11 || value.length < 11) {
-                    return 'Please enter correct mobile number ';
+                    return S.of(context).correctPhoneNumber;
                   }
                   return null;
                 },
                 onChanged: (p0) {
-                  autovalidateModePhone = AutovalidateMode.onUserInteraction;
+                  setState(() {
+                    autovalidateModePhone = AutovalidateMode.onUserInteraction;
+                  });
                 },
                 onSaved: (value) {
                   BlocProvider.of<PlaceOrderCubit>(context)

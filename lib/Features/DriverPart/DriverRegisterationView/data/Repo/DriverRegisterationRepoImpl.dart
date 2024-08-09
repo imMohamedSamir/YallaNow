@@ -21,6 +21,7 @@ class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
       FormData formData = FormData.fromMap({
         'FirstName': driverDetails.firstName ?? '',
         'LastName': driverDetails.lastName ?? '',
+        'Username ': driverDetails.email?.split("@")[0],
         'Gender': driverDetails.gender ?? '',
         'PhoneNumber': driverDetails.phoneNumber ?? '',
         'Password': driverDetails.password ?? '',
@@ -35,7 +36,6 @@ class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
         'VehicleColor': driverDetails.vehicleColor ?? '',
         'VehicleType': driverDetails.vehicleType.toString(),
       });
-
       // Add files to FormData
       if (driverDetails.driverPapers!.driverFile != null) {
         formData.files.add(MapEntry(
@@ -59,6 +59,7 @@ class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
           ));
         }
       }
+      log(formData.fields.toString());
 
       // Send the request
       var response = await _dio.post(
@@ -76,7 +77,12 @@ class DriverRegisterationRepoImpl implements DriverRegisterationRepo {
             ServerFailure('Failed with status code: ${response.statusCode}'));
       }
     } catch (e) {
-      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+            ServerFailure.fromResponse(e.response?.statusCode, e.response));
+      }
+
       return left(ServerFailure(e.toString()));
     }
   }

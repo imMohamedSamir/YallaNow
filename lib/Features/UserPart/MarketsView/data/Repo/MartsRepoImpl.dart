@@ -8,6 +8,7 @@ import 'package:yallanow/Features/UserPart/MarketsView/data/Repo/MartsRepo.dart'
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/mart_details_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/marts_model.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/search_result_model.dart';
 
 class MartsRepoImpl implements MartsRepo {
   final YallaNowServices yallaNowServices;
@@ -85,6 +86,32 @@ class MartsRepoImpl implements MartsRepo {
       return right(items);
     } catch (e) {
       log(e.toString());
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<SearchResultModel>>> martsSearch(
+      {required String input}) async {
+    String endPoint = "FoodHome/search?query=$input";
+    try {
+      var response = await yallaNowServices.get(endPoint: endPoint);
+      List<SearchResultModel> results = [];
+      for (var result in response) {
+        results.add(SearchResultModel.fromJson(result));
+      }
+      return right(results);
+    } catch (e) {
       if (e is DioException) {
         return left(
           ServerFailure.fromDioError(e.type),

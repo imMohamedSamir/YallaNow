@@ -9,6 +9,8 @@ abstract class FoodRepo {
   Future<Either<Failure, RestruntDetails>> fetchResturantBranches(
       {required String restaurantId});
   Future<Either<Failure, List<PopularFoodCategory>>> fetchPopularCategory();
+  Future<Either<Failure, List<TopCategResturant>>> fetchExploreResturant();
+
   Future<Either<Failure, List<TopCategResturant>>> fetchPopularCategoryPage(
       {required String categoryId});
   Future<Either<Failure, List<SearchResultModel>>> fetchSearch(

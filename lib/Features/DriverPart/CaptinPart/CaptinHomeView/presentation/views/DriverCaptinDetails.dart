@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -21,13 +22,11 @@ class DriverCaptinDetails extends StatelessWidget {
           return Row(
             children: [
               ClipOval(
-                child: Image.network(
-                  detailsModel.image!,
-                  width: AppSizes.getWidth(70, context),
-                  height: AppSizes.getHeight(70, context),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  child: CachedNetworkImage(
+                      imageUrl: detailsModel.image!,
+                      width: AppSizes.getWidth(70, context),
+                      height: AppSizes.getHeight(70, context),
+                      fit: BoxFit.cover)),
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

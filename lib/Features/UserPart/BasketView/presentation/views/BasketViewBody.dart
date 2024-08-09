@@ -18,7 +18,7 @@ class BasketViewBody extends StatelessWidget {
           SelectedItemsSec(),
           SizedBox(height: 16),
           OrderDetails(),
-          Spacer(),
+          SizedBox(height: 18),
           BasketButtonsSec(),
           SizedBox(height: 12),
         ],

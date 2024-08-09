@@ -12,7 +12,7 @@ final class PharmacySearchInitial extends PharmacySearchState {}
 final class PharmacySearchLoading extends PharmacySearchState {}
 
 final class PharmacySearchSuccess extends PharmacySearchState {
-  final List results;
+  final List<SearchResultModel> results;
 
   const PharmacySearchSuccess({required this.results});
 }

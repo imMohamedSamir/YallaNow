@@ -20,6 +20,7 @@ class DrSignupButtonBuilder extends StatelessWidget {
     return BlocConsumer<DriverRegisterationCubit, DriverRegisterationState>(
       listener: (context, state) {
         if (state is DriverRegisterationSuccess) {
+          BlocProvider.of<DriverRegisterationCubit>(context).close();
           NavigateToPage.slideFromRight(
               context: context, page: const LoginView());
         }

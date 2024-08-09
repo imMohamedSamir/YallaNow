@@ -21,9 +21,6 @@
     "Trips":"Trips",
     "PerPerson":"/ Person",
     "Exploretrips":"Explore trips",
-
-
-
     "scooterRide":"Scooter Ride",
     "Home":"Home",
     "Language":"Language",
@@ -172,7 +169,7 @@
     "ResetviaPhone":"Reset via Phone",
     "CodeSentMsg":"Code has been send to",
     "CaptinProfile":"Captin Profile",
-    "TotalTrips":"Total trips",
+    "TotalTrips":"Total Orders",
     "TotalKillos": "Total killos",
     "totalRating":"Total Ratings",
     "SignUpMsg":"please fill your data to SignUp",
@@ -215,9 +212,53 @@
     "apply":"Apply",
     "PromoCodeSuccess":"Promo Code applied successfully",
     "YallaNowPhone":"+20 1143888697",
-
     "emptyRideMsg":"You have no rides at the moment. Go ahead and book your ride!",
-    "NoDriversMsg":"No drivers available Now , please try again later"
+    "NoDriversMsg":"No drivers available Now , please try again later",
+    "Cash":"Cash",
+    "CreditCard":"Credit Card",
+    "NoBalanceWallet":"Insufficient wallet balance. Please choose another payment method.",
+    "NewRequest":"New Ride Request",
+    "NewRequestBody":"You have a new ride request. Tap to view details.",
+
+    "DeliverTo":"Deliver To",
+    "Bazar":"Bazar",
+    "Basket":"Basket",
+    "AddItems":"Add Items",
+    "PaymentSummary":"Payment Summary",
+    "DeliveryFee":"Delivery Fee",
+    "ServiceFee":"Service Fee",
+    "PopularMarts":"Popular Marts",
+    "PopularResturants":"Popular Resturants",
+    "SuperMarkets":"Super Markets",
+    "Categories":"Categories",
+    "AddToBasket":"Add To Basket",
+    "PriceOnSelection":"Price on selection",
+    "Allow":"Allow",
+    "Deny":"Deny",
+    "LocationPermissionMsg":"Yalla Now App collects location data to enable Identification of nearby drivers,Resturants,marts and pharmacies even when the app is closed or not in use.",
+    "LocationPermissionTitle":"Location Data Collection for Nearby Services",
+    "Pharamcies":"Pharamcies",
+    "BestSeller":"Best Seller",
+    "Search":"Search",
+    "Results":"Results",
+    "Favorites":"Favorites",
+    "Addresses":"Addresses",
+    "FakaMsg":"Please bring rest of ",
+    "ContactInfo":"Contact Info",
+    "TopCategories":"Top Categories",
+    "AllResturants":"All Resturants",
+    "ExploreResturants":"Explore Resturants",
+    "DriverProfile":"Driver profile",
+    "OrderDetails":"Order Details",
+    "OrderSummary":"Order Summary",
+    "Extras":"Extras :",
+    "Optional":"Optional",
+    "ChooseSize":"your choice of size :",
+    "Required":"Required",
+    "ChooseOne":"Choose one",
+    "DeleteAccDialogQ":"Remove your account and all associated data ?"
+
+
 
 }
 

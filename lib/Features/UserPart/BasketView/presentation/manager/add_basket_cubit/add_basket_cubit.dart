@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/Repo/BasketRepo.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/basket_item_model/BasketItemExtra.dart';
 import 'package:yallanow/Features/UserPart/BasketView/data/models/basket_item_model/BasketItemSize.dart';
@@ -11,31 +13,34 @@ part 'add_basket_state.dart';
 class AddBasketCubit extends Cubit<AddBasketState> {
   AddBasketCubit(this.basketRepo) : super(AddBasketInitial());
   final BasketRepo basketRepo;
-  void add({required List<SelectedItemsModel> items}) async {
+  void add() async {
     List<BasketItemModel> basketItems = [];
-    basketItems = parseItems(items: items);
+    basketItems = parseItems();
     emit(AddBasketLoading());
     var results = await basketRepo.fetchResturantBranches(items: basketItems);
     results.fold((faile) => emit(AddBasketFailure(errmsg: faile.errMessage)),
         (done) => emit(AddBasketSuccess()));
   }
 
-  List<BasketItemModel> parseItems({required List<SelectedItemsModel> items}) {
+  List<BasketItemModel> parseItems() {
+    List<SelectedItemsModel> selectedItems =
+        Hive.box<SelectedItemsModel>(kBasket).values.toList();
     List<BasketItemModel> basketItems = [];
-    if (items.isNotEmpty) {
-      for (var item in items) {
-        List<BasketItemSize> sizes = [];
-        List<BasketItemExtra> extras = [];
+
+    if (selectedItems.isNotEmpty) {
+      for (var item in selectedItems) {
+        List<BasketItemSize>? sizes = [];
+        List<BasketItemExtra>? extras = [];
+
         if (item.size != null) {
           sizes.add(
-              BasketItemSize(name: item.size?.name, price: item.size?.price));
+              BasketItemSize(name: item.size!.name, price: item.size!.price));
         }
-        if (item.extras != null) {
-          if (item.extras!.isNotEmpty) {
-            for (var extra in item.extras!) {
-              extras.add(BasketItemExtra(
-                  name: extra.name, price: extra.price!.toDouble()));
-            }
+
+        if (item.extras != null && item.extras!.isNotEmpty) {
+          for (var extra in item.extras!) {
+            extras.add(BasketItemExtra(
+                name: extra.name, price: extra.price?.toDouble()));
           }
         }
 
@@ -48,9 +53,11 @@ class AddBasketCubit extends Cubit<AddBasketState> {
           itemSizes: sizes,
           itemExtras: extras,
         );
+
         basketItems.add(basketItem);
       }
     }
+
     return basketItems;
   }
 }

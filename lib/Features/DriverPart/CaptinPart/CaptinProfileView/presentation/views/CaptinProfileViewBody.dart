@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
+import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/models/captin_details_model.dart';
@@ -43,17 +44,17 @@ class CaptinProfileViewBody extends StatelessWidget {
                 CustomTextField(
                     initialValue: captinDetailsModel.riderName,
                     label: S.of(context).userName,
-                    readOnly: true),
+                    enabled: false),
                 const Gap(16),
                 CustomTextField(
                     initialValue: captinDetailsModel.phoneNumber,
                     label: S.of(context).PhoneNumber,
-                    readOnly: true),
+                    enabled: false),
                 const Gap(16),
                 CustomTextField(
                     initialValue: captinDetailsModel.address,
                     label: S.of(context).address,
-                    readOnly: true),
+                    enabled: false),
                 const Gap(16),
                 Row(
                   children: [
@@ -62,21 +63,30 @@ class CaptinProfileViewBody extends StatelessWidget {
                             initialValue:
                                 captinDetailsModel.totalTrips.toString(),
                             label: S.of(context).TotalTrips,
-                            readOnly: true)),
+                            enabled: false)),
                     const Gap(16),
                     Expanded(
                         child: CustomTextField(
-                            initialValue:
-                                captinDetailsModel.totalKillos.toString(),
+                            initialValue: "${captinDetailsModel.totalKillos}",
                             label: S.of(context).TotalKillos,
-                            readOnly: true)),
+                            suffixIcon: Align(
+                              alignment: AppLang.isArabic()
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                              child: Text(
+                                "${S.of(context).Km}  ",
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                            enabled: false)),
                   ],
                 ),
                 const Gap(16),
                 CustomTextField(
                   label: S.of(context).Wallet,
-                  initialValue: "${captinDetailsModel.walletBalance} EGP",
-                  readOnly: true,
+                  initialValue:
+                      "${captinDetailsModel.walletBalance} ${S.of(context).EGP}",
+                  enabled: false,
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(6.0),
                     child: SvgPicture.asset(Assets.imagesWallet),

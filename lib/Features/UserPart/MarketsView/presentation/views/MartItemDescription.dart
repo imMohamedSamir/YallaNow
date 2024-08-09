@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartItemQty.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class MartItemDescription extends StatelessWidget {
   const MartItemDescription({super.key, this.item});
@@ -29,13 +30,13 @@ class MartItemDescription extends StatelessWidget {
                 builder: (context, state) {
                   if (state is ItemPageChange) {
                     return Text(
-                      "${state.updatedPrice} EGP",
+                      "${state.updatedPrice} ${S.of(context).EGP}",
                       style: AppStyles.styleRegular14(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                     );
                   } else {
                     return Text(
-                      "${item?.price} EGP",
+                      "${item?.price} ${S.of(context).EGP}",
                       style: AppStyles.styleRegular14(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                     );

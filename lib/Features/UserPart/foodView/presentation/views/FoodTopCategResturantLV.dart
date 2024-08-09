@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/top_categ_resturant_cubit/top_categ_resturant_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodTopCategResturantCard.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/TopCategLoading.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class FoodTopCategResturantLV extends StatelessWidget {
   const FoodTopCategResturantLV({super.key});
@@ -13,12 +14,12 @@ class FoodTopCategResturantLV extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TopCategResturantCubit, TopCategResturantState>(
       builder: (context, state) {
-        if (state is TopCategResturantSuccess) {
+        if (state is TopCategResturantSuccess && state.resturants.isNotEmpty) {
           return Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("All Restaurants",
+                Text(S.of(context).AllResturants,
                     style: AppStyles.styleMedium16(context)),
                 const SizedBox(height: 16),
                 ListView.builder(

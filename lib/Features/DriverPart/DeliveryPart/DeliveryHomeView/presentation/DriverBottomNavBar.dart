@@ -35,14 +35,14 @@ class DriverBottomNavBar extends StatelessWidget {
                     : Assets.imagesOrdersIcon,
               ),
               label: S.of(context).Orders),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.star_rounded,
-              size: 26,
-              // color: currentIndex == 2 ? Color(0xffFEC400) : Colors.grey,
-            ),
-            label: S.of(context).Ratings,
-          )
+          // BottomNavigationBarItem(
+          //   icon: const Icon(
+          //     Icons.star_rounded,
+          //     size: 26,
+          //     // color: currentIndex == 2 ? Color(0xffFEC400) : Colors.grey,
+          //   ),
+          //   label: S.of(context).Ratings,
+          // )
         ]);
   }
 }

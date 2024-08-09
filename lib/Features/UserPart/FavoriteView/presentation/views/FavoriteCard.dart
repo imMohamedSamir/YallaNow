@@ -9,7 +9,7 @@ import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/models/FavoriteCardModel.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
-import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
@@ -88,7 +88,10 @@ class FavoriteCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const FavIcon(favorite: true)
+                FavIcon(
+                  favorite: true,
+                  partnerId: favoriteCardModel.id,
+                )
               ],
             )),
       ),
@@ -97,11 +100,10 @@ class FavoriteCard extends StatelessWidget {
 
   void _navigateToPage(BuildContext context) {
     if (partnerType == resturantType) {
-      BlocProvider.of<ResturantBranchesCubit>(context)
-          .fetchResturantBranches(restaurantId: favoriteCardModel.id!);
       NavigateToPage.slideFromRight(
           context: context,
           page: FoodResturantPage(
+            id: favoriteCardModel.id!,
             resurantName: favoriteCardModel.name,
             returantImg: favoriteCardModel.img,
             deliveryPrice: favoriteCardModel.deliveryPrice,
@@ -113,8 +115,10 @@ class FavoriteCard extends StatelessWidget {
           page: MarketPage(
               martID: favoriteCardModel.id, martName: favoriteCardModel.name));
     } else {
-      BlocProvider.of<PharmacyDetailsCubit>(context).getPharmacyDetails(context,
-          pharmacyModel: PharmacyModel.fromFavoriteCard(favoriteCardModel));
+      NavigateToPage.slideFromRight(
+          context: context,
+          page: PharmacyPage(
+              pharmacy: PharmacyModel.fromFavoriteCard(favoriteCardModel)));
     }
   }
 }

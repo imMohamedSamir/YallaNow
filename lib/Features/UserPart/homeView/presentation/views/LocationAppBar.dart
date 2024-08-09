@@ -5,9 +5,11 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/ChooseAddress.dart';
+import 'package:yallanow/Core/widgets/basketIconBuilder.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomeAddressList.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class LocationAppBar extends StatelessWidget {
   const LocationAppBar({super.key});
@@ -28,7 +30,8 @@ class LocationAppBar extends StatelessWidget {
             child: SvgPicture.asset(Assets.imagesLocationIcon)),
         title: Row(
           children: [
-            Text("Deliver to", style: AppStyles.styleMedium16(context)),
+            Text(S.of(context).DeliverTo,
+                style: AppStyles.styleMedium16(context)),
             const SizedBox(width: 6),
             SizedBox(
               height: AppSizes.getHeight(24, context),
@@ -56,7 +59,7 @@ class LocationAppBar extends StatelessWidget {
             }
           },
         ),
-        // trailing: const BasketIconBuilder(),
+        trailing: const BasketIconBuilder(),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyCategoryLV.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class PharmacyCategorySec extends StatelessWidget {
   const PharmacyCategorySec({super.key});
@@ -10,7 +11,7 @@ class PharmacyCategorySec extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Categories", style: AppStyles.styleMedium16(context)),
+        Text(S.of(context).Categories, style: AppStyles.styleMedium16(context)),
         const SizedBox(height: 16),
         const PharmacyCategoryLV()
       ],

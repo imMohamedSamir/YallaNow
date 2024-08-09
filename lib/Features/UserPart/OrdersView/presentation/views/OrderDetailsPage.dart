@@ -56,7 +56,7 @@ class OrderDetailsPage extends StatelessWidget {
             const SizedBox(height: 8),
             const Divider(color: Color(0xff9E9D9D)),
             const SizedBox(height: 8),
-            const OrderSummary(),
+            // const OrderSummary(),
             const SizedBox(height: 12),
           ]),
         ),

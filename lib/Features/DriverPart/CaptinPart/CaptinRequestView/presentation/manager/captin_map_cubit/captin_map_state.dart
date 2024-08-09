@@ -18,6 +18,12 @@ final class CaptinMapSuccess extends CaptinMapState {
 
 final class CaptinMapFaile extends CaptinMapState {}
 
+final class CaptinMapLoading extends CaptinMapState {
+  final Set<Polyline>? polyLine;
+
+  const CaptinMapLoading({this.polyLine});
+}
+
 final class CaptinMapChange extends CaptinMapState {
   final LatLng? currentLtLng;
   final Set<Marker>? markers;

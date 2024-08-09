@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Features/UserPart/foodView/data/Models/top_categ_resturant.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
-import 'package:yallanow/Features/UserPart/homeView/data/Models/PopularResturanModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Models/popular_resturants.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/RatingAndDeliveryTime.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/resturantImgContainer.dart';
@@ -20,17 +19,14 @@ class PopularResturantCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // savePartnerId(id: popularResturants.id!, type: resturantType);
-        BlocProvider.of<ResturantBranchesCubit>(context)
-            .fetchResturantBranches(restaurantId: popularResturants.id!);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodResturantPage(
-                resurantName: popularResturants.name,
-                deliveryTime: popularResturants.deliveryTime ?? "",
-                deliveryPrice: "free",
-                returantImg: popularResturants.imageUrl,
-              ),
+        NavigateToPage.slideFromRightAndFade(
+            context: context,
+            page: FoodResturantPage(
+              id: popularResturants.id!,
+              resurantName: popularResturants.name,
+              deliveryTime: popularResturants.deliveryTime ?? "",
+              deliveryPrice: "free",
+              returantImg: popularResturants.imageUrl,
             ));
       },
       child: Card(
@@ -64,53 +60,62 @@ class PopularResturantCard extends StatelessWidget {
 class RestFoodCard extends StatelessWidget {
   const RestFoodCard({
     super.key,
-    required this.hieght,
     required this.resturantModel,
-    required this.width,
   });
-  final double hieght;
-  final double width;
-  final popularResturant resturantModel;
+
+  final TopCategResturant resturantModel;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          RestFoodImgContainer(
-            hieght: hieght,
-            img: resturantModel.img,
-            width: width,
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(resturantModel.RestName,
-                        style: AppStyles.styleSemiBold16(context)),
-                    const SizedBox(height: 5),
-                    Text(resturantModel.Description,
-                        style: AppStyles.styleRegular10(context)),
-                  ],
-                ),
-                const Spacer(),
-                // const SizedBox(height: 4),
-                // RatingAndDeliveryTime(
-                //   resturantModel: resturantModel,
-                // ),
-              ],
+    return InkWell(
+      onTap: () {
+        NavigateToPage.slideFromRightAndFade(
+            context: context,
+            page: FoodResturantPage(
+              id: resturantModel.id!,
+              resurantName: resturantModel.name,
+              deliveryTime: resturantModel.deliverytime ?? "",
+              deliveryPrice: "free",
+              returantImg: resturantModel.imageUrl,
+            ));
+      },
+      child: Card(
+        elevation: 0.5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RestFoodImgContainer(
+              img: resturantModel.imageUrl ?? "",
+              partnerId: resturantModel.id!,
             ),
-          ),
-          const SizedBox(height: 14),
-        ],
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(resturantModel.name ?? "",
+                          style: AppStyles.styleSemiBold16(context)),
+                      const SizedBox(height: 5),
+                      Text(resturantModel.desc ?? "",
+                          style: AppStyles.styleRegular10(context)),
+                    ],
+                  ),
+                  const Spacer(),
+                  const SizedBox(height: 4),
+                  // RatingAndDeliveryTime(
+                  //   resturantModel: resturantModel,
+                  // ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 14),
+          ],
+        ),
       ),
     );
   }

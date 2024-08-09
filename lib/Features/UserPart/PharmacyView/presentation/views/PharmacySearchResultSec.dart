@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_search_cubit/pharmacy_search_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodSearchResultLV.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class PharmacySearchResultSec extends StatelessWidget {
   const PharmacySearchResultSec({super.key});
@@ -16,7 +17,8 @@ class PharmacySearchResultSec extends StatelessWidget {
           BlocBuilder<PharmacySearchCubit, PharmacySearchState>(
             builder: (context, state) {
               if (state is PharmacySearchSuccess && state.results.isNotEmpty) {
-                return Text("Results", style: AppStyles.styleMedium16(context));
+                return Text(S.of(context).Results,
+                    style: AppStyles.styleMedium16(context));
               } else {
                 return const SizedBox();
               }

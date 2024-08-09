@@ -15,7 +15,7 @@ class PharmacyCategoryPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => ItemPageCubit(),
       child: Scaffold(
-        appBar: categoryAppBar(context, title: "Pharmacy", isCategory: true),
+        appBar: categoryAppBar(context, title: title, isCategory: false),
         body: PharmacyCategoryPageBody(title: title, items: items),
       ),
     );

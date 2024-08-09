@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepo.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_popular_model.dart';
@@ -19,9 +18,7 @@ class TripsPopularCubit extends Cubit<TripsPopularState> {
         (trips) async {
       final shuffledTrips = trips.toList()..shuffle();
       List<PopularTripModel> randomFourTrips = shuffledTrips.sublist(0, 4);
-      if (AppLang.isArabic()) {
-        randomFourTrips = await _translateList(randomFourTrips);
-      }
+
       emit(TripsPopularSuccess(trips: randomFourTrips));
     });
   }

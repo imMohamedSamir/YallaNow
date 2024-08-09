@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 
-class ContactInfoCard extends StatefulWidget {
+class ContactInfoCard extends StatelessWidget {
   const ContactInfoCard({
     super.key,
     required this.title,
@@ -17,16 +17,10 @@ class ContactInfoCard extends StatefulWidget {
   final bool isordered;
 
   @override
-  State<ContactInfoCard> createState() => _ContactInfoCardState();
-}
-
-class _ContactInfoCardState extends State<ContactInfoCard> {
-  bool isChanged = false;
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
-        height: widget.height,
+        height: height,
         child: ListTile(
           shape: OutlineInputBorder(
               borderSide: const BorderSide(color: Color(0xff5A5A5A)),
@@ -34,36 +28,31 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
           titleAlignment: ListTileTitleAlignment.titleHeight,
           textColor: const Color(0xff5A5A5A),
           titleTextStyle: AppStyles.styleMedium16(context),
-          title: widget.subtitle == null
-              ? isChanged
-                  ? const TextField(
-                      decoration: InputDecoration(border: InputBorder.none))
-                  : Text(widget.title)
-              : Text(widget.title),
+          title: Text(title),
           subtitle: Text(
-            widget.subtitle ?? "",
+            subtitle ?? "",
             style: AppStyles.styleRegular14(context)
                 .copyWith(color: const Color(0xff5A5A5A)),
           ),
           ////////////////////////////////////
-          leading: widget.image,
+          leading: image,
           ////////////////////////////////////
-          trailing: widget.isordered
-              ? const SizedBox()
-              : Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        isChanged = true;
-                      },
-                      child: Text(
-                        "Change",
-                        style: AppStyles.styleMedium12(context)
-                            .copyWith(color: const Color(0xffB20404)),
-                      ),
-                    ),
-                  ],
-                ),
+          // trailing: widget.isordered
+          //     ? const SizedBox()
+          //     : Column(
+          //         children: [
+          //           GestureDetector(
+          //             onTap: () {
+          //               isChanged = true;
+          //             },
+          //             child: Text(
+          //               "Change",
+          //               style: AppStyles.styleMedium12(context)
+          //                   .copyWith(color: const Color(0xffB20404)),
+          //             ),
+          //           ),
+          //         ],
+          //       ),
         ));
   }
 }

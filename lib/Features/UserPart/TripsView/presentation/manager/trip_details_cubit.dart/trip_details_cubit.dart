@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepo.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/TripInfoModel.dart';
@@ -17,18 +16,6 @@ class TripDetailsCubit extends Cubit<TripDetailsState> {
     var result = await tripsRepo.getTrip(id: id);
     result.fold((fail) => emit(TripDetailsFailure(errMsg: fail.errMessage)),
         (trip) async {
-      if (AppLang.isArabic()) {
-        trip.description = await _translateText(text: trip.description ?? "");
-        if (trip.program!.isNotEmpty) {
-          trip.program?.first["description"] =
-              await _translateText(text: trip.program?.first["description"]);
-        }
-        trip.guides = await _tranlateList(list: trip.guides ?? []);
-        trip.contains = await _tranlateList(list: trip.contains ?? []);
-        trip.notContains = await _tranlateList(list: trip.notContains ?? []);
-        trip.destniation = await _translateText(text: trip.destniation ?? "");
-        trip.name = await _translateText(text: trip.name ?? "");
-      }
       emit(TripDetailsSuccess(trip: trip));
     });
   }

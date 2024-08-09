@@ -2,15 +2,20 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/generated/l10n.dart';
+import 'package:yallanow/main.dart';
 
 class FirebaseMessagingService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final StreamController<RemoteMessage> _messageController =
       StreamController<RemoteMessage>.broadcast();
+  final StreamController<RemoteMessage> _bgmessageController =
+      StreamController<RemoteMessage>.broadcast();
   Stream<RemoteMessage> get onMessage => _messageController.stream;
+  Stream<RemoteMessage> get onBgMessage => _bgmessageController.stream;
   bool _isDisconnected = true;
 
   Future<Either<String, void>> init() async {
@@ -19,18 +24,28 @@ class FirebaseMessagingService {
       await setupMessageHandler();
       await _setupBackgroundMessageHandler();
       return right(null);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(e.toString());
     }
   }
 
   Future<void> connect() async {
     _isDisconnected = false;
-    getToken();
+  }
+
+  Future<String> getToken() async {
+    String? token = await _firebaseMessaging.getToken();
+    // log("FCM Token: $token");
+    return (token ?? "");
+  }
+
+  Future<void> disconnect() async {
+    _isDisconnected = true;
   }
 
   Future<void> _requestPermission() async {
     NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      criticalAlert: true,
       alert: true,
       badge: true,
       sound: true,
@@ -58,12 +73,48 @@ class FirebaseMessagingService {
 
   Future<void> _setupBackgroundMessageHandler() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpenedApp);
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      _handleMessageOpenedApp(initialMessage);
+    }
   }
 
-  Future<String> getToken() async {
-    String? token = await _firebaseMessaging.getToken();
-    // log("FCM Token: $token");
-    return (token ?? "");
+  void _handleMessageOpenedApp(RemoteMessage message) {
+    _bgmessageController.add(message);
+  }
+
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
+    // await Firebase.initializeApp();
+    log('Handling a background message: ${message.messageId}');
+    log('message: ${message.data.toString()}');
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: message.hashCode,
+        channelKey: notifChannelKey,
+        actionType: ActionType.Default,
+        // payload: convertMapToString(originalMap: message.data),
+        title: S.of(navigatorKey.currentContext!).NewRequest,
+        body: S.of(navigatorKey.currentContext!).NewRequestBody,
+        notificationLayout: NotificationLayout.Default,
+        backgroundColor: pKcolor,
+        wakeUpScreen: true,
+      ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'ACCEPT',
+          label: "قبول",
+          actionType: ActionType.Default,
+        ),
+        NotificationActionButton(
+          key: 'REJECT',
+          label: 'رفض',
+          actionType: ActionType.Default,
+        ),
+      ],
+    );
   }
 
   // Future<Either<String, void>> subscribeToTopic(String topicName) async {
@@ -85,24 +136,4 @@ class FirebaseMessagingService {
   //     return left(e.toString());
   //   }
   // }
-
-  Future<void> disconnect() async {
-    _isDisconnected = true;
-  }
-
-  static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    await Firebase.initializeApp();
-    log('Handling a background message: ${message.messageId}');
-    log('message: ${message.data.toString()}');
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: message.hashCode,
-        channelKey: 'basic_channel',
-        title: message.notification?.title,
-        body: message.notification?.body,
-        // payload: message.data,
-      ),
-    );
-  }
 }

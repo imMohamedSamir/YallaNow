@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/models/add_fav_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
-import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_details_cubit/pharmacy_details_cubit.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
 class PharmacyCard extends StatelessWidget {
@@ -18,8 +18,8 @@ class PharmacyCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(32),
       onTap: () {
         if (pharmacyModel.id != null) {
-          BlocProvider.of<PharmacyDetailsCubit>(context)
-              .getPharmacyDetails(context, pharmacyModel: pharmacyModel);
+          NavigateToPage.slideFromRight(
+              context: context, page: PharmacyPage(pharmacy: pharmacyModel));
         }
       },
       child: SizedBox(

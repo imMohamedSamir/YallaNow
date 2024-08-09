@@ -25,8 +25,12 @@ import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentatio
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/auto_complete_places_cubit/auto_complete_places_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
+import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/Repo/FavoriteRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/presentation/manager/add_fav_cubit/add_fav_cubit.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepoImpl.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/data/Repos/ScooterRequestRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/scooter_request_cubit/UserRidRequestCubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/send_request_cubit/send_request_cubit.dart';
@@ -35,7 +39,6 @@ import 'package:yallanow/Core/utlis/RoutesUtlis.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/ride_price_cubit/ride_price_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/presentation/manager/scooter_location_cubit/scooter_location_cubit.dart';
 import 'package:yallanow/Features/UserPart/TripsView/presentation/manager/translate_cubit/translate_cubit.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/MainHomeView.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_address_cubit/home_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/splashView/splashView.dart';
 import 'package:yallanow/firebase_options.dart';
@@ -85,19 +88,14 @@ class YallaNow extends StatelessWidget {
               UserAddressesCubit(getIt.get<AddressesRepoImpl>())
                 ..getUserAddresses(),
         ),
-        // BlocProvider(
-        //     create: (context) =>
-        //         FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>())),
-        // BlocProvider(
-        //     create: (context) =>
-        //         FetchPopularMartsCubit(getIt.get<HomeRepoImpl>())..get()),
+
         BlocProvider(
           create: (context) => LanguageCubit(),
         ),
 
-        // BlocProvider(
-        //   create: (context) => BasketManagerCubit()..getBasketItems(),
-        // ),
+        BlocProvider(
+          create: (context) => BasketManagerCubit()..getBasketItems(),
+        ),
         // BlocProvider(
         //   create: (context) =>
         //       ResturantBranchesCubit(getIt.get<FoodRepoImpl>()),
@@ -105,6 +103,7 @@ class YallaNow extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeAddressCubit(),
         ),
+        BlocProvider(create: (context) => ItemPageCubit()),
         // BlocProvider(
         //   create: (context) =>
         //       MartItemsCubit(getIt.get<MartsRepoImpl>())..getItems(),
@@ -143,7 +142,10 @@ class YallaNow extends StatelessWidget {
                 SendRequestCubit(getIt.get<ScooterRequestRepoImpl>())),
         BlocProvider(
             create: (context) =>
-                ReadyForTripsCubit(getIt.get<CaptinRequestRepoImpl>()))
+                ReadyForTripsCubit(getIt.get<CaptinRequestRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                DeleteAccountCubit(getIt.get<ProfileRepoImpl>()))
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {

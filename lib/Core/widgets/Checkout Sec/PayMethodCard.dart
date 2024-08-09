@@ -10,12 +10,16 @@ class PayMethodCard extends StatelessWidget {
     this.groupValue,
     this.onChanged,
     required this.img,
+    this.enabled = true, // Add an enabled parameter
   }) : super(key: key);
 
-  final value, groupValue;
+  final dynamic value;
+  final dynamic groupValue;
   final void Function(dynamic)? onChanged;
   final String method;
   final Widget img;
+  final bool enabled; // Add an enabled field
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,7 +44,9 @@ class PayMethodCard extends StatelessWidget {
           ),
           value: value,
           groupValue: groupValue,
-          onChanged: onChanged,
+          onChanged: enabled
+              ? onChanged
+              : null, // Disable the radio button if enabled is false
         ));
   }
 }

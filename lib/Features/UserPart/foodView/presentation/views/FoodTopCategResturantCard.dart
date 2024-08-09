@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/top_categ_resturant.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
@@ -13,14 +14,14 @@ class FoodTopCategResturantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => FoodResturantPage(
-                    deliveryPrice: "free",
-                    deliveryTime: resturant.deliverytime!,
-                    returantImg: resturant.imageUrl!,
-                    resurantName: resturant.name!)));
+        NavigateToPage.slideFromRightAndFade(
+            context: context,
+            page: FoodResturantPage(
+                id: resturant.id!,
+                deliveryPrice: "free",
+                deliveryTime: resturant.deliverytime!,
+                returantImg: resturant.imageUrl!,
+                resurantName: resturant.name!));
       },
       child: SizedBox(
         height: AppSizes.getHeight(100, context),

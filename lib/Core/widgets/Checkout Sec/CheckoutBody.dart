@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/CheckoutButtonBuilder.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoSec.dart';
+import 'package:yallanow/Core/widgets/Checkout%20Sec/FakaSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/NotesSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/PayMethodsSec.dart';
@@ -35,6 +36,8 @@ class CheckoutBody extends StatelessWidget {
                 PayMethodsSec(),
                 SizedBox(height: 24),
                 NotesSec(),
+                SizedBox(height: 16),
+                FakaSec(),
                 SizedBox(height: 24),
                 OrderDetails(),
                 SizedBox(height: 24),

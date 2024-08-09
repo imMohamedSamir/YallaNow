@@ -7,6 +7,7 @@ import 'package:yallanow/Core/utlis/YallaNowServices.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/Repo/PharmacyRepo.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_details_model/pharmacy_details_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/search_result_model.dart';
 
 class PharmacyRepoImpl implements PharmacyRepo {
   final YallaNowServices yallaNowServices;
@@ -55,6 +56,32 @@ class PharmacyRepoImpl implements PharmacyRepo {
       return right(pharmacies);
     } catch (e) {
       log(e.toString());
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<SearchResultModel>>> pharmacySearch(
+      {required String input}) async {
+    String endPoint = "FoodHome/search?query=$input";
+    try {
+      var response = await yallaNowServices.get(endPoint: endPoint);
+      List<SearchResultModel> results = [];
+      for (var result in response) {
+        results.add(SearchResultModel.fromJson(result));
+      }
+      return right(results);
+    } catch (e) {
       if (e is DioException) {
         return left(
           ServerFailure.fromDioError(e.type),

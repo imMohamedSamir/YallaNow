@@ -9,7 +9,7 @@ class AuthOptions extends StatelessWidget {
   const AuthOptions({super.key});
   static const List<String> images = [
     Assets.imagesGoogle,
-    Assets.imagesFacebook,
+    // Assets.imagesFacebook,
 
     // Assets.imagesApple,
   ];

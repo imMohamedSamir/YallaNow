@@ -20,10 +20,7 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.yallaNowServices});
   final YallaNowServices yallaNowServices;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
+    scopes: ['email'],
   );
   @override
   Future<Either<FailureHttp, dynamic>> fetchRegisteration(
@@ -149,7 +146,6 @@ class AuthRepoImpl implements AuthRepo {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-    await FirebaseAuth.instance.signInWithCredential(credential);
 
     return credential;
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/check_wallet_balance_cubit/check_wallet_balance_cubit.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverPaymentMethodsTile.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/PromoCodeField.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -11,6 +13,7 @@ class RidePaymentBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CheckWalletBalanceCubit>(context).check(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(

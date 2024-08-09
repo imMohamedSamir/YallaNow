@@ -23,8 +23,16 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Accept": MessageLookupByLibrary.simpleMessage("Accept"),
+        "AddItems": MessageLookupByLibrary.simpleMessage("Add Items"),
+        "AddToBasket": MessageLookupByLibrary.simpleMessage("Add To Basket"),
+        "Addresses": MessageLookupByLibrary.simpleMessage("Addresses"),
+        "AllResturants": MessageLookupByLibrary.simpleMessage("All Resturants"),
+        "Allow": MessageLookupByLibrary.simpleMessage("Allow"),
         "AsCaptin": MessageLookupByLibrary.simpleMessage("As Captin"),
         "AsDelivery": MessageLookupByLibrary.simpleMessage("As Delivery"),
+        "Basket": MessageLookupByLibrary.simpleMessage("Basket"),
+        "Bazar": MessageLookupByLibrary.simpleMessage("Bazar"),
+        "BestSeller": MessageLookupByLibrary.simpleMessage("Best Seller"),
         "Book": MessageLookupByLibrary.simpleMessage("Book"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "CaptinProfile": MessageLookupByLibrary.simpleMessage("Captin Profile"),
@@ -32,21 +40,34 @@ class MessageLookup extends MessageLookupByLibrary {
             "enter the amount received from the customer"),
         "CaptinwalletMsg2": MessageLookupByLibrary.simpleMessage(
             " will be added to customer\'s Wallet"),
+        "Cash": MessageLookupByLibrary.simpleMessage("Cash"),
+        "Categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "Choose": MessageLookupByLibrary.simpleMessage("Choose"),
+        "ChooseOne": MessageLookupByLibrary.simpleMessage("Choose one"),
+        "ChooseSize":
+            MessageLookupByLibrary.simpleMessage("your choice of size :"),
         "Choosearide": MessageLookupByLibrary.simpleMessage("Choose a ride"),
         "CodeSentMsg":
             MessageLookupByLibrary.simpleMessage("Code has been send to"),
+        "ContactInfo": MessageLookupByLibrary.simpleMessage("Contact Info"),
         "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
         "CreateAccount":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
+        "CreditCard": MessageLookupByLibrary.simpleMessage("Credit Card"),
         "DeleteAcc": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "DeleteAccDialogQ": MessageLookupByLibrary.simpleMessage(
+            "Remove your account and all associated data ?"),
+        "DeliverTo": MessageLookupByLibrary.simpleMessage("Deliver To"),
+        "DeliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
+        "Deny": MessageLookupByLibrary.simpleMessage("Deny"),
         "DidntReciveCode":
             MessageLookupByLibrary.simpleMessage("Didn’t receive code? "),
         "Disable": MessageLookupByLibrary.simpleMessage("Disable"),
         "Driver": MessageLookupByLibrary.simpleMessage("Driver"),
         "DriverAndVehicle":
             MessageLookupByLibrary.simpleMessage("Driver and vehicle Details"),
+        "DriverProfile": MessageLookupByLibrary.simpleMessage("Driver profile"),
         "Driverdetails": MessageLookupByLibrary.simpleMessage("Driver details"),
         "Duration": MessageLookupByLibrary.simpleMessage("Duration"),
         "EGP": MessageLookupByLibrary.simpleMessage("EGP"),
@@ -57,7 +78,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enable your location"),
         "Entercurrentplace":
             MessageLookupByLibrary.simpleMessage("Enter current place"),
+        "ExploreResturants":
+            MessageLookupByLibrary.simpleMessage("Explore Resturants"),
         "Exploretrips": MessageLookupByLibrary.simpleMessage("Explore trips"),
+        "Extras": MessageLookupByLibrary.simpleMessage("Extras :"),
+        "FakaMsg":
+            MessageLookupByLibrary.simpleMessage("Please bring rest of "),
+        "Favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "Female": MessageLookupByLibrary.simpleMessage("Female"),
         "Findingyourider":
             MessageLookupByLibrary.simpleMessage("Finding your Driver"),
@@ -77,6 +104,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "LastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "Location": MessageLookupByLibrary.simpleMessage("Location"),
+        "LocationPermissionMsg": MessageLookupByLibrary.simpleMessage(
+            "Yalla Now App collects location data to enable Identification of nearby drivers,Resturants,marts and pharmacies even when the app is closed or not in use."),
+        "LocationPermissionTitle": MessageLookupByLibrary.simpleMessage(
+            "Location Data Collection for Nearby Services"),
         "LocationValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your Location"),
         "Logoutofyouraccount":
@@ -94,7 +125,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Nationality": MessageLookupByLibrary.simpleMessage("Nationality"),
         "NationalityValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your Nationality"),
+        "NewRequest": MessageLookupByLibrary.simpleMessage("New Ride Request"),
+        "NewRequestBody": MessageLookupByLibrary.simpleMessage(
+            "You have a new ride request. Tap to view details."),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "NoBalanceWallet": MessageLookupByLibrary.simpleMessage(
+            "Insufficient wallet balance. Please choose another payment method."),
         "NoDriversMsg": MessageLookupByLibrary.simpleMessage(
             "No drivers available Now , please try again later"),
         "Notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -105,18 +141,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "Numberofadult":
             MessageLookupByLibrary.simpleMessage("Number of adult"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "Optional": MessageLookupByLibrary.simpleMessage("Optional"),
+        "OrderDetails": MessageLookupByLibrary.simpleMessage("Order Details"),
+        "OrderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
         "Orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "Overview": MessageLookupByLibrary.simpleMessage("Overview"),
         "PassValidation":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
         "Password": MessageLookupByLibrary.simpleMessage("Enter Your Password"),
         "PaymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+        "PaymentSummary":
+            MessageLookupByLibrary.simpleMessage("Payment Summary"),
         "Paywith": MessageLookupByLibrary.simpleMessage("Pay with"),
         "PerPerson": MessageLookupByLibrary.simpleMessage("/ Person"),
+        "Pharamcies": MessageLookupByLibrary.simpleMessage("Pharamcies"),
         "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "PhoneValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter your Phone Number"),
+        "PopularMarts": MessageLookupByLibrary.simpleMessage("Popular Marts"),
+        "PopularResturants":
+            MessageLookupByLibrary.simpleMessage("Popular Resturants"),
         "PopularTrips": MessageLookupByLibrary.simpleMessage("Popular Trips"),
+        "PriceOnSelection":
+            MessageLookupByLibrary.simpleMessage("Price on selection"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Program": MessageLookupByLibrary.simpleMessage("Program"),
         "PromoCode": MessageLookupByLibrary.simpleMessage("Promo Code /coupon"),
@@ -134,18 +181,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please full the form and we will contact you"),
         "RegistrationForm":
             MessageLookupByLibrary.simpleMessage("Registration Form"),
+        "Required": MessageLookupByLibrary.simpleMessage("Required"),
         "ResetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
         "ResetviaPhone":
             MessageLookupByLibrary.simpleMessage("Reset via Phone"),
         "Resultplaces": MessageLookupByLibrary.simpleMessage("Result places"),
+        "Results": MessageLookupByLibrary.simpleMessage("Results"),
         "RidePayment": MessageLookupByLibrary.simpleMessage("Ride Payment"),
         "RidesHistory": MessageLookupByLibrary.simpleMessage("My Trips"),
         "Room": MessageLookupByLibrary.simpleMessage("Room"),
         "Save": MessageLookupByLibrary.simpleMessage("save"),
+        "Search": MessageLookupByLibrary.simpleMessage("Search"),
         "Searchingforrequests":
             MessageLookupByLibrary.simpleMessage("Searching for requests"),
         "SelectDriverImgValidation":
             MessageLookupByLibrary.simpleMessage("Please select your Image"),
+        "ServiceFee": MessageLookupByLibrary.simpleMessage("Service Fee"),
         "SessionExpired":
             MessageLookupByLibrary.simpleMessage("Session Expired"),
         "SessionExpiredMsg": MessageLookupByLibrary.simpleMessage(
@@ -165,13 +216,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "SuccessBook": MessageLookupByLibrary.simpleMessage(
             "Your data has been registered successfully. We will contact you."),
+        "SuperMarkets": MessageLookupByLibrary.simpleMessage("Super Markets"),
         "Takewithyou": MessageLookupByLibrary.simpleMessage("Take with you"),
         "Terms1": MessageLookupByLibrary.simpleMessage(
             "By registering, you agree to our"),
         "Terms2":
             MessageLookupByLibrary.simpleMessage("  Terms and Conditions"),
+        "TopCategories": MessageLookupByLibrary.simpleMessage("Top Categories"),
         "TotalKillos": MessageLookupByLibrary.simpleMessage("Total killos"),
-        "TotalTrips": MessageLookupByLibrary.simpleMessage("Total trips"),
+        "TotalTrips": MessageLookupByLibrary.simpleMessage("Total Orders"),
         "Totalamount": MessageLookupByLibrary.simpleMessage("Total amount"),
         "TravellerName": MessageLookupByLibrary.simpleMessage("Name"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),

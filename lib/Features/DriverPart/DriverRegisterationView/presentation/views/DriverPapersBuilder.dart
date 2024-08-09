@@ -17,8 +17,8 @@ import 'package:yallanow/generated/l10n.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class DriverPapersBuilder extends StatefulWidget {
-  const DriverPapersBuilder({super.key, required this.textEditingController});
-  final TextEditingController textEditingController;
+  const DriverPapersBuilder({super.key, this.textEditingController});
+  final TextEditingController? textEditingController;
   @override
   DriverPapersBuilderState createState() => DriverPapersBuilderState();
 }
@@ -81,15 +81,7 @@ class DriverPapersBuilderState extends State<DriverPapersBuilder> {
             build: (pw.Context context) {
               return pw.Column(
                 children: [
-                  pw.Text(i < titles.length ? titles[i ~/ 2] : '',
-                      style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xFF1F2937),
-                        fontSize: getResponsiveFontSize(context, fontSize: 18),
-                      )),
-                  if (i < titles.length * 2 && i % 2 == 1)
-                    pw.Text(subtitles[i % 2]),
-                  pw.SizedBox(height: 16),
-                  pw.Image(image),
+                  pw.Image(image, fit: pw.BoxFit.fill),
                 ],
               );
             },
@@ -206,7 +198,7 @@ class DriverPapersBuilderState extends State<DriverPapersBuilder> {
                       onPressed: () async {
                         if (key.currentState!.validate()) {
                           key.currentState!.save();
-                          widget.textEditingController.text = " تم حفظ الملف";
+                          widget.textEditingController?.text = " تم حفظ الملف";
                           Navigator.pop(context);
                         }
                       },

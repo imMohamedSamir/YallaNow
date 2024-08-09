@@ -20,10 +20,14 @@ class TripsTypesLV extends StatelessWidget {
               itemCount: types.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: TripsTypesCard(name: types[index].toString()),
-                );
+                if (types[index] == null) {
+                  return const SizedBox.shrink();
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: TripsTypesCard(name: types[index].toString()),
+                  );
+                }
               },
             );
           }

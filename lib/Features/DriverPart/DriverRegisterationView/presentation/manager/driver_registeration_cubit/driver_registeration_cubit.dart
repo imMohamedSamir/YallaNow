@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +13,8 @@ class DriverRegisterationCubit extends Cubit<DriverRegisterationState> {
   DriverRegisterModel driverRegisterModel = DriverRegisterModel();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   fetchDriverRegisteration() async {
-    driverRegisterModel.driverType = true;
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      // log(driverRegisterModel.toJson().toString());
       emit(DriverRegisterationLoading());
       var result = await driverRegisterationRepo.fetchRegisteration(
           driverDetails: driverRegisterModel);

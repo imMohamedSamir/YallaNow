@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/popular_food_category.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodCategImg.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodTopCategPage.dart';
@@ -16,13 +17,11 @@ class FoodCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodTopCategPage(
-                  categTitle: popularFoodCategory.name!,
-                  categID: popularFoodCategory.type!),
-            ));
+        NavigateToPage.slideFromRight(
+            context: context,
+            page: FoodTopCategPage(
+                categTitle: popularFoodCategory.name!,
+                categID: popularFoodCategory.type!));
       },
       child: Column(children: [
         FoodCategImg(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantHeaderIcon.dart';
@@ -28,19 +27,19 @@ class PharmacyAppBar extends StatelessWidget {
                 child: const Icon(Icons.arrow_back_ios_new_rounded, size: 21)),
             const Spacer(),
             FavIcon(height: AppSizes.getHeight(32, context)),
-            const SizedBox(width: 10),
-            ResturantHeaderIcon(
-              child: SvgPicture.asset(Assets.imagesShareIcon),
-              onPressed: () {},
-            ),
-            const SizedBox(width: 10),
-            ResturantHeaderIcon(
-              child: SvgPicture.asset(Assets.imagesSearchIcon,
-                  colorFilter: const ColorFilter.mode(
-                      Color(0xff240301), BlendMode.srcIn)),
-              onPressed: () {},
-            ),
-            const SizedBox(width: 16)
+            // const SizedBox(width: 10),
+            // ResturantHeaderIcon(
+            //   child: SvgPicture.asset(Assets.imagesShareIcon),
+            //   onPressed: () {},
+            // ),
+            // const SizedBox(width: 10),
+            // ResturantHeaderIcon(
+            //   child: SvgPicture.asset(Assets.imagesSearchIcon,
+            //       colorFilter: const ColorFilter.mode(
+            //           Color(0xff240301), BlendMode.srcIn)),
+            //   onPressed: () {},
+            // ),
+            // const SizedBox(width: 16)
           ],
         ));
   }

@@ -42,11 +42,11 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
   @override
   Future<Either<Failure, dynamic>> removeFav({required String favId}) async {
-    String endPoint = "UserFavorites/Remove?favoriteId=$favId";
+    String endPoint = "UserFavorites/Remove?partnerId=$favId";
     userToken = await TokenManager.getUserToken();
     try {
       var response =
-          await yallaNowServices.get(endPoint: endPoint, token: userToken);
+          await yallaNowServices.delete(endPoint: endPoint, token: userToken);
 
       return right(response);
     } catch (e) {

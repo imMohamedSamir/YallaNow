@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ready_for_trips_cubit/ready_for_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/DialogButton.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -67,8 +68,10 @@ class CaptinCancelDialogState extends State<CaptinCancelDialog> {
           text: S.of(context).Cancel,
           onPressed: () {
             BlocProvider.of<CaptinMapCubit>(context).cancelListening();
+            BlocProvider.of<ReadyForTripsCubit>(context).stopListening();
             BlocProvider.of<CaptinRideRequestCubit>(context)
                 .cancelRequest(context, reason: selectedReason!);
+            BlocProvider.of<CaptinRideRequestCubit>(context).disconnect();
           },
         ),
         DialogButton(

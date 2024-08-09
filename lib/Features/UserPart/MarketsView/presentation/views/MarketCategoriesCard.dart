@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/mart_details_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsCategoryItemsPage.dart';
 
@@ -12,46 +15,37 @@ class MarketCategoriesCard extends StatelessWidget {
     String url = marketCategoriesModel.icon!.replaceAll('\\', '/');
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  MartsCategoryItemsPage(categ: marketCategoriesModel),
-            ));
+        NavigateToPage.slideFromRightAndFade(
+            context: context,
+            page: MartsCategoryItemsPage(categ: marketCategoriesModel));
       },
       child: Container(
           height: AppSizes.getHeight(80, context),
           width: MediaQuery.sizeOf(context).width / 3 - 25,
-          padding: const EdgeInsets.only(left: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: const Color(0xffF5F5F5),
           ),
-          child: Stack(
+          child: Column(
             children: [
-              Positioned(
-                  top: 8,
-                  left: 10,
-                  child: SizedBox(
-                    width: AppSizes.getWidth(85, context),
-                    child: Text(marketCategoriesModel.name!,
-                        style: AppStyles.styleMedium14(context)
-                            .copyWith(color: const Color(0xff5A5A5A))),
-                  )),
-              const SizedBox(height: 6),
-              Positioned(
-                bottom: 6,
-                right: 4,
+              const Gap(6),
+              SizedBox(
+                width: AppSizes.getWidth(85, context),
+                child: Text(marketCategoriesModel.name!,
+                    style: AppStyles.styleMedium14(context)
+                        .copyWith(color: const Color(0xff5A5A5A))),
+              ),
+              const Spacer(),
+              Align(
+                alignment: Alignment.bottomRight,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    url,
-                    height: AppSizes.getHeight(60, context),
-                    width: AppSizes.getWidth(80, context),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                // Image.network(src)
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: url,
+                      height: AppSizes.getHeight(60, context),
+                      width: AppSizes.getWidth(80, context),
+                      fit: BoxFit.fill,
+                    )),
               ),
             ],
           )),

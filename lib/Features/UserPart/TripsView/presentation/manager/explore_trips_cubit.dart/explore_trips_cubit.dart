@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/Google_Api_services.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/Repo/TripsRepo.dart';
 import 'package:yallanow/Features/UserPart/TripsView/data/models/trip_card_model.dart';
@@ -23,9 +22,7 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
     result.fold((fail) => emit(ExploreTripsFailure(errMsg: fail.errMessage)),
         (trips) async {
       hasMore = trips.length == 5;
-      if (AppLang.isArabic()) {
-        trips = await _translateTrips(trips: trips);
-      }
+
       emit(ExploreTripsSuccess(
           trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
     });
@@ -45,9 +42,6 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
         currentPage--;
         get();
       } else {
-        if (AppLang.isArabic()) {
-          trips = await _translateTrips(trips: trips);
-        }
         emit(ExploreTripsSuccess(
             trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
       }
@@ -64,9 +58,7 @@ class ExploreTripsCubit extends Cubit<ExploreTripsState> {
     result.fold((fail) => emit(ExploreTripsFailure(errMsg: fail.errMessage)),
         (trips) async {
       hasMore = trips.length == 5;
-      if (AppLang.isArabic()) {
-        trips = await _translateTrips(trips: trips);
-      }
+
       emit(ExploreTripsSuccess(
           trips: trips, hasMore: hasMore, isFirstPage: currentPage == 1));
     });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/getTotalPrice.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/showOrderPlaced.dart';
@@ -23,10 +24,10 @@ class CheckoutButtonBuilder extends StatelessWidget {
               txtcolor: Colors.white,
               btncolor: const Color(0xffB20404),
               onPressed: () async {
-                if (state.methode == 'creditCard') {
+                if (state.methode == PaymentMethod.creditCard) {
                   BlocProvider.of<CheckPaymentMethodCubit>(context)
-                      .goToPaymentPage(context, amount: 100);
-                } else if (state.methode == 'wallet') {
+                      .goToPaymentPage(context, amount: getTotalPrice());
+                } else if (state.methode == PaymentMethod.wallet) {
                   var key = BlocProvider.of<PlaceOrderCubit>(context).formKey;
                   if (key.currentState!.validate()) {
                     key.currentState!.save();
@@ -38,7 +39,7 @@ class CheckoutButtonBuilder extends StatelessWidget {
           return CustomButton(
             text: "Yalla",
             txtcolor: Colors.white,
-            btncolor: const Color(0xffB20404),
+            btncolor: pKcolor,
             onPressed: () {
               showOrderPlaced(context);
             },

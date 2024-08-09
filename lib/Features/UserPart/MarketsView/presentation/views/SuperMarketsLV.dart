@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yallanow/Core/utlis/functions/getPadding.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/marts_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_home_cubit/mart_home_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsLoading.dart';
@@ -19,13 +20,11 @@ class SuperMarketsLV extends StatelessWidget {
             shrinkWrap: true,
             itemCount: marts.length,
             itemBuilder: (context, index) {
-              final isLastIndex = index == marts.length - 1;
               return Padding(
-                padding: EdgeInsets.only(
-                  bottom: isLastIndex
-                      ? 0
-                      : 16, // Set bottom padding to 0 for the last item
-                ),
+                padding: getPadding(
+                    index: index,
+                    lastIndex: marts.length - 1,
+                    paddingValue: 12),
                 child: SuperMarketCard(
                   martsModel: marts[index],
                 ),

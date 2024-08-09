@@ -16,20 +16,17 @@ class CategoriesGV extends StatelessWidget {
       builder: (context, state) {
         if (state is MartDetailsSuccess) {
           List<MartDetailsModel> martsdetails = state.martsDetails;
+          int itemCount = martsdetails.length < 3 ? martsdetails.length : 3;
           return GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 16, crossAxisSpacing: 16, crossAxisCount: 3),
-            itemCount: martsdetails.length,
+            itemCount: itemCount,
             itemBuilder: (context, index) {
-              if (index < 9) {
-                return MarketCategoriesCard(
-                  marketCategoriesModel: martsdetails[index],
-                );
-              } else {
-                return null;
-              }
+              return MarketCategoriesCard(
+                marketCategoriesModel: martsdetails[index],
+              );
             },
           );
         } else if (state is MartDetailsLoading) {

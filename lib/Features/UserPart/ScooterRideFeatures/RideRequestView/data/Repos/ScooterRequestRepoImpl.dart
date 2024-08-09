@@ -142,4 +142,31 @@ class ScooterRequestRepoImpl implements ScooterRequestRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, dynamic>> checkbalance({required double value}) async {
+    String endPoint = 'Wallets/check-balance?value=$value';
+    String token = await TokenManager.getUserToken() ?? "";
+
+    try {
+      var response =
+          await yallaNowServices.get(endPoint: endPoint, token: token);
+
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(
+          ServerFailure.fromDioError(e.type),
+        );
+      }
+
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
 }

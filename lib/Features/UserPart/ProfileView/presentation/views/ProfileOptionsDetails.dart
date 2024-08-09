@@ -17,10 +17,10 @@ class ProfileOptionsDetails extends StatelessWidget {
       ProfileOptionsCardModel(
           title: S.of(context).RidesHistory,
           icon: Assets.imagesScooterRideICon),
-      // ProfileOptionsCardModel(
-      //     title: 'Addresses', icon: Assets.imagesLocationMark),
-      // ProfileOptionsCardModel(
-      //     title: 'Favorite list', icon: Assets.imagesFavoriteIcon),
+      ProfileOptionsCardModel(
+          title: S.of(context).Addresses, icon: Assets.imagesLocationMark),
+      ProfileOptionsCardModel(
+          title: S.of(context).Favorites, icon: Assets.imagesFavoriteIcon),
       ProfileOptionsCardModel(
           title: S.of(context).Language, icon: Assets.imagesLanguageIcon),
       ProfileOptionsCardModel(

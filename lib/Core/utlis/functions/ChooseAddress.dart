@@ -76,7 +76,7 @@ void checkUserAddresses(BuildContext context) {
   if (addressState is UserAddressesSuccess) {
     UserAddressesDetailsModel matchingAddress = addressState.addresses.first;
     context.read<HomeAddressCubit>().selecteAddress(address: matchingAddress);
-    } else {
+  } else {
     // Handle other states, if necessary.
     log("Address state is not UserAddressesSuccess.");
   }

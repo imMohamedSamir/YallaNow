@@ -15,6 +15,7 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
         (s) async {
       await TokenManager.removeToken();
       emit(DeleteAccountSuccess());
+      await close();
     });
   }
 }

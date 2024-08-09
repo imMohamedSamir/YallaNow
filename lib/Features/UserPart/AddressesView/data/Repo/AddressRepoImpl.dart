@@ -22,7 +22,7 @@ class AddressesRepoImpl implements AddressesRepo {
   Future<Either<Failure, List<PlaceModel>>> getPredictions(
       {required String input, String? sesstionToken}) async {
     String endPoint =
-        'place/autocomplete/json?key=$googleApiKey&input=$input,&sessiontoken=$sesstionToken';
+        'place/autocomplete/json?key=$googleApiKey&input=$input,&sessiontoken=$sesstionToken&components=country:eg&location=27.2579,33.8116&language=ar&radius=460500';
 
     try {
       var data = await googleMapsServices.getPreditction(endPoint: endPoint);
@@ -68,7 +68,7 @@ class AddressesRepoImpl implements AddressesRepo {
       log(e.toString());
       if (e is DioException) {
         return left(
-          ServerFailure.fromDioError(e.type),
+          ServerFailure.fromResponse(e.response?.statusCode, e.response),
         );
       }
 

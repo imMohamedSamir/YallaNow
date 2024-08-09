@@ -1730,10 +1730,10 @@ class S {
     );
   }
 
-  /// `Total trips`
+  /// `Total Orders`
   String get TotalTrips {
     return Intl.message(
-      'Total trips',
+      'Total Orders',
       name: 'TotalTrips',
       desc: '',
       args: [],
@@ -2175,6 +2175,426 @@ class S {
     return Intl.message(
       'No drivers available Now , please try again later',
       name: 'NoDriversMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash`
+  String get Cash {
+    return Intl.message(
+      'Cash',
+      name: 'Cash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Card`
+  String get CreditCard {
+    return Intl.message(
+      'Credit Card',
+      name: 'CreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient wallet balance. Please choose another payment method.`
+  String get NoBalanceWallet {
+    return Intl.message(
+      'Insufficient wallet balance. Please choose another payment method.',
+      name: 'NoBalanceWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Ride Request`
+  String get NewRequest {
+    return Intl.message(
+      'New Ride Request',
+      name: 'NewRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have a new ride request. Tap to view details.`
+  String get NewRequestBody {
+    return Intl.message(
+      'You have a new ride request. Tap to view details.',
+      name: 'NewRequestBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deliver To`
+  String get DeliverTo {
+    return Intl.message(
+      'Deliver To',
+      name: 'DeliverTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bazar`
+  String get Bazar {
+    return Intl.message(
+      'Bazar',
+      name: 'Bazar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Basket`
+  String get Basket {
+    return Intl.message(
+      'Basket',
+      name: 'Basket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Items`
+  String get AddItems {
+    return Intl.message(
+      'Add Items',
+      name: 'AddItems',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Summary`
+  String get PaymentSummary {
+    return Intl.message(
+      'Payment Summary',
+      name: 'PaymentSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery Fee`
+  String get DeliveryFee {
+    return Intl.message(
+      'Delivery Fee',
+      name: 'DeliveryFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Fee`
+  String get ServiceFee {
+    return Intl.message(
+      'Service Fee',
+      name: 'ServiceFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Marts`
+  String get PopularMarts {
+    return Intl.message(
+      'Popular Marts',
+      name: 'PopularMarts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Resturants`
+  String get PopularResturants {
+    return Intl.message(
+      'Popular Resturants',
+      name: 'PopularResturants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Super Markets`
+  String get SuperMarkets {
+    return Intl.message(
+      'Super Markets',
+      name: 'SuperMarkets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get Categories {
+    return Intl.message(
+      'Categories',
+      name: 'Categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add To Basket`
+  String get AddToBasket {
+    return Intl.message(
+      'Add To Basket',
+      name: 'AddToBasket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price on selection`
+  String get PriceOnSelection {
+    return Intl.message(
+      'Price on selection',
+      name: 'PriceOnSelection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow`
+  String get Allow {
+    return Intl.message(
+      'Allow',
+      name: 'Allow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deny`
+  String get Deny {
+    return Intl.message(
+      'Deny',
+      name: 'Deny',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yalla Now App collects location data to enable Identification of nearby drivers,Resturants,marts and pharmacies even when the app is closed or not in use.`
+  String get LocationPermissionMsg {
+    return Intl.message(
+      'Yalla Now App collects location data to enable Identification of nearby drivers,Resturants,marts and pharmacies even when the app is closed or not in use.',
+      name: 'LocationPermissionMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location Data Collection for Nearby Services`
+  String get LocationPermissionTitle {
+    return Intl.message(
+      'Location Data Collection for Nearby Services',
+      name: 'LocationPermissionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pharamcies`
+  String get Pharamcies {
+    return Intl.message(
+      'Pharamcies',
+      name: 'Pharamcies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best Seller`
+  String get BestSeller {
+    return Intl.message(
+      'Best Seller',
+      name: 'BestSeller',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get Search {
+    return Intl.message(
+      'Search',
+      name: 'Search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Results`
+  String get Results {
+    return Intl.message(
+      'Results',
+      name: 'Results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites`
+  String get Favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'Favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addresses`
+  String get Addresses {
+    return Intl.message(
+      'Addresses',
+      name: 'Addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please bring rest of `
+  String get FakaMsg {
+    return Intl.message(
+      'Please bring rest of ',
+      name: 'FakaMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Info`
+  String get ContactInfo {
+    return Intl.message(
+      'Contact Info',
+      name: 'ContactInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Categories`
+  String get TopCategories {
+    return Intl.message(
+      'Top Categories',
+      name: 'TopCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Resturants`
+  String get AllResturants {
+    return Intl.message(
+      'All Resturants',
+      name: 'AllResturants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore Resturants`
+  String get ExploreResturants {
+    return Intl.message(
+      'Explore Resturants',
+      name: 'ExploreResturants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver profile`
+  String get DriverProfile {
+    return Intl.message(
+      'Driver profile',
+      name: 'DriverProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Details`
+  String get OrderDetails {
+    return Intl.message(
+      'Order Details',
+      name: 'OrderDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Summary`
+  String get OrderSummary {
+    return Intl.message(
+      'Order Summary',
+      name: 'OrderSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extras :`
+  String get Extras {
+    return Intl.message(
+      'Extras :',
+      name: 'Extras',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional`
+  String get Optional {
+    return Intl.message(
+      'Optional',
+      name: 'Optional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your choice of size :`
+  String get ChooseSize {
+    return Intl.message(
+      'your choice of size :',
+      name: 'ChooseSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required`
+  String get Required {
+    return Intl.message(
+      'Required',
+      name: 'Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose one`
+  String get ChooseOne {
+    return Intl.message(
+      'Choose one',
+      name: 'ChooseOne',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove your account and all associated data ?`
+  String get DeleteAccDialogQ {
+    return Intl.message(
+      'Remove your account and all associated data ?',
+      name: 'DeleteAccDialogQ',
       desc: '',
       args: [],
     );

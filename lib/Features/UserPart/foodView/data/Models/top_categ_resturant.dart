@@ -1,4 +1,5 @@
 class TopCategResturant {
+  String? id;
   String? name;
   String? imageUrl;
   String? desc;
@@ -6,6 +7,7 @@ class TopCategResturant {
   String? deliverytime;
 
   TopCategResturant({
+    this.id,
     this.name,
     this.imageUrl,
     this.desc,
@@ -15,6 +17,7 @@ class TopCategResturant {
 
   factory TopCategResturant.fromJson(Map<String, dynamic> json) {
     return TopCategResturant(
+      id: json['id'] as String?,
       name: json['name'] as String?,
       imageUrl: json['imageUrl'] as String?,
       desc: json['desc'] as String?,

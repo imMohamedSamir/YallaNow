@@ -14,10 +14,8 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presen
 class CaptinSlideAction extends StatelessWidget {
   const CaptinSlideAction({
     super.key,
-    this.isStarted = false,
     required this.tripId,
   });
-  final bool isStarted;
   final String tripId;
   @override
   Widget build(BuildContext context) {
@@ -44,38 +42,47 @@ class CaptinSlideAction extends StatelessWidget {
                 context: context, page: const CaptinCheckoutPage());
           }
         },
-        child: Dismissible(
-            direction: DismissDirection.startToEnd,
-            key: UniqueKey(),
-            background: Container(
-              width: double.infinity,
-              alignment: Alignment.centerRight,
-              height: AppSizes.getHeight(60, context),
-              decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(16)),
-              padding: const EdgeInsets.only(right: 20),
-              child: Text(
-                isStarted ? "انهاء" : "ابدا",
-                style: AppStyles.styleMedium18(context)
-                    .copyWith(color: Colors.white),
-              ),
-            ),
-            onDismissed: (direction) {
-              if (isStarted) {
-                mapCubit.isStarted = false;
-                startCubit.end(tripId: tripId);
-              } else {
-                mapCubit.isStarted = true;
-                startCubit.start(tripId: tripId);
-              }
-            },
-            child: const Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: Icon(Icons.arrow_circle_left,
-                      size: 46, color: Colors.white),
-                ))),
+        child: BlocBuilder<CaptinMapCubit, CaptinMapState>(
+          builder: (context, state) {
+            bool isStarted = false;
+            if (state is CaptinMapChange) {
+              isStarted = state.isStarted!;
+            }
+            return Dismissible(
+                direction: DismissDirection.startToEnd,
+                key: UniqueKey(),
+                background: Container(
+                  width: double.infinity,
+                  alignment: Alignment.centerRight,
+                  height: AppSizes.getHeight(60, context),
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(16)),
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Text(
+                    isStarted ? "انهاء" : "ابدا",
+                    style: AppStyles.styleMedium18(context)
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  if (isStarted) {
+                    mapCubit.isStarted = false;
+                    startCubit.end(tripId: tripId);
+                  } else {
+                    mapCubit.isStarted = true;
+                    startCubit.start(tripId: tripId);
+                  }
+                },
+                child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: Icon(Icons.arrow_circle_left,
+                          size: 46, color: Colors.white),
+                    )));
+          },
+        ),
       ),
     );
   }

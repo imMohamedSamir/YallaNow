@@ -9,6 +9,7 @@ import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentatio
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverDetailsView.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/DriverImgSec.dart';
+import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/views/RiderRoleSec.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/manager/Methods/PasswordValidation.dart';
 import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/GenderDropMenu.dart';
 import 'package:yallanow/generated/l10n.dart';
@@ -249,6 +250,8 @@ class _DrSignUpFormState extends State<DrSignUpForm> {
               return null;
             },
           ),
+          const SizedBox(height: 16),
+          const RiderRoleSec(),
           const SizedBox(height: 30),
           CustomButton(
             text: S.of(context).Next,

@@ -17,12 +17,12 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '2'
+    flutterVersionCode = '4'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.1'
+    flutterVersionName = '1.0.3'
 }
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
@@ -70,7 +70,7 @@ android {
               // Signing with the debug keys for now,
               // so `flutter run --release` works.
                ndk {
-                debugSymbolLevel 'FULL' // يضمن أن ملفات الرموز يتم إنشاؤها
+                debugSymbolLevel 'FULL' 
                  }
                signingConfig signingConfigs.debug
                signingConfig signingConfigs.release

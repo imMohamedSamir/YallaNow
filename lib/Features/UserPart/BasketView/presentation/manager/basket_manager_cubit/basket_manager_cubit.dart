@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -24,10 +22,8 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
     var box = await Hive.openBox<SelectedItemsModel>(kBasket);
     for (var key in box.keys) {
       var item = box.get(key);
-      log(totalPrice.toString());
       if (item != null) {
         totalPrice += double.parse(item.price);
-        log(totalPrice.toString());
       }
     }
     return totalPrice;
@@ -77,7 +73,7 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
   }
 
   void deleteFromBasket(String itemID) async {
-    var box = await Hive.openBox<SelectedItemsModel>(kBasket);
+    var box = Hive.box<SelectedItemsModel>(kBasket);
     await box.delete(itemID);
     emit(BasketManagerInitial());
 

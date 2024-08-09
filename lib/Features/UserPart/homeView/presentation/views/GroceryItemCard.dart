@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/item.dart';
@@ -29,9 +30,9 @@ class GroceryItemCard extends StatelessWidget {
               right: 14,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(imgUrl)),
+                  child: CachedNetworkImage(imageUrl: imgUrl)),
             ),
-            Positioned(right: 7, bottom: 7, child: GroceryAddIcon(item: item))
+            // Positioned(right: 7, bottom: 7, child: GroceryAddIcon(item: item))
           ],
         ),
       ),

@@ -1,42 +1,67 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentWebView extends StatefulWidget {
   const PaymentWebView({Key? key, required this.paymentKey}) : super(key: key);
   final String paymentKey;
+
   @override
   _PaymentWebViewState createState() => _PaymentWebViewState();
 }
 
 class _PaymentWebViewState extends State<PaymentWebView> {
   late WebViewController webViewController;
+
   @override
   void initState() {
-    webViewController = WebViewController();
-    setcontroller();
     super.initState();
+    webViewController = WebViewController();
+    setController();
   }
 
-  setcontroller() {
+  setController() {
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onWebResourceError: (WebResourceError error) {},
+          onWebResourceError: (WebResourceError error) {
+            log('Web resource error: ${error.description}');
+            log('Error URL: ${error.url ?? ""}');
+          },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.contains("success=true") ||
-                request.url.contains("data.message=Approved")) {
-              print("success=true");
-              return NavigationDecision.navigate;
-            } else {
-              return NavigationDecision.prevent;
-            }
+            log('Navigating to: ${request.url}');
+            webViewController.loadRequest(Uri.parse(request.url));
+
+            // Check if the URL is the bank's URL
+
+            return NavigationDecision.navigate;
           },
         ),
       )
       ..loadRequest(Uri.parse(
           'https://accept.paymob.com/api/acceptance/iframes/824160?payment_token=${widget.paymentKey}'));
+  }
+
+  void _showBankNavigationDialog(String url) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Bank URL Detected'),
+          content: Text('You are navigating to the bank URL: $url'),
+          actions: [
+            TextButton(
+              child: Text('Continue'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -48,11 +73,3 @@ class _PaymentWebViewState extends State<PaymentWebView> {
     );
   }
 }
-
-// void gotopaymentpage({required BuildContext context}) {
-//   PaymobManager().getPaymentKey().then((value) => Navigator.push(
-//       context,
-//       MaterialPageRoute(
-//         builder: (context) => PaymentWebView(paymentKey: value),
-//       )));
-// }

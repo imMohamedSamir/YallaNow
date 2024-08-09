@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
@@ -38,15 +39,14 @@ class SearchResultCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                      resultModel.imageUrl!.contains("wwwroot")
-                          ? "http://yallanow.runasp.net\\images\\c5840dc4-353d-4762-aa07-0bcd4e32c1f4_download.jpg"
-                          : resultModel.imageUrl!,
-                      height: AppSizes.getHeight(100, context),
-                      width: AppSizes.getWidth(100, context),
-                      fit: BoxFit.fill),
-                ),
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                        imageUrl: resultModel.imageUrl!.contains("wwwroot")
+                            ? "http://yallanow.runasp.net\\images\\c5840dc4-353d-4762-aa07-0bcd4e32c1f4_download.jpg"
+                            : resultModel.imageUrl!,
+                        height: AppSizes.getHeight(100, context),
+                        width: AppSizes.getWidth(100, context),
+                        fit: BoxFit.fill)),
                 const SizedBox(width: 18),
                 Expanded(
                   child: Column(

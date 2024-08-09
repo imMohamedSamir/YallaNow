@@ -10,9 +10,8 @@ class MarketCategoryGV extends StatelessWidget {
     return GridView.builder(
       itemCount: items.length,
       physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 10, crossAxisSpacing: 16, crossAxisCount: 2),
+          mainAxisSpacing: 10, crossAxisSpacing: 12, crossAxisCount: 2),
       itemBuilder: (context, index) {
         return GroceryItemDetails(item: items[index]);
       },

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
@@ -19,10 +21,10 @@ class BillingData {
   final String state;
 
   BillingData({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phoneNumber,
+    this.firstName = "ali",
+    this.lastName = "loo",
+    this.email = "ali350@gmail.com",
+    this.phoneNumber = "01127523369",
     this.apartment = "NA",
     this.floor = "NA",
     this.street = "NA",
@@ -78,7 +80,7 @@ class PaymobManager {
       return right(paymentKey);
     } catch (e) {
       if (e is DioException) {
-        // log(e.toString());
+        log(e.toString());
         final statusCode = e.response?.statusCode;
         final response = e.response?.data;
 

@@ -78,6 +78,37 @@ class RoutesUtils {
     return polyLines;
   }
 
+  Future<Set<Polyline>> displayAnotherRoute(
+      {required LatLng destination,
+      required LatLng newPoint,
+      required GoogleMapController googleMapController,
+      required Set<Polyline> polyLines}) async {
+    // Get the route data from the destination to the new point
+    RouteInfo routeInfo = await getRouteData(
+      desintation: newPoint,
+      src: destination,
+    );
+
+    // Create a new polyline for the route
+    Polyline anotherRoute = Polyline(
+      color: Colors
+          .red, // Use a different color to differentiate from the first route
+      width: 3,
+      polylineId: const PolylineId('anotherRoute'),
+      points: routeInfo.points,
+    );
+
+    // Add the new polyline to the set of polylines
+    polyLines.add(anotherRoute);
+
+    // Update the camera to show the new route
+    LatLngBounds bounds = getLatLngBounds(routeInfo.points);
+    googleMapController
+        .animateCamera(CameraUpdate.newLatLngBounds(bounds, 130));
+
+    return polyLines;
+  }
+
   LatLngBounds getLatLngBounds(List<LatLng> points) {
     var southWestLatitude = points.first.latitude;
     var southWestLongitude = points.first.longitude;

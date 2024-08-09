@@ -11,6 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
+import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/CalculateDistance.dart';
 import 'package:yallanow/Features/UserPart/ScooterRideFeatures/ScooterRideView/data/models/RouteInfoModel.dart';
 import 'package:yallanow/Core/utlis/RoutesUtlis.dart';
 
@@ -25,10 +26,13 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   Set<Marker> markers = {};
   Placemark? locationDetails;
   LatLng? currentposition, newposition;
-  bool isMoved = false;
+  // bool isMoved = false;
   Set<Polyline> polyLines = {};
   bool isStarted = false;
   bool isFinished = false;
+  LatLng? _dist;
+  LatLng? _userLocation;
+  double? _userdistance;
   StreamSubscription<DatabaseEvent>? _driversSubscription;
 
   // LatLng? test;
@@ -50,10 +54,6 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     return super.close();
   }
 
-  void cancelListening() async {
-    await _driversSubscription?.cancel();
-  }
-
   void updateMyLocation(BuildContext context) async {
     await locationService.checkAndRequestLocationService();
     var hasPermission =
@@ -61,8 +61,12 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     if (hasPermission) {
       currentposition = await locationService.getCurrentLocationData();
       setMyCameraPosition(currentposition!);
+      if (context.mounted) {
+        locationsMethod(context);
+      }
       emit(CaptinMapSuccess(locationData: currentposition!, markers: markers));
-      isMoved = true;
+
+      // isMoved = true;
     }
   }
 
@@ -72,6 +76,7 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     final DatabaseReference driversRef =
         FirebaseDatabase.instance.ref('drivers/$driverId');
     _driversSubscription = driversRef.onValue.listen((event) {
+      emit(CaptinMapLoading(polyLine: polyLines));
       if (event.snapshot.value != null) {
         final data = event.snapshot.value as Map<dynamic, dynamic>;
         final newLatitude = data['CurrentLatitude'] as double;
@@ -83,16 +88,22 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
         // updateDriverMarker(newposition!);
 
         currentposition = newposition;
+        locationsMethod(context);
+        emit(CaptinMapChange(
+            polyLine: polyLines,
+            markers: markers,
+            distance: _userdistance,
+            isStarted: isStarted));
         // setMyCameraPosition(currentposition!);
-
-        // // Update the route whenever the driver's location changes
-        getRoutes(context);
       }
     });
   }
 
+  void cancelListening() async {
+    await _driversSubscription?.cancel();
+  }
+
   Future<void> updateDriverMarker(LatLng newLocation) async {
-    emit(CaptinMapInitial());
     markers.removeWhere((marker) => marker.markerId.value == 'driver_marker');
 
     markers.add(
@@ -107,47 +118,48 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     // emit(CaptinMapChange(currentLtLng: newLocation, markers: markers));
   }
 
-  Future<void> getRoutes(BuildContext context) async {
+  void getRoutes(BuildContext context) async {
     emit(CaptinMapInitial());
-    LatLng dist;
-    var requestCubit =
-        BlocProvider.of<CaptinRideRequestCubit>(context).detailsModel;
-    if (isStarted) {
-      double lat = requestCubit.dstLatitude;
-      double lng = requestCubit.dstLongitude;
-      dist = LatLng(lat, lng);
-      markers.removeWhere(
-          (marker) => marker.markerId.value == 'user_location_marker');
-      setdistLocation(dist);
-    } else {
-      double lat = requestCubit.currentLatitude;
-      double lng = requestCubit.currentLongitude;
-      dist = LatLng(lat, lng);
-      await setUserLocation(dist);
-    }
-
-    await updateDriverMarker(currentposition!);
 
     try {
       RouteInfo routeInfo = await routesUtils.getRouteData(
-          desintation: dist, src: currentposition!);
+          desintation: _userLocation!, src: currentposition!);
       polyLines = routesUtils.displayRoute(routeInfo.points,
           polyLines: polyLines, googleMapController: googleMapController!);
+      polyLines = await routesUtils.displayAnotherRoute(
+          destination: _dist!,
+          newPoint: _userLocation!,
+          googleMapController: googleMapController!,
+          polyLines: polyLines);
       emit(CaptinMapChange(
-          polyLine: polyLines,
-          markers: markers,
-          distance: routeInfo.distance,
-          isStarted: isStarted));
+          polyLine: polyLines, markers: markers, isStarted: isStarted));
     } catch (e) {
       log("Error fetching location: $e");
     }
   }
 
-  Future<void> setUserLocation(LatLng locationData) async {
-    emit(CaptinMapInitial());
+  void locationsMethod(BuildContext context) async {
+    var requestCubit =
+        BlocProvider.of<CaptinRideRequestCubit>(context).detailsModel;
+    double lat = requestCubit.currentLatitude;
+    double lng = requestCubit.currentLongitude;
+    _userLocation = LatLng(lat, lng);
+    await setUserLocation(_userLocation!);
+    /////////////////////////////////////////////////
+    double distlat = requestCubit.dstLatitude;
+    double dsitlng = requestCubit.dstLongitude;
+    _dist = LatLng(distlat, dsitlng);
+    setdistLocation(_dist!);
+    await updateDriverMarker(currentposition!);
 
-    markers.removeWhere(
-        (marker) => marker.markerId.value == 'user_location_marker');
+    _userdistance =
+        calculateDistance(dist: _userLocation!, src: newposition!) * 1000;
+    log("${(_userdistance!).toStringAsFixed(2)} meter");
+  }
+
+  Future<void> setUserLocation(LatLng locationData) async {
+    // markers.removeWhere(
+    //     (marker) => marker.markerId.value == 'user_location_marker');
 
     markers.add(
       Marker(
@@ -160,8 +172,6 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
   }
 
   void setdistLocation(LatLng locationData) async {
-    emit(CaptinMapInitial());
-
     markers.removeWhere((marker) => marker.markerId.value == 'dist_location');
 
     markers.add(

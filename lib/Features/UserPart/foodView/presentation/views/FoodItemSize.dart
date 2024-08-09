@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/item.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/SizeType.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class FoodItemSize extends StatelessWidget {
   const FoodItemSize({super.key, required this.item});
@@ -14,14 +15,14 @@ class FoodItemSize extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      padding: const EdgeInsets.only(top: 24, left: 0, right: 16, bottom: 16),
+      padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 16),
       color: Colors.white,
       child: Column(
         children: [
           Row(
             children: [
               const SizedBox(width: 16),
-              Text("your choice of size:",
+              Text(S.of(context).ChooseSize,
                   style: AppStyles.styleSemiBold16(context)
                       .copyWith(color: const Color(0xff240301))),
               const Spacer(),
@@ -35,8 +36,8 @@ class FoodItemSize extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                 ),
-                child:
-                    Text('Required', style: AppStyles.styleMedium10(context)),
+                child: Text(S.of(context).Required,
+                    style: AppStyles.styleMedium10(context)),
               ),
             ],
           ),
@@ -52,7 +53,7 @@ class FoodItemSize extends StatelessWidget {
                           color: pKcolor, size: 18),
                       const SizedBox(width: 8),
                       Text(
-                        "Choose 1",
+                        S.of(context).ChooseOne,
                         style: AppStyles.styleMedium12(context)
                             .copyWith(color: pKcolor),
                       )
@@ -67,9 +68,7 @@ class FoodItemSize extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          SizeType(
-            item: item,
-          ),
+          SizeType(item: item),
         ],
       ),
     );

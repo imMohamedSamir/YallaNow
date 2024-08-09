@@ -5,6 +5,7 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/item_page_cubit/item_page_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class ItemPageBottomBar extends StatelessWidget {
   const ItemPageBottomBar({Key? key, this.itemId}) : super(key: key);
@@ -39,7 +40,7 @@ class ItemPageBottomBar extends StatelessWidget {
               children: [
                 const SizedBox(width: 10),
                 Text(
-                  "Add to basket",
+                  S.of(context).AddToBasket,
                   style: AppStyles.styleMedium16(context)
                       .copyWith(color: Colors.white),
                 ),
@@ -48,13 +49,13 @@ class ItemPageBottomBar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is ItemPageChange) {
                       return Text(
-                        "${state.updatedPrice} EGP",
+                        "${state.updatedPrice} ${S.of(context).EGP}",
                         style: AppStyles.styleMedium16(context)
                             .copyWith(color: Colors.white),
                       );
                     } else {
                       return Text(
-                        "Price on selection",
+                        S.of(context).PriceOnSelection,
                         style: AppStyles.styleMedium16(context)
                             .copyWith(color: Colors.white),
                       );

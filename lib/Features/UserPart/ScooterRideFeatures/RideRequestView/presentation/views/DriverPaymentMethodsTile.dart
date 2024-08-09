@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/check_payment_method_cubit/check_payment_method_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/PayMethodCard.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/manager/check_wallet_balance_cubit/check_wallet_balance_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class DriverPaymentMethodsTile extends StatefulWidget {
-  const DriverPaymentMethodsTile({
-    Key? key,
-  }) : super(key: key);
+  const DriverPaymentMethodsTile({Key? key}) : super(key: key);
+
   @override
   _DriverPaymentMethodsTileState createState() =>
       _DriverPaymentMethodsTileState();
@@ -17,25 +21,36 @@ class DriverPaymentMethodsTile extends StatefulWidget {
 
 class _DriverPaymentMethodsTileState extends State<DriverPaymentMethodsTile> {
   PaymentMethod? selectedValue;
+
   @override
   void initState() {
-    // selectedValue = PaymentMethod.cash;
-    if (selectedValue != null) {}
     super.initState();
-  }
-
-  void initialPayment() {
     selectedValue = PaymentMethod.cash;
-    BlocProvider.of<CheckPaymentMethodCubit>(context)
-        .updatePaymentMethod(method: selectedValue!);
   }
 
   void _handlePaymentMethodSelected(PaymentMethod value) {
     setState(() {
       selectedValue = value;
-      BlocProvider.of<CheckPaymentMethodCubit>(context)
-          .updatePaymentMethod(method: value);
     });
+    BlocProvider.of<CheckPaymentMethodCubit>(context)
+        .updatePaymentMethod(method: value);
+  }
+
+  Widget _buildPaymentMethodCard({
+    required String method,
+    required PaymentMethod value,
+    required Widget img,
+    bool enabled = true,
+  }) {
+    return PayMethodCard(
+      method: method,
+      value: value,
+      groupValue: selectedValue,
+      onChanged:
+          enabled ? (value) => _handlePaymentMethodSelected(value) : null,
+      img: img,
+      enabled: enabled,
+    );
   }
 
   @override
@@ -43,46 +58,46 @@ class _DriverPaymentMethodsTileState extends State<DriverPaymentMethodsTile> {
     return BlocBuilder<CheckPaymentMethodCubit, CheckPaymentMethodState>(
       builder: (context, state) {
         if (state is CheckPaymentMethodChange) {
-          if (state.methode == PaymentMethod.cash) {
-            selectedValue = PaymentMethod.cash;
-          } else if (state.methode == PaymentMethod.creditCard) {
-            selectedValue = PaymentMethod.creditCard;
-          } else {
-            selectedValue = PaymentMethod.wallet;
-          }
+          selectedValue = state.methode;
+
           return Column(
             children: [
-              PayMethodCard(
-                method: "Cash",
+              _buildPaymentMethodCard(
+                method: S.of(context).Cash,
                 value: PaymentMethod.cash,
-                groupValue: selectedValue,
-                onChanged: (value) => _handlePaymentMethodSelected(value),
-                img: SvgPicture.asset(
-                  Assets.imagesCashICon,
-                  height: 20,
-                  width: 20,
-                ),
+                img: SvgPicture.asset(Assets.imagesCashICon,
+                    height: 20, width: 20),
               ),
               const SizedBox(height: 16),
-              PayMethodCard(
-                method: "Wallet",
-                value: PaymentMethod.wallet,
-                groupValue: selectedValue,
-                onChanged: (value) {
-                  _handlePaymentMethodSelected(value);
+              BlocBuilder<CheckWalletBalanceCubit, CheckWalletBalanceState>(
+                builder: (context, walletState) {
+                  bool valid = walletState is CheckWalletBalanceSuccess
+                      ? walletState.valid
+                      : true;
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildPaymentMethodCard(
+                          method: S.of(context).Wallet,
+                          value: PaymentMethod.wallet,
+                          img: SvgPicture.asset(Assets.imagesCashICon,
+                              height: 20, width: 20),
+                          enabled: valid,
+                        ),
+                        const Gap(8),
+                        if (!valid)
+                          Text(
+                            S.of(context).NoBalanceWallet,
+                            style: AppStyles.styleRegular12(context)
+                                .copyWith(color: scColor),
+                          )
+                      ]);
                 },
-                img: SvgPicture.asset(
-                  Assets.imagesCashICon,
-                  height: 20,
-                  width: 20,
-                ),
               ),
               const SizedBox(height: 16),
-              PayMethodCard(
-                method: "Credit card",
+              _buildPaymentMethodCard(
+                method: S.of(context).CreditCard,
                 value: PaymentMethod.creditCard,
-                groupValue: selectedValue,
-                onChanged: (value) => _handlePaymentMethodSelected(value),
                 img: Image.asset(
                   Assets.imagesCreditcardIcon,
                   height: AppSizes.getHeight(20, context),
@@ -92,40 +107,42 @@ class _DriverPaymentMethodsTileState extends State<DriverPaymentMethodsTile> {
             ],
           );
         } else {
-          initialPayment();
           return Column(
             children: [
-              PayMethodCard(
-                method: "Cash",
+              _buildPaymentMethodCard(
+                method: S.of(context).Cash,
                 value: PaymentMethod.cash,
-                groupValue: selectedValue,
-                onChanged: (value) => _handlePaymentMethodSelected(value),
-                img: SvgPicture.asset(
-                  Assets.imagesCashICon,
-                  height: 20,
-                  width: 20,
-                ),
+                img: SvgPicture.asset(Assets.imagesCashICon,
+                    height: 20, width: 20),
               ),
               const SizedBox(height: 16),
-              PayMethodCard(
-                method: "Wallet",
-                value: PaymentMethod.wallet,
-                groupValue: selectedValue,
-                onChanged: (value) {
-                  _handlePaymentMethodSelected(value);
+              BlocBuilder<CheckWalletBalanceCubit, CheckWalletBalanceState>(
+                builder: (context, walletState) {
+                  bool valid = walletState is CheckWalletBalanceSuccess
+                      ? walletState.valid
+                      : true;
+                  return Column(children: [
+                    _buildPaymentMethodCard(
+                      method: S.of(context).Wallet,
+                      value: PaymentMethod.wallet,
+                      img: SvgPicture.asset(Assets.imagesCashICon,
+                          height: 20, width: 20),
+                      enabled: valid,
+                    ),
+                    const Gap(8),
+                    if (!valid)
+                      Text(
+                        S.of(context).NoBalanceWallet,
+                        style: AppStyles.styleRegular12(context)
+                            .copyWith(color: scColor),
+                      )
+                  ]);
                 },
-                img: SvgPicture.asset(
-                  Assets.imagesCashICon,
-                  height: 20,
-                  width: 20,
-                ),
               ),
               const SizedBox(height: 16),
-              PayMethodCard(
-                method: "Credit card",
+              _buildPaymentMethodCard(
+                method: S.of(context).CreditCard,
                 value: PaymentMethod.creditCard,
-                groupValue: selectedValue,
-                onChanged: (value) => _handlePaymentMethodSelected(value),
                 img: Image.asset(
                   Assets.imagesCreditcardIcon,
                   height: AppSizes.getHeight(20, context),

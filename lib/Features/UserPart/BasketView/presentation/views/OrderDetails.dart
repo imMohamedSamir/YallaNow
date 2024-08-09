@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/views/OrderDetailsRow.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -18,24 +19,28 @@ class OrderDetails extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Payment summary",
+                Text(S.of(context).PaymentSummary,
                     style: AppStyles.styleSemiBold16(context)
                         .copyWith(color: const Color(0xff240301))),
                 const SizedBox(height: 16),
                 OrderDetailsRow(
                     type: "Subtotal",
-                    price: "${state.totalPrice} EGP",
+                    price: "${state.totalPrice} ${S.of(context).EGP}",
                     total: false),
                 const SizedBox(height: 16),
-                const OrderDetailsRow(
-                    type: "Delivery fee", price: "EGP 10.00", total: false),
+                OrderDetailsRow(
+                    type: S.of(context).DeliveryFee,
+                    price: "10.00 ${S.of(context).EGP}",
+                    total: false),
                 const SizedBox(height: 16),
-                const OrderDetailsRow(
-                    type: "Service fee", price: "EGP 5.00", total: false),
+                OrderDetailsRow(
+                    type: S.of(context).ServiceFee,
+                    price: "5.00 ${S.of(context).EGP}",
+                    total: false),
                 const SizedBox(height: 16),
                 OrderDetailsRow(
                     type: "Total amount",
-                    price: "${state.priceDetails} EGP",
+                    price: "${state.priceDetails} ${S.of(context).EGP}",
                     total: true)
               ],
             );

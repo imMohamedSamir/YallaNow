@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class dotIndicator extends StatelessWidget {
-  const dotIndicator({super.key, required this.isactiv});
+class DotIndicator extends StatelessWidget {
+  const DotIndicator({super.key, required this.isactiv});
   final bool isactiv;
   @override
   Widget build(BuildContext context) {
@@ -16,18 +16,20 @@ class dotIndicator extends StatelessWidget {
   }
 }
 
-class dotIndicatorgroup extends StatelessWidget {
-  const dotIndicatorgroup({super.key, required this.currentIndex});
-  final int currentIndex;
+class DotIndicatorgroup extends StatelessWidget {
+  const DotIndicatorgroup(
+      {super.key, required this.currentIndex, required this.length});
+  final int currentIndex, length;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-          4,
+          length,
           (index) => Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: dotIndicator(isactiv: index == currentIndex),
+                child: DotIndicator(isactiv: index == currentIndex),
               )),
     );
   }

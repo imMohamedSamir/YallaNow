@@ -24,10 +24,11 @@ class TripsTypesCard extends StatelessWidget {
         Container(
             padding: const EdgeInsets.all(26),
             decoration: BoxDecoration(
-                color: pKcolor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(16)),
+                color: pKcolor, borderRadius: BorderRadius.circular(16)),
             child: Center(
-                child: Text(name, style: AppStyles.styleMedium14(context))))
+                child: Text(name,
+                    style: AppStyles.styleMedium16(context)
+                        .copyWith(color: Colors.white))))
       ]),
     );
   }

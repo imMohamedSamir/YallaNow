@@ -14,7 +14,7 @@ class MarketsViewBody extends StatelessWidget {
         slivers: [
           SliverPadding(
             padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+            sliver: SliverToBoxAdapter(child: MartsSearchBar()),
           ),
           SliverPadding(
             padding: EdgeInsets.only(top: 24),

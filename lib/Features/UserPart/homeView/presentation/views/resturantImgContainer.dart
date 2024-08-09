@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/models/add_fav_model.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
@@ -73,29 +75,35 @@ class MartImgContainer extends StatelessWidget {
 class RestFoodImgContainer extends StatelessWidget {
   const RestFoodImgContainer({
     super.key,
-    required this.hieght,
     required this.img,
-    required this.width,
+    required this.partnerId,
   });
-  final String img;
-  final double hieght;
-  final double width;
+  final String img, partnerId;
 
   @override
   Widget build(BuildContext context) {
+    AddFavModel createAddFavModel(String id) {
+      return AddFavModel(partnerId: id, partnerType: 2);
+    }
+
     return Container(
         padding: const EdgeInsets.only(right: 4, top: 4),
-        width: width,
-        height: hieght * 0.50,
+        width: AppSizes.getWidth(361, context),
+        height: AppSizes.getHeight(110, context),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.grey,
           image: DecorationImage(
             alignment: Alignment.center,
-            image: AssetImage(img),
+            image: CachedNetworkImageProvider(img),
             fit: BoxFit.cover,
           ),
         ),
-        child: const Align(alignment: Alignment.topRight, child: FavIcon()));
+        child: Align(
+            alignment: Alignment.topRight,
+            child: FavIcon(
+              partnerId: partnerId,
+              addFavModel: createAddFavModel(partnerId),
+            )));
   }
 }
