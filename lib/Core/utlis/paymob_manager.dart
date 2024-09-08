@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:yallanow/Core/Errors/Failurs.dart';
 import 'package:yallanow/Core/utlis/Keys.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/data/Repo/ProfileRepo.dart';
 
 class BillingData {
   final String firstName;
@@ -22,8 +23,8 @@ class BillingData {
 
   BillingData({
     this.firstName = "ali",
-    this.lastName = "loo",
-    this.email = "ali350@gmail.com",
+    this.lastName = "lolo",
+    this.email = "ali3502@gmail.com",
     this.phoneNumber = "01127523369",
     this.apartment = "NA",
     this.floor = "NA",
@@ -56,9 +57,12 @@ class BillingData {
 }
 
 class PaymobManager {
+  final ProfileRepo _profileRepo;
+
+  PaymobManager({required ProfileRepo profileRepo})
+      : _profileRepo = profileRepo;
   Future<Either<Failure, String>> getPaymentKey({
     required double amount,
-    BillingData? billingData,
     String currency = "EGP",
   }) async {
     try {
@@ -75,7 +79,6 @@ class PaymobManager {
         orderId: orderId.toString(),
         amount: (100 * amount).toString(),
         currency: currency,
-        billingData: billingData,
       );
       return right(paymentKey);
     } catch (e) {
@@ -126,8 +129,8 @@ class PaymobManager {
     required String orderId,
     required String amount,
     required String currency,
-    BillingData? billingData,
   }) async {
+    BillingData billingData = await _getUserData() ?? BillingData();
     final Response response = await Dio()
         .post("https://accept.paymob.com/api/acceptance/payment_keys", data: {
       //ALL OF THEM ARE REQIERD
@@ -140,8 +143,24 @@ class PaymobManager {
       "amount_cents": amount,
       "currency": currency,
 
-      "billing_data": billingData!.toJson(),
+      "billing_data": billingData.toJson(),
     });
     return response.data["token"];
+  }
+
+  Future<BillingData?> _getUserData() async {
+    late BillingData billingData;
+    var result = await _profileRepo.fetchUserDetails();
+
+    result.fold((fail) {
+      return BillingData();
+    }, (data) {
+      billingData = BillingData(
+          firstName: data.firstName ?? "test",
+          lastName: data.lastName ?? "test",
+          email: data.email ?? "test",
+          phoneNumber: data.phoneNumber);
+    });
+    return billingData;
   }
 }

@@ -5,21 +5,21 @@ import 'package:yallanow/Core/utlis/functions/SavePartnerId.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Models/restrunt_details/restrunt_details.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepo.dart';
 
-part 'resturant_branches_state.dart';
+part 'ResturantDetailsesState.dart';
 
-class ResturantBranchesCubit extends Cubit<ResturantBranchesState> {
-  ResturantBranchesCubit(this.foodRepo) : super(ResturantBranchesInitial());
+class ResturantDetailsCubit extends Cubit<ResturantDetailsesState> {
+  ResturantDetailsCubit(this.foodRepo) : super(ResturantBranchesInitial());
   final FoodRepo foodRepo;
-  void fetchResturantBranches({required String restaurantId}) async {
-    emit(ResturantBranchesLoading());
+  void get({required String restaurantId}) async {
+    emit(ResturantDetailsLoading());
     var results =
-        await foodRepo.fetchResturantBranches(restaurantId: restaurantId);
+        await foodRepo.fetchResturantDetails(restaurantId: restaurantId);
 
     results
-        .fold((fail) => emit(ResturantBranchesFailure(errmsg: fail.errMessage)),
+        .fold((fail) => emit(ResturantDetailsFailure(errmsg: fail.errMessage)),
             (branchDetails) {
       savePartnerId(id: restaurantId, type: resturantType);
-      emit(ResturantBranchesSuccess(branchDetails: branchDetails));
+      emit(ResturantDetailsSuccess(branchDetails: branchDetails));
     });
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:yallanow/Core/utlis/AppLang.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/DialogMethode.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Core/utlis/functions/getGender.dart';
 import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
@@ -81,9 +82,12 @@ class CaptinRequestBS extends StatelessWidget {
                 const Divider(),
                 Row(
                   children: [
-                    Text(
-                      "${requestDetails.firstName} ${requestDetails.lastName}",
-                      style: AppStyles.styleMedium14(context),
+                    SizedBox(
+                      width: AppSizes.getWidth(150, context),
+                      child: Text(
+                        "${requestDetails.firstName} ${requestDetails.lastName}",
+                        style: AppStyles.styleMedium14(context),
+                      ),
                     ),
                     const Spacer(),
                     Text(
@@ -175,31 +179,5 @@ class CaptinRequestBS extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String getPaymentMethod({required String method}) {
-    if (AppLang.isArabic()) {
-      if (method == "Cash") {
-        return "نقدى";
-      } else if (method == "Wallet") {
-        return "محفظة";
-      } else {
-        return "فيزا";
-      }
-    } else {
-      return method;
-    }
-  }
-
-  String getGender({required String gender}) {
-    if (AppLang.isArabic()) {
-      if (gender == "Male" || gender == "male") {
-        return "ذكر";
-      } else {
-        return "اثنى";
-      }
-    } else {
-      return gender;
-    }
   }
 }

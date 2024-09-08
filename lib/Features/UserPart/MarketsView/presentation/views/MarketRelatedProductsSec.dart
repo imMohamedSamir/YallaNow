@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/GroceryListView.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/GroceryListView.dart';
 
 class MarketRelatedProductsSec extends StatelessWidget {
   const MarketRelatedProductsSec({super.key});

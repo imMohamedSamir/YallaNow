@@ -5,6 +5,7 @@ import 'package:yallanow/Features/UserPart/AddressesView/data/models/user_addres
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/user_addresses_cubit/user_addresses_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddressLoadingPage.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddresseCard.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class AddressesLV extends StatelessWidget {
   const AddressesLV({super.key});
@@ -39,7 +40,7 @@ class AddressesLV extends StatelessWidget {
         } else if (state is UserAddressesEmpty) {
           return Center(
               child: Text(
-            "There is no address, please add a new address :)",
+            S.of(context).NoAddressesMsg,
             style: AppStyles.styleSemiBold14(context),
           ));
         } else {

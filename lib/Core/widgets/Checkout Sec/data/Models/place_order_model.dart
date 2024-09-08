@@ -1,3 +1,5 @@
+import 'package:yallanow/Features/UserPart/BasketView/data/models/basket_item_model/basket_item_model.dart';
+
 class PlaceOrderModel {
   String? addressid;
   String? phonenumber;
@@ -5,6 +7,13 @@ class PlaceOrderModel {
   String? orderNotes;
   String? partnerId;
   int? partnerType;
+  String? itemNotes;
+  double? changeAmount;
+  double? subTotalAmount;
+  double? deliveryFee;
+  double? serviceFee;
+
+  List<BasketItemModel>? items;
 
   PlaceOrderModel({
     this.addressid,
@@ -13,6 +22,12 @@ class PlaceOrderModel {
     this.orderNotes,
     this.partnerId,
     this.partnerType,
+    this.itemNotes,
+    this.changeAmount,
+    this.subTotalAmount,
+    this.deliveryFee,
+    this.serviceFee,
+    this.items,
   });
 
   factory PlaceOrderModel.fromJson(Map<String, dynamic> json) {
@@ -33,5 +48,11 @@ class PlaceOrderModel {
         'orderNotes': orderNotes,
         'partnerId': partnerId,
         'partnerType': partnerType,
+        'itemNotes': itemNotes,
+        'changeAmount': changeAmount,
+        "subTotalAmount": subTotalAmount,
+        "deliveryFee": deliveryFee,
+        "serviceFee": serviceFee,
+        'items': items?.map((e) => e.toJson()).toList(),
       };
 }

@@ -6,7 +6,6 @@ import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoCard.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryOrdersView/presentation/views/DeliveryOrderDetailsPage.dart';
-import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryOrdersView/presentation/views/DeliverySrcDstSec.dart';
 import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderCardHeader.dart';
 import 'package:yallanow/generated/l10n.dart';
 

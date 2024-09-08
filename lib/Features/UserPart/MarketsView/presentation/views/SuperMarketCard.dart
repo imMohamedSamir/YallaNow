@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
@@ -24,12 +25,19 @@ class SuperMarketCard extends StatelessWidget {
         },
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            Assets.imagesSupermarket1,
-            height: AppSizes.getHeight(60, context),
-            width: AppSizes.getWidth(60, context),
-            fit: BoxFit.cover,
-          ),
+          child: martsModel.imgUrl == null
+              ? Image.asset(
+                  Assets.imagesSupermarket1,
+                  height: AppSizes.getHeight(60, context),
+                  width: AppSizes.getWidth(60, context),
+                  fit: BoxFit.cover,
+                )
+              : CachedNetworkImage(
+                  imageUrl: martsModel.imgUrl ?? "",
+                  height: AppSizes.getHeight(60, context),
+                  width: AppSizes.getWidth(60, context),
+                  fit: BoxFit.cover,
+                ),
         ),
         title: Text(martsModel.name ?? '',
             style: AppStyles.styleSemiBold16(context)),

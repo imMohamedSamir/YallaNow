@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/OfferDetailsModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepo.dart';
 
 part 'home_offers_state.dart';

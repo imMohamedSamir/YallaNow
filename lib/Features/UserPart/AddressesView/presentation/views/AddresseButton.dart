@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/AddreseeMap.dart';
 
 class AddresseButton extends StatelessWidget {
@@ -11,14 +13,10 @@ class AddresseButton extends StatelessWidget {
     return IconButton(
       constraints: BoxConstraints.tight(const Size(56, 56)),
       style: ButtonStyle(
-          backgroundColor:
-              WidgetStateProperty.all<Color?>(const Color(0xffB20404))),
+          backgroundColor: WidgetStateProperty.all<Color?>(pKcolor)),
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AddressMapView(),
-            ));
+        NavigateToPage.slideFromRight(
+            context: context, page: const AddressMapView());
       },
       icon: const Icon(Icons.add, color: Colors.white),
     );

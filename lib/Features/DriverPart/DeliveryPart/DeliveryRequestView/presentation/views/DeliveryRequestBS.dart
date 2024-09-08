@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
+import 'package:yallanow/Core/utlis/functions/getGender.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryRequestView/presentation/views/DeliveryMapSec.dart';
+import 'package:yallanow/Features/UserPart/OrdersView/presentation/views/OrderItemCard.dart';
+import 'package:yallanow/Features/UserPart/ProfileView/presentation/manager/Functions/launchURL.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class DeliveryRequestBS extends StatelessWidget {
   const DeliveryRequestBS({super.key});
@@ -20,7 +26,7 @@ class DeliveryRequestBS extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "30.50 EGP",
+                  "30.50 ${S.of(context).EGP}",
                   style: AppStyles.styleBold24(context)
                       .copyWith(color: blackdcolor),
                 ),
@@ -45,9 +51,12 @@ class DeliveryRequestBS extends StatelessWidget {
             const Divider(),
             Row(
               children: [
-                Text(
-                  "mohamed ali",
-                  style: AppStyles.styleMedium14(context),
+                SizedBox(
+                  width: AppSizes.getWidth(150, context),
+                  child: Text(
+                    "mohamed ali",
+                    style: AppStyles.styleMedium14(context),
+                  ),
                 ),
                 const Spacer(),
                 Text(
@@ -57,28 +66,49 @@ class DeliveryRequestBS extends StatelessWidget {
                 const SizedBox(width: 8),
                 IconButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      launchURL("tel:");
+                    },
                     icon: const Icon(Icons.call, size: 20))
               ],
             ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Text(
+                  getGender(gender: "Male"),
+                  style: AppStyles.styleMedium14(context),
+                ),
+                const Gap(8),
+                const Icon(Icons.male_outlined, color: Colors.blueAccent)
+                // if (requestDetails.gender == "Male" ||
+                //     requestDetails.gender == "male")
+                //   const Icon(Icons.male_outlined, color: Colors.blueAccent)
+                // else
+                //   const Icon(Icons.female_outlined,
+                //       color: Colors.pinkAccent)
+              ],
+            ),
+            const Divider(),
+            Text(S.of(context).OrderDetails,
+                style: AppStyles.styleMedium16(context)),
+            const SizedBox(height: 8),
+            Column(
+              children: List.generate(
+                  3,
+                  (index) => const Padding(
+                        padding: EdgeInsets.only(bottom: 6.0),
+                        child: OrderItemCard(),
+                      )),
+            ),
             const Divider(),
             Text(
-              "Order Details",
+              S.of(context).PaymentMethod,
               style: AppStyles.styleMedium16(context),
             ),
             const SizedBox(height: 8),
             Text(
-              "panadol -signal- Axe",
-              style: AppStyles.styleMedium14(context),
-            ),
-            const Divider(),
-            Text(
-              "Payment Method",
-              style: AppStyles.styleMedium16(context),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "cash",
+              getPaymentMethod(method: "cash"),
               style: AppStyles.styleMedium14(context),
             ),
             const Spacer(),
@@ -87,8 +117,8 @@ class DeliveryRequestBS extends StatelessWidget {
               txtcolor: Colors.white,
               btncolor: pKcolor,
               onPressed: () {
-                NavigateToPage.slideFromRight(
-                    context: context, page: const DeliveryMapSec());
+                // NavigateToPage.slideFromRight(
+                //     context: context, page: const DeliveryMapSec());
               },
             ),
             const SizedBox(height: 6)

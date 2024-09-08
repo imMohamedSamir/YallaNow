@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/TrackingView/presentation/TrackingView.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 void showOrderPlaced(BuildContext context) {
   showModalBottomSheet(
@@ -20,12 +22,12 @@ void showOrderPlaced(BuildContext context) {
           ),
           const SizedBox(height: 8),
           Text(
-            "Order placed",
+            S.of(context).OrderPlaced,
             style: AppStyles.styleSemiBold20(context),
           ),
           const SizedBox(height: 6),
           Text(
-            "Your order placed successfully",
+            S.of(context).OrderPlacedMsg,
             style: AppStyles.styleRegular16(context)
                 .copyWith(color: const Color(0xff5A5A5A)),
           ),
@@ -41,9 +43,9 @@ void showOrderPlaced(BuildContext context) {
                         builder: (context) => const TrackinView(),
                       ));
                 },
-                text: "Track order",
+                text: S.of(context).TrackOrder,
                 txtcolor: Colors.white,
-                btncolor: const Color(0xffB20404)),
+                btncolor: pKcolor),
           ),
           const SizedBox(height: 12),
         ],

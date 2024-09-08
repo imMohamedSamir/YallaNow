@@ -23,7 +23,7 @@ class _TrackinViewBodyState extends State<TrackinViewBody> {
     mainPageController = PageController(initialPage: carretnIndex);
     bottomSheetPageController = PageController(initialPage: carretnIndex);
 
-    startDelayedProcess();
+    // startDelayedProcess();
   }
 
   @override
@@ -54,10 +54,10 @@ class _TrackinViewBodyState extends State<TrackinViewBody> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: double.infinity,
       child: Stack(
         children: [
-          TrackingOrderPageView(pageController: mainPageController),
+          Positioned.fill(
+              child: TrackingOrderPageView(pageController: mainPageController)),
           Align(
               alignment: Alignment.bottomCenter,
               child: TrackingBottomSheetSec(

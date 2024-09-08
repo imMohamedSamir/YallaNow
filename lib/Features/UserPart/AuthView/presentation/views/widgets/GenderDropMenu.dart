@@ -32,7 +32,7 @@ class Genderdropmenu extends StatelessWidget {
           ? [S.of(context).Male, S.of(context).Female].map((String e) {
               return DropdownMenuItem<String>(
                 // enabled: enabled ?? true,
-                value: getGender(gender: e) ?? e.toLowerCase(),
+                value: _getGender(gender: e) ?? e.toLowerCase(),
                 child: initialvalue != null
                     ? Text(e,
                         style: AppStyles.styleMedium16(context)
@@ -53,31 +53,31 @@ class Genderdropmenu extends StatelessWidget {
       hint: Text(
           enabled!
               ? S.of(context).gender
-              : getGenderFromEn(gender: initialvalue ?? ""),
+              : _getGenderFromEn(gender: initialvalue ?? ""),
           style: AppStyles.styleMedium16(context)
               .copyWith(color: const Color(0xff9E9D9D))),
     );
   }
-}
 
-getGender({required String gender}) {
-  if (gender == "ذكر") {
-    return "male";
-  } else if (gender == "انثى") {
-    return "female";
-  } else {}
-}
+  _getGender({required String gender}) {
+    if (gender == "ذكر") {
+      return "male";
+    } else if (gender == "انثى") {
+      return "female";
+    } else {}
+  }
 
-getGenderFromEn({required String gender}) {
-  if (AppLang.isArabic()) {
-    if (gender == "male" || gender == "Male") {
-      return "ذكر";
-    } else if (gender == "female" || gender == "Female") {
-      return "انثى";
+  _getGenderFromEn({required String gender}) {
+    if (AppLang.isArabic()) {
+      if (gender == "male" || gender == "Male") {
+        return "ذكر";
+      } else if (gender == "female" || gender == "Female") {
+        return "انثى";
+      } else {
+        return null;
+      }
     } else {
-      return null;
+      return gender;
     }
-  } else {
-    return gender;
   }
 }

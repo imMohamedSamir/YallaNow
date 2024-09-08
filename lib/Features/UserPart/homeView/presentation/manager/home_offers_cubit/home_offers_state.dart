@@ -12,7 +12,7 @@ final class HomeOffersInitial extends HomeOffersState {}
 final class HomeOffersLoading extends HomeOffersState {}
 
 final class HomeOffersSuccess extends HomeOffersState {
-  final List offers;
+  final List<OfferDetailsModel> offers;
 
   const HomeOffersSuccess({required this.offers});
 }

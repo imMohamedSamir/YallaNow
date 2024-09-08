@@ -4,7 +4,7 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/Constatnts.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/ResturantDetailsCubit/ResturantDetailsCubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantDescLoading.dart';
 
 class ResturantDescription extends StatelessWidget {
@@ -13,9 +13,9 @@ class ResturantDescription extends StatelessWidget {
   final String? deliveryTime, deliveryPrice;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ResturantBranchesCubit, ResturantBranchesState>(
+    return BlocBuilder<ResturantDetailsCubit, ResturantDetailsesState>(
       builder: (context, state) {
-        if (state is ResturantBranchesSuccess) {
+        if (state is ResturantDetailsSuccess) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -62,7 +62,7 @@ class ResturantDescription extends StatelessWidget {
                       .copyWith(color: scColor)),
             ],
           );
-        } else if (state is ResturantBranchesLoading) {
+        } else if (state is ResturantDetailsLoading) {
           return const ResturantDescLoading();
         } else {
           return const SizedBox();

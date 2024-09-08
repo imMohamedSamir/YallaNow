@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_search_cubit/pharmacy_search_cubit.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodSearchResultLV.dart';
 import 'package:yallanow/generated/l10n.dart';
 
 class PharmacySearchResultSec extends StatelessWidget {
@@ -25,7 +24,7 @@ class PharmacySearchResultSec extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          const FoodSearchResultLV()
+          // const FoodSearchResultLV()
         ],
       ),
     );

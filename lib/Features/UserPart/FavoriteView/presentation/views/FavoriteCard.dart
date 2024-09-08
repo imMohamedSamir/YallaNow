@@ -10,7 +10,7 @@ import 'package:yallanow/Features/UserPart/FavoriteView/data/models/FavoriteCard
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketPage.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/data/models/pharmacy_model.dart';
 import 'package:yallanow/Features/UserPart/PharmacyView/presentation/views/PharmacyPage.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/ResturantDetailsCubit/ResturantDetailsCubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodResturantPage.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
@@ -104,8 +104,6 @@ class FavoriteCard extends StatelessWidget {
           context: context,
           page: FoodResturantPage(
             id: favoriteCardModel.id!,
-            resurantName: favoriteCardModel.name,
-            returantImg: favoriteCardModel.img,
             deliveryPrice: favoriteCardModel.deliveryPrice,
             deliveryTime: favoriteCardModel.deliveryTime,
           ));

@@ -1,38 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
-import 'package:yallanow/Features/UserPart/homeView/presentation/views/OffersPageView.dart';
+import 'package:yallanow/Features/UserPart/PharmacyView/presentation/manager/pharmacy_offers_cubit/pharmacy_offers_cubit.dart';
+import 'package:yallanow/Features/UserPart/TripsView/presentation/views/TripPopularLoading.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/OfferDetailsModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/offersSec.dart';
 
 class PharmacyOffersSec extends StatelessWidget {
   const PharmacyOffersSec({super.key});
-  static List<OfferDetailsModel> offers = [
-    OfferDetailsModel(
-        title: "30%",
-        subtitle: "Friday Offer!",
-        description: "Get discount up to 30%",
-        img: Assets.imagesPharmacyOffer),
-    OfferDetailsModel(
-        title: "5%",
-        subtitle: "Friday Offer!",
-        description: "Get discount up to 30%",
-        img: Assets.imagesPharmacyOffer),
-    OfferDetailsModel(
-        title: "10%",
-        subtitle: "Friday Offer!",
-        description: "Get discount up to 30%",
-        img: Assets.imagesPharmacyOffer),
-    OfferDetailsModel(
-        title: "20%",
-        subtitle: "Friday Offer!",
-        description: "Get discount up to 30%",
-        img: Assets.imagesPharmacyOffer)
-  ];
   @override
   Widget build(BuildContext context) {
-    return OffersSec(
-      offers: offers,
-      color1: const Color(0xffDCD3E0),
-      color2: const Color(0xffECE1F1),
+    return BlocBuilder<PharmacyOffersCubit, PharmacyOffersState>(
+      builder: (context, state) {
+        if (state is PharmacyOffersSuccess && state.offers.isNotEmpty) {
+          final offers = state.offers;
+          return SliverPadding(
+              padding: const EdgeInsets.only(top: 12),
+              sliver: SliverToBoxAdapter(
+                child: OffersSec(offers: offers),
+              ));
+        } else if (state is PharmacyOffersLoading) {
+          return const SliverToBoxAdapter(child: TripPopularLoading());
+        } else {
+          return const SliverToBoxAdapter(child: SizedBox.shrink());
+        }
+      },
     );
   }
 }

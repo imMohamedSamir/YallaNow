@@ -15,9 +15,9 @@ class MartsCategoryItemsPageBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: CustomScrollView(
         slivers: [
-          const SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 12),
-              sliver: SliverToBoxAdapter(child: CategoryFilterSec())),
+          // const SliverPadding(
+          //     padding: EdgeInsets.symmetric(vertical: 12),
+          //     sliver: SliverToBoxAdapter(child: CategoryFilterSec())),
           SliverFillRemaining(child: MarketCategoryGVSec(categ: categ)),
         ],
       ),

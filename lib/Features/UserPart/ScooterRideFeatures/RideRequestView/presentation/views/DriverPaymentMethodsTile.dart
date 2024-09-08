@@ -121,22 +121,24 @@ class _DriverPaymentMethodsTileState extends State<DriverPaymentMethodsTile> {
                   bool valid = walletState is CheckWalletBalanceSuccess
                       ? walletState.valid
                       : true;
-                  return Column(children: [
-                    _buildPaymentMethodCard(
-                      method: S.of(context).Wallet,
-                      value: PaymentMethod.wallet,
-                      img: SvgPicture.asset(Assets.imagesCashICon,
-                          height: 20, width: 20),
-                      enabled: valid,
-                    ),
-                    const Gap(8),
-                    if (!valid)
-                      Text(
-                        S.of(context).NoBalanceWallet,
-                        style: AppStyles.styleRegular12(context)
-                            .copyWith(color: scColor),
-                      )
-                  ]);
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildPaymentMethodCard(
+                          method: S.of(context).Wallet,
+                          value: PaymentMethod.wallet,
+                          img: SvgPicture.asset(Assets.imagesCashICon,
+                              height: 20, width: 20),
+                          enabled: valid,
+                        ),
+                        const Gap(8),
+                        if (!valid)
+                          Text(
+                            S.of(context).NoBalanceWallet,
+                            style: AppStyles.styleRegular12(context)
+                                .copyWith(color: scColor),
+                          )
+                      ]);
                 },
               ),
               const SizedBox(height: 16),

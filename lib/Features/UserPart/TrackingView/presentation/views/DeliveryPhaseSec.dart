@@ -2,6 +2,8 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class DeliveryPhaseSec extends StatefulWidget {
   const DeliveryPhaseSec({super.key});
@@ -17,7 +19,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
   final Color unactiveColor = const Color(0xff9E9D9D);
   @override
   void initState() {
-    startDelayedProcess();
+    // startDelayedProcess();
     super.initState();
   }
 
@@ -61,6 +63,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
       lineStyle: LineStyle(
         lineType: LineType.normal,
         lineThickness: 1.7,
+        defaultLineColor: pKcolor,
         finishedLineColor: activeColor,
         unreachedLineColor: unactiveColor,
       ),
@@ -68,7 +71,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
       steps: [
         EasyStep(
           customTitle: Text(
-            "Placed",
+            S.of(context).Placed,
             textAlign: TextAlign.center,
             style: AppStyles.styleMedium14(context)
                 .copyWith(color: stepTextColors[0]), // Customize as needed
@@ -77,7 +80,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
         ),
         EasyStep(
           customTitle: Text(
-            "Preparing",
+            S.of(context).Preparing,
             textAlign: TextAlign.center,
             style: AppStyles.styleMedium14(context)
                 .copyWith(color: stepTextColors[1]), // Customize as needed
@@ -86,7 +89,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
         ),
         EasyStep(
           customTitle: Text(
-            "Pickup",
+            S.of(context).Pickup,
             textAlign: TextAlign.center,
             style: AppStyles.styleMedium14(context)
                 .copyWith(color: stepTextColors[2]), // Customize as needed
@@ -95,7 +98,7 @@ class _DeliveryPhaseSecState extends State<DeliveryPhaseSec> {
         ),
         EasyStep(
           customTitle: Text(
-            "Delivered",
+            S.of(context).Delivered,
             textAlign: TextAlign.center,
             style: AppStyles.styleMedium14(context)
                 .copyWith(color: stepTextColors[3]), // Customize as needed

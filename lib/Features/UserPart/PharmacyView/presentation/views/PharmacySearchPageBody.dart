@@ -14,8 +14,8 @@ class PharmacySearchPageBody extends StatelessWidget {
         children: [
           PharmacySearchTextField(),
           SizedBox(height: 24),
-          FilterListView(),
-          SizedBox(height: 16),
+          // FilterListView(),
+          // SizedBox(height: 16),
           PharmacySearchResultSec()
         ],
       ),

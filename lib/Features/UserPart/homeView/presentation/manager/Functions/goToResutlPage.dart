@@ -19,11 +19,10 @@ void goToResutlPage(BuildContext context,
     NavigateToPage.slideFromRight(
         context: context,
         page: FoodResturantPage(
-            id: resultModel.id!,
-            deliveryPrice: resultModel.deliveryFees.toString(),
-            deliveryTime: resultModel.deliveryTime,
-            resurantName: resultModel.name,
-            returantImg: imgurl));
+          id: resultModel.id!,
+          deliveryPrice: resultModel.deliveryFees.toString(),
+          deliveryTime: resultModel.deliveryTime,
+        ));
   } else if (resultModel.type == "Grocery") {
     NavigateToPage.slideFromRight(
         context: context,

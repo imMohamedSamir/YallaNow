@@ -87,12 +87,16 @@ class CurrentLocationCubit extends Cubit<CurrentLocationCubitState> {
   }
 
   void handleCameraMove({required CameraPosition position}) async {
-    if (state is CurrentLocationCubitSucsess) {
-      LatLng newLocation = position.target;
-      newposition = newLocation;
-      locationDetails = await defineLocationDetails(location: newLocation);
-      getLocationDetails();
-    }
+    LatLng newLocation = position.target;
+    newposition = newLocation;
+    locationDetails = await defineLocationDetails(location: newLocation);
+    getLocationDetails();
+    // if (state is CurrentLocationCubitSucsess) {
+    //   LatLng newLocation = position.target;
+    //   newposition = newLocation;
+    //   locationDetails = await defineLocationDetails(location: newLocation);
+    //   getLocationDetails();
+    // }
   }
 
   void setMyLocation(LatLng locationData) {

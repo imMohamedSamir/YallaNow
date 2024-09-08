@@ -8,18 +8,12 @@ import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodRestu
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantDescription.dart';
 
 class FoodResturantPageBody extends StatelessWidget {
-  const FoodResturantPageBody(
-      {super.key,
-      this.deliveryTime,
-      this.deliveryPrice,
-      this.resurantName,
-      this.returantImg,
-      this.partnerId});
-  final String? deliveryTime,
-      deliveryPrice,
-      resurantName,
-      returantImg,
-      partnerId;
+  const FoodResturantPageBody({
+    super.key,
+    this.deliveryTime,
+    this.deliveryPrice,
+  });
+  final String? deliveryTime, deliveryPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +22,7 @@ class FoodResturantPageBody extends StatelessWidget {
     return CustomScrollView(
       controller: scrollController,
       slivers: <Widget>[
-        FoodResturantSecondAppBar(
-          resturantName: resurantName,
-          resturantImg: returantImg,
-          partnerId: partnerId,
-        ),
+        const FoodResturantSecondAppBar(),
         SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverToBoxAdapter(

@@ -65,7 +65,7 @@ class MartsSearchTextField extends StatelessWidget {
           maxHeight: AppSizes.getHeight(24, context),
           maxWidth: AppSizes.getWidth(24, context)),
       prefixIcon: Padding(
-        padding: const EdgeInsets.only(right: 8.0, left: 4),
+        padding: const EdgeInsets.only(right: 4.0, left: 4),
         child: SvgPicture.asset(Assets.imagesSearchIcon, fit: BoxFit.fill),
       ),
       onChanged: (value) {

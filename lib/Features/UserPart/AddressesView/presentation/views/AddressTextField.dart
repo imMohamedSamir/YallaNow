@@ -66,7 +66,7 @@ class AddressTextField extends StatelessWidget {
             borderSide: const BorderSide(color: Colors.white, width: 2)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: pKcolor, width: 1)),
+            borderSide: const BorderSide(color: scColor, width: 2)),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Colors.white)),

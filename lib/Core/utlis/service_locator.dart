@@ -10,6 +10,7 @@ import 'package:yallanow/Core/utlis/location_service.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/data/Repo/CheckOutRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo/CaptinRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinProfileView/data/repo/CatpinProfileRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/data/Repo/DeliveryRequestRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AuthView/data/Repo/AuthRepoImpl.dart';
@@ -65,4 +66,6 @@ void setupServiceLocator() {
       CaptinRequestRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
   getIt.registerSingleton<CatpinProfileRepoImpl>(
       CatpinProfileRepoImpl(yallaNowServices: getIt.get<YallaNowServices>()));
+  getIt.registerSingleton<DeliveryRequestRepoImpl>(
+      DeliveryRequestRepoImpl(getIt.get<YallaNowServices>()));
 }

@@ -19,8 +19,13 @@ final class CheckPaymentMethodFailuer extends CheckPaymentMethodState {
 
 final class CheckPaymentMethodChange extends CheckPaymentMethodState {
   final PaymentMethod methode;
-
-  const CheckPaymentMethodChange({required this.methode});
+  final bool isCredit;
+  final String? paymentKey;
+  const CheckPaymentMethodChange({
+    required this.methode,
+    this.isCredit = false,
+    this.paymentKey,
+  });
 }
 
 final class CheckPaymentMethodLoading extends CheckPaymentMethodState {

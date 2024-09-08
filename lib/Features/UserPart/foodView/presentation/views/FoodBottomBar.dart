@@ -11,6 +11,7 @@ import 'package:yallanow/Features/UserPart/BasketView/data/models/selectedItemsM
 import 'package:yallanow/Features/UserPart/BasketView/presentation/BasketView.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/manager/basket_manager_cubit/basket_manager_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodBottomBarDetails.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class FoodBottomBar extends StatelessWidget {
   const FoodBottomBar({super.key});
@@ -80,7 +81,7 @@ class FoodBottomBarTest extends StatelessWidget {
       valueListenable: box.listenable(),
       builder: (BuildContext context, box, _) {
         bool isConfirmed = false;
-        double totalPrice = getTotalPrice();
+        double totalPrice = getSubTotalPrice();
         if (totalPrice > 20) {
           isConfirmed = true;
         }
@@ -97,7 +98,7 @@ class FoodBottomBarTest extends StatelessWidget {
               children: [
                 const SizedBox(height: 10),
                 if (!isConfirmed)
-                  Text("Add EGP 20.00 to start your order",
+                  Text(S.of(context).BasketStartMsg,
                       style: AppStyles.styleRegular16(context)
                           .copyWith(color: const Color(0xff5A5A5A))),
                 const SizedBox(height: 10),

@@ -24,7 +24,7 @@ class OrderDetails extends StatelessWidget {
                         .copyWith(color: const Color(0xff240301))),
                 const SizedBox(height: 16),
                 OrderDetailsRow(
-                    type: "Subtotal",
+                    type: S.of(context).Subtotal,
                     price: "${state.totalPrice} ${S.of(context).EGP}",
                     total: false),
                 const SizedBox(height: 16),
@@ -39,7 +39,7 @@ class OrderDetails extends StatelessWidget {
                     total: false),
                 const SizedBox(height: 16),
                 OrderDetailsRow(
-                    type: "Total amount",
+                    type: S.of(context).Totalamount,
                     price: "${state.priceDetails} ${S.of(context).EGP}",
                     total: true)
               ],

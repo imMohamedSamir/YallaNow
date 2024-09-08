@@ -17,11 +17,10 @@ class FoodTopCategResturantCard extends StatelessWidget {
         NavigateToPage.slideFromRightAndFade(
             context: context,
             page: FoodResturantPage(
-                id: resturant.id!,
-                deliveryPrice: "free",
-                deliveryTime: resturant.deliverytime!,
-                returantImg: resturant.imageUrl!,
-                resurantName: resturant.name!));
+              id: resturant.id!,
+              deliveryPrice: "free",
+              deliveryTime: resturant.deliverytime!,
+            ));
       },
       child: SizedBox(
         height: AppSizes.getHeight(100, context),

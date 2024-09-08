@@ -6,8 +6,8 @@ import 'package:yallanow/Core/widgets/Checkout%20Sec/ContactInfoSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/FakaSec.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/place_order_cubit/place_order_cubit.dart';
 import 'package:yallanow/Core/widgets/Checkout%20Sec/NotesSec.dart';
-import 'package:yallanow/Core/widgets/Checkout%20Sec/PayMethodsSec.dart';
 import 'package:yallanow/Features/UserPart/BasketView/presentation/views/OrderDetails.dart';
+import 'package:yallanow/Features/UserPart/ScooterRideFeatures/RideRequestView/presentation/views/DriverPaymentMethodsTile.dart';
 
 class CheckoutBody extends StatelessWidget {
   const CheckoutBody({
@@ -33,16 +33,15 @@ class CheckoutBody extends StatelessWidget {
                 SizedBox(height: 24),
                 ContactInfoSec(),
                 SizedBox(height: 16),
-                PayMethodsSec(),
+                // PayMethodsSec(),
+                DriverPaymentMethodsTile(),
                 SizedBox(height: 24),
                 NotesSec(),
                 SizedBox(height: 16),
                 FakaSec(),
                 SizedBox(height: 24),
                 OrderDetails(),
-                SizedBox(height: 24),
-                CheckoutButtonBuilder(),
-                SizedBox(height: 24),
+                SizedBox(height: 16),
               ],
             ),
           ),

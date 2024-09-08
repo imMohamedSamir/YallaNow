@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yallanow/Features/UserPart/foodView/presentation/manager/resturant_branches_cubit/resturant_branches_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/ResturantDetailsCubit/ResturantDetailsCubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantCateg.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantPageLoading.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/ResturantTabBar.dart';
@@ -35,10 +35,10 @@ class _FoodResturantCategoryTabBarState
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height - 1,
-      child: BlocBuilder<ResturantBranchesCubit, ResturantBranchesState>(
+      child: BlocBuilder<ResturantDetailsCubit, ResturantDetailsesState>(
         builder: (context, state) {
           bool hasProcessedMenus = false;
-          if (state is ResturantBranchesSuccess && !hasProcessedMenus) {
+          if (state is ResturantDetailsSuccess && !hasProcessedMenus) {
             final menus = <String>['Trending'];
             menus.addAll(state.branchDetails.menus!
                 .map((menu) => menu.menuName!)
@@ -74,7 +74,7 @@ class _FoodResturantCategoryTabBarState
                 ],
               ),
             );
-          } else if (state is ResturantBranchesLoading) {
+          } else if (state is ResturantDetailsLoading) {
             return const ResturantPageLoading();
           }
           return const SizedBox();

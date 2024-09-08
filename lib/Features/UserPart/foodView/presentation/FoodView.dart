@@ -4,6 +4,7 @@ import 'package:yallanow/Core/utlis/service_locator.dart';
 import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/foodView/data/Repo/FoodRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/explore_resturants_cubit/explore_resturants_cubit.dart';
+import 'package:yallanow/Features/UserPart/foodView/presentation/manager/food_offers_cubit/food_offers_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/manager/popular_food_category_cubit/popular_food_category_cubit.dart';
 import 'package:yallanow/Features/UserPart/foodView/presentation/views/FoodViewBody.dart';
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
@@ -29,6 +30,10 @@ class FoodView extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               FetchPopularResturantsCubit(getIt.get<HomeRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FoodOffersCubit(getIt.get<FoodRepoImpl>())..get(),
         ),
       ],
       child: Scaffold(

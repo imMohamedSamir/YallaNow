@@ -14,8 +14,8 @@ class FoodSearchPageBody extends StatelessWidget {
         children: [
           FoodSearchTextField(),
           SizedBox(height: 24),
-          FilterListView(),
-          SizedBox(height: 16),
+          // FilterListView(),
+          // SizedBox(height: 16),
           FoodSearchResultSec()
         ],
       ),

@@ -16,18 +16,15 @@ class FoodRepoImpl implements FoodRepo {
   FoodRepoImpl({required this.yallaNowServices});
 
   @override
-  Future<Either<Failure, RestruntDetails>> fetchResturantBranches(
+  Future<Either<Failure, RestruntDetails>> fetchResturantDetails(
       {required String restaurantId}) async {
     String endPoint = "FoodResturant/GetRestaurantDetails";
 
     try {
       var response = await yallaNowServices.get(
           endPoint: "$endPoint?restaurantId=$restaurantId");
-      List<RestruntDetails> branches = [];
-      for (var branch in response) {
-        branches.add(RestruntDetails.fromJson(branch));
-      }
-      return right(branches[1]);
+
+      return right(RestruntDetails.fromJson(response));
     } catch (e) {
       log(e.toString());
       if (e is DioException) {

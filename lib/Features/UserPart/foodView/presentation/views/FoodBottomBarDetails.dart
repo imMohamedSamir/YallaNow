@@ -100,7 +100,7 @@ class FoodBottomBarDetailsTest extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        Text("View basket",
+        Text(S.of(context).ViewBasket,
             style:
                 AppStyles.styleMedium16(context).copyWith(color: Colors.white)),
         const Spacer(),

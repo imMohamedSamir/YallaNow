@@ -20,6 +20,8 @@ import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/data/Repo
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/captin_ride_request_cubit/captin_ride_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinHomeView/presentation/manager/ready_for_trips_cubit/ready_for_trips_cubit.dart';
 import 'package:yallanow/Features/DriverPart/CaptinPart/CaptinRequestView/presentation/manager/captin_map_cubit/captin_map_cubit.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/data/Repo/DeliveryRequestRepoImpl.dart';
+import 'package:yallanow/Features/DriverPart/DeliveryPart/DeliveryHomeView/presentation/manager/delivery_request_cubit/delivery_request_cubit.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/data/Repo/DriverRegisterationRepoImpl.dart';
 import 'package:yallanow/Features/DriverPart/DriverRegisterationView/presentation/manager/driver_registeration_cubit/driver_registeration_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
@@ -134,6 +136,10 @@ class YallaNow extends StatelessWidget {
             create: (context) => CaptinRideRequestCubit(
                 getIt.get<FirebaseMessagingService>(),
                 getIt.get<CaptinRequestRepoImpl>())),
+        BlocProvider(
+            create: (context) => DeliveryRequestCubit(
+                getIt.get<FirebaseMessagingService>(),
+                getIt.get<DeliveryRequestRepoImpl>())),
         BlocProvider(
             create: (context) => DriverRegisterationCubit(
                 getIt.get<DriverRegisterationRepoImpl>())),

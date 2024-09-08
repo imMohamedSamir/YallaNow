@@ -6,6 +6,7 @@ import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/customButton.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/CurrentLocationCubit/current_location_cubit_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/NewAddressePage.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class AddAddressButton extends StatelessWidget {
   const AddAddressButton({
@@ -27,7 +28,7 @@ class AddAddressButton extends StatelessWidget {
           }
         },
         child: CustomButton(
-          text: "Confirm",
+          text: S.of(context).Confirm,
           txtcolor: Colors.white,
           btncolor: pKcolor,
           onPressed: () {

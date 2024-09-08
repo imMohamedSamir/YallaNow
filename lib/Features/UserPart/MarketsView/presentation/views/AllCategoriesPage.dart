@@ -7,6 +7,7 @@ import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/data/models/mart_details_model/mart_details_model.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/manager/mart_details_cubit/mart_details_cubit.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketCategoriesCard.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class AllCategoriesPage extends StatelessWidget {
   const AllCategoriesPage({super.key});
@@ -14,7 +15,7 @@ class AllCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: categoryAppBar(context, title: "Marts"),
+      appBar: categoryAppBar(context, title: S.of(context).marts),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
         child: AllCategoriesGV(),
@@ -39,8 +40,7 @@ class AllCategoriesGV extends StatelessWidget {
             itemCount: martsdetails.length,
             itemBuilder: (context, index) {
               return MarketCategoriesCard(
-                marketCategoriesModel: martsdetails[index],
-              );
+                  marketCategoriesModel: martsdetails[index]);
             },
           );
         } else if (state is MartDetailsLoading) {

@@ -16,7 +16,7 @@ class BasketManagerCubit extends Cubit<BasketManagerState> {
   double priceDetails = 0;
   String? partnerId;
   List<SelectedItemsModel> items = [];
-
+  String orederNotes = "";
   Future<double> getTotalPrice() async {
     double totalPrice = 0;
     var box = await Hive.openBox<SelectedItemsModel>(kBasket);

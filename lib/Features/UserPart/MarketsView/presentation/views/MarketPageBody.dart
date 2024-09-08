@@ -7,8 +7,8 @@ import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsF
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsTrendingSec.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/SearchBar.dart';
 
-class MartPageBody extends StatelessWidget {
-  const MartPageBody({super.key});
+class MarketPageBody extends StatelessWidget {
+  const MarketPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,37 +16,27 @@ class MartPageBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: HomeSearchBar()),
-          ),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 12),
+          //   sliver: SliverToBoxAdapter(child: HomeSearchBar()),
+          // ),
           SliverPadding(
             padding: EdgeInsets.only(top: 12),
             sliver: SliverToBoxAdapter(child: MarketCategoriesSec()),
           ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: MartsTrendingSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: MarketsOffersSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: MartsBrandsSec()),
-          ),
+          MartsTrendingSec(),
+          MarketsOffersSec(),
+          // SliverPadding(
+          //   padding: EdgeInsets.only(top: 24),
+          //   sliver: SliverToBoxAdapter(child: MartsBrandsSec()),
+          // ),
           SliverPadding(
             padding: EdgeInsets.only(top: 24),
             sliver: SliverToBoxAdapter(child: MartsForYouSec()),
           ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: MartsDiscountSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-          ),
+          MartsDiscountSec(),
+
+          SliverPadding(padding: EdgeInsets.only(top: 24)),
         ],
       ),
     );

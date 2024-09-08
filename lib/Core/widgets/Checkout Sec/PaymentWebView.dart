@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:yallanow/Core/widgets/Checkout%20Sec/Manager/showOrderPlaced.dart';
 
 class PaymentWebView extends StatefulWidget {
   const PaymentWebView({Key? key, required this.paymentKey}) : super(key: key);
@@ -34,7 +35,12 @@ class _PaymentWebViewState extends State<PaymentWebView> {
             log('Navigating to: ${request.url}');
             webViewController.loadRequest(Uri.parse(request.url));
 
-            // Check if the URL is the bank's URL
+            if (request.url.contains(
+                    'https://accept.paymobsolutions.com/api/acceptance/post_pay') &&
+                request.url.contains('success=true')) {
+              Navigator.pop(context);
+              showOrderPlaced(context);
+            }
 
             return NavigationDecision.navigate;
           },
@@ -44,25 +50,25 @@ class _PaymentWebViewState extends State<PaymentWebView> {
           'https://accept.paymob.com/api/acceptance/iframes/824160?payment_token=${widget.paymentKey}'));
   }
 
-  void _showBankNavigationDialog(String url) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Bank URL Detected'),
-          content: Text('You are navigating to the bank URL: $url'),
-          actions: [
-            TextButton(
-              child: Text('Continue'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showBankNavigationDialog(String url) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Bank URL Detected'),
+  //         content: Text('You are navigating to the bank URL: $url'),
+  //         actions: [
+  //           TextButton(
+  //             child: Text('Continue'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

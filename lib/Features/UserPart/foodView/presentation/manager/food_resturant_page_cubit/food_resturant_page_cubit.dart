@@ -9,7 +9,7 @@ class FoodResturantPageCubit extends Cubit<FoodResturantPageState> {
   final ScrollController scrollController = ScrollController();
   void scrollUpdate() {
     scrollController.addListener(() {
-      bool isTop = scrollController.offset <= kToolbarHeight + 5;
+      bool isTop = scrollController.offset <= kToolbarHeight + 10;
       emit(FoodResturantPageInitial());
       emit(FoodResturantPageScroll(isTop: isTop));
     });

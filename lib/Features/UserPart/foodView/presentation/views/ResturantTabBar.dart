@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 
 class ResturantTabBar extends StatelessWidget {
   const ResturantTabBar({
@@ -17,7 +18,11 @@ class ResturantTabBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
+            IconButton(
+                onPressed: () {
+                  _showCateg(context);
+                },
+                icon: const Icon(Icons.list)),
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -28,8 +33,8 @@ class ResturantTabBar extends StatelessWidget {
                       unselectedLabelStyle: AppStyles.styleMedium16(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                       indicatorSize: TabBarIndicatorSize.tab,
-                      indicatorColor: const Color(0xffB20404),
-                      labelColor: const Color(0xffB20404),
+                      indicatorColor: pKcolor,
+                      labelColor: pKcolor,
                       labelStyle: AppStyles.styleSemiBold16(context)
                           .copyWith(color: const Color(0xff5A5A5A)),
                       tabAlignment: TabAlignment.start,
@@ -64,5 +69,37 @@ class ResturantTabBar extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _showCateg(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...List.generate(
+                    menus.length,
+                    (index) => ListTile(
+                          onTap: () {
+                            tabController.animateTo(index);
+                            Navigator.pop(context);
+                          },
+                          title: Text(menus[index],
+                              style: AppStyles.styleMedium16(context)),
+                          trailing: menus[index] == "Trending"
+                              ? Image.asset(
+                                  Assets.imagesTrendingIcon,
+                                  height: AppSizes.getHeight(20, context),
+                                  width: AppSizes.getWidth(20, context),
+                                )
+                              : null,
+                        ))
+              ],
+            ),
+          );
+        });
   }
 }

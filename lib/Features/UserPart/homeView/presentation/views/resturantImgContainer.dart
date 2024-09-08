@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
-import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Features/UserPart/FavoriteView/data/models/add_fav_model.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/FavIcon.dart';
 
@@ -63,7 +62,7 @@ class MartImgContainer extends StatelessWidget {
           image: DecorationImage(
             image: img.contains('wwwroot')
                 ? const AssetImage(Assets.imagesSupermarket1) as ImageProvider
-                : NetworkImage(img),
+                : CachedNetworkImageProvider(img),
             fit: BoxFit.fill,
           ),
         ),

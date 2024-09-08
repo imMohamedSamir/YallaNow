@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/OfferDetailsModel.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/DotsIndicators.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/OffersPageView.dart';
 

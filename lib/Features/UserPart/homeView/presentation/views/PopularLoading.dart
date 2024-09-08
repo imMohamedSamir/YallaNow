@@ -11,7 +11,7 @@ class PopularLoading extends StatelessWidget {
     return SizedBox(
       height: AppSizes.getHeight(150, context),
       child: ListView.builder(
-        padding: const EdgeInsets.only(right: 12),
+        padding: const EdgeInsets.only(right: 12, top: 24),
         scrollDirection: Axis.horizontal,
         itemCount: 3,
         itemBuilder: (context, index) {

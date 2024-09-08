@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MarketsOffersSec.dart';
+import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/MartsHomeOffers.dart';
 import 'package:yallanow/Features/UserPart/MarketsView/presentation/views/SuperMarketsSec.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/SearchBar.dart';
 
@@ -16,14 +16,8 @@ class MarketsViewBody extends StatelessWidget {
             padding: EdgeInsets.only(top: 12),
             sliver: SliverToBoxAdapter(child: MartsSearchBar()),
           ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: MarketsOffersSec()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 24),
-            sliver: SliverToBoxAdapter(child: SuperMarketsSec()),
-          ),
+          MartsHomeOffers(),
+          SuperMarketsSec()
         ],
       ),
     );

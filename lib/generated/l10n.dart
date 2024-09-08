@@ -2460,10 +2460,20 @@ class S {
     );
   }
 
-  /// `Please bring rest of `
+  /// `Change`
+  String get Faka {
+    return Intl.message(
+      'Change',
+      name: 'Faka',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please bring change with you for an amount `
   String get FakaMsg {
     return Intl.message(
-      'Please bring rest of ',
+      'Please bring change with you for an amount ',
       name: 'FakaMsg',
       desc: '',
       args: [],
@@ -2595,6 +2605,326 @@ class S {
     return Intl.message(
       'Remove your account and all associated data ?',
       name: 'DeleteAccDialogQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subtotal`
+  String get Subtotal {
+    return Intl.message(
+      'Subtotal',
+      name: 'Subtotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Notes`
+  String get OrderNotes {
+    return Intl.message(
+      'Order Notes',
+      name: 'OrderNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter order notes`
+  String get OrderNotesHint {
+    return Intl.message(
+      'Enter order notes',
+      name: 'OrderNotesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes`
+  String get Notes {
+    return Intl.message(
+      'Notes',
+      name: 'Notes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no address, please add a new address :)`
+  String get NoAddressesMsg {
+    return Intl.message(
+      'There is no address, please add a new address :)',
+      name: 'NoAddressesMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save address`
+  String get SaveAddress {
+    return Intl.message(
+      'Save address',
+      name: 'SaveAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address Added!`
+  String get AddressAdded {
+    return Intl.message(
+      'Address Added!',
+      name: 'AddressAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address is not valid, please try again`
+  String get AddressErrMsg {
+    return Intl.message(
+      'Address is not valid, please try again',
+      name: 'AddressErrMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address name (EX: Work)`
+  String get AddressType {
+    return Intl.message(
+      'Address name (EX: Work)',
+      name: 'AddressType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Address Label`
+  String get AddressTypeValidation {
+    return Intl.message(
+      'Enter your Address Label',
+      name: 'AddressTypeValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street Name`
+  String get StreetName {
+    return Intl.message(
+      'Street Name',
+      name: 'StreetName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your street name`
+  String get StreetNameValidation {
+    return Intl.message(
+      'Enter your street name',
+      name: 'StreetNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building Num`
+  String get BuildingNum {
+    return Intl.message(
+      'Building Num',
+      name: 'BuildingNum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Floor Num`
+  String get FloorNum {
+    return Intl.message(
+      'Floor Num',
+      name: 'FloorNum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addition details`
+  String get AdditionDetails {
+    return Intl.message(
+      'Addition details',
+      name: 'AdditionDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get Confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'Confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Placed`
+  String get Placed {
+    return Intl.message(
+      'Placed',
+      name: 'Placed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparing`
+  String get Preparing {
+    return Intl.message(
+      'Preparing',
+      name: 'Preparing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pickup`
+  String get Pickup {
+    return Intl.message(
+      'Pickup',
+      name: 'Pickup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered`
+  String get Delivered {
+    return Intl.message(
+      'Delivered',
+      name: 'Delivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your basket is empty. Start shopping now!`
+  String get EmptyBasketMsg {
+    return Intl.message(
+      'Your basket is empty. Start shopping now!',
+      name: 'EmptyBasketMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Placed`
+  String get OrderPlaced {
+    return Intl.message(
+      'Order Placed',
+      name: 'OrderPlaced',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order placed successfully`
+  String get OrderPlacedMsg {
+    return Intl.message(
+      'Your order placed successfully',
+      name: 'OrderPlacedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TrackOrder`
+  String get TrackOrder {
+    return Intl.message(
+      'TrackOrder',
+      name: 'TrackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trending`
+  String get Trending {
+    return Intl.message(
+      'Trending',
+      name: 'Trending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For you`
+  String get ForYou {
+    return Intl.message(
+      'For you',
+      name: 'ForYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discount`
+  String get Discount {
+    return Intl.message(
+      'Discount',
+      name: 'Discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add EGP 20.00 to start your order`
+  String get BasketStartMsg {
+    return Intl.message(
+      'Add EGP 20.00 to start your order',
+      name: 'BasketStartMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Basket`
+  String get ViewBasket {
+    return Intl.message(
+      'View Basket',
+      name: 'ViewBasket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pharmacies on the way! Stay tuned for our new additions`
+  String get PharmaciesEmptyMsg {
+    return Intl.message(
+      'Pharmacies on the way! Stay tuned for our new additions',
+      name: 'PharmaciesEmptyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get ready to shop! New marts will be available soon`
+  String get ResturantsEmptyMsg {
+    return Intl.message(
+      'Get ready to shop! New marts will be available soon',
+      name: 'ResturantsEmptyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restaurants on the way! Stay tuned for our new additions`
+  String get MartsEmptyMsg {
+    return Intl.message(
+      'Restaurants on the way! Stay tuned for our new additions',
+      name: 'MartsEmptyMsg',
       desc: '',
       args: [],
     );

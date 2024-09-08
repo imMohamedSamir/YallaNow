@@ -36,7 +36,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
     setState(() {
       addressId = addressData.id ?? '';
       _addressController.text = "${addressData.city}\n${addressData.street}";
-      readonlyAddress = _addressController.text.isNotEmpty;
+      readonlyAddress = _addressController.text.isEmpty;
       _phoneController.text = addressData.contact?.contactPhone ?? '';
       readonlyPhone = _phoneController.text.isEmpty;
     });
@@ -48,7 +48,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
       UserAddressesDetailsModel addressData = state.address;
       addressId = addressData.id ?? '';
       _addressController.text = "${addressData.city}\n${addressData.street}";
-      readonlyAddress = _addressController.text.isNotEmpty;
+      readonlyAddress = _addressController.text.isEmpty;
       _phoneController.text = addressData.contact?.contactPhone ?? '';
       readonlyPhone = _phoneController.text.isEmpty;
     }
@@ -101,7 +101,7 @@ class _ContactInfoSecState extends State<ContactInfoSec> {
                 autovalidateMode: autovalidateModeAddress,
                 prefixIcon: const Icon(Icons.location_pin, color: scColor),
                 hintText: S.of(context).address,
-                readOnly: readonlyAddress,
+                enabled: readonlyAddress,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return S.of(context).addressValidation;

@@ -14,9 +14,7 @@ AppBar captinAppBar({required BuildContext context}) {
 }
 
 class CaptinYallButton extends StatelessWidget {
-  const CaptinYallButton({
-    super.key,
-  });
+  const CaptinYallButton({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CaptinRideRequestCubit, CaptinRideRequestState>(
@@ -34,7 +32,7 @@ class CaptinYallButton extends StatelessWidget {
                     final readyCubit =
                         BlocProvider.of<ReadyForTripsCubit>(context);
                     // final mapCubit = BlocProvider.of<CaptinMapCubit>(context);
-                    await cubit.toggleGroupMembership();
+                    await cubit.toggleJoin();
                     if (!isJoined) {
                       readyCubit.fetch();
                     } else {

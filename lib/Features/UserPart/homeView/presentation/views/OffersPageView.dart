@@ -3,6 +3,7 @@ import 'package:yallanow/Core/utlis/AppAssets.dart';
 import 'package:yallanow/Core/utlis/AppLang.dart';
 import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Features/UserPart/homeView/data/Models/OfferDetailsModel.dart';
 
 class OffresPageView extends StatelessWidget {
   const OffresPageView(
@@ -95,14 +96,4 @@ class OffresPageView extends StatelessWidget {
       ),
     );
   }
-}
-
-class OfferDetailsModel {
-  final String title, subtitle, description, img;
-
-  OfferDetailsModel(
-      {required this.title,
-      required this.subtitle,
-      required this.description,
-      required this.img});
 }

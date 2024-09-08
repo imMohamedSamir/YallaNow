@@ -6,7 +6,7 @@ import 'package:yallanow/Features/UserPart/foodView/data/Models/top_categ_restur
 import 'package:yallanow/Features/UserPart/homeView/data/Models/search_result_model.dart';
 
 abstract class FoodRepo {
-  Future<Either<Failure, RestruntDetails>> fetchResturantBranches(
+  Future<Either<Failure, RestruntDetails>> fetchResturantDetails(
       {required String restaurantId});
   Future<Either<Failure, List<PopularFoodCategory>>> fetchPopularCategory();
   Future<Either<Failure, List<TopCategResturant>>> fetchExploreResturant();

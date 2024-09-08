@@ -1,43 +1,42 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yallanow/Core/utlis/AppSizes.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
+import 'package:yallanow/Core/utlis/Constatnts.dart';
 import 'package:yallanow/Core/widgets/CustomTextField.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/data/models/UserInputAddressModel.dart';
-import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/SaveAddressButtonBuilder.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/add_user_address_cubit/add_user_address_cubit.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class NewAddressForm extends StatefulWidget {
   const NewAddressForm({
     super.key,
     required this.locationDetails,
     required this.position,
-    required this.scaffoldKey,
   });
   final Placemark locationDetails;
   final LatLng position;
-  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   State<NewAddressForm> createState() => _NewAddressFormState();
 }
 
 class _NewAddressFormState extends State<NewAddressForm> {
-  bool change1 = true;
+  bool change1 = false;
   bool change2 = true;
   String deliveryNotes = '';
-  final _formKey = GlobalKey<FormState>();
   var location;
-  UserInputAddressModel userAddress = UserInputAddressModel();
+  late AddUserAddressCubit _cubit;
+  AutovalidateMode phoneValidate = AutovalidateMode.disabled;
 
   @override
   void initState() {
-    userAddress.latitude = widget.position.latitude;
-    userAddress.longitude = widget.position.longitude;
+    _cubit = BlocProvider.of<AddUserAddressCubit>(context);
+    _cubit.newaddress.latitude = widget.position.latitude;
+    _cubit.newaddress.longitude = widget.position.longitude;
     location = widget.locationDetails;
-    userAddress.postalCode = location.postalCode;
+    _cubit.newaddress.postalCode = location.postalCode;
     super.initState();
   }
 
@@ -49,84 +48,89 @@ class _NewAddressFormState extends State<NewAddressForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: BlocProvider.of<AddUserAddressCubit>(context).formKey,
       child: Column(children: [
+        const Gap(16),
         CustomTextField(
-          hintText: "Address",
+          label: S.of(context).address,
           maxLines: 2,
           prefixIcon: const Icon(Icons.location_pin),
           initialValue:
               '${location.administrativeArea} - ${location.subAdministrativeArea} - ${location.subThoroughfare}  \n ${location.locality} -${location.postalCode}',
-          readOnly: change1,
+          enabled: change1,
           suffixIcon: MaterialButton(
             padding: EdgeInsets.zero,
             onPressed: () {
               setState(() {
-                change1 = false;
+                change1 = true;
               });
             },
             child: Text(
-              "Change",
-              style: AppStyles.styleMedium12(context)
-                  .copyWith(color: const Color(0xffB20404)),
+              S.of(context).change,
+              style: AppStyles.styleMedium12(context).copyWith(color: pKcolor),
             ),
           ),
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return "Enter your Adderss";
+              return S.of(context).addressValidation;
             }
             return null;
           },
           onSaved: (value) {
-            userAddress.country = location.country;
-            userAddress.state = location.administrativeArea;
-            userAddress.city = location.subAdministrativeArea;
+            _cubit.newaddress.country = location.country;
+            _cubit.newaddress.state = location.administrativeArea;
+            _cubit.newaddress.city = location.subAdministrativeArea;
           },
         ),
         const SizedBox(height: 16),
         CustomTextField(
-          hintText: "phone number",
+          hintText: S.of(context).PhoneNumber,
+          autovalidateMode: phoneValidate,
           prefixIcon: const Icon(Icons.call),
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return 'Please enter your mobile number';
+              return S.of(context).PhoneValidation;
             }
             if (value.length > 11 || value.length < 11) {
-              return 'Please enter correct mobile number ';
+              return S.of(context).correctPhoneNumber;
             }
             return null;
           },
+          onChanged: (p0) {
+            setState(() {
+              phoneValidate = AutovalidateMode.onUserInteraction;
+            });
+          },
           onSaved: (value) {
-            userAddress.contactPhone = value!.trim();
-            userAddress.extraContactPhone = value.trim();
+            _cubit.newaddress.contactPhone = value!.trim();
+            _cubit.newaddress.extraContactPhone = value.trim();
           },
         ),
         const SizedBox(height: 16),
         CustomTextField(
-          hintText: "Address name (EX: Work)",
+          hintText: S.of(context).AddressType,
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return "Enter your Address Label";
+              return S.of(context).AddressTypeValidation;
             }
             return null;
           },
           onSaved: (value) {
-            userAddress.label = value?.trim();
+            _cubit.newaddress.label = value?.trim();
           },
         ),
         const SizedBox(height: 16),
         CustomTextField(
-          hintText: "street name",
-          initialValue:
-              "${location.thoroughfare} - ${location.subThoroughfare}",
+          hintText: S.of(context).StreetName,
+          initialValue: location.street,
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return "Enter your street name";
+              return S.of(context).StreetNameValidation;
             }
             return null;
           },
           onSaved: (value) {
-            userAddress.street = value!.trim();
+            _cubit.newaddress.street = value!.trim();
           },
         ),
         const SizedBox(height: 16),
@@ -134,16 +138,14 @@ class _NewAddressFormState extends State<NewAddressForm> {
           children: [
             Expanded(
               child: CustomTextField(
-                hintText: "Building num",
-                initialValue: location.street,
+                hintText: S.of(context).BuildingNum,
                 onSaved: (value) {
-                  log(deliveryNotes.isEmpty.toString());
                   if (deliveryNotes.isEmpty) {
                     deliveryNotes = value!.trim();
-                    userAddress.deliveryNotes = deliveryNotes;
+                    _cubit.newaddress.deliveryNotes = deliveryNotes;
                   } else {
                     deliveryNotes += " - ${value!.trim()}";
-                    userAddress.deliveryNotes = deliveryNotes;
+                    _cubit.newaddress.deliveryNotes = deliveryNotes;
                   }
                 },
               ),
@@ -151,14 +153,14 @@ class _NewAddressFormState extends State<NewAddressForm> {
             const SizedBox(width: 16),
             Expanded(
                 child: CustomTextField(
-              hintText: "Floor num *",
+              hintText: S.of(context).FloorNum,
               onSaved: (value) {
                 if (deliveryNotes.isEmpty) {
                   deliveryNotes = value!.trim();
-                  userAddress.deliveryNotes = deliveryNotes;
+                  _cubit.newaddress.deliveryNotes = deliveryNotes;
                 } else {
                   deliveryNotes += " - ${value!.trim()}";
-                  userAddress.deliveryNotes = deliveryNotes;
+                  _cubit.newaddress.deliveryNotes = deliveryNotes;
                 }
               },
             ))
@@ -166,24 +168,17 @@ class _NewAddressFormState extends State<NewAddressForm> {
         ),
         const SizedBox(height: 16),
         CustomTextField(
-          hintText: "Addition details *",
+          hintText: S.of(context).AdditionDetails,
           onSaved: (value) {
             if (deliveryNotes.isEmpty) {
               deliveryNotes = value!.trim();
-              userAddress.deliveryNotes = deliveryNotes;
+              _cubit.newaddress.deliveryNotes = deliveryNotes;
             } else {
               deliveryNotes += " - ${value!.trim()}";
-              userAddress.deliveryNotes = deliveryNotes;
+              _cubit.newaddress.deliveryNotes = deliveryNotes;
             }
           },
         ),
-        SizedBox(height: AppSizes.getHeight(100, context)),
-        SaveAddressButtonBuilder(
-          userAddress: userAddress,
-          formKey: _formKey,
-          scaffoldKey: widget.scaffoldKey,
-        ),
-        const SizedBox(height: 16),
       ]),
     );
   }

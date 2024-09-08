@@ -5,6 +5,7 @@ import 'package:yallanow/Features/UserPart/AuthView/presentation/views/widgets/S
 import 'package:yallanow/Features/UserPart/homeView/data/Repo/HomeRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/manager/home_search_cubit/home_search_cubit.dart';
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/HomeSearchPageBody.dart';
+import 'package:yallanow/generated/l10n.dart';
 
 class HomeSearchPage extends StatelessWidget {
   const HomeSearchPage({super.key});
@@ -14,7 +15,7 @@ class HomeSearchPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeSearchCubit(getIt.get<HomeRepoImpl>()),
       child: Scaffold(
-        appBar: customAppBar(context, title: "Home", onPressed: () {
+        appBar: customAppBar(context, title: S.of(context).Home, onPressed: () {
           Navigator.pop(context);
         }),
         body: const HomeSearchPageBody(),

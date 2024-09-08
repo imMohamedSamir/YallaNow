@@ -52,7 +52,7 @@ class CaptinRideRequestCubit extends Cubit<CaptinRideRequestState> {
     });
   }
 
-  Future<void> toggleGroupMembership() async {
+  Future<void> toggleJoin() async {
     if (!_isJoined) {
       await connect();
       _isJoined = true;

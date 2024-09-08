@@ -7,6 +7,7 @@ import 'package:yallanow/Core/widgets/MainAppBar.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/data/Repo/AddressRepoImpl.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/manager/add_user_address_cubit/add_user_address_cubit.dart';
 import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/NewAddressForm.dart';
+import 'package:yallanow/Features/UserPart/AddressesView/presentation/views/SaveAddressButtonBuilder.dart';
 
 class NewAddressePage extends StatelessWidget {
   const NewAddressePage(
@@ -16,8 +17,6 @@ class NewAddressePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
-
     return BlocProvider(
       create: (context) => AddUserAddressCubit(getIt.get<AddressesRepoImpl>()),
       child: Scaffold(
@@ -28,10 +27,10 @@ class NewAddressePage extends StatelessWidget {
             child: NewAddressForm(
               locationDetails: locationDetails,
               position: position,
-              scaffoldKey: scaffoldKey,
             ),
           ),
         ),
+        bottomSheet: SaveAddressButtonBuilder(),
       ),
     );
   }

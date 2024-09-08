@@ -14,8 +14,8 @@ class MartSearchPageBody extends StatelessWidget {
       child: Column(
         children: [
           MartsSearchTextField(),
-          Gap(24),
-          FilterListView(),
+          // Gap(24),
+          // FilterListView(),
           Gap(16),
           MartSearchResultSec()
         ],

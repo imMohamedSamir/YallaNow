@@ -152,8 +152,9 @@ class CaptinMapCubit extends Cubit<CaptinMapState> {
     setdistLocation(_dist!);
     await updateDriverMarker(currentposition!);
 
-    _userdistance =
-        calculateDistance(dist: _userLocation!, src: newposition!) * 1000;
+    _userdistance = calculateDistance(
+            dist: _userLocation!, src: newposition ?? const LatLng(50, 50)) *
+        1000;
     log("${(_userdistance!).toStringAsFixed(2)} meter");
   }
 

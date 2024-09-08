@@ -6,8 +6,8 @@ import 'package:yallanow/Features/UserPart/homeView/presentation/views/PopularLo
 import 'package:yallanow/Features/UserPart/homeView/presentation/views/PopularMartsLV.dart';
 import 'package:yallanow/generated/l10n.dart';
 
-class GrocerySec extends StatelessWidget {
-  const GrocerySec({super.key});
+class PopularMartsSec extends StatelessWidget {
+  const PopularMartsSec({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +32,8 @@ class GrocerySec extends StatelessWidget {
             ),
           );
         } else if (state is FetchPopularMartsLoading) {
-          return SliverToBoxAdapter(
-            child: Column(
-              children: [
-                const SizedBox(height: 16),
-                Text(S.of(context).PopularMarts,
-                    style: AppStyles.styleMedium16(context)),
-                const SizedBox(height: 16),
-                const PopularLoading(),
-              ],
-            ),
+          return const SliverToBoxAdapter(
+            child: PopularLoading(),
           );
         } else {
           return const SliverToBoxAdapter(

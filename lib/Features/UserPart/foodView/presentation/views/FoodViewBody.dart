@@ -22,10 +22,8 @@ class FoodViewBody extends StatelessWidget {
             padding: EdgeInsets.only(top: 12),
             sliver: SliverToBoxAdapter(child: FoodTopCategorySec()),
           ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 12),
-            sliver: SliverToBoxAdapter(child: FoodOffersSec()),
-          ),
+          FoodOffersSec(),
+
           // SliverPadding(
           //   padding: EdgeInsets.only(top: 24),
           //   sliver: SliverToBoxAdapter(child: RecommendedforyouSec()),

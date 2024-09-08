@@ -14,8 +14,8 @@ class HomeSearchPageBody extends StatelessWidget {
         children: [
           HomeSearchTextField(),
           SizedBox(height: 24),
-          FilterListView(),
-          SizedBox(height: 16),
+          // FilterListView(),
+          // SizedBox(height: 16),
           HomeSearchResultSec()
         ],
       ),

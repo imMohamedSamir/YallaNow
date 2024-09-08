@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:yallanow/Core/utlis/AppStyles.dart';
 import 'package:yallanow/Core/utlis/functions/NavigationMethod.dart';
@@ -16,6 +18,7 @@ class PopularResturantCard extends StatelessWidget {
   final PopularResturants popularResturants;
   @override
   Widget build(BuildContext context) {
+    log(popularResturants.toJson().toString());
     return GestureDetector(
       onTap: () {
         // savePartnerId(id: popularResturants.id!, type: resturantType);
@@ -23,10 +26,8 @@ class PopularResturantCard extends StatelessWidget {
             context: context,
             page: FoodResturantPage(
               id: popularResturants.id!,
-              resurantName: popularResturants.name,
               deliveryTime: popularResturants.deliveryTime ?? "",
               deliveryPrice: "free",
-              returantImg: popularResturants.imageUrl,
             ));
       },
       child: Card(
@@ -72,10 +73,8 @@ class RestFoodCard extends StatelessWidget {
             context: context,
             page: FoodResturantPage(
               id: resturantModel.id!,
-              resurantName: resturantModel.name,
               deliveryTime: resturantModel.deliverytime ?? "",
               deliveryPrice: "free",
-              returantImg: resturantModel.imageUrl,
             ));
       },
       child: Card(
