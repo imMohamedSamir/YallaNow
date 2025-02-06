@@ -7,6 +7,7 @@ Yalla Now is a fast and reliable delivery and transportation app designed to con
 - **Product Delivery:** Order from restaurants, pharmacies, and marts with ease.
 - **Scooter Transportation:** Quick and affordable rides using scooters.
 - **Delivery Interface:** A dedicated section for delivery agents to receive and manage orders.
+- **Trip Booking:** Book and manage trips for seamless travel experiences.
 - **Captain Interface:** A specialized interface for captains to accept ride requests and track earnings.
 - **User-Friendly Interface:** Intuitive design for seamless navigation and enhanced user experience.
 - **Real-Time Order Tracking:** Stay updated with live order status and delivery progress.
